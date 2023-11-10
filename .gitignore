@@ -2,4 +2,5 @@
 *.tif
 *.nd2
 *~$*.xlsx
+*_Processed.mat
 Hold

@@ -1,21 +1,21 @@
-% dataloc = JB_DataHandler(varagin)
-% JB_DatalocHandler_V2 was designed to add accountabilty to where data comes from
+% dataloc = SG_Datahandler(varagin)
+% SG_Datahandler was designed to add accountabilty to where data comes from
 % and how it is handled. 
 %
 % You dont need to put anything in varargin if you just want the data in
 % the folder you're in. If you want a different folder's data make sure to
 % set difffolder.
 % 
-% The output of all the data JB_DatalocHandler_V2 puts together is saved as one
+% The output of all the data SG_Datahandler puts together is saved as one
 % variable in the processed file's folder with the name ending with _Processed.mat
 %
 % INPUTS:
-% inputs are given as pairs into JB_DatalocHandler_V2('like', like, 'this', this)
+% inputs are given as pairs into SG_Datahandler('like', like, 'this', this)
 % The first part of the pair in the ''s matches one of the inputs below,
 % The second part of the pair is the information you want to pair with it.
 %
 % Setting up data / image processing:
-% saveit - if you want to save the output of JB_DatalocHandler_V2 (default = true)
+% saveit - if you want to save the output of SG_Datahandler (default = true)
 % difffolder - a string containing a different folder to get the dataloc data from.
 % savename - if you want to save the processed file under a different name
 % (but in the same folder)
@@ -50,12 +50,12 @@
 %  Copyright.
 %% N. DeCuzzi, Albeck Lab, UC Davis. 2019-2023
 
-function dataloc = JB_DataHandler_V3(varargin)
+function dataloc = SG_Datahandler(varargin)
 %set up dataproc parameters
 inp.sensors = ''; inp.filterp = []; inp.leavegaps = false; inp.gapmax = 2;
 
 inp.fixfields = false; % make sure all of the data fields match
-inp.saveit = true; %if you want to save the output of JB_DatalocHandler_V2
+inp.saveit = true; %if you want to save the output
 %set up (re)processing parameters
 inp.extractdata = false; inp.updatemap = false; inp.filter = false; 
 inp.certainxys = []; %do this only to certainxys
@@ -70,9 +70,9 @@ inp.looptime = 3; % how many min per loop
 
 % set up dataloc
 inp.dataloc = [];
-dataloc = struct('fold',  struct('data', '','fig','','if',''),... %Initialize the folders
+dataloc = struct('fold',  struct('data','','proc','','fig','','if',''),... %Initialize the folders
     'file', struct('data','', 'base','', 'proc','', 'platemap',''),... %Initialize the files
-    'procdate','', 'filterp',[], 'normalizetype', [], 'version','4', 'd', [], 'platemapd',struct('pmd',[],'idx',[],'date','')); %Initialize everything else
+    'procdate','', 'filterp',[], 'normalizetype', [], 'version','1', 'd', [], 'platemapd',struct('pmd',[],'idx',[],'date','')); %Initialize everything else
 dataloc.sensorinfo = {}; dataloc.xys = {}; dataloc.appendedchans = {}; 
 
 inp.difffolder = ''; %set this to get data fom a different folder
@@ -84,7 +84,7 @@ if rem(nin,2) ~= 0; warning(['Additional inputs must be provided as ',...
         'option, value pairs']);  end%Splits pairs to a structure
 for s = 1:2:nin;   inp.(lower(varargin{s})) = varargin{s+1};   end; clear nin s varargin;
 
-%% Determine what called JB_DatalocHandler_V3 and what files exist already
+%% Determine what called SG_Datahandler and what files exist already
 [dataloc, inp] = FolderFinderMaker(dataloc, inp);
 
 saveIt = false; saveString = '';
@@ -161,7 +161,6 @@ else
     %get the xy names from the data
     XYnums = find(~cellfun(@(x)isempty(x),dataloc.d));
     NumXYs = numel(XYnums);
-
 end
 
 PercentBar = floor(NumXYs/4); PercentBar = [1:PercentBar:PercentBar*4];
@@ -182,7 +181,7 @@ for ii = XYnums
     end %fix for empty xys
 end %numxys 
 
-fprintf('JB_DatalocHandler_V3 has processed %s. \n', dataloc.file.proc)
+fprintf('SG_Datahandler has processed %s. \n', dataloc.file.proc)
 end
 
 %% Normalize Data Function
@@ -341,7 +340,7 @@ function [dataloc, inp]= FolderFinderMaker(dataloc, inp)
 saveFlag = false; loadFlag = false;
 
 %add these paths 
-addpath('\\albecklab.mcb.ucdavis.edu\data\Notebooks\Nick DeCuzzi\Papers\TF paper with Jessica\Code','\\albecklab.mcb.ucdavis.edu\data\Code\Image Analysis','\\albecklab.mcb.ucdavis.edu\data\Code\Cell Trace','\\albecklab.mcb.ucdavis.edu\data\Code\Nick')
+addpath('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B','\\albecklab.mcb.ucdavis.edu\data\Code\Image Analysis','\\albecklab.mcb.ucdavis.edu\data\Code\Cell Trace','\\albecklab.mcb.ucdavis.edu\data\Code\Nick')
 if isempty(inp.dataloc)
 
 %check for different input folder, else figure it out
@@ -399,8 +398,12 @@ end
 
 if isempty(dataloc.procdate); dataloc.procdate = '1-May-2000 01:01:01'; end
 
-% Get the XY data folders within the experiment folder
-a = dir(dataloc.fold.data);
+% Get the XY data folders from the processed data folder
+if isempty(dataloc.fold.proc); dataloc.fold.proc = strrep(dataloc.fold.data,'imageData','Processed Data'); end
+if ~isfolder(dataloc.fold.proc); mkdir(dataloc.fold.proc); end % if the folder doesn't exist already, make it
+  
+% look for XYs data in the Processed Data folder
+a = dir(dataloc.fold.proc);
 if ~isempty(a)
     a = a([a.isdir]); a = {a(3:end).name}'; 
     a = a(contains(a,'XY ')); a = string(a);
@@ -415,14 +418,12 @@ if inp.extractdata || isempty(dataloc.xys)
 end
 
 % Check for IF data, if it exists append the path
-if exist([dataloc.fold.data,'\IF'],"dir") && exist([dataloc.fold.data,'\IF\Cells.csv'],"file") %FIX
-    dataloc.fold.if = [dataloc.fold.data,'\IF'];
+if exist([dataloc.fold.proc,'\IF'],"dir") && exist([dataloc.fold.proc,'\IF\Cells.csv'],"file") %FIX
+    dataloc.fold.if = [dataloc.fold.proc,'\IF'];
 end
 
 % Get / make the figure folder
-if isempty(dataloc.fold.fig) && contains(dataloc.fold.data,'Nick')
-    dataloc.fold.fig = strrep(dataloc.fold.data,'\Experiments\', '\Figures\');
-elseif isempty(dataloc.fold.fig)
+if isempty(dataloc.fold.fig)
     dataloc.fold.fig = append(dataloc.fold.data,'\Figures\');
 end
 
@@ -469,9 +470,10 @@ for iXY = 1:numel(XYn)
     fXY = XYf(iXY); % xy file
 
     dataloc.d{tXY} = {}; %clear that xy
-    if exist(fullfile(dataloc.fold.data,fXY,'Cells.csv'),"file")
-        cellData = readtable(fullfile(dataloc.fold.data,fXY,'Cells.csv'),'VariableNamingRule','preserve','Delimiter',',');
-        
+    if exist(fullfile(dataloc.fold.proc,fXY,'Cells.csv'),"file")
+        cellData = readtable(fullfile(dataloc.fold.proc,fXY,'Cells.csv'),'VariableNamingRule','preserve','Delimiter',',');
+
+        if size(cellData,1) < 1; continue; end % if there is no data skip this XY
         
         cFields = fieldnames(cellData); % get the fields
         cTrackField = cFields{startsWith(cFields,'TrackObjects_Label')}; % find the track objects field
@@ -515,7 +517,7 @@ for iXY = 1:numel(XYn)
         % dataloc.d{tXY}.data.CytoIntegratedIntensity = cellData Intensity_IntegratedIntensity_GFP
     end % pulling the cell.csv data if it exists
     
-    if exist(fullfile(dataloc.fold.data,fXY,'Image.csv'),"file")
+    if exist(fullfile(dataloc.fold.proc,fXY,'Image.csv'),"file")
         imageData = readtable(fullfile(dataloc.fold.data,fXY,'Image.csv'),'VariableNamingRule','preserve','Delimiter',',');
         if any(ismember(fieldnames(imageData),'Count_Grans'))
             dataloc.d{tXY}.data.t_granspercell = (imageData.Count_Grans./imageData.Count_Cells)'; % grans per cell (mean)
@@ -526,7 +528,6 @@ for iXY = 1:numel(XYn)
     end % image data file
 
 end %for each XY
-
 end % extractdata
 
 %% Check for dataloc, its version, and allocate the info accordingly
@@ -534,15 +535,7 @@ function dout = VersionCheck(dout,din,inp)
     if isfield(din,'dataloc'); din = din.dataloc; end
     if isfield(din, 'version')
         switch din.version 
-            case '3'
-                if contains(din.fold.data,'data2','IgnoreCase',true) && ~contains(din.fold.data,'data\data2','IgnoreCase',true)
-                    din.fold.data = replace(din.fold.data,("\data2\"|"Data2"),"\data\");
-                    din.fold.fig = replace(din.fold.fig,("\data2\"|"Data2"),"\data\");
-                end
-                din.version = '4';
-                dout = din;
-            case '4'
-                dout = din;
+            case '1'
             otherwise %Start alllll over 
                 dout = [];
         end

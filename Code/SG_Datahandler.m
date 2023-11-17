@@ -370,6 +370,11 @@ if isempty(dataloc.file.base); dataloc.file.base = filebase; end
 
 thisFolder = icalledyou;
 
+%% Make sure we are not accidentally processing a random folder or the code folder
+if ~contains(thisFolder,{'imageData','Processed Data'})
+    error('DatalocHandler cannot load image data from %s.\nPlease check where you are calling the fullproc file from.\n', thisFolder)
+end
+
 %% Check for, collect, and/or make folder and file names 
 % Get the Base file name
 if isempty(dataloc.file.base); dataloc.file.base = extractAfter(thisFolder,find(thisFolder == '\', 1,'last')); end

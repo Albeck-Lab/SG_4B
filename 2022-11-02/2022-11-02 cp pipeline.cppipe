@@ -1,0 +1,242 @@
+CellProfiler Pipeline: http://www.cellprofiler.org
+Version:5
+DateRevision:424
+GitHash:
+ModuleCount:14
+HasImagePlaneDetails:False
+
+Images:[module_num:1|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:['To begin creating your project, use the Images module to compile a list of files and/or folders that you want to analyze. You can also specify a set of rules to include only the desired files in your selected folders.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    :
+    Filter images?:Images only
+    Select the rule criteria:and (extension does isimage) (directory doesnot containregexp "[\\\\/]\\.")
+
+Metadata:[module_num:2|svn_version:'Unknown'|variable_revision_number:6|show_window:False|notes:['The Metadata module optionally allows you to extract information describing your images (i.e, metadata) which will be stored along with your measurements. This information can be contained in the file name and/or location, or in an external file.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Extract metadata?:Yes
+    Metadata data type:Text
+    Metadata types:{"C": "text", "ChannelName": "text", "ColorFormat": "text", "FileLocation": "text", "Frame": "integer", "Plate": "text", "Series": "integer", "Site": "text", "SizeC": "text", "SizeT": "text", "SizeX": "text", "SizeY": "text", "SizeZ": "text", "T": "text", "Well": "integer", "Z": "text"}
+    Extraction method count:2
+    Metadata extraction method:Extract from image file headers
+    Metadata source:File name
+    Regular expression to extract from file name:^(?P<Plate>.*)_(?P<Well>[A-P][0-9]{2})_s(?P<Site>[0-9])_w(?P<ChannelNumber>[0-9])
+    Regular expression to extract from folder name:(?P<Date>[0-9]{4}_[0-9]{2}_[0-9]{2})$
+    Extract metadata from:All images
+    Select the filtering criteria:and (file does contain "")
+    Metadata file location:Elsewhere...|
+    Match file and image metadata:[]
+    Use case insensitive matching?:No
+    Metadata file name:None
+    Does cached metadata exist?:Yes
+    Metadata extraction method:Extract from file/folder names
+    Metadata source:File name
+    Regular expression to extract from file name:w*_xy(?P<Well>[0-9]{2})_reg
+    Regular expression to extract from folder name:(?P<Date>[0-9]{4}_[0-9]{2}_[0-9]{2})$
+    Extract metadata from:All images
+    Select the filtering criteria:and (file does contain "")
+    Metadata file location:Elsewhere...|
+    Match file and image metadata:[]
+    Use case insensitive matching?:No
+    Metadata file name:None
+    Does cached metadata exist?:No
+
+NamesAndTypes:[module_num:3|svn_version:'Unknown'|variable_revision_number:8|show_window:False|notes:['The NamesAndTypes module allows you to assign a meaningful name to each image by which other modules will refer to it.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Assign a name to:Images matching rules
+    Select the image type:Grayscale image
+    Name to assign these images:DNA
+    Match metadata:[]
+    Image set matching method:Order
+    Set intensity range from:Image metadata
+    Assignments count:1
+    Single images count:0
+    Maximum intensity:255.0
+    Process as 3D?:No
+    Relative pixel spacing in X:1.0
+    Relative pixel spacing in Y:1.0
+    Relative pixel spacing in Z:1.0
+    Select the rule criteria:and (metadata does C "0")
+    Name to assign these images:GFP
+    Name to assign these objects:Cell
+    Select the image type:Grayscale image
+    Set intensity range from:Image metadata
+    Maximum intensity:255.0
+
+Groups:[module_num:4|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:['The Groups module optionally allows you to split your list of images into image subsets (groups) which will be processed independently of each other. Examples of groupings include screening batches, microtiter plates, time-lapse movies, etc.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Do you want to group your images?:Yes
+    grouping metadata count:1
+    Metadata category:Well
+
+RunCellpose:[module_num:5|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:["Segment the cell's cytoplasm (this is used for counting cells, restricting the search for granules to cells only to avoid incorrect granule identification, and to associate granules to the cells."]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:GFP
+    Expected object diameter:75
+    Detection mode:cyto2
+    Name the output object:Cells
+    Use GPU:Yes
+    Use averaging:Yes
+    Supply nuclei image as well?:No
+    Select the nuclei image:Nuclei
+    Save probability image?:No
+    Name the probability image:Probabilities
+    Location of the pre-trained model file:Default Input Folder sub-folder|Downloads
+    Pre-trained model file name:SGI_High_Contrast
+    Flow threshold:0.5
+    Cell probability threshold:-1
+    GPU memory share for each worker:0.125
+    Stitch Threshold:0.0
+    Use 3D:No
+    Minimum size:20
+    Z rescaling factor (anisotropy):1.0
+    Use Omnipose for mask reconstruction:No
+    Invert images:No
+
+MaskImage:[module_num:6|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:['Isolate only the identified cells to be used for granule identification.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:GFP
+    Name the output image:Masked_GFP
+    Use objects or an image as a mask?:Objects
+    Select object for mask:Cells
+    Select image for mask:None
+    Invert the mask?:No
+
+EnhanceOrSuppressFeatures:[module_num:7|svn_version:'Unknown'|variable_revision_number:7|show_window:True|notes:['Disabled for now, could help with identifying dim granules, but creates noise and false granules, so its off for now.']|batch_state:array([], dtype=uint8)|enabled:False|wants_pause:False]
+    Select the input image:Masked_GFP
+    Name the output image:Enhanced_GFP
+    Select the operation:Enhance
+    Feature size:4
+    Feature type:Speckles
+    Range of hole sizes:1,10
+    Smoothing scale:2.0
+    Shear angle:0.0
+    Decay:0.95
+    Enhancement method:Tubeness
+    Speed and accuracy:Slow
+    Rescale result image:No
+
+RunCellpose:[module_num:8|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:['Find the granules within the cells identified by cellpose.', '', 'Note: Be sure to check that the location of the pretrained model is correct!']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:Masked_GFP
+    Expected object diameter:8
+    Detection mode:custom
+    Name the output object:Grans
+    Use GPU:Yes
+    Use averaging:No
+    Supply nuclei image as well?:No
+    Select the nuclei image:None
+    Save probability image?:No
+    Name the probability image:Probabilities
+    Location of the pre-trained model file:Default Input Folder sub-folder|Downloads
+    Pre-trained model file name:SGI_High_Contrast
+    Flow threshold:0.5
+    Cell probability threshold:0
+    GPU memory share for each worker:0.125
+    Stitch Threshold:0.0
+    Use 3D:No
+    Minimum size:1
+    Z rescaling factor (anisotropy):1.0
+    Use Omnipose for mask reconstruction:No
+    Invert images:No
+
+TrackObjects:[module_num:9|svn_version:'Unknown'|variable_revision_number:7|show_window:True|notes:['Track the cellpose identified cells.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Choose a tracking method:LAP
+    Select the objects to track:Cells
+    Select object measurement to use for tracking:None
+    Maximum pixel distance to consider matches:50
+    Select display option:Color and Number
+    Save color-coded image?:No
+    Name the output image:TrackedCells
+    Select the movement model:Both
+    Number of standard deviations for search radius:3.0
+    Search radius limit, in pixel units (Min,Max):2.0,15
+    Run the second phase of the LAP algorithm?:No
+    Gap closing cost:40
+    Split alternative cost:40
+    Merge alternative cost:40
+    Maximum gap displacement, in pixel units:5
+    Maximum split score:50
+    Maximum merge score:50
+    Maximum temporal gap, in frames:5
+    Filter objects by lifetime?:No
+    Filter using a minimum lifetime?:Yes
+    Minimum lifetime:1
+    Filter using a maximum lifetime?:No
+    Maximum lifetime:100
+    Mitosis alternative cost:80
+    Maximum mitosis distance, in pixel units:40
+    Average cell diameter in pixels:35.0
+    Use advanced configuration parameters:No
+    Cost of cell to empty matching:15.0
+    Weight of area difference in function matching cost:25.0
+
+TrackObjects:[module_num:10|svn_version:'Unknown'|variable_revision_number:7|show_window:True|notes:['Track the cellpose identified granules that were within the cells.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Choose a tracking method:LAP
+    Select the objects to track:Grans
+    Select object measurement to use for tracking:None
+    Maximum pixel distance to consider matches:15
+    Select display option:Color and Number
+    Save color-coded image?:No
+    Name the output image:TrackedCells
+    Select the movement model:Both
+    Number of standard deviations for search radius:3.0
+    Search radius limit, in pixel units (Min,Max):1,5
+    Run the second phase of the LAP algorithm?:No
+    Gap closing cost:40
+    Split alternative cost:40
+    Merge alternative cost:40
+    Maximum gap displacement, in pixel units:5
+    Maximum split score:50
+    Maximum merge score:50
+    Maximum temporal gap, in frames:5
+    Filter objects by lifetime?:No
+    Filter using a minimum lifetime?:Yes
+    Minimum lifetime:1
+    Filter using a maximum lifetime?:No
+    Maximum lifetime:100
+    Mitosis alternative cost:80
+    Maximum mitosis distance, in pixel units:40
+    Average cell diameter in pixels:35.0
+    Use advanced configuration parameters:No
+    Cost of cell to empty matching:15.0
+    Weight of area difference in function matching cost:25.0
+
+RelateObjects:[module_num:11|svn_version:'Unknown'|variable_revision_number:5|show_window:True|notes:['Associate granules found with the cells they were found in.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Parent objects:Cells
+    Child objects:Grans
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Do you want to save the children with parents as a new object set?:Yes
+    Name the output object:CellsAndGrans
+    Parent name:None
+
+MeasureObjectSizeShape:[module_num:12|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:['Measure the features of granules.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select object sets to measure:Grans
+    Calculate the Zernike features?:Yes
+    Calculate the advanced features?:Yes
+
+MeasureObjectIntensity:[module_num:13|svn_version:'Unknown'|variable_revision_number:4|show_window:False|notes:["Measure the granule's intensity using the cellpose masks on the origional image."]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select images to measure:GFP
+    Select objects to measure:Grans
+
+ExportToSpreadsheet:[module_num:14|svn_version:'Unknown'|variable_revision_number:13|show_window:False|notes:['Make sure to check the output sub-folder for the data! ', 'You will want to add ', '\\XY Well', 'to the path. ', 'Add "well" by right clicking on the text box and a dropdown menu will appear, click "Well". ', '"Well" will appear as being highlighted green, but "\\XY " is manually typed in.', "Be careful as the cursor does not alway match where the text shows up. Use the keyboard's left and right arrows to identify where you're adding text. It's critical to have the folder where the data ends up to be have no spaces before XY and a space between XY and WELL."]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:True]
+    Select the column delimiter:Comma (",")
+    Add image metadata columns to your object data file?:Yes
+    Add image file and folder names to your object data file?:Yes
+    Select the measurements to export:Yes
+    Calculate the per-image mean values for object measurements?:No
+    Calculate the per-image median values for object measurements?:No
+    Calculate the per-image standard deviation values for object measurements?:No
+    Output file location:Elsewhere...|E:\\Holder\\XY \g<Well>
+    Create a GenePattern GCT file?:No
+    Select source of sample row name:Metadata
+    Select the image to use as the identifier:None
+    Select the metadata to use as the identifier:None
+    Export all measurement types?:Yes
+    Press button to select measurements:Grans|AreaShape_Zernike_7_7,Grans|AreaShape_Zernike_7_3,Grans|AreaShape_Zernike_7_1,Grans|AreaShape_Zernike_7_5,Grans|AreaShape_Zernike_2_0,Grans|AreaShape_Zernike_2_2,Grans|AreaShape_Zernike_4_0,Grans|AreaShape_Zernike_4_2,Grans|AreaShape_Zernike_4_4,Grans|AreaShape_Zernike_5_1,Grans|AreaShape_Zernike_5_5,Grans|AreaShape_Zernike_5_3,Grans|AreaShape_Zernike_0_0,Grans|AreaShape_Zernike_9_7,Grans|AreaShape_Zernike_9_3,Grans|AreaShape_Zernike_9_9,Grans|AreaShape_Zernike_9_1,Grans|AreaShape_Zernike_9_5,Grans|AreaShape_Zernike_8_8,Grans|AreaShape_Zernike_8_0,Grans|AreaShape_Zernike_8_4,Grans|AreaShape_Zernike_8_2,Grans|AreaShape_Zernike_8_6,Grans|AreaShape_Zernike_6_4,Grans|AreaShape_Zernike_6_0,Grans|AreaShape_Zernike_6_2,Grans|AreaShape_Zernike_6_6,Grans|AreaShape_Zernike_3_1,Grans|AreaShape_Zernike_3_3,Grans|AreaShape_Zernike_1_1,Grans|AreaShape_SpatialMoment_0_2,Grans|AreaShape_SpatialMoment_0_3,Grans|AreaShape_SpatialMoment_0_1,Grans|AreaShape_SpatialMoment_0_0,Grans|AreaShape_SpatialMoment_2_0,Grans|AreaShape_SpatialMoment_2_3,Grans|AreaShape_SpatialMoment_2_2,Grans|AreaShape_SpatialMoment_2_1,Grans|AreaShape_SpatialMoment_1_0,Grans|AreaShape_SpatialMoment_1_1,Grans|AreaShape_SpatialMoment_1_3,Grans|AreaShape_SpatialMoment_1_2,Grans|AreaShape_HuMoment_6,Grans|AreaShape_HuMoment_0,Grans|AreaShape_HuMoment_4,Grans|AreaShape_HuMoment_5,Grans|AreaShape_HuMoment_3,Grans|AreaShape_HuMoment_2,Grans|AreaShape_HuMoment_1,Grans|AreaShape_CentralMoment_0_1,Grans|AreaShape_CentralMoment_0_2,Grans|AreaShape_CentralMoment_0_3,Grans|AreaShape_CentralMoment_0_0,Grans|AreaShape_CentralMoment_1_0,Grans|AreaShape_CentralMoment_1_1,Grans|AreaShape_CentralMoment_1_3,Grans|AreaShape_CentralMoment_1_2,Grans|AreaShape_CentralMoment_2_1,Grans|AreaShape_CentralMoment_2_2,Grans|AreaShape_CentralMoment_2_0,Grans|AreaShape_CentralMoment_2_3,Grans|AreaShape_NormalizedMoment_0_3,Grans|AreaShape_NormalizedMoment_0_1,Grans|AreaShape_NormalizedMoment_0_2,Grans|AreaShape_NormalizedMoment_0_0,Grans|AreaShape_NormalizedMoment_3_0,Grans|AreaShape_NormalizedMoment_3_3,Grans|AreaShape_NormalizedMoment_3_2,Grans|AreaShape_NormalizedMoment_3_1,Grans|AreaShape_NormalizedMoment_2_3,Grans|AreaShape_NormalizedMoment_2_0,Grans|AreaShape_NormalizedMoment_2_1,Grans|AreaShape_NormalizedMoment_2_2,Grans|AreaShape_NormalizedMoment_1_2,Grans|AreaShape_NormalizedMoment_1_0,Grans|AreaShape_NormalizedMoment_1_1,Grans|AreaShape_NormalizedMoment_1_3,Grans|AreaShape_BoundingBoxMaximum_Y,Grans|AreaShape_BoundingBoxMaximum_X,Grans|AreaShape_Solidity,Grans|AreaShape_InertiaTensorEigenvalues_1,Grans|AreaShape_InertiaTensorEigenvalues_0,Grans|AreaShape_Orientation,Grans|AreaShape_EulerNumber,Grans|AreaShape_Perimeter,Grans|AreaShape_MeanRadius,Grans|AreaShape_BoundingBoxArea,Grans|AreaShape_InertiaTensor_1_0,Grans|AreaShape_InertiaTensor_1_1,Grans|AreaShape_InertiaTensor_0_0,Grans|AreaShape_InertiaTensor_0_1,Grans|AreaShape_MaxFeretDiameter,Grans|AreaShape_MajorAxisLength,Grans|AreaShape_EquivalentDiameter,Grans|AreaShape_Extent,Grans|AreaShape_Area,Grans|AreaShape_Center_Y,Grans|AreaShape_Center_X,Grans|AreaShape_BoundingBoxMinimum_X,Grans|AreaShape_BoundingBoxMinimum_Y,Grans|AreaShape_MinFeretDiameter,Grans|AreaShape_MinorAxisLength,Grans|AreaShape_Eccentricity,Grans|AreaShape_Compactness,Grans|AreaShape_FormFactor,Grans|AreaShape_MaximumRadius,Grans|AreaShape_MedianRadius,Grans|AreaShape_ConvexArea,Grans|TrackObjects_Kalman_Vel_COV_X_Y,Grans|TrackObjects_Kalman_Vel_COV_X_X,Grans|TrackObjects_Kalman_Vel_COV_X_VY,Grans|TrackObjects_Kalman_Vel_COV_X_VX,Grans|TrackObjects_Kalman_Vel_COV_VX_Y,Grans|TrackObjects_Kalman_Vel_COV_VX_VY,Grans|TrackObjects_Kalman_Vel_COV_VX_VX,Grans|TrackObjects_Kalman_Vel_COV_VX_X,Grans|TrackObjects_Kalman_Vel_COV_Y_VX,Grans|TrackObjects_Kalman_Vel_COV_Y_Y,Grans|TrackObjects_Kalman_Vel_COV_Y_X,Grans|TrackObjects_Kalman_Vel_COV_Y_VY,Grans|TrackObjects_Kalman_Vel_COV_VY_VX,Grans|TrackObjects_Kalman_Vel_COV_VY_VY,Grans|TrackObjects_Kalman_Vel_COV_VY_Y,Grans|TrackObjects_Kalman_Vel_COV_VY_X,Grans|TrackObjects_Kalman_Vel_State_VY,Grans|TrackObjects_Kalman_Vel_State_Y,Grans|TrackObjects_Kalman_Vel_State_X,Grans|TrackObjects_Kalman_Vel_State_VX,Grans|TrackObjects_Kalman_Vel_Noise_Y,Grans|TrackObjects_Kalman_Vel_Noise_VY,Grans|TrackObjects_Kalman_Vel_Noise_X,Grans|TrackObjects_Kalman_Vel_Noise_VX,Grans|TrackObjects_Kalman_NoVel_COV_X_X,Grans|TrackObjects_Kalman_NoVel_COV_X_Y,Grans|TrackObjects_Kalman_NoVel_COV_Y_X,Grans|TrackObjects_Kalman_NoVel_COV_Y_Y,Grans|TrackObjects_Kalman_NoVel_Noise_X,Grans|TrackObjects_Kalman_NoVel_Noise_Y,Grans|TrackObjects_Kalman_NoVel_State_X,Grans|TrackObjects_Kalman_NoVel_State_Y,Grans|TrackObjects_StandardDeviation,Grans|TrackObjects_Linearity,Grans|TrackObjects_Label,Grans|TrackObjects_IntegratedDistance,Grans|TrackObjects_LinkType,Grans|TrackObjects_TrajectoryX,Grans|TrackObjects_FinalAge,Grans|TrackObjects_Displacement,Grans|TrackObjects_Area,Grans|TrackObjects_ParentImageNumber,Grans|TrackObjects_MovementModel,Grans|TrackObjects_TrajectoryY,Grans|TrackObjects_ParentObjectNumber,Grans|TrackObjects_Lifetime,Grans|TrackObjects_LinkingDistance,Grans|TrackObjects_DistanceTraveled,Grans|Location_CenterMassIntensity_X_GFP,Grans|Location_CenterMassIntensity_Z_GFP,Grans|Location_CenterMassIntensity_Y_GFP,Grans|Location_Center_Y,Grans|Location_Center_X,Grans|Location_Center_Z,Grans|Location_MaxIntensity_Z_GFP,Grans|Location_MaxIntensity_X_GFP,Grans|Location_MaxIntensity_Y_GFP,Grans|Intensity_StdIntensity_GFP,Grans|Intensity_UpperQuartileIntensity_GFP,Grans|Intensity_MassDisplacement_GFP,Grans|Intensity_MADIntensity_GFP,Grans|Intensity_IntegratedIntensityEdge_GFP,Grans|Intensity_MaxIntensity_GFP,Grans|Intensity_MaxIntensityEdge_GFP,Grans|Intensity_IntegratedIntensity_GFP,Grans|Intensity_StdIntensityEdge_GFP,Grans|Intensity_MinIntensityEdge_GFP,Grans|Intensity_LowerQuartileIntensity_GFP,Grans|Intensity_MeanIntensityEdge_GFP,Grans|Intensity_MeanIntensity_GFP,Grans|Intensity_MinIntensity_GFP,Grans|Intensity_MedianIntensity_GFP,Grans|Parent_Cells,Grans|Number_Object_Number,Grans|Children_CellsAndGrans_Count,Cells|TrackObjects_FinalAge,Cells|TrackObjects_Kalman_Vel_COV_VX_X,Cells|TrackObjects_Kalman_Vel_COV_VX_Y,Cells|TrackObjects_Kalman_Vel_COV_VX_VY,Cells|TrackObjects_Kalman_Vel_COV_VX_VX,Cells|TrackObjects_Kalman_Vel_COV_VY_VX,Cells|TrackObjects_Kalman_Vel_COV_VY_X,Cells|TrackObjects_Kalman_Vel_COV_VY_Y,Cells|TrackObjects_Kalman_Vel_COV_VY_VY,Cells|TrackObjects_Kalman_Vel_COV_X_VX,Cells|TrackObjects_Kalman_Vel_COV_X_VY,Cells|TrackObjects_Kalman_Vel_COV_X_Y,Cells|TrackObjects_Kalman_Vel_COV_X_X,Cells|TrackObjects_Kalman_Vel_COV_Y_Y,Cells|TrackObjects_Kalman_Vel_COV_Y_VY,Cells|TrackObjects_Kalman_Vel_COV_Y_VX,Cells|TrackObjects_Kalman_Vel_COV_Y_X,Cells|TrackObjects_Kalman_Vel_Noise_X,Cells|TrackObjects_Kalman_Vel_Noise_VY,Cells|TrackObjects_Kalman_Vel_Noise_Y,Cells|TrackObjects_Kalman_Vel_Noise_VX,Cells|TrackObjects_Kalman_Vel_State_X,Cells|TrackObjects_Kalman_Vel_State_VY,Cells|TrackObjects_Kalman_Vel_State_Y,Cells|TrackObjects_Kalman_Vel_State_VX,Cells|TrackObjects_Kalman_NoVel_Noise_X,Cells|TrackObjects_Kalman_NoVel_Noise_Y,Cells|TrackObjects_Kalman_NoVel_COV_X_Y,Cells|TrackObjects_Kalman_NoVel_COV_X_X,Cells|TrackObjects_Kalman_NoVel_COV_Y_X,Cells|TrackObjects_Kalman_NoVel_COV_Y_Y,Cells|TrackObjects_Kalman_NoVel_State_X,Cells|TrackObjects_Kalman_NoVel_State_Y,Cells|TrackObjects_TrajectoryY,Cells|TrackObjects_MovementModel,Cells|TrackObjects_ParentObjectNumber,Cells|TrackObjects_TrajectoryX,Cells|TrackObjects_Displacement,Cells|TrackObjects_LinkType,Cells|TrackObjects_StandardDeviation,Cells|TrackObjects_Linearity,Cells|TrackObjects_DistanceTraveled,Cells|TrackObjects_Area,Cells|TrackObjects_ParentImageNumber,Cells|TrackObjects_IntegratedDistance,Cells|TrackObjects_Label,Cells|TrackObjects_Lifetime,Cells|TrackObjects_LinkingDistance,Cells|Location_Center_Y,Cells|Location_Center_Z,Cells|Location_Center_X,Cells|Children_Grans_Count,Cells|Number_Object_Number,Image|Count_Cells,Image|Count_Grans,Image|Count_CellsAndGrans,CellsAndGrans|Location_Center_X,CellsAndGrans|Location_Center_Y,CellsAndGrans|Location_Center_Z,CellsAndGrans|Parent_Grans,CellsAndGrans|Number_Object_Number,Experiment|Run_Timestamp,Experiment|CellProfiler_Version,Experiment|Modification_Timestamp,Experiment|Pipeline_Pipeline,Experiment|Metadata_GroupingTags
+    Representation of Nan/Inf:NaN
+    Add a prefix to file names?:No
+    Filename prefix:2022-09-30
+    Overwrite existing files without warning?:Yes
+    Data to export:Do not use
+    Combine these object measurements with those of the previous object?:No
+    File name:DATA.csv
+    Use the object name for the file name?:Yes
+    Data to export:Grans
+    Combine these object measurements with those of the previous object?:No
+    File name:DATA.csv
+    Use the object name for the file name?:Yes

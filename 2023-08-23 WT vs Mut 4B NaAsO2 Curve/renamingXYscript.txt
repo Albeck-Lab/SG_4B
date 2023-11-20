@@ -1,0 +1,33 @@
+# Set the path to the folder and mappings file
+$mappingsPath = "D:\2023-08-23\XY_LABEL_LIST_CSV.csv" # change this
+$folderPath = "D:\2023-08-23\XYs" # change this
+$addXY = "xy"
+
+# Import the filename mappings from the CSV
+$mappings = Import-Csv -Path $mappingsPath | Select-Object -Property OldName, NewName
+
+# Get all files in the folder
+$files = Get-ChildItem -Path $folderPath
+
+# Loop through each file
+foreach ($file in $files) {
+    # Loop through each mapping
+    foreach ($mapping in $mappings) {
+        # If the file name ends with the old name
+        $oldNameEnding = $mapping.OldName.Trim()
+        if ($file.BaseName.Trim() -match "$oldNameEnding$") {
+            # Create the new file name by replacing the old ending with "_xy" and the new ending
+            $newBaseName = $file.BaseName.Trim() -replace $oldNameEnding, ($addXY + $mapping.NewName.Trim())
+            $newName = $newBaseName + $file.Extension
+            # Print out debug information
+            Write-Host "Renaming $($file.FullName) to $newName"
+            # Rename the file
+            Rename-Item -Path $file.FullName -NewName $newName
+        }
+    }
+}
+
+# For accidental __ in names...
+Get-ChildItem -Path $folderPath -Recurse | 
+    Where-Object { $_.Name -match "__" } |
+    Rename-Item -NewName { $_.Name -replace '__', '_' } -PassThru

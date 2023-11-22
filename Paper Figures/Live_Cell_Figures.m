@@ -10,7 +10,7 @@
 %dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
 
 % 2023-06-15
-dataset3 = load('\\albecklab.mcb.ucdavis.edu\data\Notebooks\Nick DeCuzzi\Papers\TF paper with Jessica\Experiments\2023-06-15 4b WT-Mut NaAso2 Curve\2023-06-15 4b WT-Mut NaAso2 Curve_Processed.mat');
+dataset3 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-15 4b WT-Mut NaAso2 Curve\2023-06-15 4b WT-Mut NaAso2 Curve_Processed.mat');
 dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 
 % 2023-06-29
@@ -24,7 +24,7 @@ dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 
 %%  24h induced 139A mutant 4B data
 % 2023-05-03
-dataset6 = load('\\albecklab.mcb.ucdavis.edu\data\Notebooks\Nick DeCuzzi\Papers\TF paper with Jessica\Experiments\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed.mat');
+dataset6 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed.mat');
 dataset6 = dataset6.dataloc; % pull the loaded dataloc structure
 
 % 2023-06-15 (already loaded)

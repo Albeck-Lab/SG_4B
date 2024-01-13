@@ -6,16 +6,16 @@
 %dataset1 = dataset1.dataloc; % pull the loaded dataloc structure
 
 % 2023-05-03
-%dataset2 = load('');
-%dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
+dataset2 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed.mat');
+dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
 
 % 2023-06-15
 dataset3 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-15 4b WT-Mut NaAso2 Curve\2023-06-15 4b WT-Mut NaAso2 Curve_Processed.mat');
 dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 
 % 2023-06-29
-%dataset4 = load('');
-%dataset4 = dataset4.dataloc; % pull the loaded dataloc structure
+dataset4 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat');
+dataset4 = dataset4.dataloc; % pull the loaded dataloc structure
 
 % 2023-08-23
 %dataset5 = load('');

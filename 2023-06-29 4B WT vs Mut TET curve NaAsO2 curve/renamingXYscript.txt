@@ -1,6 +1,6 @@
 # Set the path to the folder and mappings file
-$mappingsPath = "D:\2023-06-29\XY_LABEL_LIST_CSV.csv" # change this
-$folderPath = "D:\2023-06-29\Live_IF_xys" # change this
+$mappingsPath = "\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\XY_LABEL_LIST_CSV.csv" # change this
+$folderPath = "\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\LC_XYs" # change this
 $addXY = "xy"
 
 # Import the filename mappings from the CSV

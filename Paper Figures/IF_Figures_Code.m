@@ -5,7 +5,8 @@ dataset1 = load('\\albecklab.mcb.ucdavis.edu\data\Notebooks\Nick DeCuzzi\Papers\
 dataset1 = dataset1.dataloc; % pull the loaded dataloc structure
 % 
 % 2023-06-29 Data
-dataset2=load('\\albecklab.mcb.ucdavis.edu\data\Notebooks\Nick DeCuzzi\Papers\TF paper with Jessica\Experiments\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat');
+basePath = '\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\';
+dataset2=load([basePath,'2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat']);
 dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
 dataloc = dataset2;
 % 
@@ -21,7 +22,7 @@ hp2 = uipanel('position',[0.5, 0, 0.5, 1]);
 
 subz = all([contains(dataloc.ifd.treatment,'TET at hour -24'),contains(dataloc.ifd.cell,'4BGFP'),...
     (dataloc.ifd.Children_Grans_4B_Count >= minGrans),],2);
-scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65000,...
+scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp1,'Location','SouthEast' )
 xlim([0,15]); ylim([0,10000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
 title('24h WT4b Tet induced and all NaAsO2 Doses')
@@ -29,7 +30,7 @@ title('24h WT4b Tet induced and all NaAsO2 Doses')
 
 subz = all([contains(dataloc.ifd.treatment,'TET at hour -24'),contains(dataloc.ifd.cell,'139A'),...
     (dataloc.ifd.Children_Grans_4B_Count >= minGrans)],2);
-scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65000,...
+scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp2)
 xlim([0,15]); ylim([0,10000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
 title('24h 137A Tet induced and all NaAsO2 Doses')

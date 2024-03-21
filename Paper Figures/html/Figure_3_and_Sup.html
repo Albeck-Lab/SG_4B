@@ -1,0 +1,871 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Figure_3_and_Sup</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-03-21">
+<meta name="DC.source" content="Figure_3_and_Sup.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Load the appended and aligned Live_cell last frame and IF data</a>
+</li>
+<li>
+<a href="#2">Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Load the appended and aligned Live_cell last frame and IF data</h2>
+<pre class="codeinput">
+<span class="comment">% 2023-06-29 Data</span>
+basePath = <span class="string">'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\'</span>;
+dataset2=load([basePath,<span class="string">'2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat'</span>]);
+dataset2 = dataset2.dataloc; <span class="comment">% pull the loaded dataloc structure</span>
+dataloc = dataset2;
+<span class="comment">%</span>
+<span class="comment">% % Pull and combine the IF datasets</span>
+<span class="comment">% pooledData = [dataset1.ifd,dataset2.ifd];</span>
+</pre>
+<h2 id="2">Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions</h2>
+<pre class="codeinput">
+<span class="comment">% Figure 3A - Log2 OPP versus 4B cell line</span>
+
+<span class="comment">% No TET, 24h TET and 24h TET with 125uM NaAsO2</span>
+<span class="comment">% 4B wt or mut grans vs OPP grouped by TET induction (only 24hr and 0 hr induced)</span>
+
+minGrans = 0; <span class="comment">% min number of granules</span>
+tetTime = (<span class="string">"hour -24"</span>|<span class="string">"hour 0"</span>); <span class="comment">% amount of tet induction</span>
+naAsO2 = (<span class="string">" 125uM"</span>|<span class="string">" 0uM"</span>); <span class="comment">% NaAsO2 treatment</span>
+
+<span class="comment">% make a new figure</span>
+figure3 = figure;
+
+<span class="comment">%topP = uipanel('position',[0,   0.5, 1, 1]);</span>
+botLP = uipanel(<span class="string">'position'</span>,[0,   0, 0.5, 0.5]);
+botRp = uipanel(<span class="string">'position'</span>,[0.5, 0, 0.5, 0.5]);
+
+<span class="comment">% make a new container for axes</span>
+f3axes = [];
+
+
+subz = all([contains(dataloc.ifd.treatment,tetTime),~contains(dataloc.ifd.cell,<span class="string">'bad'</span>),contains(dataloc.ifd.treatment,naAsO2),<span class="keyword">...</span>
+    (dataloc.ifd.Children_Grans_G3BP1_Count &gt;= minGrans)],2);
+
+catOrder = [<span class="string">"0ug/mL TET at hour 0 and 0uM NaAsO2"</span>,<span class="string">"0.1ug/mL TET at hour -24 and 0uM NaAsO2"</span>,<span class="keyword">...</span>
+    <span class="string">"0.1ug/mL TET at hour -24 and 125uM NaAsO2"</span>]; <span class="comment">% give the order I want for the plot</span>
+
+f2axes(1) = subplot(2,2,[1,2]);
+boxchart(categorical(dataloc.ifd.cell(subz),unique(dataloc.ifd.cell(subz),<span class="string">"stable"</span>)),log2((dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535)),<span class="string">'GroupByColor'</span>,categorical(dataloc.ifd.treatment(subz),catOrder),<span class="string">'Notch'</span>,<span class="string">'on'</span>,<span class="string">'MarkerStyle'</span>,<span class="string">'.'</span>,<span class="string">"BoxWidth"</span>,1)
+ylim([7,14.5])
+legend(<span class="string">'Location'</span>,<span class="string">'best'</span>); ylabel(<span class="string">"Log_2 Mean OPP Intensity per Cell"</span>); xlabel(<span class="string">'4B Cell line'</span>)
+fontname(<span class="string">'Arial'</span>); fontsize(11,<span class="string">"points"</span>);
+
+<span class="comment">% Make the</span>
+
+<span class="comment">% 24 hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle with box and wiskers?</span>
+minGrans = 0;
+tetTime = <span class="string">'-24'</span>;
+xlimz = [0,30]; <span class="comment">% granule axis limits</span>
+ylimz = [0, 10000]; <span class="comment">% Opp axis limits</span>
+
+
+subz = all([contains(dataloc.ifd.treatment,[<span class="string">'TET at hour '</span>, tetTime]),contains(dataloc.ifd.cell,<span class="string">'4BGFP'</span>),<span class="keyword">...</span>
+    (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans),~contains(dataloc.ifd.treatment,<span class="string">'and 0uM'</span>)],2);
+h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,<span class="keyword">...</span>
+    <span class="string">'Group'</span>,dataloc.ifd.treatment(subz),<span class="string">'Location'</span>,<span class="string">'SouthEast'</span>,<span class="string">'parent'</span>,botLP);
+xlabel(<span class="string">'4B Granules'</span>); ylabel(<span class="string">'Mean OPP Intensity'</span>)
+title([tetTime,<span class="string">'h WT4b Tet induced and all NaAsO2 Doses'</span>])
+hold <span class="string">on</span>;
+clr = get(h(1),<span class="string">'colororder'</span>);
+boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+     <span class="string">'label'</span>,{<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,clr);
+boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+     <span class="string">'label'</span>, {<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,clr);
+set(h(2:3),<span class="string">'XTickLabel'</span>,<span class="string">''</span>);
+view(h(3),[270,90]);  <span class="comment">% Rotate the Y plot</span>
+xlim(h(1),xlimz); ylim(h(1),ylimz);
+xlim(h(2),xlimz); xlim(h(3),ylimz); <span class="comment">% Sync axes</span>
+hold <span class="string">off</span>;
+
+subz = all([contains(dataloc.ifd.treatment,[<span class="string">'TET at hour '</span>, tetTime]),contains(dataloc.ifd.cell,<span class="string">'139A'</span>),<span class="keyword">...</span>
+    (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans),~contains(dataloc.ifd.treatment,<span class="string">'and 0uM'</span>)],2);
+h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,<span class="keyword">...</span>
+    <span class="string">'Group'</span>,dataloc.ifd.treatment(subz),<span class="string">'parent'</span>,botRp);
+xlabel(<span class="string">'4B Granules'</span>); ylabel(<span class="string">'Mean OPP Intensity'</span>)
+title([tetTime,<span class="string">'h 137A Tet induced and all NaAsO2 Doses'</span>])
+hold <span class="string">on</span>;
+clr = get(h(1),<span class="string">'colororder'</span>);
+boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+     <span class="string">'label'</span>,{<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,clr);
+boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+     <span class="string">'label'</span>, {<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,clr);
+set(h(2:3),<span class="string">'XTickLabel'</span>,<span class="string">''</span>);
+view(h(3),[270,90]);  <span class="comment">% Rotate the Y plot</span>
+xlim(h(1),xlimz); ylim(h(1),ylimz);
+xlim(h(2),xlimz); xlim(h(3),ylimz);  <span class="comment">% Sync axes</span>
+hold <span class="string">off</span>;
+
+saveas(figure3,<span class="string">'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\figure3.fig'</span>)
+saveas(figure3,<span class="string">'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\figure3.svg'</span>)
+
+<span class="comment">% %% 24 hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle</span>
+<span class="comment">% minGrans = 0;</span>
+<span class="comment">%</span>
+<span class="comment">% figure</span>
+<span class="comment">% hp1 = uipanel('position',[0,   0, 0.5, 1]);</span>
+<span class="comment">% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,'TET at hour -24'),contains(dataloc.ifd.cell,'4BGFP'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans),],2);</span>
+<span class="comment">% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp1,'Location','SouthEast' )</span>
+<span class="comment">% xlim([0,15]); ylim([0,10000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title('24h WT4b Tet induced and all NaAsO2 Doses')</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,'TET at hour -24'),contains(dataloc.ifd.cell,'139A'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans)],2);</span>
+<span class="comment">% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp2)</span>
+<span class="comment">% xlim([0,15]); ylim([0,10000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title('24h 137A Tet induced and all NaAsO2 Doses')</span>
+<span class="comment">%</span>
+<span class="comment">% %% X hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle with box and wiskers?</span>
+<span class="comment">% minGrans = 0;</span>
+<span class="comment">% tetTime = '-24';</span>
+<span class="comment">% xlimz = [0,30]; % granule axis limits</span>
+<span class="comment">% ylimz = [0, 10000]; % Opp axis limits</span>
+<span class="comment">%</span>
+<span class="comment">% figure</span>
+<span class="comment">% hp1 = uipanel('position',[0,   0, 0.5, 1]);</span>
+<span class="comment">% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans),],2);</span>
+<span class="comment">% h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Parent',hp1,'Location','SouthEast');</span>
+<span class="comment">% xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">% hold on;</span>
+<span class="comment">% clr = get(h(1),'colororder');</span>
+<span class="comment">% boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label',{'','','',''},'color',clr);</span>
+<span class="comment">% boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label', {'','','',''},'color',clr);</span>
+<span class="comment">% set(h(2:3),'XTickLabel','');</span>
+<span class="comment">% view(h(3),[270,90]);  % Rotate the Y plot</span>
+<span class="comment">% xlim(h(1),xlimz); ylim(h(1),ylimz);</span>
+<span class="comment">% xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes</span>
+<span class="comment">% hold off;</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans)],2);</span>
+<span class="comment">% h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Parent',hp2);</span>
+<span class="comment">% xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">% hold on;</span>
+<span class="comment">% clr = get(h(1),'colororder');</span>
+<span class="comment">% boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label',{'','','',''},'color',clr);</span>
+<span class="comment">% boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label', {'','','',''},'color',clr);</span>
+<span class="comment">% set(h(2:3),'XTickLabel','');</span>
+<span class="comment">% view(h(3),[270,90]);  % Rotate the Y plot</span>
+<span class="comment">% xlim(h(1),xlimz); ylim(h(1),ylimz);</span>
+<span class="comment">% xlim(h(2),xlimz); xlim(h(3),ylimz);  % Sync axes</span>
+<span class="comment">% hold off;</span>
+<span class="comment">%</span>
+<span class="comment">% %% X hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle with box and wiskers &gt; 0 uM</span>
+<span class="comment">% minGrans = 2;</span>
+<span class="comment">% tetTime = '-24';</span>
+<span class="comment">% xlimz = [0,30]; % granule axis limits</span>
+<span class="comment">% ylimz = [0, 2500]; % Opp axis limits</span>
+<span class="comment">%</span>
+<span class="comment">% figure</span>
+<span class="comment">% hp1 = uipanel('position',[0,   0, 0.5, 1]);</span>
+<span class="comment">% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),...</span>
+<span class="comment">%     ~contains(dataloc.ifd.treatment,' 0uM'),(dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans),],2);</span>
+<span class="comment">% h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Parent',hp1,'Location','SouthEast');</span>
+<span class="comment">% xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">% hold on;</span>
+<span class="comment">% clr = get(h(1),'colororder');</span>
+<span class="comment">% boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label',{'','',''},'color',clr,'Notch','on');</span>
+<span class="comment">% boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label', {'','',''},'color',clr,'Notch','on');</span>
+<span class="comment">% set(h(2:3),'XTickLabel','');</span>
+<span class="comment">% view(h(3),[270,90]);  % Rotate the Y plot</span>
+<span class="comment">% xlim(h(1),xlimz); ylim(h(1),ylimz);</span>
+<span class="comment">% xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes</span>
+<span class="comment">% hold off;</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),...</span>
+<span class="comment">%     ~contains(dataloc.ifd.treatment,' 0uM'),(dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans)],2);</span>
+<span class="comment">% h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Parent',hp2);</span>
+<span class="comment">% xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">% hold on;</span>
+<span class="comment">% clr = get(h(1),'colororder');</span>
+<span class="comment">% boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label',{'','',''},'color',clr,'Notch','on');</span>
+<span class="comment">% boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label', {'','',''},'color',clr,'Notch','on');</span>
+<span class="comment">% set(h(2:3),'XTickLabel','');</span>
+<span class="comment">% view(h(3),[270,90]);  % Rotate the Y plot</span>
+<span class="comment">% xlim(h(1),xlimz); ylim(h(1),ylimz);</span>
+<span class="comment">% xlim(h(2),xlimz); xlim(h(3),ylimz);  % Sync axes</span>
+<span class="comment">% hold off;</span>
+<span class="comment">% %% X hour tet wt 4b grans or 139a vs opp vs naaso2 dose &gt; 0</span>
+<span class="comment">% minGrans = 2;</span>
+<span class="comment">% tetTime = '-24';</span>
+<span class="comment">% figure</span>
+<span class="comment">% hp1 = uipanel('position',[0,   0, 0.5, 1]);</span>
+<span class="comment">% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),~contains(dataloc.ifd.treatment,' 0uM'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans),],2);</span>
+<span class="comment">% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp1,'Location','SouthEast' )</span>
+<span class="comment">% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),~contains(dataloc.ifd.treatment,' 0uM'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans)],2);</span>
+<span class="comment">% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp2)</span>
+<span class="comment">% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">%</span>
+<span class="comment">% %% X hour tet wt 4b grans or 139a vs opp vs naaso2 dose &gt; 0</span>
+<span class="comment">% minGrans = 0;</span>
+<span class="comment">% tetTime = '-24';</span>
+<span class="comment">% figure</span>
+<span class="comment">% hp1 = uipanel('position',[0,   0, 0.5, 1]);</span>
+<span class="comment">% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),~contains(dataloc.ifd.treatment,' 0uM'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans),],2);</span>
+<span class="comment">% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp1,'Location','SouthEast' )</span>
+<span class="comment">% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),~contains(dataloc.ifd.treatment,' 0uM'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans)],2);</span>
+<span class="comment">% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp2)</span>
+<span class="comment">% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">%</span>
+<span class="comment">% %% X hour tet wt 4b grans or 139a vs opp @ NO naaso2 dose</span>
+<span class="comment">% naDose = ' 0uM';</span>
+<span class="comment">% figure;</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.cell,'4BGFP'),contains(dataloc.ifd.treatment,naDose)],2); % subset the data to be wt 4b</span>
+<span class="comment">% catz = categorical(dataloc.ifd.treatment(subz));</span>
+<span class="comment">% catz = reordercats(catz,unique((dataloc.ifd.treatment(subz)),"stable"));</span>
+<span class="comment">% boxplot(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,catz,'Notch','on')</span>
+<span class="comment">% ylim([0, 22000])</span>
+<span class="comment">% xlabel('TET Induction'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title('WT4b Tet induction versus OPP')</span>
+<span class="comment">%</span>
+<span class="comment">% figure;</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.cell,'139A'),contains(dataloc.ifd.treatment,naDose)],2); % subset the data to be 139A 4b</span>
+<span class="comment">% catz = categorical(dataloc.ifd.treatment(subz));</span>
+<span class="comment">% catz = reordercats(catz,unique((dataloc.ifd.treatment(subz)),"stable"));</span>
+<span class="comment">% boxplot(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,catz,'Notch','on')</span>
+<span class="comment">% xlabel('TET Induction'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% ylim([0, 22000])</span>
+<span class="comment">% title('139A Tet induction versus OPP')</span>
+<span class="comment">% %% OPP vs G3BP1 Grans by TET induction</span>
+<span class="comment">% tetDose = '250uM';</span>
+<span class="comment">% minGrans = 3;</span>
+<span class="comment">% ylimz = [0, 4000];</span>
+<span class="comment">% xlimz = [0, 20];</span>
+<span class="comment">%</span>
+<span class="comment">% figure</span>
+<span class="comment">% hp1 = uipanel('position',[0,   0, 0.5, 1]);</span>
+<span class="comment">% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,tetDose),contains(dataloc.ifd.cell,'4BGFP'), ...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_G3BP1_Count &gt;= minGrans)],2);</span>
+<span class="comment">% h = scatterhist(dataloc.ifd.Children_Grans_G3BP1_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.full(subz),'Parent',hp1,'Location','SouthEast'); %'Color','kcbgmr',</span>
+<span class="comment">% xlabel('G3BP1 Granules');ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetDose,' NaAsO2 Treated OPP vs Grans by WT 4B by TET induction'])</span>
+<span class="comment">%</span>
+<span class="comment">% hold on;</span>
+<span class="comment">% clr = get(h(1),'colororder');</span>
+<span class="comment">% boxplot(h(2),dataloc.ifd.Children_Grans_G3BP1_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label',{'','','','','',''},'color',clr);</span>
+<span class="comment">%</span>
+<span class="comment">% boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label', {'','','','','',''},'color',clr);</span>
+<span class="comment">% set(h(2:3),'XTickLabel','');</span>
+<span class="comment">% view(h(3),[270,90]);  % Rotate the Y plot</span>
+<span class="comment">% hold off;</span>
+<span class="comment">% xlim(h(1),xlimz); ylim(h(1),ylimz);</span>
+<span class="comment">% xlim(h(2),xlimz); xlim(h(3),ylimz);</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,tetDose),contains(dataloc.ifd.cell,'139A'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_G3BP1_Count &gt;= minGrans)],2);</span>
+<span class="comment">% h = scatterhist(dataloc.ifd.Children_Grans_G3BP1_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.full(subz),'Parent',hp2); %'Color','kcbgmr',</span>
+<span class="comment">% xlabel('G3BP1 Granules');ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetDose,' NaAsO2 Treated OPP vs Grans by 139A Mut 4B by TET induction'])</span>
+<span class="comment">% hold on;</span>
+<span class="comment">% clr = get(h(1),'colororder');</span>
+<span class="comment">% boxplot(h(2),dataloc.ifd.Children_Grans_G3BP1_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label',{'','','','','',''},'color',clr);</span>
+<span class="comment">% boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),'orientation','horizontal',...</span>
+<span class="comment">%      'label', {'','','','','',''},'color',clr);</span>
+<span class="comment">% set(h(2:3),'XTickLabel','');</span>
+<span class="comment">% view(h(3),[270,90]);  % Rotate the Y plot</span>
+<span class="comment">% xlim(h(1),xlimz); ylim(h(1),ylimz);</span>
+<span class="comment">% xlim(h(2),xlimz); xlim(h(3),ylimz);</span>
+<span class="comment">% hold off;</span>
+<span class="comment">%</span>
+<span class="comment">% %% 4B wt or mut grans vs OPP grouped by TET induction without 0</span>
+<span class="comment">% figure;</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.cell,'4BGFP'),~contains(dataloc.ifd.treatment,' 0uM')],2); % subset the data to be wt 4b</span>
+<span class="comment">% catz = categorical(dataloc.ifd.treatment(subz));</span>
+<span class="comment">% catz = reordercats(catz,unique((dataloc.ifd.treatment(subz)),"stable"));</span>
+<span class="comment">% boxplot(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,catz,"ColorGroup",catz,'PlotStyle','compact')</span>
+<span class="comment">% ylim([0, 4000])</span>
+<span class="comment">% xlabel('TET Induction'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title('WT4b Tet induction versus OPP')</span>
+<span class="comment">%</span>
+<span class="comment">% figure;</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.cell,'139A'),~contains(dataloc.ifd.treatment,' 0uM')],2); % subset the data to be 139A 4b</span>
+<span class="comment">% catz = categorical(dataloc.ifd.treatment(subz));</span>
+<span class="comment">% catz = reordercats(catz,unique((dataloc.ifd.treatment(subz)),"stable"));</span>
+<span class="comment">% boxplot(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,catz,"ColorGroup",catz,'PlotStyle','compact')</span>
+<span class="comment">% xlabel('TET Induction'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% ylim([0, 4000])</span>
+<span class="comment">% title('139A Tet induction versus OPP')</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% %% 4B wt or mut cells G3BP1 grans treated with 125uM NaAsO2 (only 24hr induced)</span>
+<span class="comment">% minGrans = 2;</span>
+<span class="comment">% tetTime = ("hour -24");</span>
+<span class="comment">% naAsO2 = (" 125uM");</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,tetTime),~contains(dataloc.ifd.cell,'bad'),contains(dataloc.ifd.treatment,naAsO2),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans)],2);</span>
+<span class="comment">%</span>
+<span class="comment">% fourBstats = grpstats(dataloc.ifd(subz,:),"cell",["mean","median","sem","std","meanci"],"DataVars","Children_Grans_4B_Count");</span>
+<span class="comment">%</span>
+<span class="comment">% figure;</span>
+<span class="comment">% plt = bar(fourBstats.cell,fourBstats.mean_Children_Grans_4B_Count,"LineWidth",1);</span>
+<span class="comment">% plt.CData(2,:) = [1, 0, 0];</span>
+<span class="comment">%</span>
+<span class="comment">% ylim([7,14.5])</span>
+<span class="comment">% ylabel("Log_2 Mean OPP Intensity per Cell")</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% %% EXTRA</span>
+<span class="comment">% statsOut = grpstats(dataloc.ifd(subz,:),["cell","ptx","tx1"],["mean","median","sem","std"],"DataVars",["Intensity_MeanIntensity_Masked_OPP","Children_Grans_4B_Count","Children_Grans_G3BP1_Count"]);</span>
+<span class="comment">% statsOut = grpstats(dataloc.ifd(subz,:),["cell","treatment"],["mean","median","sem","std"],"DataVars",["Intensity_MeanIntensity_Masked_OPP","Children_Grans_4B_Count","Children_Grans_G3BP1_Count"]);</span>
+<span class="comment">% scatterhist(categorical(dataloc.ifd.cell(subz),unique(dataloc.ifd.cell(subz),"stable")),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),"Group",dataloc.ifd.treatment(subz))</span>
+<span class="comment">% boxchart(categorical(dataloc.ifd.cell(subz),unique(dataloc.ifd.cell(subz),"stable")),log2((dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535)),'GroupByColor',dataloc.ifd.treatment(subz),'Notch','on','MarkerStyle','.')</span>
+<span class="comment">% legend('Location','best');</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% bar(categorical(statsOut.Properties.RowNames,unique(statsOut.Properties.RowNames,"stable")),statsOut.mean_Intensity_MeanIntensity_Masked_OPP*65525)</span>
+<span class="comment">%</span>
+<span class="comment">% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp1,'Location','SouthEast' )</span>
+<span class="comment">% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),~contains(dataloc.ifd.treatment,' 0uM'),...</span>
+<span class="comment">%     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans)],2);</span>
+<span class="comment">% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...</span>
+<span class="comment">%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp2)</span>
+<span class="comment">% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')</span>
+<span class="comment">% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])</span>
+</pre>
+<pre class="codeoutput">Warning: In a future release, UI components will not be included in the output.
+To include UI components, use the exportapp function. 
+</pre>
+<img vspace="5" hspace="5" src="Figure_3_and_Sup_01.png" alt=""> <p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% Load the appended and aligned Live_cell last frame and IF data
+
+% 2023-06-29 Data
+basePath = '\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\';
+dataset2=load([basePath,'2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat']);
+dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
+dataloc = dataset2;
+% 
+% % Pull and combine the IF datasets
+% pooledData = [dataset1.ifd,dataset2.ifd];
+
+
+%% Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions
+
+% Figure 3A - Log2 OPP versus 4B cell line
+
+% No TET, 24h TET and 24h TET with 125uM NaAsO2
+% 4B wt or mut grans vs OPP grouped by TET induction (only 24hr and 0 hr induced)
+
+minGrans = 0; % min number of granules
+tetTime = ("hour -24"|"hour 0"); % amount of tet induction
+naAsO2 = (" 125uM"|" 0uM"); % NaAsO2 treatment
+
+% make a new figure
+figure3 = figure;
+
+%topP = uipanel('position',[0,   0.5, 1, 1]);
+botLP = uipanel('position',[0,   0, 0.5, 0.5]);
+botRp = uipanel('position',[0.5, 0, 0.5, 0.5]);
+
+% make a new container for axes 
+f3axes = [];
+
+
+subz = all([contains(dataloc.ifd.treatment,tetTime),~contains(dataloc.ifd.cell,'bad'),contains(dataloc.ifd.treatment,naAsO2),...
+    (dataloc.ifd.Children_Grans_G3BP1_Count >= minGrans)],2);
+
+catOrder = ["0ug/mL TET at hour 0 and 0uM NaAsO2","0.1ug/mL TET at hour -24 and 0uM NaAsO2",...
+    "0.1ug/mL TET at hour -24 and 125uM NaAsO2"]; % give the order I want for the plot
+
+f2axes(1) = subplot(2,2,[1,2]);
+boxchart(categorical(dataloc.ifd.cell(subz),unique(dataloc.ifd.cell(subz),"stable")),log2((dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535)),'GroupByColor',categorical(dataloc.ifd.treatment(subz),catOrder),'Notch','on','MarkerStyle','.',"BoxWidth",1)
+ylim([7,14.5])
+legend('Location','best'); ylabel("Log_2 Mean OPP Intensity per Cell"); xlabel('4B Cell line')
+fontname('Arial'); fontsize(11,"points");
+
+% Make the 
+
+% 24 hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle with box and wiskers?
+minGrans = 0;
+tetTime = '-24';
+xlimz = [0,30]; % granule axis limits
+ylimz = [0, 10000]; % Opp axis limits
+
+
+subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),...
+    (dataloc.ifd.Children_Grans_4B_Count >= minGrans),~contains(dataloc.ifd.treatment,'and 0uM')],2);
+h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+    'Group',dataloc.ifd.treatment(subz),'Location','SouthEast','parent',botLP);
+xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
+hold on;
+clr = get(h(1),'colororder');
+boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+     'label',{'','',''},'color',clr);
+boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+     'label', {'','',''},'color',clr);
+set(h(2:3),'XTickLabel','');
+view(h(3),[270,90]);  % Rotate the Y plot
+xlim(h(1),xlimz); ylim(h(1),ylimz);
+xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes
+hold off;
+
+subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),...
+    (dataloc.ifd.Children_Grans_4B_Count >= minGrans),~contains(dataloc.ifd.treatment,'and 0uM')],2);
+h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+    'Group',dataloc.ifd.treatment(subz),'parent',botRp);
+xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])
+hold on;
+clr = get(h(1),'colororder');
+boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+     'label',{'','',''},'color',clr);
+boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),'orientation','horizontal',...
+     'label', {'','',''},'color',clr);
+set(h(2:3),'XTickLabel','');
+view(h(3),[270,90]);  % Rotate the Y plot
+xlim(h(1),xlimz); ylim(h(1),ylimz);
+xlim(h(2),xlimz); xlim(h(3),ylimz);  % Sync axes
+hold off;
+
+saveas(figure3,'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\figure3.fig')
+saveas(figure3,'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\figure3.svg')
+
+% %% 24 hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle
+% minGrans = 0;
+% 
+% figure
+% hp1 = uipanel('position',[0,   0, 0.5, 1]);
+% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);
+% 
+% subz = all([contains(dataloc.ifd.treatment,'TET at hour -24'),contains(dataloc.ifd.cell,'4BGFP'),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans),],2);
+% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp1,'Location','SouthEast' )
+% xlim([0,15]); ylim([0,10000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title('24h WT4b Tet induced and all NaAsO2 Doses')
+% 
+% 
+% subz = all([contains(dataloc.ifd.treatment,'TET at hour -24'),contains(dataloc.ifd.cell,'139A'),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans)],2);
+% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp2)
+% xlim([0,15]); ylim([0,10000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title('24h 137A Tet induced and all NaAsO2 Doses')
+% 
+% %% X hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle with box and wiskers?
+% minGrans = 0;
+% tetTime = '-24';
+% xlimz = [0,30]; % granule axis limits
+% ylimz = [0, 10000]; % Opp axis limits
+% 
+% figure
+% hp1 = uipanel('position',[0,   0, 0.5, 1]);
+% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);
+% 
+% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans),],2);
+% h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Parent',hp1,'Location','SouthEast');
+% xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
+% hold on;
+% clr = get(h(1),'colororder');
+% boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label',{'','','',''},'color',clr);
+% boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label', {'','','',''},'color',clr);
+% set(h(2:3),'XTickLabel','');
+% view(h(3),[270,90]);  % Rotate the Y plot
+% xlim(h(1),xlimz); ylim(h(1),ylimz);
+% xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes
+% hold off;
+% 
+% 
+% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans)],2);
+% h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Parent',hp2);
+% xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])
+% hold on;
+% clr = get(h(1),'colororder');
+% boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label',{'','','',''},'color',clr);
+% boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label', {'','','',''},'color',clr);
+% set(h(2:3),'XTickLabel','');
+% view(h(3),[270,90]);  % Rotate the Y plot
+% xlim(h(1),xlimz); ylim(h(1),ylimz);
+% xlim(h(2),xlimz); xlim(h(3),ylimz);  % Sync axes
+% hold off;
+% 
+% %% X hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle with box and wiskers > 0 uM
+% minGrans = 2;
+% tetTime = '-24';
+% xlimz = [0,30]; % granule axis limits
+% ylimz = [0, 2500]; % Opp axis limits
+% 
+% figure
+% hp1 = uipanel('position',[0,   0, 0.5, 1]);
+% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);
+% 
+% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),...
+%     ~contains(dataloc.ifd.treatment,' 0uM'),(dataloc.ifd.Children_Grans_4B_Count >= minGrans),],2);
+% h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Parent',hp1,'Location','SouthEast');
+% xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
+% hold on;
+% clr = get(h(1),'colororder');
+% boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label',{'','',''},'color',clr,'Notch','on');
+% boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label', {'','',''},'color',clr,'Notch','on');
+% set(h(2:3),'XTickLabel','');
+% view(h(3),[270,90]);  % Rotate the Y plot
+% xlim(h(1),xlimz); ylim(h(1),ylimz);
+% xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes
+% hold off;
+% 
+% 
+% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),...
+%     ~contains(dataloc.ifd.treatment,' 0uM'),(dataloc.ifd.Children_Grans_4B_Count >= minGrans)],2);
+% h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Parent',hp2);
+% xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])
+% hold on;
+% clr = get(h(1),'colororder');
+% boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label',{'','',''},'color',clr,'Notch','on');
+% boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label', {'','',''},'color',clr,'Notch','on');
+% set(h(2:3),'XTickLabel','');
+% view(h(3),[270,90]);  % Rotate the Y plot
+% xlim(h(1),xlimz); ylim(h(1),ylimz);
+% xlim(h(2),xlimz); xlim(h(3),ylimz);  % Sync axes
+% hold off;
+% %% X hour tet wt 4b grans or 139a vs opp vs naaso2 dose > 0
+% minGrans = 2;
+% tetTime = '-24';
+% figure
+% hp1 = uipanel('position',[0,   0, 0.5, 1]);
+% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);
+% 
+% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),~contains(dataloc.ifd.treatment,' 0uM'),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans),],2);
+% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp1,'Location','SouthEast' )
+% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
+% 
+% 
+% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),~contains(dataloc.ifd.treatment,' 0uM'),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans)],2);
+% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp2)
+% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])
+% 
+% %% X hour tet wt 4b grans or 139a vs opp vs naaso2 dose > 0
+% minGrans = 0;
+% tetTime = '-24';
+% figure
+% hp1 = uipanel('position',[0,   0, 0.5, 1]);
+% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);
+% 
+% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),~contains(dataloc.ifd.treatment,' 0uM'),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans),],2);
+% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp1,'Location','SouthEast' )
+% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
+% 
+% 
+% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),~contains(dataloc.ifd.treatment,' 0uM'),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans)],2);
+% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp2)
+% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])
+% 
+% %% X hour tet wt 4b grans or 139a vs opp @ NO naaso2 dose
+% naDose = ' 0uM';
+% figure;
+% subz = all([contains(dataloc.ifd.cell,'4BGFP'),contains(dataloc.ifd.treatment,naDose)],2); % subset the data to be wt 4b
+% catz = categorical(dataloc.ifd.treatment(subz));
+% catz = reordercats(catz,unique((dataloc.ifd.treatment(subz)),"stable"));
+% boxplot(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,catz,'Notch','on')
+% ylim([0, 22000])
+% xlabel('TET Induction'); ylabel('Mean OPP Intensity')
+% title('WT4b Tet induction versus OPP')
+% 
+% figure;
+% subz = all([contains(dataloc.ifd.cell,'139A'),contains(dataloc.ifd.treatment,naDose)],2); % subset the data to be 139A 4b
+% catz = categorical(dataloc.ifd.treatment(subz));
+% catz = reordercats(catz,unique((dataloc.ifd.treatment(subz)),"stable"));
+% boxplot(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,catz,'Notch','on')
+% xlabel('TET Induction'); ylabel('Mean OPP Intensity')
+% ylim([0, 22000])
+% title('139A Tet induction versus OPP')
+% %% OPP vs G3BP1 Grans by TET induction
+% tetDose = '250uM';
+% minGrans = 3;
+% ylimz = [0, 4000];
+% xlimz = [0, 20];
+% 
+% figure
+% hp1 = uipanel('position',[0,   0, 0.5, 1]);
+% hp2 = uipanel('position',[0.5, 0, 0.5, 1]);
+% 
+% subz = all([contains(dataloc.ifd.treatment,tetDose),contains(dataloc.ifd.cell,'4BGFP'), ...
+%     (dataloc.ifd.Children_Grans_G3BP1_Count >= minGrans)],2);
+% h = scatterhist(dataloc.ifd.Children_Grans_G3BP1_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.full(subz),'Parent',hp1,'Location','SouthEast'); %'Color','kcbgmr',
+% xlabel('G3BP1 Granules');ylabel('Mean OPP Intensity')
+% title([tetDose,' NaAsO2 Treated OPP vs Grans by WT 4B by TET induction'])
+% 
+% hold on;
+% clr = get(h(1),'colororder');
+% boxplot(h(2),dataloc.ifd.Children_Grans_G3BP1_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label',{'','','','','',''},'color',clr);
+% 
+% boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label', {'','','','','',''},'color',clr);
+% set(h(2:3),'XTickLabel','');
+% view(h(3),[270,90]);  % Rotate the Y plot
+% hold off;
+% xlim(h(1),xlimz); ylim(h(1),ylimz);
+% xlim(h(2),xlimz); xlim(h(3),ylimz);
+% 
+% subz = all([contains(dataloc.ifd.treatment,tetDose),contains(dataloc.ifd.cell,'139A'),...
+%     (dataloc.ifd.Children_Grans_G3BP1_Count >= minGrans)],2);
+% h = scatterhist(dataloc.ifd.Children_Grans_G3BP1_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.full(subz),'Parent',hp2); %'Color','kcbgmr',
+% xlabel('G3BP1 Granules');ylabel('Mean OPP Intensity')
+% title([tetDose,' NaAsO2 Treated OPP vs Grans by 139A Mut 4B by TET induction'])
+% hold on;
+% clr = get(h(1),'colororder');
+% boxplot(h(2),dataloc.ifd.Children_Grans_G3BP1_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label',{'','','','','',''},'color',clr);
+% boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),'orientation','horizontal',...
+%      'label', {'','','','','',''},'color',clr);
+% set(h(2:3),'XTickLabel','');
+% view(h(3),[270,90]);  % Rotate the Y plot
+% xlim(h(1),xlimz); ylim(h(1),ylimz);
+% xlim(h(2),xlimz); xlim(h(3),ylimz);
+% hold off;
+% 
+% %% 4B wt or mut grans vs OPP grouped by TET induction without 0
+% figure;
+% subz = all([contains(dataloc.ifd.cell,'4BGFP'),~contains(dataloc.ifd.treatment,' 0uM')],2); % subset the data to be wt 4b
+% catz = categorical(dataloc.ifd.treatment(subz));
+% catz = reordercats(catz,unique((dataloc.ifd.treatment(subz)),"stable"));
+% boxplot(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,catz,"ColorGroup",catz,'PlotStyle','compact')
+% ylim([0, 4000])
+% xlabel('TET Induction'); ylabel('Mean OPP Intensity')
+% title('WT4b Tet induction versus OPP')
+% 
+% figure;
+% subz = all([contains(dataloc.ifd.cell,'139A'),~contains(dataloc.ifd.treatment,' 0uM')],2); % subset the data to be 139A 4b
+% catz = categorical(dataloc.ifd.treatment(subz));
+% catz = reordercats(catz,unique((dataloc.ifd.treatment(subz)),"stable"));
+% boxplot(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,catz,"ColorGroup",catz,'PlotStyle','compact')
+% xlabel('TET Induction'); ylabel('Mean OPP Intensity')
+% ylim([0, 4000])
+% title('139A Tet induction versus OPP')
+% 
+% 
+% 
+% %% 4B wt or mut cells G3BP1 grans treated with 125uM NaAsO2 (only 24hr induced)
+% minGrans = 2;
+% tetTime = ("hour -24");
+% naAsO2 = (" 125uM");
+% 
+% subz = all([contains(dataloc.ifd.treatment,tetTime),~contains(dataloc.ifd.cell,'bad'),contains(dataloc.ifd.treatment,naAsO2),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans)],2);
+% 
+% fourBstats = grpstats(dataloc.ifd(subz,:),"cell",["mean","median","sem","std","meanci"],"DataVars","Children_Grans_4B_Count");
+% 
+% figure;
+% plt = bar(fourBstats.cell,fourBstats.mean_Children_Grans_4B_Count,"LineWidth",1);
+% plt.CData(2,:) = [1, 0, 0];
+% 
+% ylim([7,14.5])
+% ylabel("Log_2 Mean OPP Intensity per Cell")
+% 
+% 
+% 
+% %% EXTRA
+% statsOut = grpstats(dataloc.ifd(subz,:),["cell","ptx","tx1"],["mean","median","sem","std"],"DataVars",["Intensity_MeanIntensity_Masked_OPP","Children_Grans_4B_Count","Children_Grans_G3BP1_Count"]);
+% statsOut = grpstats(dataloc.ifd(subz,:),["cell","treatment"],["mean","median","sem","std"],"DataVars",["Intensity_MeanIntensity_Masked_OPP","Children_Grans_4B_Count","Children_Grans_G3BP1_Count"]);
+% scatterhist(categorical(dataloc.ifd.cell(subz),unique(dataloc.ifd.cell(subz),"stable")),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),"Group",dataloc.ifd.treatment(subz))
+% boxchart(categorical(dataloc.ifd.cell(subz),unique(dataloc.ifd.cell(subz),"stable")),log2((dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535)),'GroupByColor',dataloc.ifd.treatment(subz),'Notch','on','MarkerStyle','.')
+% legend('Location','best'); 
+% 
+% 
+% 
+% bar(categorical(statsOut.Properties.RowNames,unique(statsOut.Properties.RowNames,"stable")),statsOut.mean_Intensity_MeanIntensity_Masked_OPP*65525)
+% 
+% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp1,'Location','SouthEast' )
+% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
+% 
+% 
+% subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),~contains(dataloc.ifd.treatment,' 0uM'),...
+%     (dataloc.ifd.Children_Grans_4B_Count >= minGrans)],2);
+% scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+%     'Group',dataloc.ifd.treatment(subz),'Kernel','on','Direction','Out','Parent',hp2)
+% xlim([0,20]); ylim([0,4000]); xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+% title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])
+
+##### SOURCE END #####
+-->
+</body>
+</html>

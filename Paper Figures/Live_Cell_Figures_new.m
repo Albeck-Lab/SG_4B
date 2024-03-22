@@ -1,37 +1,33 @@
 %% Load the model fit data for the live cell
 addpath('\\albecklab.mcb.ucdavis.edu\data\code\Nick')
 %% 24h induced Wild-Type 4B Data
-% 2022-11-03
-%dataset1 = load('');
-%dataset1 = dataset1.dataloc; % pull the loaded dataloc structure
 
 % 2023-05-03
-dataset2 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed.mat');
-dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
+dataset1 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed_Copy.mat');
+dataset1 = dataset1.dataloc; % pull the loaded dataloc structure
 
 % 2023-06-15
-dataset3 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-15 4b WT-Mut NaAso2 Curve\2023-06-15 4b WT-Mut NaAso2 Curve_Processed.mat');
-dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
+dataset2 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-15 4b WT-Mut NaAso2 Curve\2023-06-15 4b WT-Mut NaAso2 Curve_Processed_Copy.mat');
+dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
 
 % 2023-06-29
-dataset4 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat');
-dataset4 = dataset4.dataloc; % pull the loaded dataloc structure
+dataset3 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed_Copy.mat');
+dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 
 % 2023-08-23
-%dataset5 = load('');
-%dataset5 = dataset5.dataloc; % pull the loaded dataloc structure
+%dataset4 = load('');
+%dataset4 = dataset5.dataloc; % pull the loaded dataloc structure
 
 
 %%  24h induced 139A mutant 4B data
-% 2023-05-03
-dataset6 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed.mat');
-dataset6 = dataset6.dataloc; % pull the loaded dataloc structure
 
+% 2023-05-03 (already loaded)
 % 2023-06-15 (already loaded)
 % 2023-06-29 (already loaded)
 % 2023-08-23 (already loaded)
+
 %% Make the fit models
-% datalocDF = makeLiveCellDataframe({dataset2,dataset4,dataset6},'subset','TET100n24t_NaAsO2125u2t');
+% datalocDF = makeLiveCellDataframe({dataset1,dataset2,dataset3},'subset','TET100n24t_NaAsO2125u2t');
 % 
 % plotme = {'NumGrans'}; %,'granspercell'
 % plottype = {'albeck mean fit fixed f'}; % 'albeck mean fit'
@@ -39,7 +35,7 @@ dataset6 = dataset6.dataloc; % pull the loaded dataloc structure
 % plot_by_ND_forJB('treatment', datalocDF,'plottype',plottype,'channel',plotme,'looptime',3,'font_size',8)
 
 %% fit the model to the dataset
-[fitData2,~] = convertDatalocToModelFit({dataset2,dataset4,dataset6}, 'NumGrans');
+[fitData2,~] = convertDatalocToModelFit({dataset1,dataset2,dataset3}, 'NumGrans');
 
 fitData = fitData2; % work with duplicated data (for safety)
 

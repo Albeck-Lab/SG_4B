@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>Figure_3_and_Sup</title>
 <meta name="generator" content="MATLAB 23.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2024-03-21">
+<meta name="DC.date" content="2024-03-22">
 <meta name="DC.source" content="Figure_3_and_Sup.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -85,6 +85,9 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <li>
 <a href="#2">Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions</a>
 </li>
+<li>
+<a href="#3">Make the plots</a>
+</li>
 </ul>
 </div>
 <h2 id="1">Load the appended and aligned Live_cell last frame and IF data</h2>
@@ -109,8 +112,69 @@ minGrans = 0; <span class="comment">% min number of granules</span>
 tetTime = (<span class="string">"hour -24"</span>|<span class="string">"hour 0"</span>); <span class="comment">% amount of tet induction</span>
 naAsO2 = (<span class="string">" 125uM"</span>|<span class="string">" 0uM"</span>); <span class="comment">% NaAsO2 treatment</span>
 
-<span class="comment">% make a new figure</span>
-figure3 = figure;
+
+
+subF3A = all([contains(dataloc.ifd.treatment,tetTime),~contains(dataloc.ifd.cell,<span class="string">'bad'</span>),contains(dataloc.ifd.treatment,naAsO2),<span class="keyword">...</span>
+    (dataloc.ifd.Children_Grans_G3BP1_Count &gt;= minGrans)],2);
+
+subF3Adata = dataloc.ifd(subF3A,:);
+
+subF3Adata.cell = categorical(subF3Adata.cell,{<span class="string">'HeLa eIF4BGFP'</span>,<span class="string">'HeLa 4B139AGFP'</span>}); <span class="comment">% make the cell line a categorical</span>
+
+<span class="comment">% make the treatments a categorical</span>
+catOrder = [<span class="string">"0ug/mL TET at hour 0 and 0uM NaAsO2"</span>,<span class="string">"0.1ug/mL TET at hour -24 and 0uM NaAsO2"</span>,<span class="keyword">...</span>
+    <span class="string">"0.1ug/mL TET at hour -24 and 125uM NaAsO2"</span>]; <span class="comment">% give the order I want for the plot</span>
+
+subF3Adata.treatment = categorical(subF3Adata.treatment,catOrder);
+subF3Adata.Log2OPP = log2(subF3Adata.Intensity_MeanIntensity_Masked_OPP*65535); <span class="comment">% get the real opp values</span>
+
+<span class="comment">% Do the statistics for Log2 OPP versus each cell line or treatment</span>
+generalOPPData = grpstats(subF3Adata,[<span class="string">"cell"</span>,<span class="string">"treatment"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,<span class="string">"Log2OPP"</span>)
+[~,~,statsOPP] = anova1(subF3Adata.Log2OPP,join(string([subF3Adata.cell,subF3Adata.treatment])),<span class="string">'off'</span>);
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>);
+Log2OPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+Log2OPP.(<span class="string">"Group"</span>) = gnamesOPP(Log2OPP.(<span class="string">"Group"</span>));
+Log2OPP.(<span class="string">"Control Group"</span>) = gnamesOPP(Log2OPP.(<span class="string">"Control Group"</span>))
+
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>);
+Log2OPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+Log2OPP.(<span class="string">"Group"</span>) = gnamesOPP(Log2OPP.(<span class="string">"Group"</span>));
+Log2OPP.(<span class="string">"Control Group"</span>) = gnamesOPP(Log2OPP.(<span class="string">"Control Group"</span>))
+</pre>
+<pre class="codeoutput">generalOPPData =
+  6&times;7 table
+                                                                     cell                         treatment                    GroupCount    mean_Log2OPP    median_Log2OPP    sem_Log2OPP    std_Log2OPP
+                                                                ______________    _________________________________________    __________    ____________    ______________    ___________    ___________
+    HeLa eIF4BGFP_0ug/mL TET at hour 0 and 0uM NaAsO2           HeLa eIF4BGFP     0ug/mL TET at hour 0 and 0uM NaAsO2             687           12.584           12.615         0.016763        0.43936  
+    HeLa eIF4BGFP_0.1ug/mL TET at hour -24 and 0uM NaAsO2       HeLa eIF4BGFP     0.1ug/mL TET at hour -24 and 0uM NaAsO2         464           12.777           12.828         0.024078        0.51866  
+    HeLa eIF4BGFP_0.1ug/mL TET at hour -24 and 125uM NaAsO2     HeLa eIF4BGFP     0.1ug/mL TET at hour -24 and 125uM NaAsO2       417            9.009           9.0439         0.020947        0.42775  
+    HeLa 4B139AGFP_0ug/mL TET at hour 0 and 0uM NaAsO2          HeLa 4B139AGFP    0ug/mL TET at hour 0 and 0uM NaAsO2             369           12.305           12.283         0.025546        0.49072  
+    HeLa 4B139AGFP_0.1ug/mL TET at hour -24 and 0uM NaAsO2      HeLa 4B139AGFP    0.1ug/mL TET at hour -24 and 0uM NaAsO2         523           11.776           11.768         0.023101         0.5283  
+    HeLa 4B139AGFP_0.1ug/mL TET at hour -24 and 125uM NaAsO2    HeLa 4B139AGFP    0.1ug/mL TET at hour -24 and 125uM NaAsO2       319           9.7709           9.7767          0.03554        0.63477  
+Log2OPP =
+  5&times;6 table
+                               Group                                                      Control Group                          Lower Limit    Difference    Upper Limit     P-value  
+    ____________________________________________________________    _________________________________________________________    ___________    __________    ___________    __________
+    {'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 125uM NaAsO2' }    {'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}      -3.8533        -3.7683       -3.6833               0
+    {'HeLa eIF4BGFP 0ug/mL TET at hour 0 and 0uM NaAsO2'       }    {'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}     -0.26905       -0.19335      -0.11765      4.1961e-10
+    {'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 125uM NaAsO2'}    {'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}      -3.0981        -3.0065       -2.9149               0
+    {'HeLa 4B139AGFP 0ug/mL TET at hour 0 and 0uM NaAsO2'      }    {'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}     -0.56021       -0.47234      -0.38447               0
+    {'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'  }    {'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}      -1.0817        -1.0014      -0.92101               0
+Log2OPP =
+  5&times;6 table
+                               Group                                                      Control Group                           Lower Limit    Difference    Upper Limit    P-value
+    ____________________________________________________________    __________________________________________________________    ___________    __________    ___________    _______
+    {'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 125uM NaAsO2' }    {'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}        -2.85        -2.767         -2.684         0   
+    {'HeLa eIF4BGFP 0ug/mL TET at hour 0 and 0uM NaAsO2'       }    {'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}      0.73464         0.808        0.88136         0   
+    {'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'   }    {'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}      0.92073        1.0014          1.082         0   
+    {'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 125uM NaAsO2'}    {'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}      -2.0949       -2.0051        -1.9153         0   
+    {'HeLa 4B139AGFP 0ug/mL TET at hour 0 and 0uM NaAsO2'      }    {'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2'}      0.44307       0.52901        0.61495         0   
+</pre>
+<h2 id="3">Make the plots</h2>
+<p>make a new figure</p>
+<pre class="codeinput">figure3 = figure;
+figure3.Units = <span class="string">"normalized"</span>;
+figure3.Position = [0,0,0.6,1];
 
 <span class="comment">%topP = uipanel('position',[0,   0.5, 1, 1]);</span>
 botLP = uipanel(<span class="string">'position'</span>,[0,   0, 0.5, 0.5]);
@@ -119,63 +183,65 @@ botRp = uipanel(<span class="string">'position'</span>,[0.5, 0, 0.5, 0.5]);
 <span class="comment">% make a new container for axes</span>
 f3axes = [];
 
-
-subz = all([contains(dataloc.ifd.treatment,tetTime),~contains(dataloc.ifd.cell,<span class="string">'bad'</span>),contains(dataloc.ifd.treatment,naAsO2),<span class="keyword">...</span>
-    (dataloc.ifd.Children_Grans_G3BP1_Count &gt;= minGrans)],2);
-
-catOrder = [<span class="string">"0ug/mL TET at hour 0 and 0uM NaAsO2"</span>,<span class="string">"0.1ug/mL TET at hour -24 and 0uM NaAsO2"</span>,<span class="keyword">...</span>
-    <span class="string">"0.1ug/mL TET at hour -24 and 125uM NaAsO2"</span>]; <span class="comment">% give the order I want for the plot</span>
-
 f2axes(1) = subplot(2,2,[1,2]);
-boxchart(categorical(dataloc.ifd.cell(subz),unique(dataloc.ifd.cell(subz),<span class="string">"stable"</span>)),log2((dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535)),<span class="string">'GroupByColor'</span>,categorical(dataloc.ifd.treatment(subz),catOrder),<span class="string">'Notch'</span>,<span class="string">'on'</span>,<span class="string">'MarkerStyle'</span>,<span class="string">'.'</span>,<span class="string">"BoxWidth"</span>,1)
+boxchart(subF3Adata.cell,log2(subF3Adata.Intensity_MeanIntensity_Masked_OPP*65535),<span class="string">'GroupByColor'</span>,subF3Adata.treatment,<span class="keyword">...</span>
+    <span class="string">'Notch'</span>,<span class="string">'on'</span>,<span class="string">'MarkerStyle'</span>,<span class="string">'.'</span>,<span class="string">"BoxWidth"</span>,0.5);
 ylim([7,14.5])
 legend(<span class="string">'Location'</span>,<span class="string">'best'</span>); ylabel(<span class="string">"Log_2 Mean OPP Intensity per Cell"</span>); xlabel(<span class="string">'4B Cell line'</span>)
-fontname(<span class="string">'Arial'</span>); fontsize(11,<span class="string">"points"</span>);
-
-<span class="comment">% Make the</span>
+fontname(<span class="string">'Arial'</span>); fontsize(8,<span class="string">"points"</span>);
 
 <span class="comment">% 24 hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle with box and wiskers?</span>
 minGrans = 0;
 tetTime = <span class="string">'-24'</span>;
 xlimz = [0,30]; <span class="comment">% granule axis limits</span>
-ylimz = [0, 10000]; <span class="comment">% Opp axis limits</span>
+ylimz = [7, 14]; <span class="comment">% Opp axis limits</span>
 
 
 subz = all([contains(dataloc.ifd.treatment,[<span class="string">'TET at hour '</span>, tetTime]),contains(dataloc.ifd.cell,<span class="string">'4BGFP'</span>),<span class="keyword">...</span>
     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans),~contains(dataloc.ifd.treatment,<span class="string">'and 0uM'</span>)],2);
-h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,<span class="keyword">...</span>
+
+h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),<span class="keyword">...</span>
     <span class="string">'Group'</span>,dataloc.ifd.treatment(subz),<span class="string">'Location'</span>,<span class="string">'SouthEast'</span>,<span class="string">'parent'</span>,botLP);
-xlabel(<span class="string">'4B Granules'</span>); ylabel(<span class="string">'Mean OPP Intensity'</span>)
-title([tetTime,<span class="string">'h WT4b Tet induced and all NaAsO2 Doses'</span>])
+xlabel(<span class="string">'4B Granules'</span>); ylabel(<span class="string">'Log_2 OPP Intensity'</span>)
+title([tetTime,<span class="string">'h WT4b Tet induced at all NaAsO2 Doses'</span>])
 hold <span class="string">on</span>;
 clr = get(h(1),<span class="string">'colororder'</span>);
 boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
      <span class="string">'label'</span>,{<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,clr);
-boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+boxplot(h(3),(log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535)),dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
      <span class="string">'label'</span>, {<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,clr);
 set(h(2:3),<span class="string">'XTickLabel'</span>,<span class="string">''</span>);
 view(h(3),[270,90]);  <span class="comment">% Rotate the Y plot</span>
 xlim(h(1),xlimz); ylim(h(1),ylimz);
 xlim(h(2),xlimz); xlim(h(3),ylimz); <span class="comment">% Sync axes</span>
 hold <span class="string">off</span>;
+fontname(<span class="string">'Arial'</span>); fontsize(8,<span class="string">"points"</span>);
+
 
 subz = all([contains(dataloc.ifd.treatment,[<span class="string">'TET at hour '</span>, tetTime]),contains(dataloc.ifd.cell,<span class="string">'139A'</span>),<span class="keyword">...</span>
     (dataloc.ifd.Children_Grans_4B_Count &gt;= minGrans),~contains(dataloc.ifd.treatment,<span class="string">'and 0uM'</span>)],2);
-h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,<span class="keyword">...</span>
+
+h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),<span class="keyword">...</span>
     <span class="string">'Group'</span>,dataloc.ifd.treatment(subz),<span class="string">'parent'</span>,botRp);
-xlabel(<span class="string">'4B Granules'</span>); ylabel(<span class="string">'Mean OPP Intensity'</span>)
+xlabel(<span class="string">'4B Granules'</span>); ylabel(<span class="string">'Log_2 OPP Intensity'</span>)
 title([tetTime,<span class="string">'h 137A Tet induced and all NaAsO2 Doses'</span>])
 hold <span class="string">on</span>;
 clr = get(h(1),<span class="string">'colororder'</span>);
 boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
      <span class="string">'label'</span>,{<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,clr);
-boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+boxplot(h(3),log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
      <span class="string">'label'</span>, {<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,clr);
 set(h(2:3),<span class="string">'XTickLabel'</span>,<span class="string">''</span>);
 view(h(3),[270,90]);  <span class="comment">% Rotate the Y plot</span>
 xlim(h(1),xlimz); ylim(h(1),ylimz);
 xlim(h(2),xlimz); xlim(h(3),ylimz);  <span class="comment">% Sync axes</span>
 hold <span class="string">off</span>;
+fontname(<span class="string">'Arial'</span>); fontsize(8,<span class="string">"points"</span>);
+
+figure3.Color = [1,1,1];
+botLP.BackgroundColor = [1,1,1];
+botRp.BackgroundColor = [1,1,1];
+
 
 saveas(figure3,<span class="string">'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\figure3.fig'</span>)
 saveas(figure3,<span class="string">'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\figure3.svg'</span>)
@@ -504,8 +570,39 @@ minGrans = 0; % min number of granules
 tetTime = ("hour -24"|"hour 0"); % amount of tet induction
 naAsO2 = (" 125uM"|" 0uM"); % NaAsO2 treatment
 
+
+
+subF3A = all([contains(dataloc.ifd.treatment,tetTime),~contains(dataloc.ifd.cell,'bad'),contains(dataloc.ifd.treatment,naAsO2),...
+    (dataloc.ifd.Children_Grans_G3BP1_Count >= minGrans)],2);
+
+subF3Adata = dataloc.ifd(subF3A,:);
+
+subF3Adata.cell = categorical(subF3Adata.cell,{'HeLa eIF4BGFP','HeLa 4B139AGFP'}); % make the cell line a categorical
+
+% make the treatments a categorical
+catOrder = ["0ug/mL TET at hour 0 and 0uM NaAsO2","0.1ug/mL TET at hour -24 and 0uM NaAsO2",...
+    "0.1ug/mL TET at hour -24 and 125uM NaAsO2"]; % give the order I want for the plot
+
+subF3Adata.treatment = categorical(subF3Adata.treatment,catOrder);
+subF3Adata.Log2OPP = log2(subF3Adata.Intensity_MeanIntensity_Masked_OPP*65535); % get the real opp values
+
+% Do the statistics for Log2 OPP versus each cell line or treatment
+generalOPPData = grpstats(subF3Adata,["cell","treatment"],["mean","median","sem","std"],"DataVars","Log2OPP")
+[~,~,statsOPP] = anova1(subF3Adata.Log2OPP,join(string([subF3Adata.cell,subF3Adata.treatment])),'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'HeLa eIF4BGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2')),'Display','off');
+Log2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+Log2OPP.("Group") = gnamesOPP(Log2OPP.("Group"));
+Log2OPP.("Control Group") = gnamesOPP(Log2OPP.("Control Group"))
+
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'HeLa 4B139AGFP 0.1ug/mL TET at hour -24 and 0uM NaAsO2')),'Display','off');
+Log2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+Log2OPP.("Group") = gnamesOPP(Log2OPP.("Group"));
+Log2OPP.("Control Group") = gnamesOPP(Log2OPP.("Control Group"))
+%% Make the plots
 % make a new figure
 figure3 = figure;
+figure3.Units = "normalized";
+figure3.Position = [0,0,0.6,1];
 
 %topP = uipanel('position',[0,   0.5, 1, 1]);
 botLP = uipanel('position',[0,   0, 0.5, 0.5]);
@@ -514,63 +611,65 @@ botRp = uipanel('position',[0.5, 0, 0.5, 0.5]);
 % make a new container for axes 
 f3axes = [];
 
-
-subz = all([contains(dataloc.ifd.treatment,tetTime),~contains(dataloc.ifd.cell,'bad'),contains(dataloc.ifd.treatment,naAsO2),...
-    (dataloc.ifd.Children_Grans_G3BP1_Count >= minGrans)],2);
-
-catOrder = ["0ug/mL TET at hour 0 and 0uM NaAsO2","0.1ug/mL TET at hour -24 and 0uM NaAsO2",...
-    "0.1ug/mL TET at hour -24 and 125uM NaAsO2"]; % give the order I want for the plot
-
 f2axes(1) = subplot(2,2,[1,2]);
-boxchart(categorical(dataloc.ifd.cell(subz),unique(dataloc.ifd.cell(subz),"stable")),log2((dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535)),'GroupByColor',categorical(dataloc.ifd.treatment(subz),catOrder),'Notch','on','MarkerStyle','.',"BoxWidth",1)
+boxchart(subF3Adata.cell,log2(subF3Adata.Intensity_MeanIntensity_Masked_OPP*65535),'GroupByColor',subF3Adata.treatment,...
+    'Notch','on','MarkerStyle','.',"BoxWidth",0.5);
 ylim([7,14.5])
 legend('Location','best'); ylabel("Log_2 Mean OPP Intensity per Cell"); xlabel('4B Cell line')
-fontname('Arial'); fontsize(11,"points");
-
-% Make the 
+fontname('Arial'); fontsize(8,"points");
 
 % 24 hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle with box and wiskers?
 minGrans = 0;
 tetTime = '-24';
 xlimz = [0,30]; % granule axis limits
-ylimz = [0, 10000]; % Opp axis limits
+ylimz = [7, 14]; % Opp axis limits
 
 
 subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'4BGFP'),...
     (dataloc.ifd.Children_Grans_4B_Count >= minGrans),~contains(dataloc.ifd.treatment,'and 0uM')],2);
-h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+
+h = scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),...
     'Group',dataloc.ifd.treatment(subz),'Location','SouthEast','parent',botLP);
-xlabel('4B Granules'); ylabel('Mean OPP Intensity')
-title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
+xlabel('4B Granules'); ylabel('Log_2 OPP Intensity')
+title([tetTime,'h WT4b Tet induced at all NaAsO2 Doses'])
 hold on;
 clr = get(h(1),'colororder');
 boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
      'label',{'','',''},'color',clr);
-boxplot(h(3),(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),'orientation','horizontal',...
+boxplot(h(3),(log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535)),dataloc.ifd.treatment(subz),'orientation','horizontal',...
      'label', {'','',''},'color',clr);
 set(h(2:3),'XTickLabel','');
 view(h(3),[270,90]);  % Rotate the Y plot
 xlim(h(1),xlimz); ylim(h(1),ylimz);
 xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes
 hold off;
+fontname('Arial'); fontsize(8,"points");
+
 
 subz = all([contains(dataloc.ifd.treatment,['TET at hour ', tetTime]),contains(dataloc.ifd.cell,'139A'),...
     (dataloc.ifd.Children_Grans_4B_Count >= minGrans),~contains(dataloc.ifd.treatment,'and 0uM')],2);
-h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,...
+
+h=scatterhist(dataloc.ifd.Children_Grans_4B_Count(subz),log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),...
     'Group',dataloc.ifd.treatment(subz),'parent',botRp);
-xlabel('4B Granules'); ylabel('Mean OPP Intensity')
+xlabel('4B Granules'); ylabel('Log_2 OPP Intensity')
 title([tetTime,'h 137A Tet induced and all NaAsO2 Doses'])
 hold on;
 clr = get(h(1),'colororder');
 boxplot(h(2),dataloc.ifd.Children_Grans_4B_Count(subz),dataloc.ifd.treatment(subz),'orientation','horizontal',...
      'label',{'','',''},'color',clr);
-boxplot(h(3),dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535,dataloc.ifd.treatment(subz),'orientation','horizontal',...
+boxplot(h(3),log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subz)*65535),dataloc.ifd.treatment(subz),'orientation','horizontal',...
      'label', {'','',''},'color',clr);
 set(h(2:3),'XTickLabel','');
 view(h(3),[270,90]);  % Rotate the Y plot
 xlim(h(1),xlimz); ylim(h(1),ylimz);
 xlim(h(2),xlimz); xlim(h(3),ylimz);  % Sync axes
 hold off;
+fontname('Arial'); fontsize(8,"points");
+
+figure3.Color = [1,1,1];
+botLP.BackgroundColor = [1,1,1];
+botRp.BackgroundColor = [1,1,1];
+
 
 saveas(figure3,'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\figure3.fig')
 saveas(figure3,'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\figure3.svg')

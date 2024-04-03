@@ -1,0 +1,403 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Live_Cell_Figures_new</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-03-21">
+<meta name="DC.source" content="Live_Cell_Figures_new.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Load the model fit data for the live cell</a>
+</li>
+<li>
+<a href="#2">24h induced Wild-Type 4B Data</a>
+</li>
+<li>
+<a href="#3">24h induced 139A mutant 4B data</a>
+</li>
+<li>
+<a href="#4">Make the fit models</a>
+</li>
+<li>
+<a href="#5">fit the model to the dataset</a>
+</li>
+<li>
+<a href="#6">Max number of grans FROM MODEL (f) versus treatment and cell line</a>
+</li>
+<li>
+<a href="#7">pull from combined data figures</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Load the model fit data for the live cell</h2>
+<pre class="codeinput">addpath(<span class="string">'\\albecklab.mcb.ucdavis.edu\data\code\Nick'</span>)
+</pre>
+<h2 id="2">24h induced Wild-Type 4B Data</h2>
+<p>2022-11-03</p>
+<pre class="codeinput">
+<span class="comment">%dataset1 = load('');</span>
+<span class="comment">%dataset1 = dataset1.dataloc; % pull the loaded dataloc structure</span>
+
+<span class="comment">% 2023-05-03</span>
+dataset2 = load(<span class="string">'\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed.mat'</span>);
+dataset2 = dataset2.dataloc; <span class="comment">% pull the loaded dataloc structure</span>
+
+<span class="comment">% 2023-06-15</span>
+dataset3 = load(<span class="string">'\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-15 4b WT-Mut NaAso2 Curve\2023-06-15 4b WT-Mut NaAso2 Curve_Processed.mat'</span>);
+dataset3 = dataset3.dataloc; <span class="comment">% pull the loaded dataloc structure</span>
+
+<span class="comment">% 2023-06-29</span>
+dataset4 = load(<span class="string">'\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat'</span>);
+dataset4 = dataset4.dataloc; <span class="comment">% pull the loaded dataloc structure</span>
+
+<span class="comment">% 2023-08-23</span>
+<span class="comment">%dataset5 = load('');</span>
+<span class="comment">%dataset5 = dataset5.dataloc; % pull the loaded dataloc structure</span>
+</pre>
+<h2 id="3">24h induced 139A mutant 4B data</h2>
+<p>2023-05-03</p>
+<pre class="codeinput">dataset6 = load(<span class="string">'\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed.mat'</span>);
+dataset6 = dataset6.dataloc; <span class="comment">% pull the loaded dataloc structure</span>
+
+<span class="comment">% 2023-06-15 (already loaded)</span>
+<span class="comment">% 2023-06-29 (already loaded)</span>
+<span class="comment">% 2023-08-23 (already loaded)</span>
+</pre>
+<h2 id="4">Make the fit models</h2>
+<p>datalocDF = makeLiveCellDataframe({dataset2,dataset4,dataset6},'subset','TET100n24t_NaAsO2125u2t');</p>
+<p>plotme = {'NumGrans'}; %,'granspercell' plottype = {'albeck mean fit fixed f'}; % 'albeck mean fit'</p>
+<p>plot_by_ND_forJB('treatment', datalocDF,'plottype',plottype,'channel',plotme,'looptime',3,'font_size',8)</p>
+<h2 id="5">fit the model to the dataset</h2>
+<pre class="codeinput">[fitData2,~] = convertDatalocToModelFit({dataset2,dataset4,dataset6}, <span class="string">'NumGrans'</span>);
+
+fitData = fitData2; <span class="comment">% work with duplicated data (for safety)</span>
+
+gFitData = fitData((fitData.NumGrans_rsquared &gt; 0.8),:); <span class="comment">% look for an r squared greater than 0.8 ?</span>
+
+<span class="comment">% boxplot(gfitData.NumGrans_min_to_respond,gFitData.treatment)</span>
+</pre>
+<h2 id="6">Max number of grans FROM MODEL (f) versus treatment and cell line</h2>
+<pre class="codeinput">minGrans = 3;
+tetTime = <span class="string">'-24'</span>;
+ylimz = [0, 50]; <span class="comment">% axis limits</span>
+naAsO2 = <span class="string">'125'</span>;
+
+subz = all([contains(gFitData.treatment,[<span class="string">'TET at hour '</span>, tetTime]),contains(gFitData.treatment,[naAsO2,<span class="string">'uM NaAsO2'</span>]),<span class="keyword">...</span>
+    (gFitData.NumGrans_f &gt;= minGrans)],2); <span class="comment">% filter for the parameters set above</span>
+
+<span class="comment">% subset the data</span>
+subData = gFitData(subz,:);
+
+<span class="comment">% plot all 4 as box and wisker plots</span>
+
+figgy = figure;
+
+<span class="comment">% plot the rate</span>
+subplot(1,4,1);
+boxplot(subData.NumGrans_rate_in_min,subData.cell,<span class="string">'Notch'</span>,<span class="string">'on'</span>);
+ylim([0,10])
+xticklabels({<span class="string">'WT'</span>,<span class="string">'Mut'</span>})
+xlabel(<span class="string">'4B Cell line'</span>); ylabel(<span class="string">'Rate of 4B Granule Formation (minutes)'</span>)
+
+<span class="comment">% plot the max granules</span>
+subplot(1,4,2);
+boxplot(subData.NumGrans_f,subData.cell,<span class="string">'Notch'</span>,<span class="string">'on'</span>);
+ylim([0,52])
+xticklabels({<span class="string">'WT'</span>,<span class="string">'Mut'</span>})
+xlabel(<span class="string">'4B Cell line'</span>); ylabel(<span class="string">'Max Number of 4B Granules (f)'</span>)
+
+<span class="comment">% plot the time 2 respond</span>
+subplot(1,4,3);
+boxplot(subData.NumGrans_min_to_respond,subData.cell,<span class="string">'Notch'</span>,<span class="string">'on'</span>);
+xticklabels({<span class="string">'WT'</span>,<span class="string">'Mut'</span>})
+ylim([0,50])
+xlabel(<span class="string">'4B Cell line'</span>); ylabel(<span class="string">'Time to respond (minutes)'</span>)
+
+<span class="comment">% plot the average granule area at max f</span>
+<span class="comment">% subplot(1,4,1);</span>
+<span class="comment">% boxplot(gFitData.NumGrans_f,gFitData.cell,'Notch','on');</span>
+<span class="comment">% ylim(ylimz)</span>
+<span class="comment">% xlabel('4B Cell line'); ylabel('f (Number of 4B Granules)')</span>
+
+
+<span class="comment">% barHold = grpstats(subData,"cell",["mean","median","sem","std"],"DataVars","NumGrans_f")</span>
+
+<span class="comment">% Test if Rate is significantly different btwn the 4B cell lines</span>
+[~,~,statsR] = anova1(subData.NumGrans_rate_in_min,subData.cell,<span class="string">'off'</span>);
+[resultsRate,~,~,gnamesRate] = multcompare(statsR,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsR.gnames,<span class="string">'HeLa_eIF4BGFP'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>);
+RateOfGranuleFormation = array2table(resultsRate,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+RateOfGranuleFormation.(<span class="string">"Group"</span>) = gnamesRate(RateOfGranuleFormation.(<span class="string">"Group"</span>));
+RateOfGranuleFormation.(<span class="string">"Control Group"</span>) = gnamesRate(RateOfGranuleFormation.(<span class="string">"Control Group"</span>))
+
+<span class="comment">% Test if number (f) is significantly different btwn the 4B cell lines</span>
+[~,~,statsF] = anova1(subData.NumGrans_f,subData.cell,<span class="string">'off'</span>);
+[resultsMaxG,~,~,gnamesF] = multcompare(statsF,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsF.gnames,<span class="string">'HeLa_eIF4BGFP'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>);
+MaxGranulesFormed = array2table(resultsMaxG,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+MaxGranulesFormed.(<span class="string">"Group"</span>) = gnamesF(MaxGranulesFormed.(<span class="string">"Group"</span>));
+MaxGranulesFormed.(<span class="string">"Control Group"</span>) = gnamesF(MaxGranulesFormed.(<span class="string">"Control Group"</span>))
+
+<span class="comment">% Test if time to respond is significantly different btwn the 4B cell lines</span>
+[~,~,statsT2R] = anova1(subData.NumGrans_min_to_respond,subData.cell,<span class="string">'off'</span>);
+[resultsTime2Resp,~,~,gnamesT2R] = multcompare(statsT2R,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsT2R.gnames,<span class="string">'HeLa_eIF4BGFP'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>);
+Time2Respond = array2table(resultsTime2Resp,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+Time2Respond.(<span class="string">"Group"</span>) = gnamesT2R(Time2Respond.(<span class="string">"Group"</span>));
+Time2Respond.(<span class="string">"Control Group"</span>) = gnamesT2R(Time2Respond.(<span class="string">"Control Group"</span>))
+
+
+saveas(figgy,<span class="string">'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\rate_max_t2r.fig'</span>)
+saveas(figgy,<span class="string">'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\rate_max_t2r.svg'</span>)
+</pre>
+<pre class="codeoutput">RateOfGranuleFormation =
+  1&times;6 table
+          Group             Control Group      Lower Limit    Difference    Upper Limit     P-value  
+    __________________    _________________    ___________    __________    ___________    __________
+    {'HeLa_4B139AGFP'}    {'HeLa_eIF4BGFP'}      -2.1843       -1.7449        -1.3056      2.6845e-14
+MaxGranulesFormed =
+  1&times;6 table
+          Group             Control Group      Lower Limit    Difference    Upper Limit     P-value  
+    __________________    _________________    ___________    __________    ___________    __________
+    {'HeLa_4B139AGFP'}    {'HeLa_eIF4BGFP'}      -5.6673       -4.0061        -2.3449      2.7141e-06
+Time2Respond =
+  1&times;6 table
+          Group             Control Group      Lower Limit    Difference    Upper Limit     P-value  
+    __________________    _________________    ___________    __________    ___________    __________
+    {'HeLa_4B139AGFP'}    {'HeLa_eIF4BGFP'}      3.1304         4.8595        6.5887       5.0413e-08
+</pre>
+<img vspace="5" hspace="5" src="Live_Cell_Figures_new_01.png" alt=""> <h2 id="7">pull from combined data figures</h2>
+<p>Test if average size is significantly different btwn the 4B cell lines [~,~,stats] = anova1(subData.NumGrans_f,subData.cell,'off'); [resultsTime2Resp,~,~,gnamesT2R] = multcompare(stats,"CriticalValueType","dunnett",'ControlGroup',find(matches(stats.gnames,'HeLa_eIF4BGFP')),'Display','off'); Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]); Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group")); Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))</p>
+<pre class="codeinput">
+<span class="comment">% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])</span>
+<span class="comment">%</span>
+<span class="comment">% subz = all([contains(gFitData.treatment,['TET at hour ', tetTime]),contains(gFitData.cell,'139A'),...</span>
+<span class="comment">%     (gFitData.NumGrans_f &gt;= minGrans)],2);</span>
+<span class="comment">% figure;</span>
+<span class="comment">% boxplot(gFitData.NumGrans_f(subz),gFitData.treatment(subz));</span>
+<span class="comment">% xlabel('treatment'); ylabel('f (Number of 4B Granules)')</span>
+<span class="comment">% ylim(ylimz)</span>
+<span class="comment">% title([tetTime,'h 139A mut Tet induced and all NaAsO2 Doses'])</span>
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% Load the model fit data for the live cell
+addpath('\\albecklab.mcb.ucdavis.edu\data\code\Nick')
+%% 24h induced Wild-Type 4B Data
+% 2022-11-03
+%dataset1 = load('');
+%dataset1 = dataset1.dataloc; % pull the loaded dataloc structure
+
+% 2023-05-03
+dataset2 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed.mat');
+dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
+
+% 2023-06-15
+dataset3 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-15 4b WT-Mut NaAso2 Curve\2023-06-15 4b WT-Mut NaAso2 Curve_Processed.mat');
+dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
+
+% 2023-06-29
+dataset4 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat');
+dataset4 = dataset4.dataloc; % pull the loaded dataloc structure
+
+% 2023-08-23
+%dataset5 = load('');
+%dataset5 = dataset5.dataloc; % pull the loaded dataloc structure
+
+
+%%  24h induced 139A mutant 4B data
+% 2023-05-03
+dataset6 = load('\\albecklab.mcb.ucdavis.edu\Data\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed.mat');
+dataset6 = dataset6.dataloc; % pull the loaded dataloc structure
+
+% 2023-06-15 (already loaded)
+% 2023-06-29 (already loaded)
+% 2023-08-23 (already loaded)
+%% Make the fit models
+% datalocDF = makeLiveCellDataframe({dataset2,dataset4,dataset6},'subset','TET100n24t_NaAsO2125u2t');
+% 
+% plotme = {'NumGrans'}; %,'granspercell'
+% plottype = {'albeck mean fit fixed f'}; % 'albeck mean fit'
+% 
+% plot_by_ND_forJB('treatment', datalocDF,'plottype',plottype,'channel',plotme,'looptime',3,'font_size',8)
+
+%% fit the model to the dataset
+[fitData2,~] = convertDatalocToModelFit({dataset2,dataset4,dataset6}, 'NumGrans');
+
+fitData = fitData2; % work with duplicated data (for safety)
+
+gFitData = fitData((fitData.NumGrans_rsquared > 0.8),:); % look for an r squared greater than 0.8 ? 
+
+% boxplot(gfitData.NumGrans_min_to_respond,gFitData.treatment)
+
+%% Max number of grans FROM MODEL (f) versus treatment and cell line
+minGrans = 3;
+tetTime = '-24';
+ylimz = [0, 50]; % axis limits
+naAsO2 = '125';
+
+subz = all([contains(gFitData.treatment,['TET at hour ', tetTime]),contains(gFitData.treatment,[naAsO2,'uM NaAsO2']),...
+    (gFitData.NumGrans_f >= minGrans)],2); % filter for the parameters set above
+
+% subset the data 
+subData = gFitData(subz,:);
+
+% plot all 4 as box and wisker plots
+
+figgy = figure;
+
+% plot the rate 
+subplot(1,4,1);
+boxplot(subData.NumGrans_rate_in_min,subData.cell,'Notch','on');
+ylim([0,10])
+xticklabels({'WT','Mut'})
+xlabel('4B Cell line'); ylabel('Rate of 4B Granule Formation (minutes)')
+
+% plot the max granules 
+subplot(1,4,2);
+boxplot(subData.NumGrans_f,subData.cell,'Notch','on');
+ylim([0,52])
+xticklabels({'WT','Mut'})
+xlabel('4B Cell line'); ylabel('Max Number of 4B Granules (f)')
+
+% plot the time 2 respond
+subplot(1,4,3);
+boxplot(subData.NumGrans_min_to_respond,subData.cell,'Notch','on');
+xticklabels({'WT','Mut'})
+ylim([0,50])
+xlabel('4B Cell line'); ylabel('Time to respond (minutes)')
+
+% plot the average granule area at max f
+% subplot(1,4,1);
+% boxplot(gFitData.NumGrans_f,gFitData.cell,'Notch','on');
+% ylim(ylimz)
+% xlabel('4B Cell line'); ylabel('f (Number of 4B Granules)')
+
+
+% barHold = grpstats(subData,"cell",["mean","median","sem","std"],"DataVars","NumGrans_f")
+
+% Test if Rate is significantly different btwn the 4B cell lines
+[~,~,statsR] = anova1(subData.NumGrans_rate_in_min,subData.cell,'off');
+[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'HeLa_eIF4BGFP')),'Display','off'); 
+RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
+RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
+
+% Test if number (f) is significantly different btwn the 4B cell lines
+[~,~,statsF] = anova1(subData.NumGrans_f,subData.cell,'off');
+[resultsMaxG,~,~,gnamesF] = multcompare(statsF,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsF.gnames,'HeLa_eIF4BGFP')),'Display','off'); 
+MaxGranulesFormed = array2table(resultsMaxG,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+MaxGranulesFormed.("Group") = gnamesF(MaxGranulesFormed.("Group"));
+MaxGranulesFormed.("Control Group") = gnamesF(MaxGranulesFormed.("Control Group"))
+
+% Test if time to respond is significantly different btwn the 4B cell lines
+[~,~,statsT2R] = anova1(subData.NumGrans_min_to_respond,subData.cell,'off');
+[resultsTime2Resp,~,~,gnamesT2R] = multcompare(statsT2R,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsT2R.gnames,'HeLa_eIF4BGFP')),'Display','off'); 
+Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group"));
+Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))
+
+
+saveas(figgy,'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\rate_max_t2r.fig')
+saveas(figgy,'\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Paper Figures\rate_max_t2r.svg')
+
+%% pull from combined data figures
+% Test if average size is significantly different btwn the 4B cell lines
+% [~,~,stats] = anova1(subData.NumGrans_f,subData.cell,'off');
+% [resultsTime2Resp,~,~,gnamesT2R] = multcompare(stats,"CriticalValueType","dunnett",'ControlGroup',find(matches(stats.gnames,'HeLa_eIF4BGFP')),'Display','off'); 
+% Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+% Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group"));
+% Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))
+
+
+% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
+% 
+% subz = all([contains(gFitData.treatment,['TET at hour ', tetTime]),contains(gFitData.cell,'139A'),...
+%     (gFitData.NumGrans_f >= minGrans)],2);
+% figure;
+% boxplot(gFitData.NumGrans_f(subz),gFitData.treatment(subz));
+% xlabel('treatment'); ylabel('f (Number of 4B Granules)')
+% ylim(ylimz)
+% title([tetTime,'h 139A mut Tet induced and all NaAsO2 Doses'])
+
+
+##### SOURCE END #####
+-->
+</body>
+</html>

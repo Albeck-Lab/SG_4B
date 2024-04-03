@@ -1,6 +1,7 @@
 *.asv
 *.tif
 *.nd2
+*.mat
 *~$*.xlsx
 *.csv
 *_Processed.mat

@@ -1,3 +1,6 @@
+%% Figure 1 and 2 
+% Do the analysis and make both of these figures. 
+
 %% Load the model fit data for the live cell
 addpath('Z:\code\Nick')
 %% 24h induced Wild-Type 4B Data
@@ -24,7 +27,6 @@ dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 % 2023-05-03 (already loaded)
 % 2023-06-15 (already loaded)
 % 2023-06-29 (already loaded)
-% 2023-08-23 (already loaded)
 
 %% Make the fit models
 % datalocDF = makeLiveCellDataframe({dataset1,dataset2,dataset3},'subset','TET100n24t_NaAsO2125u2t');
@@ -37,12 +39,101 @@ dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 %% fit the model to the datasets
 [fitData2,~] = convertDatalocToModelFit({dataset1,dataset2,dataset3}, 'NumGrans');
 
-
 %% Subset only the good data 
-
 fitData = fitData2; % work with duplicated data (for safety)
 gFitData = fitData((fitData.NumGrans_rsquared > 0.8),:); % look for an r squared greater than 0.8 ? 
 
+%% Focus on the wt 4b cells for now
+% Get the Min number of grans FROM MODEL (f), how long the cells were tet induced, and the dose of NaAsO2 for the Wt 4B cells
+minGrans = 3;
+tetTime = '-24';
+naAsO2 = ("62.5"|"125"|"250");
+
+WTsubz = all([contains(gFitData.treatment,['TET at hour ', tetTime]),contains(gFitData.treatment,naAsO2),...
+    (gFitData.NumGrans_f >= minGrans), contains(gFitData.cell,'HeLa_eIF4BGFP')],2); % filter for the parameters set above
+
+wtSubData = gFitData(WTsubz,:);
+
+%% Run the statistics comparing the wt-4B treated cells accross various concentrations of NaAsO2 and control
+
+% get averything for the reader if needed
+grpstats(wtSubData,"treatment",["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+
+% Now just print the means
+grpstats(wtSubData,"treatment","mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+
+%% Start with wt 4b cells treated with 62.5uM NaAsO2 as control vs all other NaAsO2 concentrations and btwn cell lines
+% Test if Rate is significantly different btwn the 4B cell lines
+[~,~,statsR] = anova1(subData.NumGrans_rate_in_min,strcat(subData.treatment,{' '},subData.cell),'off');
+[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'62.5uM Wt')),'Display','off','Approximate',false); 
+RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
+RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
+
+% Test if number (f) is significantly different btwn the 4B cell lines
+[~,~,statsF] = anova1(subData.NumGrans_f,strcat(subData.treatment,{' '},subData.cell),'off');
+[resultsMaxG,~,~,gnamesF] = multcompare(statsF,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsF.gnames,'62.5uM Wt')),'Display','off','Approximate',false); 
+MaxGranulesFormed = array2table(resultsMaxG,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+MaxGranulesFormed.("Group") = gnamesF(MaxGranulesFormed.("Group"));
+MaxGranulesFormed.("Control Group") = gnamesF(MaxGranulesFormed.("Control Group"))
+
+% Test if time to respond is significantly different btwn the 4B cell lines
+[~,~,statsT2R] = anova1(subData.NumGrans_min_to_respond,strcat(subData.treatment,{' '},subData.cell),'off');
+[resultsTime2Resp,~,~,gnamesT2R] = multcompare(statsT2R,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsT2R.gnames,'62.5uM Wt')),'Display','off','Approximate',false); 
+Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group"));
+Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))
+
+%% Make Figure 1 - eIF4B-GFP (WT)
+
+
+% Figure 1D
+% plot the max grans, Rate of granule formation, and time to respond to treatment
+
+figure1 = figure;
+set(figure1,'Units',"Inches",'Position',[0,0,8.5,11],'PaperPosition',[0,0,8.5,11]);
+
+f1ax = []; clear f1ax;
+f1ax = axes;
+% plot the rate 
+ax(4) = subplot(4,4,13);
+boxplot(subData.NumGrans_rate_in_min,{subData.treatment,subData.cell},'Symbol','','Notch','on','colorgroup',subData.cell,'Colors',clrz); %
+ylim([0,9])
+ylabel('Rate of 4B Granule Formation (minutes)')
+
+% plot the max granules 
+ax(5) = subplot(4,4,14);
+boxplot(subData.NumGrans_f,{subData.treatment,subData.cell},'Notch','on','Symbol','','colorgroup',subData.cell,'Colors',clrz);
+ylim([0,60])
+ylabel('Max Number of 4B Granules (f)')
+
+% plot the time 2 respond
+ax(6) = subplot(4,4,15);
+boxplot(subData.NumGrans_min_to_respond,{subData.treatment,subData.cell},'Notch','on','Symbol','','colorgroup',subData.cell,'Colors',clrz);
+ylim([0,60])
+ylabel('Time to respond (minutes)')
+
+% plot the average granule area at max f
+ax(7) = subplot(4,4,16);
+% boxplot(gFitData.NumGrans_f,gFitData.cell,'Notch','on','colorgroup',subData.cell,'Colors',clrz);
+% ylim([,])
+ylabel('Max 4B Granule Size (pixels)')
+
+% loop through the subplots that make up figure 2D, size and space them appropriately 
+pWidth = 1.5; % plot width in inches
+pHeight = 3; % plot height in inches
+sWidth = (7.25-(pWidth*4))/3; % gap btwn plots in inches
+for iSub = 4:7
+    set(ax(iSub),'Units','Inches','Position',[0.75+(pWidth*(iSub-4))+(sWidth*(iSub-4)), 0.75, pWidth, pHeight]) 
+end
+
+fontsize(8,"points"); fontname("Arial");
+
+saveas(figure1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_1.fig')
+saveas(figure1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_1.svg')
+
+
+%%
 % Max number of grans FROM MODEL (f) versus treatment and cell line
 minGrans = 3;
 tetTime = '-24';

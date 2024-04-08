@@ -175,7 +175,63 @@ botRP.BackgroundColor = [1,1,1];
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.fig')
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.svg')
 
+%% Now print the saw OPP values per cell line per NaAsO2 treatment
 
+subz = ~contains(dataloc.ifd.cell,'bad','ignorecase',true); % filter for the parameters set above
+
+orderOfPlot = {...
+    '0ug/mL TET at hour 0 and 0uM NaAsO2', '0.1ug/mL TET at hour -2 and 0uM NaAsO2', '0.1ug/mL TET at hour -4 and 0uM NaAsO2','0.1ug/mL TET at hour -8 and 0uM NaAsO2', '0.1ug/mL TET at hour -14 and 0uM NaAsO2', '0.1ug/mL TET at hour -24 and 0uM NaAsO2',...
+    '0ug/mL TET at hour 0 and 62.5uM NaAsO2', '0.1ug/mL TET at hour -2 and 62.5uM NaAsO2', '0.1ug/mL TET at hour -4 and 62.5uM NaAsO2','0.1ug/mL TET at hour -8 and 62.5uM NaAsO2', '0.1ug/mL TET at hour -14 and 62.5uM NaAsO2', '0.1ug/mL TET at hour -24 and 62.5uM NaAsO2',...
+    '0ug/mL TET at hour 0 and 125uM NaAsO2', '0.1ug/mL TET at hour -2 and 125uM NaAsO2', '0.1ug/mL TET at hour -4 and 125uM NaAsO2','0.1ug/mL TET at hour -8 and 125uM NaAsO2', '0.1ug/mL TET at hour -14 and 125uM NaAsO2', '0.1ug/mL TET at hour -24 and 125uM NaAsO2',...
+    '0ug/mL TET at hour 0 and 250uM NaAsO2', '0.1ug/mL TET at hour -2 and 250uM NaAsO2', '0.1ug/mL TET at hour -4 and 250uM NaAsO2','0.1ug/mL TET at hour -8 and 250uM NaAsO2', '0.1ug/mL TET at hour -14 and 250uM NaAsO2', '0.1ug/mL TET at hour -24 and 250uM NaAsO2',...
+    };
+
+allOPPData = dataloc.ifd(subz,:);
+allOPPData.txcat = categorical(allOPPData.treatment,orderOfPlot);
+allOPPData.OPP = allOPPData.Intensity_MeanIntensity_Masked_OPP*65535;
+
+
+allOPPStats = grpstats(allOPPData,["txcat","cell"],["mean","median","sem","std"],"DataVars","OPP")
+
+% save it as a csv 
+writetable(allOPPStats,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\allOppStats.csv')
+
+%% Run the statistics comparing the wt-4B treated cells accross various concentrations of NaAsO2 and control
+
+% get averything for the reader if needed
+grpstats(wtSubData,"treatment",["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+
+% Now just print the means
+grpstats(wtSubData,"treatment","mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+
+
+%% X hour tet wt 4b or 139a 4b vs opp @ each naaso2 dose
+
+
+dataloc.ifd.txcat = categorical(dataloc.ifd.treatment,orderOfPlot);
+
+subzwt = contains(dataloc.ifd.cell,'4BGFP'); % subset the data to be wt 4b
+subzmut = contains(dataloc.ifd.cell,'139A'); % subset the data to be 139A 4b
+
+barColz = [ 0.3010, 0.7450, 0.9330;...
+            0.6350, 0.0780, 0.1840;...
+            0.9290, 0.6940, 0.1250;...
+            0, 0.4470, 0.7410;...
+            0.4660, 0.6740, 0.1880;...
+            0.4940, 0.1840, 0.5560]; % colors for bars
+
+figure;
+boxplot(log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subzwt)*65535),dataloc.ifd.txcat(subzwt),'Notch','on','Symbol','.','Colors',barColz)
+ylim([7, 15])
+xlabel('TET Induction'); ylabel('Log_2 OPP Intensity')
+title('WT4b Tet induction versus OPP')
+legend
+
+figure;
+boxplot(log2(dataloc.ifd.Intensity_MeanIntensity_Masked_OPP(subzmut)*65535),dataloc.ifd.txcat(subzmut),'Notch','on','Symbol','.','Colors',barColz)
+xlabel('TET Induction'); ylabel('Log_2 OPP Intensity')
+ylim([7,15])
+title('139A Tet induction versus OPP')
 %% % OPP by dose
 % figure;
 % minGrans = 0; % min number of granules

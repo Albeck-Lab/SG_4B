@@ -1,3 +1,5 @@
+%% Figure 1: 
+
 %% Load the model fit data for the live cell
 addpath('Z:\code\Nick')
 %% 24h induced Wild-Type 4B Data
@@ -18,14 +20,6 @@ dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 %dataset4 = load('');
 %dataset4 = dataset5.dataloc; % pull the loaded dataloc structure
 
-
-%%  24h induced 139A mutant 4B data
-
-% 2023-05-03 (already loaded)
-% 2023-06-15 (already loaded)
-% 2023-06-29 (already loaded)
-% 2023-08-23 (already loaded)
-
 %% Make the fit models
 % datalocDF = makeLiveCellDataframe({dataset1,dataset2,dataset3},'subset','TET100n24t_NaAsO2125u2t');
 % 
@@ -37,8 +31,7 @@ dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 %% fit the model to the datasets
 [fitData2,~] = convertDatalocToModelFit({dataset1,dataset2,dataset3}, 'NumGrans');
 
-
-%% Subset only the good data 
+%% Subset only the WT-4B-GFP data with a model fit r^2 above 0.8
 
 fitData = fitData2; % work with duplicated data (for safety)
 gFitData = fitData((fitData.NumGrans_rsquared > 0.8),:); % look for an r squared greater than 0.8 ? 
@@ -49,24 +42,23 @@ tetTime = '-24';
 naAsO2 = ("62.5"|"125"|"250");
 
 subz = all([contains(gFitData.treatment,['TET at hour ', tetTime]),contains(gFitData.treatment,naAsO2),...
-    (gFitData.NumGrans_f >= minGrans)],2); % filter for the parameters set above
+    (gFitData.NumGrans_f >= minGrans), contains(gFitData.cell,'HeLa_eIF4BGFP')],2); % filter for the parameters set above
 
 % subset the data 
 subData = gFitData(subz,:);
 
-% simplify the name since all the data is 24hr tet induced, NaAsO2 is at hour 0, and we know HeLa_eIF4BGFP is wt/HeLa_4B139AGFP is mut
+% simplify the name since all the data is 24hr tet induced, NaAsO2 is at hour 0, and we know HeLa_eIF4BGFP is wt
 subData.treatment = strrep(subData.treatment,'0.1ug/mL TET at hour -24 and ','');
 subData.treatment = strrep(subData.treatment,' NaAsO2 at hour 0','');
-subData.cell = strrep(subData.cell,'HeLa_4B139AGFP','Mut');
 subData.cell = strrep(subData.cell,'HeLa_eIF4BGFP','Wt');
 
 %% Run the statistics comparing the cell lines using wt treated with various concentrations of NaAsO2 as control
 
 % get averything for the reader if needed
-grpstats(subData,["treatment","cell"],["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+grpstats(subData,"treatment",["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
 
 % Now just print the means
-grpstats(subData,["treatment","cell"],"mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+grpstats(subData,"treatment","mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
 
 %% Start with wt 4b cells treated with 62.5uM NaAsO2 as control vs all other NaAsO2 concentrations and btwn cell lines
 % Test if Rate is significantly different btwn the 4B cell lines
@@ -199,4 +191,22 @@ fontsize(8,"points"); fontname("Arial");
 saveas(figure2,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_2.fig')
 saveas(figure2,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_2.svg')
 
+%% pull from combined data figures
+% Test if average size is significantly different btwn the 4B cell lines
+% [~,~,stats] = anova1(subData.NumGrans_f,subData.cell,'off');
+% [resultsTime2Resp,~,~,gnamesT2R] = multcompare(stats,"CriticalValueType","dunnett",'ControlGroup',find(matches(stats.gnames,'HeLa_eIF4BGFP')),'Display','off'); 
+% Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+% Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group"));
+% Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))
+
+
+% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
+% 
+% subz = all([contains(gFitData.treatment,['TET at hour ', tetTime]),contains(gFitData.cell,'139A'),...
+%     (gFitData.NumGrans_f >= minGrans)],2);
+% figure;
+% boxplot(gFitData.NumGrans_f(subz),gFitData.treatment(subz));
+% xlabel('treatment'); ylabel('f (Number of 4B Granules)')
+% ylim(ylimz)
+% title([tetTime,'h 139A mut Tet induced and all NaAsO2 Doses'])
 

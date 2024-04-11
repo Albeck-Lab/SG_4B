@@ -57,459 +57,374 @@
     /></g
     ><g style="fill:white; text-rendering:optimizeSpeed; color-rendering:optimizeSpeed; image-rendering:optimizeSpeed; shape-rendering:crispEdges; stroke:white; color-interpolation:sRGB;"
     ><rect x="0" width="816" height="1056" y="0" style="stroke:none;"
-      /><path style="stroke:none;" d="M72 980 L216 980 L216 674 L72 674 Z"
+      /><path style="stroke:none;" d="M240 779 L384 779 L384 477 L240 477 Z"
     /></g
     ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:0.6667;"
-    ><line y2="980" style="fill:none;" x1="72" x2="216" y1="980"
-      /><line y2="674" style="fill:none;" x1="72" x2="216" y1="674"
-      /><line y2="976.94" style="fill:none;" x1="96" x2="96" y1="980"
-      /><line y2="976.94" style="fill:none;" x1="144" x2="144" y1="980"
-      /><line y2="976.94" style="fill:none;" x1="192" x2="192" y1="980"
-      /><line y2="677.06" style="fill:none;" x1="96" x2="96" y1="674"
-      /><line y2="677.06" style="fill:none;" x1="144" x2="144" y1="674"
-      /><line y2="677.06" style="fill:none;" x1="192" x2="192" y1="674"
+    ><line y2="779" style="fill:none;" x1="240" x2="384" y1="779"
+      /><line y2="477" style="fill:none;" x1="240" x2="384" y1="477"
+      /><line y2="775.98" style="fill:none;" x1="264" x2="264" y1="779"
+      /><line y2="775.98" style="fill:none;" x1="312" x2="312" y1="779"
+      /><line y2="775.98" style="fill:none;" x1="360" x2="360" y1="779"
+      /><line y2="480.02" style="fill:none;" x1="264" x2="264" y1="477"
+      /><line y2="480.02" style="fill:none;" x1="312" x2="312" y1="477"
+      /><line y2="480.02" style="fill:none;" x1="360" x2="360" y1="477"
     /></g
-    ><g transform="translate(96,982.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(264,781.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-79" xml:space="preserve" y="10" style="stroke:none;"
       >62.5uM NaAsO2</text
     ></g
-    ><g transform="translate(144,982.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(312,781.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-76" xml:space="preserve" y="10" style="stroke:none;"
       >125uM NaAsO2</text
     ></g
-    ><g transform="translate(192,982.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(360,781.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-76" xml:space="preserve" y="10" style="stroke:none;"
       >250uM NaAsO2</text
     ></g
     ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:0.6667;"
-    ><line y2="674" style="fill:none;" x1="72" x2="72" y1="980"
-      /><line y2="674" style="fill:none;" x1="216" x2="216" y1="980"
-      /><line y2="980" style="fill:none;" x1="72" x2="75.06" y1="980"
-      /><line y2="946" style="fill:none;" x1="72" x2="75.06" y1="946"
-      /><line y2="912" style="fill:none;" x1="72" x2="75.06" y1="912"
-      /><line y2="878" style="fill:none;" x1="72" x2="75.06" y1="878"
-      /><line y2="844" style="fill:none;" x1="72" x2="75.06" y1="844"
-      /><line y2="810" style="fill:none;" x1="72" x2="75.06" y1="810"
-      /><line y2="776" style="fill:none;" x1="72" x2="75.06" y1="776"
-      /><line y2="742" style="fill:none;" x1="72" x2="75.06" y1="742"
-      /><line y2="708" style="fill:none;" x1="72" x2="75.06" y1="708"
-      /><line y2="674" style="fill:none;" x1="72" x2="75.06" y1="674"
-      /><line y2="980" style="fill:none;" x1="216" x2="212.94" y1="980"
-      /><line y2="946" style="fill:none;" x1="216" x2="212.94" y1="946"
-      /><line y2="912" style="fill:none;" x1="216" x2="212.94" y1="912"
-      /><line y2="878" style="fill:none;" x1="216" x2="212.94" y1="878"
-      /><line y2="844" style="fill:none;" x1="216" x2="212.94" y1="844"
-      /><line y2="810" style="fill:none;" x1="216" x2="212.94" y1="810"
-      /><line y2="776" style="fill:none;" x1="216" x2="212.94" y1="776"
-      /><line y2="742" style="fill:none;" x1="216" x2="212.94" y1="742"
-      /><line y2="708" style="fill:none;" x1="216" x2="212.94" y1="708"
-      /><line y2="674" style="fill:none;" x1="216" x2="212.94" y1="674"
+    ><line y2="477" style="fill:none;" x1="240" x2="240" y1="779"
+      /><line y2="477" style="fill:none;" x1="384" x2="384" y1="779"
+      /><line y2="779" style="fill:none;" x1="240" x2="243.02" y1="779"
+      /><line y2="745.4445" style="fill:none;" x1="240" x2="243.02" y1="745.4445"
+      /><line y2="711.8889" style="fill:none;" x1="240" x2="243.02" y1="711.8889"
+      /><line y2="678.3333" style="fill:none;" x1="240" x2="243.02" y1="678.3333"
+      /><line y2="644.7778" style="fill:none;" x1="240" x2="243.02" y1="644.7778"
+      /><line y2="611.2222" style="fill:none;" x1="240" x2="243.02" y1="611.2222"
+      /><line y2="577.6667" style="fill:none;" x1="240" x2="243.02" y1="577.6667"
+      /><line y2="544.1111" style="fill:none;" x1="240" x2="243.02" y1="544.1111"
+      /><line y2="510.5555" style="fill:none;" x1="240" x2="243.02" y1="510.5555"
+      /><line y2="477" style="fill:none;" x1="240" x2="243.02" y1="477"
+      /><line y2="779" style="fill:none;" x1="384" x2="380.98" y1="779"
+      /><line y2="745.4445" style="fill:none;" x1="384" x2="380.98" y1="745.4445"
+      /><line y2="711.8889" style="fill:none;" x1="384" x2="380.98" y1="711.8889"
+      /><line y2="678.3333" style="fill:none;" x1="384" x2="380.98" y1="678.3333"
+      /><line y2="644.7778" style="fill:none;" x1="384" x2="380.98" y1="644.7778"
+      /><line y2="611.2222" style="fill:none;" x1="384" x2="380.98" y1="611.2222"
+      /><line y2="577.6667" style="fill:none;" x1="384" x2="380.98" y1="577.6667"
+      /><line y2="544.1111" style="fill:none;" x1="384" x2="380.98" y1="544.1111"
+      /><line y2="510.5555" style="fill:none;" x1="384" x2="380.98" y1="510.5555"
+      /><line y2="477" style="fill:none;" x1="384" x2="380.98" y1="477"
     /></g
-    ><g transform="translate(69.8667,980)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,779)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >0</text
     ></g
-    ><g transform="translate(69.8667,946)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,745.4445)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >1</text
     ></g
-    ><g transform="translate(69.8667,912)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,711.8889)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >2</text
     ></g
-    ><g transform="translate(69.8667,878)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,678.3333)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >3</text
     ></g
-    ><g transform="translate(69.8667,844)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,644.7778)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >4</text
     ></g
-    ><g transform="translate(69.8667,810)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,611.2222)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >5</text
     ></g
-    ><g transform="translate(69.8667,776)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,577.6667)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >6</text
     ></g
-    ><g transform="translate(69.8667,742)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,544.1111)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >7</text
     ></g
-    ><g transform="translate(69.8667,708)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,510.5555)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >8</text
     ></g
-    ><g transform="translate(69.8667,674)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(237.8667,477)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >9</text
     ></g
-    ><g transform="translate(62.5333,826.9999) rotate(-90)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(230.5333,627.9999) rotate(-90)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-95" xml:space="preserve" y="-3" style="stroke:none;"
       >Rate of 4B Granule Formation (minutes)</text
     ></g
-    ><g style="stroke-linecap:butt; fill:green; text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:bevel; stroke-dasharray:10,6; stroke:green; color-interpolation:linearRGB; stroke-width:0.6667; stroke-miterlimit:1;"
-    ><line y2="907.32" style="fill:none;" x1="96" x2="96" y1="941.5926"
-      /><line y2="696.3202" style="fill:none;" x1="144" x2="144" y1="837.4313"
-      /><line y2="739.3487" style="fill:none;" x1="192" x2="192" y1="846.4863"
-      /><line y2="964.6514" style="fill:none;" x1="96" x2="96" y1="977.902"
-      /><line y2="934.3228" style="fill:none;" x1="144" x2="144" y1="973.7982"
-      /><line y2="923.2129" style="fill:none;" x1="192" x2="192" y1="972.9739"
-      /><line x1="90.6" x2="101.4" y1="907.32" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="907.32"
-      /><line x1="138.6" x2="149.4" y1="696.3202" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="696.3202"
-      /><line x1="186.6" x2="197.4" y1="739.3487" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="739.3487"
-      /><line x1="90.6" x2="101.4" y1="977.902" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="977.902"
-      /><line x1="138.6" x2="149.4" y1="973.7982" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="973.7982"
-      /><line x1="186.6" x2="197.4" y1="972.9739" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="972.9739"
-      /><path style="fill:none; stroke-miterlimit:10; stroke-dasharray:none; fill-rule:evenodd; stroke-linejoin:round;" d="M90.6 956.6913 L85.2 955.2757 L85.2 941.5926 L106.8 941.5926 L106.8 955.2757 L101.4 956.6913 L106.8 958.107 L106.8 964.6514 L85.2 964.6514 L85.2 958.107 L90.6 956.6913"
-      /><path style="fill:none; stroke-miterlimit:10; stroke-dasharray:none; fill-rule:evenodd; stroke-linejoin:round;" d="M138.6 892.5168 L133.2 887.6224 L133.2 837.4313 L154.8 837.4313 L154.8 887.6224 L149.4 892.5168 L154.8 897.4112 L154.8 934.3228 L133.2 934.3228 L133.2 897.4112 L138.6 892.5168"
-      /><path style="fill:none; stroke-miterlimit:10; stroke-dasharray:none; fill-rule:evenodd; stroke-linejoin:round;" d="M186.6 892.3232 L181.2 888.4888 L181.2 846.4863 L202.8 846.4863 L202.8 888.4888 L197.4 892.3232 L202.8 896.1575 L202.8 923.2129 L181.2 923.2129 L181.2 896.1575 L186.6 892.3232"
-      /><line x1="90.6" x2="101.4" y1="956.6913" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="956.6913"
-      /><line x1="138.6" x2="149.4" y1="892.5168" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="892.5168"
-      /><line x1="186.6" x2="197.4" y1="892.3232" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="892.3232"
+    ><g style="stroke-linecap:butt; text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:bevel; stroke-dasharray:10,6; color-interpolation:linearRGB; stroke-width:0.6667; stroke-miterlimit:1;"
+    ><line y2="707.2701" style="fill:none;" x1="264" x2="264" y1="741.0946"
+      /><line y2="499.0284" style="fill:none;" x1="312" x2="312" y1="638.295"
+      /><line y2="541.4944" style="fill:none;" x1="360" x2="360" y1="647.2316"
+      /><line y2="763.852" style="fill:none;" x1="264" x2="264" y1="776.9294"
+      /><line y2="733.9199" style="fill:none;" x1="312" x2="312" y1="772.8792"
+      /><line y2="722.9552" style="fill:none;" x1="360" x2="360" y1="772.0657"
+      /><line x1="258.6" x2="269.4" y1="707.2701" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="707.2701"
+      /><line x1="306.6" x2="317.4" y1="499.0284" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="499.0284"
+      /><line x1="354.6" x2="365.4" y1="541.4944" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="541.4944"
+      /><line x1="258.6" x2="269.4" y1="776.9294" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="776.9294"
+      /><line x1="306.6" x2="317.4" y1="772.8792" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="772.8792"
+      /><line x1="354.6" x2="365.4" y1="772.0657" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="772.0657"
+    /></g
+    ><g style="stroke-linecap:butt; fill:blue; text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:blue; color-interpolation:linearRGB; stroke-width:0.6667;"
+    ><path d="M253.2 763.852 L253.2 741.0946 L274.8 741.0946 L274.8 763.852 L253.2 763.852" style="fill:none; fill-rule:evenodd;"
+      /><path d="M301.2 733.9199 L301.2 638.295 L322.8 638.295 L322.8 733.9199 L301.2 733.9199" style="fill:none; fill-rule:evenodd;"
+      /><path d="M349.2 722.9552 L349.2 647.2316 L370.8 647.2316 L370.8 722.9552 L349.2 722.9552" style="fill:none; fill-rule:evenodd;"
+      /><line x1="253.2" x2="274.8" y1="755.996" style="fill:none; stroke:red;" y2="755.996"
+      /><line x1="301.2" x2="322.8" y1="692.6604" style="fill:none; stroke:red;" y2="692.6604"
+      /><line x1="349.2" x2="370.8" y1="692.4692" style="fill:none; stroke:red;" y2="692.4692"
     /></g
     ><g style="fill:white; text-rendering:optimizeSpeed; color-rendering:optimizeSpeed; image-rendering:optimizeSpeed; shape-rendering:crispEdges; stroke:white; color-interpolation:sRGB;"
-    ><path style="stroke:none;" d="M256 980 L400 980 L400 674 L256 674 Z"
+    ><path style="stroke:none;" d="M424 779 L568 779 L568 477 L424 477 Z"
     /></g
     ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:0.6667;"
-    ><line y2="980" style="fill:none;" x1="256" x2="400" y1="980"
-      /><line y2="674" style="fill:none;" x1="256" x2="400" y1="674"
-      /><line y2="976.94" style="fill:none;" x1="280" x2="280" y1="980"
-      /><line y2="976.94" style="fill:none;" x1="328" x2="328" y1="980"
-      /><line y2="976.94" style="fill:none;" x1="376" x2="376" y1="980"
-      /><line y2="677.06" style="fill:none;" x1="280" x2="280" y1="674"
-      /><line y2="677.06" style="fill:none;" x1="328" x2="328" y1="674"
-      /><line y2="677.06" style="fill:none;" x1="376" x2="376" y1="674"
+    ><line y2="779" style="fill:none;" x1="424" x2="568" y1="779"
+      /><line y2="477" style="fill:none;" x1="424" x2="568" y1="477"
+      /><line y2="775.98" style="fill:none;" x1="448" x2="448" y1="779"
+      /><line y2="775.98" style="fill:none;" x1="496" x2="496" y1="779"
+      /><line y2="775.98" style="fill:none;" x1="544" x2="544" y1="779"
+      /><line y2="480.02" style="fill:none;" x1="448" x2="448" y1="477"
+      /><line y2="480.02" style="fill:none;" x1="496" x2="496" y1="477"
+      /><line y2="480.02" style="fill:none;" x1="544" x2="544" y1="477"
     /></g
-    ><g transform="translate(280,982.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(448,781.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-79" xml:space="preserve" y="10" style="stroke:none;"
       >62.5uM NaAsO2</text
     ></g
-    ><g transform="translate(328,982.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(496,781.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-76" xml:space="preserve" y="10" style="stroke:none;"
       >125uM NaAsO2</text
     ></g
-    ><g transform="translate(376,982.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(544,781.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-76" xml:space="preserve" y="10" style="stroke:none;"
       >250uM NaAsO2</text
     ></g
     ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:0.6667;"
-    ><line y2="674" style="fill:none;" x1="256" x2="256" y1="980"
-      /><line y2="674" style="fill:none;" x1="400" x2="400" y1="980"
-      /><line y2="980" style="fill:none;" x1="256" x2="259.06" y1="980"
-      /><line y2="952.1818" style="fill:none;" x1="256" x2="259.06" y1="952.1818"
-      /><line y2="924.3636" style="fill:none;" x1="256" x2="259.06" y1="924.3636"
-      /><line y2="896.5455" style="fill:none;" x1="256" x2="259.06" y1="896.5455"
-      /><line y2="868.7273" style="fill:none;" x1="256" x2="259.06" y1="868.7273"
-      /><line y2="840.9091" style="fill:none;" x1="256" x2="259.06" y1="840.9091"
-      /><line y2="813.0909" style="fill:none;" x1="256" x2="259.06" y1="813.0909"
-      /><line y2="785.2727" style="fill:none;" x1="256" x2="259.06" y1="785.2727"
-      /><line y2="757.4545" style="fill:none;" x1="256" x2="259.06" y1="757.4545"
-      /><line y2="729.6364" style="fill:none;" x1="256" x2="259.06" y1="729.6364"
-      /><line y2="701.8182" style="fill:none;" x1="256" x2="259.06" y1="701.8182"
-      /><line y2="674" style="fill:none;" x1="256" x2="259.06" y1="674"
-      /><line y2="980" style="fill:none;" x1="400" x2="396.94" y1="980"
-      /><line y2="952.1818" style="fill:none;" x1="400" x2="396.94" y1="952.1818"
-      /><line y2="924.3636" style="fill:none;" x1="400" x2="396.94" y1="924.3636"
-      /><line y2="896.5455" style="fill:none;" x1="400" x2="396.94" y1="896.5455"
-      /><line y2="868.7273" style="fill:none;" x1="400" x2="396.94" y1="868.7273"
-      /><line y2="840.9091" style="fill:none;" x1="400" x2="396.94" y1="840.9091"
-      /><line y2="813.0909" style="fill:none;" x1="400" x2="396.94" y1="813.0909"
-      /><line y2="785.2727" style="fill:none;" x1="400" x2="396.94" y1="785.2727"
-      /><line y2="757.4545" style="fill:none;" x1="400" x2="396.94" y1="757.4545"
-      /><line y2="729.6364" style="fill:none;" x1="400" x2="396.94" y1="729.6364"
-      /><line y2="701.8182" style="fill:none;" x1="400" x2="396.94" y1="701.8182"
-      /><line y2="674" style="fill:none;" x1="400" x2="396.94" y1="674"
+    ><line y2="477" style="fill:none;" x1="424" x2="424" y1="779"
+      /><line y2="477" style="fill:none;" x1="568" x2="568" y1="779"
+      /><line y2="779" style="fill:none;" x1="424" x2="427.02" y1="779"
+      /><line y2="751.5455" style="fill:none;" x1="424" x2="427.02" y1="751.5455"
+      /><line y2="724.0909" style="fill:none;" x1="424" x2="427.02" y1="724.0909"
+      /><line y2="696.6364" style="fill:none;" x1="424" x2="427.02" y1="696.6364"
+      /><line y2="669.1818" style="fill:none;" x1="424" x2="427.02" y1="669.1818"
+      /><line y2="641.7273" style="fill:none;" x1="424" x2="427.02" y1="641.7273"
+      /><line y2="614.2727" style="fill:none;" x1="424" x2="427.02" y1="614.2727"
+      /><line y2="586.8182" style="fill:none;" x1="424" x2="427.02" y1="586.8182"
+      /><line y2="559.3636" style="fill:none;" x1="424" x2="427.02" y1="559.3636"
+      /><line y2="531.9091" style="fill:none;" x1="424" x2="427.02" y1="531.9091"
+      /><line y2="504.4546" style="fill:none;" x1="424" x2="427.02" y1="504.4546"
+      /><line y2="477" style="fill:none;" x1="424" x2="427.02" y1="477"
+      /><line y2="779" style="fill:none;" x1="568" x2="564.98" y1="779"
+      /><line y2="751.5455" style="fill:none;" x1="568" x2="564.98" y1="751.5455"
+      /><line y2="724.0909" style="fill:none;" x1="568" x2="564.98" y1="724.0909"
+      /><line y2="696.6364" style="fill:none;" x1="568" x2="564.98" y1="696.6364"
+      /><line y2="669.1818" style="fill:none;" x1="568" x2="564.98" y1="669.1818"
+      /><line y2="641.7273" style="fill:none;" x1="568" x2="564.98" y1="641.7273"
+      /><line y2="614.2727" style="fill:none;" x1="568" x2="564.98" y1="614.2727"
+      /><line y2="586.8182" style="fill:none;" x1="568" x2="564.98" y1="586.8182"
+      /><line y2="559.3636" style="fill:none;" x1="568" x2="564.98" y1="559.3636"
+      /><line y2="531.9091" style="fill:none;" x1="568" x2="564.98" y1="531.9091"
+      /><line y2="504.4546" style="fill:none;" x1="568" x2="564.98" y1="504.4546"
+      /><line y2="477" style="fill:none;" x1="568" x2="564.98" y1="477"
     /></g
-    ><g transform="translate(253.8667,980)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,779)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >0</text
     ></g
-    ><g transform="translate(253.8667,952.1818)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,751.5455)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >5</text
     ></g
-    ><g transform="translate(253.8667,924.3636)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,724.0909)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >10</text
     ></g
-    ><g transform="translate(253.8667,896.5455)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,696.6364)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >15</text
     ></g
-    ><g transform="translate(253.8667,868.7273)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,669.1818)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >20</text
     ></g
-    ><g transform="translate(253.8667,840.9091)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,641.7273)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >25</text
     ></g
-    ><g transform="translate(253.8667,813.0909)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,614.2727)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >30</text
     ></g
-    ><g transform="translate(253.8667,785.2727)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,586.8182)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >35</text
     ></g
-    ><g transform="translate(253.8667,757.4545)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,559.3636)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >40</text
     ></g
-    ><g transform="translate(253.8667,729.6364)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,531.9091)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >45</text
     ></g
-    ><g transform="translate(253.8667,701.8182)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,504.4546)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >50</text
     ></g
-    ><g transform="translate(253.8667,674)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(421.8667,477)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >55</text
     ></g
-    ><g transform="translate(240.5333,826.9999) rotate(-90)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(408.5333,627.9999) rotate(-90)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-74.5" xml:space="preserve" y="-3" style="stroke:none;"
       >Max Number of 4B Granules (f)</text
     ></g
-    ><g style="stroke-linecap:butt; fill:green; text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:bevel; stroke-dasharray:10,6; stroke:green; color-interpolation:linearRGB; stroke-width:0.6667; stroke-miterlimit:1;"
-    ><line y2="790.8364" style="fill:none;" x1="280" x2="280" y1="857.6"
-      /><line y2="718.5091" style="fill:none;" x1="328" x2="328" y1="813.0909"
-      /><line y2="696.2545" style="fill:none;" x1="376" x2="376" y1="796.4"
-      /><line y2="907.6727" style="fill:none;" x1="280" x2="280" y1="963.3091"
-      /><line y2="879.8546" style="fill:none;" x1="328" x2="328" y1="946.6182"
-      /><line y2="868.7273" style="fill:none;" x1="376" x2="376" y1="957.7455"
-      /><line x1="274.6" x2="285.4" y1="790.8364" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="790.8364"
-      /><line x1="322.6" x2="333.4" y1="718.5091" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="718.5091"
-      /><line x1="370.6" x2="381.4" y1="696.2545" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="696.2545"
-      /><line x1="274.6" x2="285.4" y1="963.3091" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="963.3091"
-      /><line x1="322.6" x2="333.4" y1="946.6182" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="946.6182"
-      /><line x1="370.6" x2="381.4" y1="957.7455" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="957.7455"
-      /><path style="fill:none; stroke-miterlimit:10; stroke-dasharray:none; fill-rule:evenodd; stroke-linejoin:round;" d="M274.6 885.4182 L269.2 882.3441 L269.2 857.6 L290.8 857.6 L290.8 882.3441 L285.4 885.4182 L290.8 888.4922 L290.8 907.6727 L269.2 907.6727 L269.2 888.4922 L274.6 885.4182"
-      /><path style="fill:none; stroke-miterlimit:10; stroke-dasharray:none; fill-rule:evenodd; stroke-linejoin:round;" d="M322.6 846.4727 L317.2 843.1002 L317.2 813.0909 L338.8 813.0909 L338.8 843.1002 L333.4 846.4727 L338.8 849.8452 L338.8 879.8546 L317.2 879.8546 L317.2 849.8452 L322.6 846.4727"
-      /><path style="fill:none; stroke-miterlimit:10; stroke-dasharray:none; fill-rule:evenodd; stroke-linejoin:round;" d="M370.6 835.3455 L365.2 831.731 L365.2 796.4 L386.8 796.4 L386.8 831.731 L381.4 835.3455 L386.8 838.9599 L386.8 868.7273 L365.2 868.7273 L365.2 838.9599 L370.6 835.3455"
-      /><line x1="274.6" x2="285.4" y1="885.4182" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="885.4182"
-      /><line x1="322.6" x2="333.4" y1="846.4727" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="846.4727"
-      /><line x1="370.6" x2="381.4" y1="835.3455" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="835.3455"
+    ><g style="stroke-linecap:butt; text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:bevel; stroke-dasharray:10,6; color-interpolation:linearRGB; stroke-width:0.6667; stroke-miterlimit:1;"
+    ><line y2="592.3091" style="fill:none;" x1="448" x2="448" y1="658.2"
+      /><line y2="520.9272" style="fill:none;" x1="496" x2="496" y1="614.2727"
+      /><line y2="498.9636" style="fill:none;" x1="544" x2="544" y1="597.8"
+      /><line y2="707.6182" style="fill:none;" x1="448" x2="448" y1="762.5273"
+      /><line y2="680.1636" style="fill:none;" x1="496" x2="496" y1="746.0546"
+      /><line y2="669.1818" style="fill:none;" x1="544" x2="544" y1="757.0364"
+      /><line x1="442.6" x2="453.4" y1="592.3091" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="592.3091"
+      /><line x1="490.6" x2="501.4" y1="520.9272" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="520.9272"
+      /><line x1="538.6" x2="549.4" y1="498.9636" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="498.9636"
+      /><line x1="442.6" x2="453.4" y1="762.5273" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="762.5273"
+      /><line x1="490.6" x2="501.4" y1="746.0546" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="746.0546"
+      /><line x1="538.6" x2="549.4" y1="757.0364" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="757.0364"
+    /></g
+    ><g style="stroke-linecap:butt; fill:blue; text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:blue; color-interpolation:linearRGB; stroke-width:0.6667;"
+    ><path d="M442.6 685.6545 L437.2 682.6207 L437.2 658.2 L458.8 658.2 L458.8 682.6207 L453.4 685.6545 L458.8 688.6884 L458.8 707.6182 L437.2 707.6182 L437.2 688.6884 L442.6 685.6545" style="fill:none; fill-rule:evenodd;"
+      /><path d="M490.6 647.2182 L485.2 643.8898 L485.2 614.2727 L506.8 614.2727 L506.8 643.8898 L501.4 647.2182 L506.8 650.5466 L506.8 680.1636 L485.2 680.1636 L485.2 650.5466 L490.6 647.2182" style="fill:none; fill-rule:evenodd;"
+      /><path d="M538.6 636.2364 L533.2 632.6691 L533.2 597.8 L554.8 597.8 L554.8 632.6691 L549.4 636.2364 L554.8 639.8036 L554.8 669.1818 L533.2 669.1818 L533.2 639.8036 L538.6 636.2364" style="fill:none; fill-rule:evenodd;"
+      /><line x1="442.6" x2="453.4" y1="685.6545" style="fill:none; stroke:red;" y2="685.6545"
+      /><line x1="490.6" x2="501.4" y1="647.2182" style="fill:none; stroke:red;" y2="647.2182"
+      /><line x1="538.6" x2="549.4" y1="636.2364" style="fill:none; stroke:red;" y2="636.2364"
     /></g
     ><g style="fill:white; text-rendering:optimizeSpeed; color-rendering:optimizeSpeed; image-rendering:optimizeSpeed; shape-rendering:crispEdges; stroke:white; color-interpolation:sRGB;"
-    ><path style="stroke:none;" d="M440 980 L584 980 L584 674 L440 674 Z"
+    ><path style="stroke:none;" d="M608 779 L752 779 L752 477 L608 477 Z"
     /></g
     ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:0.6667;"
-    ><line y2="980" style="fill:none;" x1="440" x2="584" y1="980"
-      /><line y2="674" style="fill:none;" x1="440" x2="584" y1="674"
-      /><line y2="976.94" style="fill:none;" x1="464" x2="464" y1="980"
-      /><line y2="976.94" style="fill:none;" x1="512" x2="512" y1="980"
-      /><line y2="976.94" style="fill:none;" x1="560" x2="560" y1="980"
-      /><line y2="677.06" style="fill:none;" x1="464" x2="464" y1="674"
-      /><line y2="677.06" style="fill:none;" x1="512" x2="512" y1="674"
-      /><line y2="677.06" style="fill:none;" x1="560" x2="560" y1="674"
+    ><line y2="779" style="fill:none;" x1="608" x2="752" y1="779"
+      /><line y2="477" style="fill:none;" x1="608" x2="752" y1="477"
+      /><line y2="775.98" style="fill:none;" x1="632" x2="632" y1="779"
+      /><line y2="775.98" style="fill:none;" x1="680" x2="680" y1="779"
+      /><line y2="775.98" style="fill:none;" x1="728" x2="728" y1="779"
+      /><line y2="480.02" style="fill:none;" x1="632" x2="632" y1="477"
+      /><line y2="480.02" style="fill:none;" x1="680" x2="680" y1="477"
+      /><line y2="480.02" style="fill:none;" x1="728" x2="728" y1="477"
     /></g
-    ><g transform="translate(464,982.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(632,781.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-79" xml:space="preserve" y="10" style="stroke:none;"
       >62.5uM NaAsO2</text
     ></g
-    ><g transform="translate(512,982.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(680,781.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-76" xml:space="preserve" y="10" style="stroke:none;"
       >125uM NaAsO2</text
     ></g
-    ><g transform="translate(560,982.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(728,781.1334) rotate(-30)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-76" xml:space="preserve" y="10" style="stroke:none;"
       >250uM NaAsO2</text
     ></g
     ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:0.6667;"
-    ><line y2="674" style="fill:none;" x1="440" x2="440" y1="980"
-      /><line y2="674" style="fill:none;" x1="584" x2="584" y1="980"
-      /><line y2="980" style="fill:none;" x1="440" x2="443.06" y1="980"
-      /><line y2="952.1818" style="fill:none;" x1="440" x2="443.06" y1="952.1818"
-      /><line y2="924.3636" style="fill:none;" x1="440" x2="443.06" y1="924.3636"
-      /><line y2="896.5455" style="fill:none;" x1="440" x2="443.06" y1="896.5455"
-      /><line y2="868.7273" style="fill:none;" x1="440" x2="443.06" y1="868.7273"
-      /><line y2="840.9091" style="fill:none;" x1="440" x2="443.06" y1="840.9091"
-      /><line y2="813.0909" style="fill:none;" x1="440" x2="443.06" y1="813.0909"
-      /><line y2="785.2727" style="fill:none;" x1="440" x2="443.06" y1="785.2727"
-      /><line y2="757.4545" style="fill:none;" x1="440" x2="443.06" y1="757.4545"
-      /><line y2="729.6364" style="fill:none;" x1="440" x2="443.06" y1="729.6364"
-      /><line y2="701.8182" style="fill:none;" x1="440" x2="443.06" y1="701.8182"
-      /><line y2="674" style="fill:none;" x1="440" x2="443.06" y1="674"
-      /><line y2="980" style="fill:none;" x1="584" x2="580.94" y1="980"
-      /><line y2="952.1818" style="fill:none;" x1="584" x2="580.94" y1="952.1818"
-      /><line y2="924.3636" style="fill:none;" x1="584" x2="580.94" y1="924.3636"
-      /><line y2="896.5455" style="fill:none;" x1="584" x2="580.94" y1="896.5455"
-      /><line y2="868.7273" style="fill:none;" x1="584" x2="580.94" y1="868.7273"
-      /><line y2="840.9091" style="fill:none;" x1="584" x2="580.94" y1="840.9091"
-      /><line y2="813.0909" style="fill:none;" x1="584" x2="580.94" y1="813.0909"
-      /><line y2="785.2727" style="fill:none;" x1="584" x2="580.94" y1="785.2727"
-      /><line y2="757.4545" style="fill:none;" x1="584" x2="580.94" y1="757.4545"
-      /><line y2="729.6364" style="fill:none;" x1="584" x2="580.94" y1="729.6364"
-      /><line y2="701.8182" style="fill:none;" x1="584" x2="580.94" y1="701.8182"
-      /><line y2="674" style="fill:none;" x1="584" x2="580.94" y1="674"
+    ><line y2="477" style="fill:none;" x1="608" x2="608" y1="779"
+      /><line y2="477" style="fill:none;" x1="752" x2="752" y1="779"
+      /><line y2="779" style="fill:none;" x1="608" x2="611.02" y1="779"
+      /><line y2="751.5455" style="fill:none;" x1="608" x2="611.02" y1="751.5455"
+      /><line y2="724.0909" style="fill:none;" x1="608" x2="611.02" y1="724.0909"
+      /><line y2="696.6364" style="fill:none;" x1="608" x2="611.02" y1="696.6364"
+      /><line y2="669.1818" style="fill:none;" x1="608" x2="611.02" y1="669.1818"
+      /><line y2="641.7273" style="fill:none;" x1="608" x2="611.02" y1="641.7273"
+      /><line y2="614.2727" style="fill:none;" x1="608" x2="611.02" y1="614.2727"
+      /><line y2="586.8182" style="fill:none;" x1="608" x2="611.02" y1="586.8182"
+      /><line y2="559.3636" style="fill:none;" x1="608" x2="611.02" y1="559.3636"
+      /><line y2="531.9091" style="fill:none;" x1="608" x2="611.02" y1="531.9091"
+      /><line y2="504.4546" style="fill:none;" x1="608" x2="611.02" y1="504.4546"
+      /><line y2="477" style="fill:none;" x1="608" x2="611.02" y1="477"
+      /><line y2="779" style="fill:none;" x1="752" x2="748.98" y1="779"
+      /><line y2="751.5455" style="fill:none;" x1="752" x2="748.98" y1="751.5455"
+      /><line y2="724.0909" style="fill:none;" x1="752" x2="748.98" y1="724.0909"
+      /><line y2="696.6364" style="fill:none;" x1="752" x2="748.98" y1="696.6364"
+      /><line y2="669.1818" style="fill:none;" x1="752" x2="748.98" y1="669.1818"
+      /><line y2="641.7273" style="fill:none;" x1="752" x2="748.98" y1="641.7273"
+      /><line y2="614.2727" style="fill:none;" x1="752" x2="748.98" y1="614.2727"
+      /><line y2="586.8182" style="fill:none;" x1="752" x2="748.98" y1="586.8182"
+      /><line y2="559.3636" style="fill:none;" x1="752" x2="748.98" y1="559.3636"
+      /><line y2="531.9091" style="fill:none;" x1="752" x2="748.98" y1="531.9091"
+      /><line y2="504.4546" style="fill:none;" x1="752" x2="748.98" y1="504.4546"
+      /><line y2="477" style="fill:none;" x1="752" x2="748.98" y1="477"
     /></g
-    ><g transform="translate(437.8667,980)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,779)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >0</text
     ></g
-    ><g transform="translate(437.8667,952.1818)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,751.5455)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
       >5</text
     ></g
-    ><g transform="translate(437.8667,924.3636)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,724.0909)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >10</text
     ></g
-    ><g transform="translate(437.8667,896.5455)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,696.6364)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >15</text
     ></g
-    ><g transform="translate(437.8667,868.7273)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,669.1818)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >20</text
     ></g
-    ><g transform="translate(437.8667,840.9091)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,641.7273)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >25</text
     ></g
-    ><g transform="translate(437.8667,813.0909)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,614.2727)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >30</text
     ></g
-    ><g transform="translate(437.8667,785.2727)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,586.8182)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >35</text
     ></g
-    ><g transform="translate(437.8667,757.4545)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,559.3636)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >40</text
     ></g
-    ><g transform="translate(437.8667,729.6364)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,531.9091)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >45</text
     ></g
-    ><g transform="translate(437.8667,701.8182)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,504.4546)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >50</text
     ></g
-    ><g transform="translate(437.8667,674)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(605.8666,477)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-12" xml:space="preserve" y="3.5" style="stroke:none;"
       >55</text
     ></g
-    ><g transform="translate(424.5333,826.9999) rotate(-90)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(592.5333,627.9999) rotate(-90)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
     ><text x="-62.5" xml:space="preserve" y="-3" style="stroke:none;"
       >Time to respond (minutes)</text
     ></g
-    ><g style="stroke-linecap:butt; fill:green; text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:bevel; stroke-dasharray:10,6; stroke:green; color-interpolation:linearRGB; stroke-width:0.6667; stroke-miterlimit:1;"
-    ><line y2="690.7297" style="fill:none;" x1="464" x2="464" y1="771.1435"
-      /><line y2="774.7437" style="fill:none;" x1="512" x2="512" y1="852.3775"
-      /><line y2="901.006" style="fill:none;" x1="560" x2="560" y1="927.5459"
-      /><line y2="825.9103" style="fill:none;" x1="464" x2="464" y1="898.4966"
-      /><line y2="936.554" style="fill:none;" x1="512" x2="512" y1="969.4342"
-      /><line y2="947.0722" style="fill:none;" x1="560" x2="560" y1="969.8713"
-      /><line x1="458.6" x2="469.4" y1="690.7297" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="690.7297"
-      /><line x1="506.6" x2="517.4" y1="774.7437" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="774.7437"
-      /><line x1="554.6" x2="565.4" y1="901.006" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="901.006"
-      /><line x1="458.6" x2="469.4" y1="898.4966" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="898.4966"
-      /><line x1="506.6" x2="517.4" y1="969.4342" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="969.4342"
-      /><line x1="554.6" x2="565.4" y1="969.8713" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="969.8713"
-      /><path style="fill:none; stroke-miterlimit:10; stroke-dasharray:none; fill-rule:evenodd; stroke-linejoin:round;" d="M458.6 798.7905 L453.2 795.4283 L453.2 771.1435 L474.8 771.1435 L474.8 795.4283 L469.4 798.7905 L474.8 802.1527 L474.8 825.9103 L453.2 825.9103 L453.2 802.1527 L458.6 798.7905"
-      /><path style="fill:none; stroke-miterlimit:10; stroke-dasharray:none; fill-rule:evenodd; stroke-linejoin:round;" d="M506.6 921.951 L501.2 917.699 L501.2 852.3775 L522.8 852.3775 L522.8 917.699 L517.4 921.951 L522.8 926.2031 L522.8 936.554 L501.2 936.554 L501.2 926.2031 L506.6 921.951"
-      /><path style="fill:none; stroke-miterlimit:10; stroke-dasharray:none; fill-rule:evenodd; stroke-linejoin:round;" d="M554.6 938.3676 L549.2 937.3917 L549.2 927.5459 L570.8 927.5459 L570.8 937.3917 L565.4 938.3676 L570.8 939.3433 L570.8 947.0722 L549.2 947.0722 L549.2 939.3433 L554.6 938.3676"
-      /><line x1="458.6" x2="469.4" y1="798.7905" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="798.7905"
-      /><line x1="506.6" x2="517.4" y1="921.951" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="921.951"
-      /><line x1="554.6" x2="565.4" y1="938.3676" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="938.3676"
+    ><g style="stroke-linecap:butt; text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:bevel; stroke-dasharray:10,6; color-interpolation:linearRGB; stroke-width:0.6667; stroke-miterlimit:1;"
+    ><line y2="493.511" style="fill:none;" x1="632" x2="632" y1="572.8737"
+      /><line y2="576.4268" style="fill:none;" x1="680" x2="680" y1="653.0458"
+      /><line y2="701.0386" style="fill:none;" x1="728" x2="728" y1="727.2316"
+      /><line y2="626.9245" style="fill:none;" x1="632" x2="632" y1="698.562"
+      /><line y2="736.1219" style="fill:none;" x1="680" x2="680" y1="768.5723"
+      /><line y2="746.5026" style="fill:none;" x1="728" x2="728" y1="769.0037"
+      /><line x1="626.6" x2="637.4" y1="493.511" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="493.511"
+      /><line x1="674.6" x2="685.4" y1="576.4268" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="576.4268"
+      /><line x1="722.6" x2="733.4" y1="701.0386" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="701.0386"
+      /><line x1="626.6" x2="637.4" y1="698.562" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="698.562"
+      /><line x1="674.6" x2="685.4" y1="768.5723" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="768.5723"
+      /><line x1="722.6" x2="733.4" y1="769.0037" style="fill:none; stroke-linejoin:round; stroke-dasharray:none; stroke-miterlimit:10;" y2="769.0037"
     /></g
-    ><g style="fill:white; text-rendering:optimizeSpeed; color-rendering:optimizeSpeed; image-rendering:optimizeSpeed; shape-rendering:crispEdges; stroke:white; color-interpolation:sRGB;"
-    ><path style="stroke:none;" d="M624 980 L768 980 L768 674 L624 674 Z"
+    ><g style="stroke-linecap:butt; fill:blue; text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:blue; color-interpolation:linearRGB; stroke-width:0.6667;"
+    ><path d="M626.6 600.1592 L621.2 596.8409 L621.2 572.8737 L642.8 572.8737 L642.8 596.8409 L637.4 600.1592 L642.8 603.4775 L642.8 626.9245 L621.2 626.9245 L621.2 603.4775 L626.6 600.1592" style="fill:none; fill-rule:evenodd;"
+      /><path d="M674.6 721.7098 L669.2 717.5134 L669.2 653.0458 L690.8 653.0458 L690.8 717.5134 L685.4 721.7098 L690.8 725.9063 L690.8 736.1219 L669.2 736.1219 L669.2 725.9063 L674.6 721.7098" style="fill:none; fill-rule:evenodd;"
+      /><path d="M722.6 737.9117 L717.2 736.9487 L717.2 727.2316 L738.8 727.2316 L738.8 736.9487 L733.4 737.9117 L738.8 738.8748 L738.8 746.5026 L717.2 746.5026 L717.2 738.8748 L722.6 737.9117" style="fill:none; fill-rule:evenodd;"
+      /><line x1="626.6" x2="637.4" y1="600.1592" style="fill:none; stroke:red;" y2="600.1592"
+      /><line x1="674.6" x2="685.4" y1="721.7098" style="fill:none; stroke:red;" y2="721.7098"
+      /><line x1="722.6" x2="733.4" y1="737.9117" style="fill:none; stroke:red;" y2="737.9117"
     /></g
-    ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:0.6667;"
-    ><line y2="980" style="fill:none;" x1="624" x2="768" y1="980"
-      /><line y2="976.94" style="fill:none;" x1="624" x2="624" y1="980"
-      /><line y2="976.94" style="fill:none;" x1="696" x2="696" y1="980"
-      /><line y2="976.94" style="fill:none;" x1="768" x2="768" y1="980"
-    /></g
-    ><g transform="translate(624,982.1334)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-3" xml:space="preserve" y="10" style="stroke:none;"
-      >0</text
-    ></g
-    ><g transform="translate(696,982.1334)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-7.5" xml:space="preserve" y="10" style="stroke:none;"
-      >0.5</text
-    ></g
-    ><g transform="translate(768,982.1334)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-3" xml:space="preserve" y="10" style="stroke:none;"
-      >1</text
-    ></g
-    ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:0.6667;"
-    ><line y2="674" style="fill:none;" x1="624" x2="624" y1="980"
-      /><line y2="980" style="fill:none;" x1="624" x2="627.06" y1="980"
-      /><line y2="949.4" style="fill:none;" x1="624" x2="627.06" y1="949.4"
-      /><line y2="918.8" style="fill:none;" x1="624" x2="627.06" y1="918.8"
-      /><line y2="888.2" style="fill:none;" x1="624" x2="627.06" y1="888.2"
-      /><line y2="857.6" style="fill:none;" x1="624" x2="627.06" y1="857.6"
-      /><line y2="827" style="fill:none;" x1="624" x2="627.06" y1="827"
-      /><line y2="796.4" style="fill:none;" x1="624" x2="627.06" y1="796.4"
-      /><line y2="765.8" style="fill:none;" x1="624" x2="627.06" y1="765.8"
-      /><line y2="735.2" style="fill:none;" x1="624" x2="627.06" y1="735.2"
-      /><line y2="704.6" style="fill:none;" x1="624" x2="627.06" y1="704.6"
-      /><line y2="674" style="fill:none;" x1="624" x2="627.06" y1="674"
-    /></g
-    ><g transform="translate(621.8666,980)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0</text
-    ></g
-    ><g transform="translate(621.8666,949.4)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-15" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0.1</text
-    ></g
-    ><g transform="translate(621.8666,918.8)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-15" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0.2</text
-    ></g
-    ><g transform="translate(621.8666,888.2)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-15" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0.3</text
-    ></g
-    ><g transform="translate(621.8666,857.6)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-15" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0.4</text
-    ></g
-    ><g transform="translate(621.8666,827)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-15" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0.5</text
-    ></g
-    ><g transform="translate(621.8666,796.4)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-15" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0.6</text
-    ></g
-    ><g transform="translate(621.8666,765.8)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-15" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0.7</text
-    ></g
-    ><g transform="translate(621.8666,735.2)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-15" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0.8</text
-    ></g
-    ><g transform="translate(621.8666,704.6)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-15" xml:space="preserve" y="3.5" style="stroke:none;"
-      >0.9</text
-    ></g
-    ><g transform="translate(621.8666,674)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="-6" xml:space="preserve" y="3.5" style="stroke:none;"
-      >1</text
-    ></g
-    ><g transform="translate(603,883) rotate(-90)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="0" xml:space="preserve" y="0" style="stroke:none;"
-      >Granule Area (um</text
-    ></g
-    ><g transform="translate(598,798) rotate(-90)" style="font-size:8.5333px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="0" xml:space="preserve" y="0" style="stroke:none;"
-      >2</text
-    ></g
-    ><g transform="translate(603,793) rotate(-90)" style="font-size:10.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
-    ><text x="0" xml:space="preserve" y="0" style="stroke:none;"
-      >) at f</text
-    ></g
   ></g
 ></svg
 >

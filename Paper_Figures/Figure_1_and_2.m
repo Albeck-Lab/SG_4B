@@ -50,7 +50,7 @@ dataset3.movieinfo.tsamp = 3; % minutes
 % 2023-06-29 (already loaded)
 
 %% fit the model to the datasets
-[fitData2,~] = convertDatalocToModelFit({dataset3,dataset3,dataset3}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','livecell','granarea'});
+% [fitData2,~] = convertDatalocToModelFit({dataset3,dataset3,dataset3}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','livecell','granarea'});
 
 %% Subset only the good data 
 fitData = fitData2; % work with duplicated data (for safety)
@@ -224,7 +224,7 @@ RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("C
 %% Now use wt 4b cells treated with 125uM as control vs all other NaAsO2 concentrations and btwn cell lines
 % Test if Rate is significantly different btwn the 4B cell lines
 [~,~,statsR] = anova1(subData.NumGrans_rate_in_min,strcat(subData.treatment,{' '},subData.cell),'off');
-[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'uM Wt')),'Display','off','Approximate',false); 
+[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'125uM Wt')),'Display','off','Approximate',false); 
 RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
 RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
 RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
@@ -334,7 +334,7 @@ pWidth = 1.5; % plot width in inches
 pHeight = 3; % plot height in inches
 sWidth = (7.25-(pWidth*4))/3; % gap btwn plots in inches
 for iSub = 3:6
-    set(ax(iSub),'Units','Inches','Position',[0.75+(pWidth*(iSub-4))+(sWidth*(iSub-3)), 6, pWidth, pHeight]) 
+    set(ax(iSub),'Units','Inches','Position',[0.75+(pWidth*(iSub-3))+(sWidth*(iSub-3)), 4, pWidth, pHeight]) 
 end
 
 fontsize(8,"points"); fontname("Arial");

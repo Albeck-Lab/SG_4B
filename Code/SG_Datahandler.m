@@ -67,6 +67,9 @@ inp.datafields = {'Intensity_IntegratedIntensity_GFP', 'Intensity_MeanIntensity_
 inp.ifdatafields = {'Intensity_IntegratedIntensity_GFP', 'Intensity_MeanIntensity_GFP', 'AreaShape_Area', 'Location_Center_X', 'Location_Center_Y','Mean_Grans_AreaShape_Area','Mean_Grans_Intensity_MaxIntensityEdge_GFP','Mean_Grans_Intensity_MaxIntensity_GFP','Mean_Grans_Intensity_MeanIntensityEdge_GFP','Mean_Grans_Intensity_MeanIntensity_GFP','Mean_Grans_Intensity_IntegratedIntensity_GFP'};
 inp.subset = [];
 inp.looptime = 3; % how many min per loop
+inp.aligniftolc = false; % align live cell to if data when extracting IF data?
+inp.tpsbackforalign = 1; % number of tps from the end of the live cell to mean x and y coordinates for alignment to IF data
+
 
 % set up dataloc
 inp.dataloc = [];
@@ -411,7 +414,7 @@ if ~isfolder(dataloc.fold.proc); mkdir(dataloc.fold.proc); end % if the folder d
 a = dir(dataloc.fold.proc);
 if ~isempty(a)
     a = a([a.isdir]); a = {a(3:end).name}'; 
-    a = a(contains(a,'XY ')); a = string(a);
+    a = a(contains(a,"XY "|"XY_")); a = string(a);
     if ~isempty(dataloc.xys); diffXYs = setdiff(a,dataloc.xys); 
         if ~isempty(diffXYs); inp.extractdata = true; saveFlag = true; end
     end
@@ -466,7 +469,7 @@ end %folderfindermaker function
 function [dataloc, inp] = ExtractData(dataloc, inp)
 
 XYf = dataloc.xys; 
-XYn = extractAfter(XYf, 'XY '); 
+XYn = extractAfter(XYf, "XY "|"XY_"); 
 XYn = str2double(XYn)'; %get the xy folder and the xy number
 
 for iXY = 1:numel(XYn)
@@ -523,7 +526,7 @@ for iXY = 1:numel(XYn)
     end % pulling the cell.csv data if it exists
     
     if exist(fullfile(dataloc.fold.proc,fXY,'Image.csv'),"file")
-        imageData = readtable(fullfile(dataloc.fold.data,fXY,'Image.csv'),'VariableNamingRule','preserve','Delimiter',',');
+        imageData = readtable(fullfile(dataloc.fold.proc,fXY,'Image.csv'),'VariableNamingRule','preserve','Delimiter',',');
         if any(ismember(fieldnames(imageData),'Count_Grans'))
             dataloc.d{tXY}.data.t_granspercell = (imageData.Count_Grans./imageData.Count_Cells)'; % grans per cell (mean)
         end
@@ -537,7 +540,7 @@ end % extractdata
 
 %% Check for dataloc, its version, and allocate the info accordingly
 function dout = VersionCheck(dout,din,inp)
-    if isfield(din,'dataloc'); din = din.dataloc; end
+    if isfield(din,'dataloc'); din = din.dataloc; 
     if isfield(din, 'version')
         switch din.version 
             case '1'
@@ -549,6 +552,7 @@ function dout = VersionCheck(dout,din,inp)
             cFold = char(dout.fold.(tFields{iFold}));
             if ~isempty(cFold) && cFold(end) == '\'; dout.fold.(tFields{iFold}) = dout.fold.(tFields{iFold})(1:end-1); end  %make sure you didn't add a \ at the end./
         end
+    end
     end
 end
 
@@ -586,6 +590,7 @@ nRow = size(ifData,1);
 ifData.treatment = repmat("", nRow, 1); 
 ifData.cell = repmat("", nRow, 1);
 ifData.full = repmat("", nRow, 1); 
+ifData.cellid = nan(nRow, 1);
 
 
 % loop through every uniquely mapped cell/condition combo (keeping them together in the table makes it easier to check if done properly)
@@ -623,8 +628,104 @@ for iMap = 1:size(txNames,1)
         holdThis = strrep(holdThis,'_',' ');
         ifData.treatment(matchesXY) = repelem(holdThis,numData)';
     end
+
+    if p.aligniftolc % align the IF data to the live cell data as best we can!
+        for iXY = txXys' % for every xy
+            tIfIdx = ifData.ImageNumber == iXY; % see if any cells are in this xy for the IF data
+            if any(tIfIdx) && ~isempty(dataloc.d{iXY})% if there is any IF and data for that xy
+                
+                % pull the live cell x and y coordinates of the last x frames
+                lcXs = mean(dataloc.d{iXY}.data.XCoord(:,end-p.tpsbackforalign:end),2,'omitnan'); % mean them
+                lcYs = mean(dataloc.d{iXY}.data.YCoord(:,end-p.tpsbackforalign:end),2,'omitnan'); 
+
+                lcXYs = [lcXs,lcYs]; % merge them
+
+                % pull the IF x and y coordinates
+                ifXYs = [ifData{tIfIdx,"Location_Center_X"},ifData{tIfIdx,"Location_Center_Y"}];
+
+                % now feed them into mikes magic aligment tool
+                nr = 2;     %Number of registration models
+                mdlbank = cell(nr,1);  tp = cell(nr,1);
+                %Default registation is null
+                mdlbank{1} = ifXYs;   tp{1} = zeros(1,3);
+                %Typically using Kernel Cluster Registration
+                [mdlbank{2}, tp{2}, ctf] = iman_kcreg(lcXYs,ifXYs); % aka scn mdl
+                nrad1 = squareform(pdist(lcXYs));      %Pairwise distances
+                nrad1(1:size(lcXYs,1)+1:end) = Inf;    %Set diagonal high
+                nrad2 = nanmin( nrad1,[], 1)/2;       %Min for nearest neighbor
+                nrad1 = nanmin( nrad1,[], 2)/2;       %Min for nearest neighbor
+
+                %Build alignment metrics, referncing both scene and model
+                madist = zeros(nr,2); 	%Initialize median aligned distance
+                alfrac = zeros(nr,2);   %Initialize alignment fraction
+                for sa = 1:nr  %FOR each alignment
+                    %   Get pairwise distance between tracked coordinate and centroids
+                    vd1 = sqrt(  bsxfun(@minus, lcXYs(:,1), mdlbank{sa}(:,1)').^2 + ...
+                        bsxfun(@minus, lcXYs(:,2), mdlbank{sa}(:,2)').^2   );
+                    vd2 = nanmin(vd1, [], 1)'; %Get nearest neighbor distance
+                    vd1 = nanmin(vd1, [], 2); %Get nearest neighbor distance
+
+                    %Median Aligned Distance
+                    madist(sa,:) = [nanmedian(vd1), nanmedian(vd2)];
+
+                    %Alignment Fraction
+                    %   Get fraction of cells within alignment distance
+                    alfrac(sa,1) = nnz(vd1 < nrad1)/nnz(~isnan(vd1));
+                    alfrac(sa,2) = nnz(vd2 < nrad2)/nnz(~isnan(vd2));
+                end
+
+                %Condense scene/model refernces
+                madist = min( madist, [], 2 );  %Take lowest distance
+                alfrac = max(alfrac, [], 2);    %Take best fraction
+
+                %Check for best alignments by metrics
+                [~, madmi] = min(madist);
+                [~, alfmi] = max(alfrac);
+
+                if isequal(madmi, alfmi)
+                    best = madmi;   %IF a consensus, select best
+                else    %IF any dissention, resolve as multi-objective
+                    %   Warn about lack of consensus
+                    warning('IMAN:Append', ['No consensus among alignment quality ',...
+                        'models. Selecting by minimum Euclidean cost.']);
+                    %Invert and scale alignment fraction metric
+                    alfrac = (1 - alfrac)*mean([nanmedian(nrad1),nanmedian(nrad2)]);
+                    %Select best as min euclidean distance from origin
+                    [~, best] = min( sqrt(madist.^2 + alfrac.^2) );
+                end
+
+                %Select best apparent registration
+                tp = tp{best};
+                %   Warn if selecting a null registration
+                if best == 1; warning('IMAN:Append', ['No suitable point cloud ',...
+                        'registration found while appending. Skipping, and aligning ',...
+                        'to original coordinate sets provided.']);
+                end
+
+                %Re-place coordinates with those transformed, if validation passed
+                nc2 = size(ifXYs,[1,2]);
+                ifFixed = ctf([ifXYs, ones(nc2(1),1)], tp);
+
+                %Replace time dimension in scene coordinates
+                scn = shiftdim( shiftdim( shiftdim(lcXYs,1), -1), 2);
+                vc2 = shiftdim( shiftdim( shiftdim(ifFixed,1), -1), 2);
+                [~, vi, viv] = iman_aligntrackdata(vc2,{scn}, 1:2);
+
+                % shift the IF XY coords to match their live cell counterparts
+                ifData{tIfIdx,"Location_Center_X"} = vc2(:,:,1);
+                ifData{tIfIdx,"Location_Center_Y"} = vc2(:,:,2);
+
+                % assign the live cell idx to the if cell it relates to
+                curId = ifData{tIfIdx,"cellid"};
+                curId(viv) = vi(viv);
+                ifData{tIfIdx,"cellid"} = curId;
+                
+            end
+        end
+
+    end
 end
-ifData = movevars(ifData,{'full','cell','treatment'},'Before',1); % move the data information to the first columns of the dataframe
+ifData = movevars(ifData,{'full','cell','treatment','cellid'},'Before',1); % move the data information to the first columns of the dataframe
 dataloc.ifd = ifData;
 
 end %end of makeIFDF(dataloc, varargin) function

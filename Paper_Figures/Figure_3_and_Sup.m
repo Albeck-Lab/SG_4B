@@ -17,7 +17,6 @@ dataloc = dataset2;
 % 24h TET w/ no NaAsO2 and 24h TET with 125uM NaAsO2
 % 4B wt or mut grans vs OPP %
 
-minGrans = 0; % min number of granules
 tetTime = "hour -24"; % amount of tet induction
 naAsO2 = (" 0uM"|" 125uM"); % NaAsO2 treatment
 
@@ -96,7 +95,7 @@ for i = 1:height(generalPercOPPData)
     bar(barLocations(i), generalPercOPPData.mean_PercOPP(i), 'facecolor', colorz(matches(string(uniqueTx),string(generalPercOPPData.treatment(i))),:));
 end
 % Error bars
-errorbar(barLocations, generalPercOPPData.mean_PercOPP, generalPercOPPData.sem_PercOPP, 'k', 'linestyle', 'none');
+errorbar(barLocations, generalPercOPPData.mean_PercOPP, generalPercOPPData.std_PercOPP, 'k', 'linestyle', 'none');
 
 % Customizing the plot
 set(gca, 'XTick', [1.5, 4.5], 'XTickLabel', {'Wt', 'Mut'}); % Adjusting X-ticks to match cell lines

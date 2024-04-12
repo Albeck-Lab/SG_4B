@@ -50,7 +50,7 @@ dataset3.movieinfo.tsamp = 3; % minutes
 % 2023-06-29 (already loaded)
 
 %% fit the model to the datasets
-% [fitData2,~] = convertDatalocToModelFit({dataset3,dataset3,dataset3}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','livecell','granarea'});
+[fitData2,~] = convertDatalocToModelFit({dataset3,dataset3,dataset3}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','livecell','granarea'});
 
 %% Subset only the good data 
 fitData = fitData2; % work with duplicated data (for safety)
@@ -131,22 +131,36 @@ f1ax = []; clear f1ax;
 f1ax = axes;
 % plot the rate 
 ax(1) = subplot(1,4,2);
-boxplot(wtSubData.NumGrans_rate_in_min,wtSubData.treatment,'Notch','on','Symbol','','Colors',clrz);%,
-ylim([0,9])
-ylabel('Rate of 4B Granule Formation (minutes)')
+boxplot(wtSubData.NumGrans_rate_in_min,wtSubData.treatment,'Notch','on','Symbol','','Colors',clrz);
+hold on;
+% Draw a black line with red asterisk to show significance
+plot(1:2, [9,9], '-k',1.5, 9.25, '*r') % 62.5 vs 125
+hold off;
+ylim([0,10])
+ylabel('Rate of 4B Granule Formation (Granules per minute)')
 xlabel('NaAsO2 Dose')
 
 % plot the max granules 
 ax(2) = subplot(1,4,3);
-boxplot(wtSubData.NumGrans_f,wtSubData.treatment,'Notch','on','Symbol','','Colors',clrz);%,'Colors',clrz
-ylim([0,55])
+boxplot(wtSubData.NumGrans_f,wtSubData.treatment,'Notch','on','Symbol','','Colors',clrz);
+hold on;
+% Draw a black line with red asterisk to show significance
+plot(1:2, [50,50], '-k',1.5, 52, '*r') % 62.5 vs 125
+plot(2:3, [55,55], '-k',2.5, 57, '*r') % 125 vs 250
+hold off;
+ylim([0,60])
 ylabel('Max Number of 4B Granules (f)')
 xlabel('NaAsO2 Dose')
 
 % plot the time 2 respond
 ax(3) = subplot(1,4,4);
-boxplot(wtSubData.NumGrans_min_to_respond,wtSubData.treatment,'Notch','on','Symbol','','Colors',clrz);%,'Colors',clrz
-ylim([0,55])
+boxplot(wtSubData.NumGrans_min_to_respond,wtSubData.treatment,'Notch','on','Symbol','','Colors',clrz);
+hold on;
+% Draw a black line with red asterisk to show significance
+plot(1:2, [55,55], '-k',1.5, 57, '*r') % 62.5 vs 125
+plot(2:3, [40,40], '-k',2.5, 42, '*r') % 125 vs 250
+hold off;
+ylim([0,60])
 ylabel('Time to respond (minutes)')
 xlabel('NaAsO2 Dose')
 
@@ -308,19 +322,19 @@ clrz = [0, 0.5, 0; ...
 % plot the rate 
 ax(3) = subplot(4,4,13);
 boxplot(subData.NumGrans_rate_in_min,{subData.treatment,subData.cell},'Symbol','','Notch','on','colorgroup',subData.cell,'Colors',clrz); %
-ylim([0,9])
+ylim([0,10])
 ylabel('Rate of 4B Granule Formation (minutes)'); xlabel('NaAsO2 Dose')
 
 % plot the max granules 
 ax(4) = subplot(4,4,14);
 boxplot(subData.NumGrans_f,{subData.treatment,subData.cell},'Notch','on','Symbol','','colorgroup',subData.cell,'Colors',clrz);
-ylim([0,55])
+ylim([0,60])
 ylabel('Max Number of 4B Granules (f)'); xlabel('NaAsO2 Dose')
 
 % plot the time 2 respond
 ax(5) = subplot(4,4,15);
 boxplot(subData.NumGrans_min_to_respond,{subData.treatment,subData.cell},'Notch','on','Symbol','','colorgroup',subData.cell,'Colors',clrz);
-ylim([0,55])
+ylim([0,60])
 ylabel('Time to respond (minutes)');xlabel('NaAsO2 Dose')
 
 % plot the average granule area at max f

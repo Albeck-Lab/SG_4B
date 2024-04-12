@@ -1,15 +1,15 @@
-addpath('\\albecklab.mcb.ucdavis.edu\data\Notebooks\Nick DeCuzzi\Papers\TF paper with Jessica\Code','\\albecklab.mcb.ucdavis.edu\data\Code\Image Analysis','\\albecklab.mcb.ucdavis.edu\data\Code\Cell Trace','\\albecklab.mcb.ucdavis.edu\data\Code\Nick')
+addpath('\\albecklab.mcb.ucdavis.edu\data\imageData\SG_4B\Code','\\albecklab.mcb.ucdavis.edu\data\Code\Image Analysis','\\albecklab.mcb.ucdavis.edu\data\Code\Cell Trace','\\albecklab.mcb.ucdavis.edu\data\Code\Nick')
 
 % 3 minutes between each loop!
 
 %% Load the data
-dataloc = JB_DataHandler_V3();
+%dataloc = SG_Datahandler();
 
 %% Extract and Filter the data
-%fts(1).t = 'twin'; fts(1).c = 'AreaShape_Area'; fts(1).p = [3,38];
+fts(1).t = 'twin'; fts(1).c = 'AreaShape_Area'; fts(1).p = [3,38];
 %fts(2).t = 'min'; fts(2).c = 'NumGrans'; fts(2).p = 2;
-%filterp.fts = fts;
-dataloc = JB_DataHandler_V3('extractdata',true,'extractif',true);
+filterp.fts = fts;
+dataloc = SG_Datahandler('extractdata',true,'extractif',true,'aligniftolc',true);
 
 %dataloc = JB_DataHandler_V3('dataloc',dataloc,'extractif',true);
 

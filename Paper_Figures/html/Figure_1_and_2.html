@@ -400,45 +400,45 @@ RateOfGranuleFormation.(<span class="string">"Control Group"</span>) = gnamesRat
 </pre>
 <pre class="codeoutput">RateOfGranuleFormation =
   5&times;6 table
-        Group         Control Group    Lower Limit    Difference    Upper Limit    P-value 
-    ______________    _____________    ___________    __________    ___________    ________
-    {'62.5uM Mut'}    {'62.5uM Wt'}      -0.50391      -0.13789       0.22812        0.7898
-    {'125uM Wt'  }    {'62.5uM Wt'}        2.0954        2.4511        2.8067             0
-    {'125uM Mut' }    {'62.5uM Wt'}     -0.025962       0.37825       0.78245      0.074761
-    {'250uM Wt'  }    {'62.5uM Wt'}        2.3123        2.6665        3.0206             0
-    {'250uM Mut' }    {'62.5uM Wt'}        1.3286        1.6785        2.0284             0
+        Group         Control Group    Lower Limit    Difference    Upper Limit    P-value
+    ______________    _____________    ___________    __________    ___________    _______
+    {'62.5uM Mut'}    {'62.5uM Wt'}      -0.50388      -0.13789       0.22809      0.78978
+    {'125uM Wt'  }    {'62.5uM Wt'}        2.0954        2.4511        2.8067            0
+    {'125uM Mut' }    {'62.5uM Wt'}     -0.025931       0.37825       0.78242      0.07482
+    {'250uM Wt'  }    {'62.5uM Wt'}        2.3123        2.6665        3.0206            0
+    {'250uM Mut' }    {'62.5uM Wt'}        1.3287        1.6785        2.0284            0
 MaxGranulesFormed =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
-    {'62.5uM Mut'}    {'62.5uM Wt'}      -3.271        -2.1535        -1.0361      7.6247e-06
-    {'125uM Wt'  }    {'62.5uM Wt'}      6.3922         7.4781         8.5641               0
-    {'125uM Mut' }    {'62.5uM Wt'}      1.1669         2.4009          3.635      8.5956e-06
-    {'250uM Wt'  }    {'62.5uM Wt'}      8.5984         9.6797         10.761               0
-    {'250uM Mut' }    {'62.5uM Wt'}      2.7048         3.7731         4.8413               0
+    {'62.5uM Mut'}    {'62.5uM Wt'}      -3.2709       -2.1535        -1.0361       7.477e-06
+    {'125uM Wt'  }    {'62.5uM Wt'}       6.3923        7.4781          8.564               0
+    {'125uM Mut' }    {'62.5uM Wt'}       1.1669        2.4009         3.6349      4.7661e-06
+    {'250uM Wt'  }    {'62.5uM Wt'}       8.5985        9.6797         10.761               0
+    {'250uM Mut' }    {'62.5uM Wt'}       2.7049        3.7731         4.8412               0
 Time2Respond =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
-    {'62.5uM Mut'}    {'62.5uM Wt'}      -3.6882       -2.5444        -1.4007      9.8199e-08
+    {'62.5uM Mut'}    {'62.5uM Wt'}      -3.6881       -2.5444        -1.4008      1.0455e-07
     {'125uM Wt'  }    {'62.5uM Wt'}      -19.686       -18.574        -17.463               0
     {'125uM Mut' }    {'62.5uM Wt'}       -14.52       -13.257        -11.994               0
-    {'250uM Wt'  }    {'62.5uM Wt'}      -26.119       -25.012        -23.905               0
+    {'250uM Wt'  }    {'62.5uM Wt'}      -26.118       -25.012        -23.905               0
     {'250uM Mut' }    {'62.5uM Wt'}      -23.555       -22.461        -21.368               0
 RateOfGranuleFormation =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
-    {'62.5uM Mut'}    {'62.5uM Wt'}      0.052722       0.11558       0.17844      2.0937e-05
-    {'125uM Wt'  }    {'62.5uM Wt'}      -0.39536      -0.33393       -0.2725               0
-    {'125uM Mut' }    {'62.5uM Wt'}     0.0051831      0.074939        0.1447        0.030306
+    {'62.5uM Mut'}    {'62.5uM Wt'}      0.052728       0.11558       0.17844      2.4209e-05
+    {'125uM Wt'  }    {'62.5uM Wt'}      -0.39535      -0.33393      -0.27251               0
+    {'125uM Mut' }    {'62.5uM Wt'}     0.0051897      0.074939       0.14469        0.030241
     {'250uM Wt'  }    {'62.5uM Wt'}      -0.44354      -0.38199      -0.32043               0
-    {'250uM Mut' }    {'62.5uM Wt'}      -0.36488      -0.30416      -0.24345               0
+    {'250uM Mut' }    {'62.5uM Wt'}      -0.36487      -0.30416      -0.24346               0
 </pre>
 <h2 id="13">Now use wt 4b cells treated with 125uM as control vs all other NaAsO2 concentrations and btwn cell lines</h2>
 <p>Test if Rate is significantly different btwn the 4B cell lines</p>
 <pre class="codeinput">[~,~,statsR] = anova1(subData.NumGrans_rate_in_min,strcat(subData.treatment,{<span class="string">' '</span>},subData.cell),<span class="string">'off'</span>);
-[resultsRate,~,~,gnamesRate] = multcompare(statsR,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsR.gnames,<span class="string">'uM Wt'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+[resultsRate,~,~,gnamesRate] = multcompare(statsR,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsR.gnames,<span class="string">'125uM Wt'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
 RateOfGranuleFormation = array2table(resultsRate,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
 RateOfGranuleFormation.(<span class="string">"Group"</span>) = gnamesRate(RateOfGranuleFormation.(<span class="string">"Group"</span>));
 RateOfGranuleFormation.(<span class="string">"Control Group"</span>) = gnamesRate(RateOfGranuleFormation.(<span class="string">"Control Group"</span>))
@@ -464,14 +464,43 @@ RateOfGranuleFormation = array2table(resultsRate,<span class="string">"VariableN
 RateOfGranuleFormation.(<span class="string">"Group"</span>) = gnamesRate(RateOfGranuleFormation.(<span class="string">"Group"</span>));
 RateOfGranuleFormation.(<span class="string">"Control Group"</span>) = gnamesRate(RateOfGranuleFormation.(<span class="string">"Control Group"</span>))
 </pre>
-<pre class="codeoutput error">Error using multcompare&gt;makeMeanDiff
-'Control' value must be an integer between 1 and 6.
-Error in multcompare&gt;anova1Calc (line 570)
-[meandiff,C] = makeMeanDiff(gmeans,gcov,ctype,control,n);
-Error in multcompare (line 177)
-        [gmeans,gcov,meandiff,crit,gnames,mname,pval] = anova1Calc(stats,ctype,alpha,control,alternative,approx);
-Error in Figure_1_and_2 (line 227)
-[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'uM Wt')),'Display','off','Approximate',false); </pre>
+<pre class="codeoutput">RateOfGranuleFormation =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
+    ______________    _____________    ___________    __________    ___________    __________
+    {'62.5uM Wt' }    {'125uM Wt'}       -2.8113        -2.4511       -2.0908               0
+    {'62.5uM Mut'}    {'125uM Wt'}       -2.9242        -2.5889       -2.2536               0
+    {'125uM Mut' }    {'125uM Wt'}       -2.4504        -2.0728       -1.6952               0
+    {'250uM Wt'  }    {'125uM Wt'}      -0.10657         0.2154       0.53738          0.3193
+    {'250uM Mut' }    {'125uM Wt'}       -1.0897       -0.77253      -0.45537      3.3428e-09
+MaxGranulesFormed =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
+    ______________    _____________    ___________    __________    ___________    __________
+    {'62.5uM Wt' }    {'125uM Wt'}       -8.5781       -7.4781        -6.3782               0
+    {'62.5uM Mut'}    {'125uM Wt'}       -10.655       -9.6317        -8.6078               0
+    {'125uM Mut' }    {'125uM Wt'}       -6.2303       -5.0772        -3.9242               0
+    {'250uM Wt'  }    {'125uM Wt'}        1.2184        2.2015         3.1847      7.0823e-08
+    {'250uM Mut' }    {'125uM Wt'}       -4.6735       -3.7051        -2.7367               0
+Time2Respond =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit    P-value
+    ______________    _____________    ___________    __________    ___________    _______
+    {'62.5uM Wt' }    {'125uM Wt'}        17.449        18.574           19.7         0   
+    {'62.5uM Mut'}    {'125uM Wt'}        14.982         16.03         17.078         0   
+    {'125uM Mut' }    {'125uM Wt'}         4.137        5.3173         6.4976         0   
+    {'250uM Wt'  }    {'125uM Wt'}       -7.4437       -6.4374        -5.4311         0   
+    {'250uM Mut' }    {'125uM Wt'}       -4.8783        -3.887        -2.8958         0   
+RateOfGranuleFormation =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit    P-value
+    ______________    _____________    ___________    __________    ___________    _______
+    {'62.5uM Wt' }    {'125uM Wt'}        0.27184       0.33393        0.39602           0
+    {'62.5uM Mut'}    {'125uM Wt'}        0.39124       0.44951        0.50778           0
+    {'125uM Mut' }    {'125uM Wt'}        0.34307       0.40887        0.47467           0
+    {'250uM Wt'  }    {'125uM Wt'}       -0.10488     -0.048057      0.0087712     0.13047
+    {'250uM Mut' }    {'125uM Wt'}      -0.026128      0.029764       0.085656     0.54383
+</pre>
 <h2 id="14">Now use wt 4b cells treated with 250uM</h2>
 <p>as control vs all other NaAsO2 concentrations and btwn cell lines Test if Rate is significantly different btwn the 4B cell lines</p>
 <pre class="codeinput">[~,~,statsR] = anova1(subData.NumGrans_rate_in_min,strcat(subData.treatment,{<span class="string">' '</span>},subData.cell),<span class="string">'off'</span>);
@@ -500,6 +529,43 @@ Time2Respond.(<span class="string">"Control Group"</span>) = gnamesT2R(Time2Resp
 RateOfGranuleFormation = array2table(resultsRate,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
 RateOfGranuleFormation.(<span class="string">"Group"</span>) = gnamesRate(RateOfGranuleFormation.(<span class="string">"Group"</span>));
 RateOfGranuleFormation.(<span class="string">"Control Group"</span>) = gnamesRate(RateOfGranuleFormation.(<span class="string">"Control Group"</span>))
+</pre>
+<pre class="codeoutput">RateOfGranuleFormation =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
+    ______________    _____________    ___________    __________    ___________    __________
+    {'62.5uM Wt' }    {'250uM Wt'}       -3.0254        -2.6665       -2.3075               0
+    {'62.5uM Mut'}    {'250uM Wt'}       -3.1382        -2.8043       -2.4705               0
+    {'125uM Wt'  }    {'250uM Wt'}      -0.53759        -0.2154       0.10678         0.32082
+    {'125uM Mut' }    {'250uM Wt'}       -2.6646        -2.2882       -1.9118               0
+    {'250uM Mut' }    {'250uM Wt'}       -1.3035       -0.98793      -0.67233      1.4766e-14
+MaxGranulesFormed =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
+    ______________    _____________    ___________    __________    ___________    __________
+    {'62.5uM Wt' }    {'250uM Wt'}       -10.776       -9.6797        -8.5837               0
+    {'62.5uM Mut'}    {'250uM Wt'}       -12.853       -11.833        -10.814               0
+    {'125uM Wt'  }    {'250uM Wt'}       -3.1853       -2.2015        -1.2178      9.2951e-08
+    {'125uM Mut' }    {'250uM Wt'}       -8.4281       -7.2788        -6.1295               0
+    {'250uM Mut' }    {'250uM Wt'}       -6.8703       -5.9066         -4.943               0
+Time2Respond =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
+    ______________    _____________    ___________    __________    ___________    __________
+    {'62.5uM Wt' }    {'250uM Wt'}        23.89         25.012        26.133                0
+    {'62.5uM Mut'}    {'250uM Wt'}       21.424         22.467        23.511                0
+    {'125uM Wt'  }    {'250uM Wt'}       5.4307         6.4374        7.4441                0
+    {'125uM Mut' }    {'250uM Wt'}       10.579         11.755        12.931                0
+    {'250uM Mut' }    {'250uM Wt'}       1.5642         2.5504        3.5365       3.7403e-10
+RateOfGranuleFormation =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value 
+    ______________    _____________    ___________    __________    ___________    _________
+    {'62.5uM Wt' }    {'250uM Wt'}        0.31978       0.38199       0.44419              0
+    {'62.5uM Mut'}    {'250uM Wt'}        0.43917       0.49757       0.55597              0
+    {'125uM Wt'  }    {'250uM Wt'}     -0.0087647      0.048057       0.10488        0.13016
+    {'125uM Mut' }    {'250uM Wt'}        0.39101       0.45693       0.52284              0
+    {'250uM Mut' }    {'250uM Wt'}       0.021793      0.077821       0.13385      0.0022255
 </pre>
 <h2 id="15">Plot the data for Figure 2</h2>
 <pre class="codeinput">
@@ -555,14 +621,14 @@ pWidth = 1.5; <span class="comment">% plot width in inches</span>
 pHeight = 3; <span class="comment">% plot height in inches</span>
 sWidth = (7.25-(pWidth*4))/3; <span class="comment">% gap btwn plots in inches</span>
 <span class="keyword">for</span> iSub = 3:6
-    set(ax(iSub),<span class="string">'Units'</span>,<span class="string">'Inches'</span>,<span class="string">'Position'</span>,[0.75+(pWidth*(iSub-4))+(sWidth*(iSub-3)), 6, pWidth, pHeight])
+    set(ax(iSub),<span class="string">'Units'</span>,<span class="string">'Inches'</span>,<span class="string">'Position'</span>,[0.75+(pWidth*(iSub-3))+(sWidth*(iSub-3)), 4, pWidth, pHeight])
 <span class="keyword">end</span>
 
 fontsize(8,<span class="string">"points"</span>); fontname(<span class="string">"Arial"</span>);
 saveas(figure2,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_2.fig'</span>)
 saveas(figure2,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_2.svg'</span>)
 </pre>
-<p class="footer">
+<img vspace="5" hspace="5" src="Figure_1_and_2_02.png" alt=""> <p class="footer">
 <br>
 <a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
 <br>
@@ -796,7 +862,7 @@ RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("C
 %% Now use wt 4b cells treated with 125uM as control vs all other NaAsO2 concentrations and btwn cell lines
 % Test if Rate is significantly different btwn the 4B cell lines
 [~,~,statsR] = anova1(subData.NumGrans_rate_in_min,strcat(subData.treatment,{' '},subData.cell),'off');
-[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'uM Wt')),'Display','off','Approximate',false); 
+[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'125uM Wt')),'Display','off','Approximate',false); 
 RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
 RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
 RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
@@ -906,7 +972,7 @@ pWidth = 1.5; % plot width in inches
 pHeight = 3; % plot height in inches
 sWidth = (7.25-(pWidth*4))/3; % gap btwn plots in inches
 for iSub = 3:6
-    set(ax(iSub),'Units','Inches','Position',[0.75+(pWidth*(iSub-4))+(sWidth*(iSub-3)), 6, pWidth, pHeight]) 
+    set(ax(iSub),'Units','Inches','Position',[0.75+(pWidth*(iSub-3))+(sWidth*(iSub-3)), 4, pWidth, pHeight]) 
 end
 
 fontsize(8,"points"); fontname("Arial");

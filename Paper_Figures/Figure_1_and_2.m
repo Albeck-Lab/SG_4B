@@ -38,10 +38,6 @@ dataset3.movieinfo.PixNumX = 1600; % pixels
 dataset3.movieinfo.PixNumY = 1600; % pixels
 dataset3.movieinfo.tsamp = 3; % minutes
 
-% 2023-08-23
-%dataset4 = load('');
-%dataset4 = dataset5.dataloc; % pull the loaded dataloc structure
-
 
 %%  24h induced 139A mutant 4B data
 
@@ -50,14 +46,17 @@ dataset3.movieinfo.tsamp = 3; % minutes
 % 2023-06-29 (already loaded)
 
 %% fit the model to the datasets
-[fitData2,~] = convertDatalocToModelFit({dataset3,dataset3,dataset3}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','livecell','granarea'});
+[fitData2,~] = convertDatalocToModelFit({dataset1,dataset2,dataset3}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','granarea'},'afterf',1);
 
 %% Subset only the good data 
 fitData = fitData2; % work with duplicated data (for safety)
-gFitData = fitData((fitData.NumGrans_rsquared > 0.85),:); % look for an r squared greater than 0.8 ? 
+gFitData = fitData((fitData.NumGrans_rsquared > 0.8),:); % look for an r squared greater than 0.8 ? 
 
+% fix and simplify naming 
 gFitData.cell = strrep(gFitData.cell,'Hela_eIF4BGFP','HeLa_eIF4BGFP');
 gFitData.cell = strrep(gFitData.cell,'Hela_eIF4BF139A','HeLa_4B139AGFP');
+gFitData.cell = strrep(gFitData.cell,'HeLa_eIF4BGFP','Wt');
+gFitData.cell = strrep(gFitData.cell,'HeLa_4B139AGFP','Mut');
 
 %% Now plot the data
 % Make the fit models
@@ -75,12 +74,12 @@ tetTime = '-24';
 naAsO2 = ("62.5"|"125"|"250");
 
 WTsubz = all([(any([contains(gFitData.treatment,['TET at hour ', tetTime]),~contains(gFitData.treatment,'TET')],2)),contains(gFitData.treatment,naAsO2),...
-    (gFitData.NumGrans_f >= minGrans), contains(gFitData.cell,'HeLa_eIF4BGFP'),~contains(gFitData.treatment,'15.125uM')],2); % filter for the parameters set above
+    (gFitData.NumGrans_f >= minGrans), contains(gFitData.cell,'Wt'),~contains(gFitData.treatment,'15.125uM')],2); % filter for the parameters set above
 
 wtSubData = gFitData(WTsubz,:);
 wtSubData.treatment = strrep(wtSubData.treatment,'0.1ug/mL TET at hour -24 and ','');
 wtSubData.treatment = strrep(wtSubData.treatment,' NaAsO2 at hour 0','');
-wtSubData.cell = strrep(wtSubData.cell,'HeLa_eIF4BGFP','Wt');
+
 % Run the statistics comparing the wt-4B treated cells accross various concentrations of NaAsO2 and control
 
 % get averything for the reader if needed
@@ -134,9 +133,9 @@ ax(1) = subplot(1,4,2);
 boxplot(wtSubData.NumGrans_rate_in_min,wtSubData.treatment,'Notch','on','Symbol','','Colors',clrz);
 hold on;
 % Draw a black line with red asterisk to show significance
-plot(1:2, [9,9], '-k',1.5, 9.25, '*r') % 62.5 vs 125
+plot(1:2, [8.25,8.25], '-k',1.5, 8.5, '*r') % 62.5 vs 125
 hold off;
-ylim([0,10])
+ylim([0,9])
 ylabel('Rate of 4B Granule Formation (Granules per minute)')
 xlabel('NaAsO2 Dose')
 
@@ -145,10 +144,10 @@ ax(2) = subplot(1,4,3);
 boxplot(wtSubData.NumGrans_f,wtSubData.treatment,'Notch','on','Symbol','','Colors',clrz);
 hold on;
 % Draw a black line with red asterisk to show significance
-plot(1:2, [50,50], '-k',1.5, 52, '*r') % 62.5 vs 125
-plot(2:3, [55,55], '-k',2.5, 57, '*r') % 125 vs 250
+plot(1:2, [40,40], '-k',1.5, 42, '*r') % 62.5 vs 125
+plot(2:3, [48,48], '-k',2.5, 50, '*r') % 125 vs 250
 hold off;
-ylim([0,60])
+ylim([0,55])
 ylabel('Max Number of 4B Granules (f)')
 xlabel('NaAsO2 Dose')
 
@@ -157,8 +156,8 @@ ax(3) = subplot(1,4,4);
 boxplot(wtSubData.NumGrans_min_to_respond,wtSubData.treatment,'Notch','on','Symbol','','Colors',clrz);
 hold on;
 % Draw a black line with red asterisk to show significance
-plot(1:2, [55,55], '-k',1.5, 57, '*r') % 62.5 vs 125
-plot(2:3, [40,40], '-k',2.5, 42, '*r') % 125 vs 250
+plot(1:2, [54,54], '-k',1.5, 56, '*r') % 62.5 vs 125
+plot(2:3, [44,44], '-k',2.5, 46, '*r') % 125 vs 250
 hold off;
 ylim([0,60])
 ylabel('Time to respond (minutes)')
@@ -194,10 +193,13 @@ subData = gFitData(subz,:);
 % simplify the name since all the data is 24hr tet induced, NaAsO2 is at hour 0, and we know HeLa_eIF4BGFP is wt/HeLa_4B139AGFP is mut
 subData.treatment = strrep(subData.treatment,'0.1ug/mL TET at hour -24 and ','');
 subData.treatment = strrep(subData.treatment,' NaAsO2 at hour 0','');
-subData.cell = strrep(subData.cell,'HeLa_4B139AGFP','Mut');
-subData.cell = strrep(subData.cell,'HeLa_eIF4BGFP','Wt');
 
-%% Run the statistics comparing the cell lines using wt treated with various concentrations of NaAsO2 as control
+% what happens if we filter the data more?
+
+% can we set a reasonable max f (no cell should form more than this # of
+% granules?) maybe try this one day...
+
+% Run the statistics comparing the cell lines using wt treated with various concentrations of NaAsO2 as control
 
 % get averything for the reader if needed
 grpstats(subData,["treatment","cell"],["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond","NumGrans_granarea"])
@@ -210,89 +212,94 @@ grpstats(subData,["treatment","cell"],"mean","DataVars",["NumGrans_rate_in_min",
 % Test if Rate is significantly different btwn the 4B cell lines
 [~,~,statsR] = anova1(subData.NumGrans_rate_in_min,strcat(subData.treatment,{' '},subData.cell),'off');
 [resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'62.5uM Wt')),'Display','off','Approximate',false); 
-RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
-RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
+RateOfGranuleFormationVs62Wt = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+RateOfGranuleFormationVs62Wt.("Group") = gnamesRate(RateOfGranuleFormationVs62Wt.("Group"));
+RateOfGranuleFormationVs62Wt.("Control Group") = gnamesRate(RateOfGranuleFormationVs62Wt.("Control Group"))
 
 % Test if number (f) is significantly different btwn the 4B cell lines
 [~,~,statsF] = anova1(subData.NumGrans_f,strcat(subData.treatment,{' '},subData.cell),'off');
 [resultsMaxG,~,~,gnamesF] = multcompare(statsF,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsF.gnames,'62.5uM Wt')),'Display','off','Approximate',false); 
-MaxGranulesFormed = array2table(resultsMaxG,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-MaxGranulesFormed.("Group") = gnamesF(MaxGranulesFormed.("Group"));
-MaxGranulesFormed.("Control Group") = gnamesF(MaxGranulesFormed.("Control Group"))
+MaxGranulesFormedVs62WT = array2table(resultsMaxG,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+MaxGranulesFormedVs62WT.("Group") = gnamesF(MaxGranulesFormedVs62WT.("Group"));
+MaxGranulesFormedVs62WT.("Control Group") = gnamesF(MaxGranulesFormedVs62WT.("Control Group"))
 
 % Test if time to respond is significantly different btwn the 4B cell lines
 [~,~,statsT2R] = anova1(subData.NumGrans_min_to_respond,strcat(subData.treatment,{' '},subData.cell),'off');
 [resultsTime2Resp,~,~,gnamesT2R] = multcompare(statsT2R,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsT2R.gnames,'62.5uM Wt')),'Display','off','Approximate',false); 
-Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group"));
-Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))
+Time2RespondVs62Wt = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+Time2RespondVs62Wt.("Group") = gnamesT2R(Time2RespondVs62Wt.("Group"));
+Time2RespondVs62Wt.("Control Group") = gnamesT2R(Time2RespondVs62Wt.("Control Group"))
 
 % Test if granule size at F is significantly different btwn the 4B cell lines
-[~,~,statsR] = anova1(subData.NumGrans_granarea,strcat(subData.treatment,{' '},subData.cell),'off');
-[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsT2R.gnames,'62.5uM Wt')),'Display','off','Approximate',false); 
-RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
-RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
+[~,~,statsS] = anova1(subData.NumGrans_granarea,strcat(subData.treatment,{' '},subData.cell),'off');
+[resultsS,~,~,gnamesS] = multcompare(statsS,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsS.gnames,'62.5uM Wt')),'Display','off','Approximate',false); 
+GranuleSizeVs62Wt = array2table(resultsS,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+GranuleSizeVs62Wt.("Group") = gnamesS(GranuleSizeVs62Wt.("Group"));
+GranuleSizeVs62Wt.("Control Group") = gnamesS(GranuleSizeVs62Wt.("Control Group"))
 
 %% Now use wt 4b cells treated with 125uM as control vs all other NaAsO2 concentrations and btwn cell lines
 % Test if Rate is significantly different btwn the 4B cell lines
 [~,~,statsR] = anova1(subData.NumGrans_rate_in_min,strcat(subData.treatment,{' '},subData.cell),'off');
 [resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'125uM Wt')),'Display','off','Approximate',false); 
-RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
-RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
+RateOfGranuleFormationVs125Wt = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+RateOfGranuleFormationVs125Wt.("Group") = gnamesRate(RateOfGranuleFormationVs125Wt.("Group"));
+RateOfGranuleFormationVs125Wt.("Control Group") = gnamesRate(RateOfGranuleFormationVs125Wt.("Control Group"))
 
 % Test if number (f) is significantly different btwn the 4B cell lines
 [~,~,statsF] = anova1(subData.NumGrans_f,strcat(subData.treatment,{' '},subData.cell),'off');
 [resultsMaxG,~,~,gnamesF] = multcompare(statsF,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsF.gnames,'125uM Wt')),'Display','off','Approximate',false); 
-MaxGranulesFormed = array2table(resultsMaxG,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-MaxGranulesFormed.("Group") = gnamesF(MaxGranulesFormed.("Group"));
-MaxGranulesFormed.("Control Group") = gnamesF(MaxGranulesFormed.("Control Group"))
+MaxGranulesFormedVs125Wt = array2table(resultsMaxG,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+MaxGranulesFormedVs125Wt.("Group") = gnamesF(MaxGranulesFormedVs125Wt.("Group"));
+MaxGranulesFormedVs125Wt.("Control Group") = gnamesF(MaxGranulesFormedVs125Wt.("Control Group"))
 
 % Test if time to respond is significantly different btwn the 4B cell lines
 [~,~,statsT2R] = anova1(subData.NumGrans_min_to_respond,strcat(subData.treatment,{' '},subData.cell),'off');
 [resultsTime2Resp,~,~,gnamesT2R] = multcompare(statsT2R,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsT2R.gnames,'125uM Wt')),'Display','off','Approximate',false); 
-Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group"));
-Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))
+Time2RespondVs125Wt = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+Time2RespondVs125Wt.("Group") = gnamesT2R(Time2RespondVs125Wt.("Group"));
+Time2RespondVs125Wt.("Control Group") = gnamesT2R(Time2RespondVs125Wt.("Control Group"))
 
 % Test if granule size at F is significantly different btwn the 4B cell lines
-[~,~,statsR] = anova1(subData.NumGrans_granarea,strcat(subData.treatment,{' '},subData.cell),'off');
-[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsT2R.gnames,'125uM Wt')),'Display','off','Approximate',false); 
-RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
-RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
+[~,~,statsS] = anova1(subData.NumGrans_granarea,strcat(subData.treatment,{' '},subData.cell),'off');
+[resultsS,~,~,gnamesS] = multcompare(statsS,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsS.gnames,'125uM Wt')),'Display','off','Approximate',false); 
+GranuleSizeVs125Wt = array2table(resultsS,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+GranuleSizeVs125Wt.("Group") = gnamesS(GranuleSizeVs125Wt.("Group"));
+GranuleSizeVs125Wt.("Control Group") = gnamesS(GranuleSizeVs125Wt.("Control Group"))
 
-%% Now use wt 4b cells treated with 250uM
-% as control vs all other NaAsO2 concentrations and btwn cell lines
+%% Now use wt 4b cells treated with 250uM as control vs all other NaAsO2 concentrations and btwn cell lines
 % Test if Rate is significantly different btwn the 4B cell lines
 [~,~,statsR] = anova1(subData.NumGrans_rate_in_min,strcat(subData.treatment,{' '},subData.cell),'off');
 [resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsR.gnames,'250uM Wt')),'Display','off','Approximate',false); 
-RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
-RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
+RateOfGranuleFormationVs250Wt = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+RateOfGranuleFormationVs250Wt.("Group") = gnamesRate(RateOfGranuleFormationVs250Wt.("Group"));
+RateOfGranuleFormationVs250Wt.("Control Group") = gnamesRate(RateOfGranuleFormationVs250Wt.("Control Group"))
 
 % Test if number (f) is significantly different btwn the 4B cell lines
 [~,~,statsF] = anova1(subData.NumGrans_f,strcat(subData.treatment,{' '},subData.cell),'off');
 [resultsMaxG,~,~,gnamesF] = multcompare(statsF,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsF.gnames,'250uM Wt')),'Display','off','Approximate',false); 
-MaxGranulesFormed = array2table(resultsMaxG,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-MaxGranulesFormed.("Group") = gnamesF(MaxGranulesFormed.("Group"));
-MaxGranulesFormed.("Control Group") = gnamesF(MaxGranulesFormed.("Control Group"))
+MaxGranulesFormedVs250Wt = array2table(resultsMaxG,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+MaxGranulesFormedVs250Wt.("Group") = gnamesF(MaxGranulesFormedVs250Wt.("Group"));
+MaxGranulesFormedVs250Wt.("Control Group") = gnamesF(MaxGranulesFormedVs250Wt.("Control Group"))
 
 % Test if time to respond is significantly different btwn the 4B cell lines
 [~,~,statsT2R] = anova1(subData.NumGrans_min_to_respond,strcat(subData.treatment,{' '},subData.cell),'off');
 [resultsTime2Resp,~,~,gnamesT2R] = multcompare(statsT2R,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsT2R.gnames,'250uM Wt')),'Display','off','Approximate',false); 
-Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group"));
-Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))
+Time2RespondVs250Wt = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+Time2RespondVs250Wt.("Group") = gnamesT2R(Time2RespondVs250Wt.("Group"));
+Time2RespondVs250Wt.("Control Group") = gnamesT2R(Time2RespondVs250Wt.("Control Group"))
+
+%% Compare Wt treated with 125uM NaAsO2's granule size at f to Mut treated with 250uM NaAso2's granule size at F
+% At those doses wt and mut have the same F,the question is, when they have
+% the same number of granules, are the granules different sizes?
 
 % Test if granule size at F is significantly different btwn the 4B cell lines
-[~,~,statsR] = anova1(subData.NumGrans_granarea,strcat(subData.treatment,{' '},subData.cell),'off');
-[resultsRate,~,~,gnamesRate] = multcompare(statsR,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsT2R.gnames,'250uM Wt')),'Display','off','Approximate',false); 
-RateOfGranuleFormation = array2table(resultsRate,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-RateOfGranuleFormation.("Group") = gnamesRate(RateOfGranuleFormation.("Group"));
-RateOfGranuleFormation.("Control Group") = gnamesRate(RateOfGranuleFormation.("Control Group"))
+[~,~,statsS] = anova1(subData.NumGrans_granarea,strcat(subData.treatment,{' '},subData.cell),'off');
+[resultsS,~,~,gnamesS] = multcompare(statsS,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsS.gnames,'250uM Wt')),'Display','off','Approximate',false); 
+GranuleSizeVs250Wt = array2table(resultsS,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+GranuleSizeVs250Wt.("Group") = gnamesS(GranuleSizeVs250Wt.("Group"));
+GranuleSizeVs250Wt.("Control Group") = gnamesS(GranuleSizeVs250Wt.("Control Group"))
+
+% The answer is NO.
 
 %% Plot the data for Figure 2
 
@@ -322,26 +329,52 @@ clrz = [0, 0.5, 0; ...
 % plot the rate 
 ax(3) = subplot(4,4,13);
 boxplot(subData.NumGrans_rate_in_min,{subData.treatment,subData.cell},'Symbol','','Notch','on','colorgroup',subData.cell,'Colors',clrz); %
-ylim([0,10])
-ylabel('Rate of 4B Granule Formation (minutes)'); xlabel('NaAsO2 Dose')
+ylim([0,9])
+hold on;
+% Draw a black line with red asterisk to show significance
+plot(1:2, [2.2,2.2], '-k',1.5, 2.5, '*r') % 62.5 wt vs mut
+plot(3:4, [8.3,8.3], '-k',3.5, 8.5, '*r') % 125  wt vs mut
+plot(5:6, [7.8,7.8], '-k',5.5, 8, '*r') % 250  wt vs mut
+hold off;
+ylabel('Rate of 4B Granule Formation (Granules per minute)');
 
 % plot the max granules 
 ax(4) = subplot(4,4,14);
 boxplot(subData.NumGrans_f,{subData.treatment,subData.cell},'Notch','on','Symbol','','colorgroup',subData.cell,'Colors',clrz);
-ylim([0,60])
-ylabel('Max Number of 4B Granules (f)'); xlabel('NaAsO2 Dose')
+ylim([0,55])
+hold on
+% Draw a black line with red asterisk to show significance
+plot(1:2, [25,25], '-k',1.5, 26, '*r') % 62.5 wt vs mut
+plot(3:4, [39,39], '-k',3.5, 40, '*r') % 125  wt vs mut
+plot(5:6, [48,48], '-k',5.5, 49, '*r') % 250  wt vs mut
+hold off
+ylabel('Max Number of 4B Granules (f)'); 
 
 % plot the time 2 respond
 ax(5) = subplot(4,4,15);
 boxplot(subData.NumGrans_min_to_respond,{subData.treatment,subData.cell},'Notch','on','Symbol','','colorgroup',subData.cell,'Colors',clrz);
-ylim([0,60])
-ylabel('Time to respond (minutes)');xlabel('NaAsO2 Dose')
+ylim([0,63])
+hold on
+% Draw a black line with red asterisk to show significance
+plot(1:2, [58,58], '-k',1.5, 59, '*r') % 62.5 wt vs mut
+plot(3:4, [43,43], '-k',3.5, 44, '*r') % 125  wt vs mut
+% plot(5:6, [48,48], '-k',5.5, 50, '*r') % 250  wt vs mut - NOT SIGNIFICANT
+hold off
+ylabel('Time to respond (minutes)');
 
 % plot the average granule area at max f
 ax(6) = subplot(4,4,16);
 boxplot(subData.NumGrans_granarea,{subData.treatment,subData.cell},'Symbol','','Notch','on','colorgroup',subData.cell,'Colors',clrz);
-ylim([1.5,5.5])
-ylabel('Granule Area (um^2) at f'); xlabel('NaAsO2 Dose')
+hold on
+% Draw a black line with red asterisk to show significance
+%plot(1:2, [2.2,2.2], '-k',1.5, 2.5, '*r') % 62.5 wt vs mut
+%plot(3:4, [8.3,8.3], '-k',3.5, 8.5, '*r') % 125  wt vs mut
+%plot(5:6, [48,48], '-k',5.5, 50, '*r') % 250  wt vs mut
+plot(3:6, [5.9,5.9,5.9,5.9], '-k') % 250  wt vs mut - Show 125uM wt is gran size is not significantly different than 250uM mut (they have the same # of granules at F).
+text(4, 6.1,'N.S')
+hold off
+ylim([1,6.5])
+ylabel('Granule Area (um^2) at f');
 
 % loop through the subplots that make up figure 2D, size and space them appropriately 
 pWidth = 1.5; % plot width in inches

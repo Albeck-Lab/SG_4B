@@ -2,13 +2,69 @@
 
 % 2023-06-29 Data
 basePath = 'Z:\imageData\SG_4B\';
-dataset2=load([basePath,'2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed_Copy.mat']);
+dataset2=load([basePath,'2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed_Copy.mat']); % _Copy
 dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
 dataloc = dataset2;
 % 
 % % Pull and combine the IF datasets
 % pooledData = [dataset1.ifd,dataset2.ifd];
 
+%%
+% append the movie's metadata
+dataloc.movieinfo.PixSizeX = 0.33; % um/px
+dataloc.movieinfo.PixSizeY = 0.33; % um/px
+dataloc.movieinfo.PixNumX = 1600; % pixels
+dataloc.movieinfo.PixNumY = 1600; % pixels
+dataloc.movieinfo.tsamp = 3; % minutes
+
+[fitData2,~] = convertDatalocToModelFit({dataloc}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','livecell','granarea'});
+
+% Subset only the good data 
+fitData = fitData2; % work with duplicated data (for safety)
+gFitData = fitData((fitData.NumGrans_rsquared > 0.8),:); % look for an r squared greater than 0.8 ? 
+
+gFitData.cell = strrep(gFitData.cell,'Hela_eIF4BGFP','HeLa_eIF4BGFP');
+gFitData.cell = strrep(gFitData.cell,'Hela_eIF4BF139A','HeLa_4B139AGFP');
+
+gFitData.cell = strrep(gFitData.cell,'HeLa_eIF4BGFP','Wt');
+gFitData.cell = strrep(gFitData.cell,'HeLa_4B139AGFP','Mut');
+
+%%
+ifD = dataloc.ifd;
+gFitData2 = gFitData;
+ifD.xy = ifD.ImageNumber;
+gFitData2.xy = gFitData2.NumGrans_xy;
+gFitData2.cellid = gFitData2.NumGrans_cellid;
+missinD = isnan(ifD.cellid);
+ifD2 = ifD(~missinD,:);
+
+[~, idxG] = ismember(gFitData2(:,["cellid","xy"]), ifD2(:,["cellid","xy"]), 'rows');
+[~, idxI] = ismember(ifD2(:,["cellid","xy"]),gFitData2(:,["cellid","xy"]), 'rows');
+
+gFitData2 = gFitData2(idxG > 0, :);
+ifD2 = ifD2(idxI > 0, :);
+
+fAndIF = join(gFitData2,ifD2,'LeftKeys',{'xy','cellid'},'RightKeys',{'xy','cellid'},'KeepOneCopy',{'treatment','cell','full'});
+
+
+%% Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions
+minGrans = 3;
+tetTime = "hour -24"; % amount of tet induction
+naAsO2 = (" 62.5uM"|" 125uM"|" 250uM"); % NaAsO2 treatment 
+
+subF3A = all([contains(fAndIF.treatment,tetTime),~contains(fAndIF.cell,'bad'),contains(fAndIF.treatment,naAsO2), ...
+    (fAndIF.NumGrans_f >= minGrans)],2); %,contains(fAndIF.cell,'HeLa_eIF4BGFP')
+
+subF3Adata = fAndIF(subF3A,:); % pull that subset of data
+subF3Adata.cell = strrep(subF3Adata.cell,'HeLa_eIF4BGFP','Wt');
+subF3Adata.cell = strrep(subF3Adata.cell,'HeLa_4B139AGFP','Mt');
+subF3Adata.cell = categorical(subF3Adata.cell,{'Wt','Mt'}); % make the cell line a categorical
+subF3Adata.treatment = strrep(subF3Adata.treatment,'0.1ug/mL TET at hour -24 and ','');
+subF3Adata.treatment = strrep(subF3Adata.treatment,' NaAsO2 at hour 0','');
+subF3Adata.treatment = categorical(subF3Adata.treatment,{'62.5uM','125uM','250uM'}); % set the order '62.5uM'
+
+% make the treatments a categorical
+subF3Adata.OPP = subF3Adata.Intensity_MeanIntensity_Masked_OPP*65535; % get the real opp values
 
 %% Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions
 
@@ -24,9 +80,7 @@ subF3A = all([contains(dataloc.ifd.treatment,tetTime),~contains(dataloc.ifd.cell
     ],2); % , (dataloc.ifd.Children_Grans_G3BP1_Count >= minGrans)
 
 subF3Adata = dataloc.ifd(subF3A,:); % pull that subset of data
-
-subF3Adata.cell = categorical(subF3Adata.cell,{'HeLa eIF4BGFP','HeLa 4B139AGFP'}); % make the cell line a categorical
-
+\
 % make the treatments a categorical
 catOrder = ["0.1ug/mL TET at hour -24 and 0uM NaAsO2","0.1ug/mL TET at hour -24 and 125uM NaAsO2"]; % give the order I want for the plot
 subF3Adata.treatment = categorical(subF3Adata.treatment,catOrder); % set the order

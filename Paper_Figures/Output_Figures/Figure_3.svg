@@ -2940,7 +2940,7 @@
       /><path d="M0 -3.6667 C2.025 -3.6667 3.6667 -2.025 3.6667 0 L3.6667 0 C3.6667 2.025 2.025 3.6667 -0 3.6667 C-2.025 3.6667 -3.6667 2.025 -3.6667 -0 C-3.6667 -2.025 -2.025 -3.6667 0 -3.6667 ZM0 -4.3333 C-2.3932 -4.3333 -4.3333 -2.3932 -4.3333 -0 C-4.3333 2.3932 -2.3932 4.3333 -0 4.3333 C2.3932 4.3333 4.3333 2.3932 4.3333 0 L4.3333 0 C4.3333 -2.3932 2.3932 -4.3333 0 -4.3333 Z" style="stroke:none;" transform="translate(168,112.0178)"
     /></g
     ><g transform="translate(50,612)" style="fill-opacity:0.2; fill:rgb(0,0,0); text-rendering:optimizeSpeed; image-rendering:optimizeSpeed; color-rendering:optimizeSpeed; shape-rendering:crispEdges; stroke:rgb(0,0,0); color-interpolation:sRGB; stroke-opacity:0.2;"
-    ><path style="stroke:none;" d="M24 187.844 L60 187.8438 L96 187.8438 L132 187.8438 L168 187.8438 L168 186.4632 L132 186.4632 L96 186.4632 L60 186.4633 L24 186.4713 Z"
+    ><path style="stroke:none;" d="M24 187.8367 L60 187.8365 L96 187.8365 L132 187.8365 L168 187.8365 L168 186.4404 L132 186.4404 L96 186.4404 L60 186.4404 L24 186.4485 Z"
     /></g
     ><g transform="translate(50,612)" style="fill:white; text-rendering:optimizeSpeed; color-rendering:optimizeSpeed; image-rendering:optimizeSpeed; shape-rendering:crispEdges; stroke:white; color-interpolation:sRGB;"
     ><path style="stroke:none;" d="M206 190 L350 190 L350 44 L206 44 Z"
@@ -2963,7 +2963,7 @@
       /><path d="M316.4 117 L316.4 46.0582 L335.6 46.0582 L335.6 117 Z" style="fill:none; fill-rule:evenodd;"
     /></g
     ><g transform="translate(50,612)" style="fill-opacity:0.2; fill:rgb(0,0,0); text-rendering:optimizeSpeed; image-rendering:optimizeSpeed; color-rendering:optimizeSpeed; shape-rendering:crispEdges; stroke:rgb(0,0,0); color-interpolation:sRGB; stroke-opacity:0.2;"
-    ><path style="stroke:none;" d="M206 107.5185 L206 126.2474 L314 126.2474 L314 126.1223 L350 126.1223 L350 107.6303 L314 107.6303 L314 107.5185 Z"
+    ><path style="stroke:none;" d="M206 126.4149 L314 126.4149 L314 126.348 L350 126.348 L350 107.4564 L314 107.4564 L314 107.6318 L206 107.6318 Z"
     /></g
     ><g transform="translate(50,612)" style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:0.6667;"
     ><line y2="190" style="fill:none;" x1="206" x2="350" y1="190"

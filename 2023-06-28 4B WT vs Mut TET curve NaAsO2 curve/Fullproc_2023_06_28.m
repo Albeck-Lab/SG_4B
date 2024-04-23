@@ -3,15 +3,13 @@ addpath('\\albecklab.mcb.ucdavis.edu\data\Notebooks\Nick DeCuzzi\Papers\TF paper
 % 3 minutes between each loop!
 
 %% Load the data
-dataloc = JB_DataHandler_V3();
 
 %% Extract and Filter the data
 %fts(1).t = 'twin'; fts(1).c = 'AreaShape_Area'; fts(1).p = [3,38];
 %fts(2).t = 'min'; fts(2).c = 'NumGrans'; fts(2).p = 2;
 %filterp.fts = fts;
-%dataloc = JB_DataHandler_V3('extractdata',true);
 
-dataloc = JB_DataHandler_V3('dataloc',dataloc,'extractif',true);
+dataloc = SG_Datahandler('extractdata',true,'extractif',true,'aligniftolc',true);
 
 %% Plot the data
 % plotme = {'GranMeanGFP','t_granspercell','t_count_cells','NumGrans','GranAreaShape_Area','t_granspercell'};%,'GranAreaShape_Area','GranIntegratedGFP'

@@ -128,6 +128,90 @@ subF3Ddata{(subF3Ddata.cell=='Mut'),"celln"} = ones([sum((subF3Ddata.cell=='Mut'
 plsOut = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
     subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r','cellLine'},'bstrap',true,'ploton',false);
 
+%% Prepare wt and mut data for Figure 3B and 3C plots
+minGrans = 3;
+tetTime = '-24';
+
+% wt data
+subzWT = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]),contains(dataset1.ifd.cell,'4BGFP')...
+    , (dataset1.ifd.Children_Grans_4B_Count >= minGrans), ~contains(dataset1.ifd.treatment,'and 0uM')],2); % 
+
+% pull the wt data, get the real opp and l2opp
+wtData = dataset1.ifd(subzWT,:);
+wtData.OPP = wtData.Intensity_MeanIntensity_Masked_OPP*65535;
+wtData.l2OPP = log2(wtData.OPP);
+
+%simplify treatment name
+wtData.treatment = strrep(wtData.treatment,'0.1ug/mL TET at hour -24 and ','');
+wtData.treatment = strrep(wtData.treatment,' NaAsO2','');
+
+% get the general values of the wt l2OPP
+WTl2OppData = grpstats(wtData,"treatment",["mean","median","sem","std"],"DataVars","l2OPP")
+
+% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
+[~,~,statsOPP] = anova1(wtData.l2OPP,wtData.treatment,'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'125uM')),'Display','off','Approximate',false);
+wtL2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+wtL2OPP.("Group") = gnamesOPP(wtL2OPP.("Group"));
+wtL2OPP.("Control Group") = gnamesOPP(wtL2OPP.("Control Group"))
+
+% mutant data
+subzMut = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]),contains(dataset1.ifd.cell,'139A')...
+    ,(dataset1.ifd.Children_Grans_4B_Count >= minGrans), ~contains(dataset1.ifd.treatment,'and 0uM')],2); % Mutant Data
+
+% pull the mutant data, get the real opp and l2opp
+mutData = dataset1.ifd(subzMut,:);
+mutData.OPP = mutData.Intensity_MeanIntensity_Masked_OPP*65535;
+mutData.l2OPP = log2(mutData.OPP);
+
+%simplify treatment name
+mutData.treatment = strrep(mutData.treatment,'0.1ug/mL TET at hour -24 and ','');
+mutData.treatment = strrep(mutData.treatment,' NaAsO2','');
+
+% get the general values of the mut l2OPP
+MUTl2OppData = grpstats(mutData,"treatment",["mean","median","sem","std"],"DataVars","l2OPP")
+
+% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
+[~,~,statsOPP] = anova1(mutData.l2OPP,mutData.treatment,'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'125uM')),'Display','off','Approximate',false);
+mutL2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+mutL2OPP.("Group") = gnamesOPP(mutL2OPP.("Group"));
+mutL2OPP.("Control Group") = gnamesOPP(mutL2OPP.("Control Group"))
+
+%% Check all l2 opp data against eachother
+
+minGrans = 3;
+tetTime = '-24';
+
+% wt and mut data
+subzBoth = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]), ~contains(dataset1.ifd.cell,'bad')...
+    , (dataset1.ifd.Children_Grans_4B_Count >= minGrans), ~contains(dataset1.ifd.treatment,'and 0uM')],2); % 
+
+
+% pull the mutant data, get the real opp and l2opp
+allData = dataset1.ifd(subzBoth,:);
+allData.OPP = allData.Intensity_MeanIntensity_Masked_OPP*65535;
+allData.l2OPP = log2(allData.OPP);
+
+%simplify treatment name
+allData.treatment = strrep(allData.treatment,'0.1ug/mL TET at hour -24 and ','');
+allData.treatment = strrep(allData.treatment,' NaAsO2','');
+
+%simplify cell names
+allData.cell = strrep(allData.cell,"HeLa 4B139AGFP",'mut');
+allData.cell = strrep(allData.cell,"HeLa eIF4BGFP",'wt');
+
+% get the general values of the mut l2OPP
+MUTl2OppData = grpstats(allData,["treatment","cell"],["mean","median","sem","std"],"DataVars","l2OPP")
+
+% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
+[~,~,statsOPP] = anova1(allData.l2OPP,allData.treatment,'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'125uM')),'Display','off','Approximate',false);
+mutL2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+mutL2OPP.("Group") = gnamesOPP(mutL2OPP.("Group"));
+mutL2OPP.("Control Group") = gnamesOPP(mutL2OPP.("Control Group"))
+
+
 %% Make the plots
 % make a new figure
 figure3 = figure;
@@ -176,28 +260,18 @@ fontname('Arial'); fontsize(8,"points");
 
 % Plot F3b left half (24 hr tet wt-4b-gfp)
 
-% 24 hour tet wt 4b grans or 139a vs opp vs naaso2 dose/vehicle with box and wiskers?
-minGrans = 3;
-tetTime = '-24';
 xlimz = [0,30]; % granule axis limits
 ylimz = [7.5, 12]; % Opp axis limits
 
-
-subzWT = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]),contains(dataset1.ifd.cell,'4BGFP')...
-    , (dataset1.ifd.Children_Grans_4B_Count >= minGrans), ~contains(dataset1.ifd.treatment,'and 0uM')],2); % 
-
-% pull the wt data
-wtData = dataset1.ifd(subzWT,:);
-
 % make the scatter hist for the wt data (bottom left panel)
-h=scatterhist(wtData.Children_Grans_4B_Count,log2(wtData.Intensity_MeanIntensity_Masked_OPP*65535),...
+h=scatterhist(wtData.Children_Grans_4B_Count,wtData.l2OPP,...
     'Group',wtData.treatment,'parent',botLP,'MarkerSize',3,'color',colorzScatter);
 xlabel('WT-4B Granules'); ylabel('Log_2 OPP Intensity')
 title('WT4b all NaAsO2 Doses')
 hold on;
 boxplot(h(2),wtData.Children_Grans_4B_Count,wtData.treatment,'orientation','horizontal',...
      'label',{'','',''},'color',colorzScatter,'Symbol','');
-boxplot(h(3),log2(wtData.Intensity_MeanIntensity_Masked_OPP*65535),wtData.treatment,'orientation','horizontal',...
+boxplot(h(3),wtData.l2OPP,wtData.treatment,'orientation','horizontal',...
      'label', {'','',''},'color',colorzScatter,'Symbol','');
 set(h(2:3),'XTickLabel','');
 view(h(3),[270,90]);  % Rotate the Y plot
@@ -205,17 +279,11 @@ xlim(h(1),xlimz); ylim(h(1),ylimz);
 xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes
 hold off;
 fontname('Arial'); fontsize(8,"points");
-lg = legend(strrep(string(unique(wtData.treatment,'stable')),'0.1ug/mL TET at hour -24 and ',''), 'Location', 'Best'); % Only show legend for unique Group tx categories
+lg = legend(wtData.treatment, 'Location', 'Best'); % Only show legend for unique Group tx categories
 lg.Position = [0.1,    0.1327,    0.1,    0.1325]; % set the legend size
 
-subzMut = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]),contains(dataset1.ifd.cell,'139A')...
-    ,(dataset1.ifd.Children_Grans_4B_Count >= minGrans), ~contains(dataset1.ifd.treatment,'and 0uM')],2); % Mutant Data
-
-% pull the mutant data
-mutData = dataset1.ifd(subzMut,:);
-
 % make the scatter hist for the mutant data (bottom right panel)
-h=scatterhist(mutData.Children_Grans_4B_Count,log2(mutData.Intensity_MeanIntensity_Masked_OPP*65535),...
+h=scatterhist(mutData.Children_Grans_4B_Count,mutData.l2OPP,...
     'Group',mutData.treatment,'parent',botRP,'MarkerSize',3,'color',colorzScatter);
 xlabel('Mut 4B Granules'); ylabel('Log_2 OPP Intensity')
 title('137A all NaAsO2 Doses')
@@ -223,8 +291,8 @@ hold on;
 
 boxplot(h(2),mutData.Children_Grans_4B_Count,mutData.treatment,'orientation','horizontal',...
      'label',{'','',''},'color',colorzScatter,'Symbol','');
-boxplot(h(3),log2(mutData.Intensity_MeanIntensity_Masked_OPP*65535),mutData.treatment,'orientation','horizontal',...
-     'label', {'','',''},'color',colorzScatter,'Symbol','');
+boxplot(h(3),mutData.l2OPP,mutData.treatment,'orientation','horizontal',...
+     'label', {'','',''},'color',colorzScatter,'Symbol',''); 
 set(h(2:3),'XTickLabel','');
 view(h(3),[270,90]);  % Rotate the Y plot
 xlim(h(1),xlimz); ylim(h(1),ylimz);
@@ -328,6 +396,32 @@ botBot.BackgroundColor = [1,1,1];
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.fig')
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.svg')
 
+
+%% Check the pls removing other factors
+%% Everything
+pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r','cellLine'});
+
+% No dose
+pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'F','rate','t2r','cellLine'});
+
+% No F
+pls([subF3Ddata.dose,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'dose','rate','t2r','cellLine'});
+
+% No rate
+pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'dose','F','t2r','cellLine'});
+
+% No t2r
+pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'dose','F','rate','cellLine'});
+
+% No cell line
+pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],...
+    subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r'});
+
 %% Now print the raw OPP values per cell line per NaAsO2 treatment
 
 subz = ~contains(dataset1.ifd.cell,'bad','ignorecase',true); % filter for the parameters set above
@@ -390,4 +484,47 @@ title('139A Tet induction versus OPP')
 saveas(supF3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.fig')
 saveas(supF3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.svg')
 
+%% Get the number of G3BP1 Granules @ 125uM NaAsO2
+
+minGrans = 3;
+tetTime = '-24';
+
+% wt and mut data
+subzBoth = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]), ~contains(dataset1.ifd.cell,'bad')...
+    , (dataset1.ifd.Children_Grans_G3BP1_Count >= minGrans), contains(dataset1.ifd.treatment,'and 125uM')],2); % 
+
+
+% pull the mutant data, get the real opp and l2opp
+allData = dataset1.ifd(subzBoth,:);
+
+%simplify treatment name
+allData.treatment = strrep(allData.treatment,'0.1ug/mL TET at hour -24 and ','');
+allData.treatment = strrep(allData.treatment,' NaAsO2','');
+
+%simplify cell names
+allData.cell = strrep(allData.cell,"HeLa 4B139AGFP",'mut');
+allData.cell = strrep(allData.cell,"HeLa eIF4BGFP",'wt');
+
+% get the general values of the mut l2OPP
+G3BP1data = grpstats(allData,["treatment","cell"],["mean","median","sem","std"],"DataVars","Children_Grans_G3BP1_Count")
+
+
+% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
+[~,~,statsG3BP1] = anova1(allData.Children_Grans_G3BP1_Count,allData.cell,'off');
+[resultsG3bp1,~,~,gnamesG3bp1] = multcompare(statsG3BP1,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsG3BP1.gnames,'wt')),'Display','off','Approximate',false);
+g3bp1 = array2table(resultsG3bp1,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+g3bp1.("Group") = gnamesG3bp1(g3bp1.("Group"));
+g3bp1.("Control Group") = gnamesG3bp1(g3bp1.("Control Group"))
+
+
+%
+% Now plot it
+figG3bp1 = figure;
+boxplot(allData.Children_Grans_G3BP1_Count,allData.cell,'Notch','on','Symbol','')
+xlabel('Cell'); ylabel('G3BP1 Grans')
+title('G3BP1 Grans At 125 uM')
+ylim([0,17])
+
+saveas(figG3bp1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_125uM_G3BP1.fig')
+saveas(figG3bp1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_125uM_G3BP1.svg')
 

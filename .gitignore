@@ -3,6 +3,6 @@
 *.nd2
 *.mat
 *~$*.xlsx
-*.csv
+*Experiment.csv
 *_Processed.mat
 Hold

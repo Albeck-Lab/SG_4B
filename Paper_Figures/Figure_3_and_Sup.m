@@ -125,8 +125,46 @@ subF3Ddata.dose = str2double(strrep(string(subF3Ddata.treatment),'uM',''));
 subF3Ddata.celln = zeros([height(subF3Ddata),1]); % wt is 0
 subF3Ddata{(subF3Ddata.cell=='Mut'),"celln"} = ones([sum((subF3Ddata.cell=='Mut')),1]); % mut is 1
 
-plsOut = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r','cellLine'},'bstrap',true,'ploton',false);
+plsOut = []; 
+plsOut{1} = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r','cellLine'},'ploton',false);
+
+% remove only dose
+plsOut{2} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'F','rate','t2r','cellLine'},'ploton',false);
+
+% just dose
+plsOut{3} = pls(subF3Ddata.dose,...
+    subF3Ddata.l2OPP, 'params', {'dose'},'ploton',false);
+
+% just F
+plsOut{4} = pls(subF3Ddata.NumGrans_f,...
+    subF3Ddata.l2OPP, 'params', {'F'},'ploton',false);
+
+% just rate
+plsOut{5} = pls(subF3Ddata.NumGrans_rate_in_min,...
+    subF3Ddata.l2OPP, 'params', {'rate'},'ploton',false);
+
+% just t2r
+plsOut{6} = pls(subF3Ddata.NumGrans_min_to_respond,...
+    subF3Ddata.l2OPP, 'params', {'t2r'},'ploton',false);
+
+% just cell line
+plsOut{7} = pls(subF3Ddata.celln,...
+    subF3Ddata.l2OPP, 'params', {'cellLine'},'ploton',false);
+
+
+% make a list for the legend
+legList = {'dose+F+rate+t2r+cell','F+rate+t2r+cell','dose','F','rate','t2r','cell'};
+
+% Now print out the variance explained as a table
+varExpTable = legList;
+
+for iPLSR = 1:numel(plsOut)
+    varExpTable{2,iPLSR} = max(cumsum(plsOut{iPLSR}.PCTVAR(2,:))*100,[],2,"omitnan");
+end
+varExpTable = cell2table(varExpTable);
+writetable(varExpTable,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\PlsrPercVarExplained.csv')
 
 %% Prepare wt and mut data for Figure 3B and 3C plots
 minGrans = 3;
@@ -251,7 +289,7 @@ errorbar(barLocations, generalPercOPPData.mean_PercOPP, generalPercOPPData.sem_P
 
 % Customizing the plot
 set(gca, 'XTick', [1.5, 4.5], 'XTickLabel', {'Wt', 'Mut'}); % Adjusting X-ticks to match cell lines
-legend(strrep(string(uniqueTx),'0.1ug/mL TET at hour -24 and ',''), 'Location', 'Best'); % Only show legend for unique Group tx categories
+legend(string(uniqueTx), 'Location', 'Best'); % Only show legend for unique Group tx categories
 ylabel("Percent OPP Intensity vs Wt-4b Control"); xlabel('4B Cell line') 
 hold off;
 ylim([0,110]); xlim([0,6]);
@@ -263,7 +301,7 @@ fontname('Arial'); fontsize(8,"points");
 xlimz = [0,30]; % granule axis limits
 ylimz = [7.5, 12]; % Opp axis limits
 
-% make the scatter hist for the wt data (bottom left panel)
+% Make the scatter hist for the wt data (bottom left panel)
 h=scatterhist(wtData.Children_Grans_4B_Count,wtData.l2OPP,...
     'Group',wtData.treatment,'parent',botLP,'MarkerSize',3,'color',colorzScatter);
 xlabel('WT-4B Granules'); ylabel('Log_2 OPP Intensity')
@@ -279,7 +317,7 @@ xlim(h(1),xlimz); ylim(h(1),ylimz);
 xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes
 hold off;
 fontname('Arial'); fontsize(8,"points");
-lg = legend(wtData.treatment, 'Location', 'Best'); % Only show legend for unique Group tx categories
+lg = legend(unique(wtData.treatment), 'Location', 'Best'); % Only show legend for unique Group tx categories
 lg.Position = [0.1,    0.1327,    0.1,    0.1325]; % set the legend size
 
 % make the scatter hist for the mutant data (bottom right panel)
@@ -312,69 +350,81 @@ p.nout = 1;
 p.alpha = 0.1;
 
 %   Get modeled values and axis limits for both model and data
-% mapped_vals = (plsOut.X0*plsOut.XLinv*plsOut.YL')+plsOut.BETA(1);
-mapped_vals = [ones(size(plsOut.X,1),1), plsOut.X]*plsOut.BETA;
-axmin = min([plsOut.Y(:,p.nout); mapped_vals(:,p.nout)]);
-axmax = max([plsOut.Y(:,p.nout); mapped_vals(:,p.nout)]);
-%   Cumulative Variance explained per component (2nd plot)
-vh = subplot(1,4,1,'Parent',botBot); plot(vh, cumsum(plsOut.PCTVAR(2,:))*100,'k-o');
-title(vh, '% Variance explained'); xlabel(vh, 'Component'); ylabel(vh, '%OPP Variance Explained'); 
-axis(vh, 'square'); xlim(vh, [1,max(2,size(plsOut.PCTVAR,2))]);
-set(vh,'XTick',1:size(plsOut.PCTVAR,2)); ylim(vh, [0,100]);
+mapped_vals = [ones(size(plsOut{1}.X,1),1), plsOut{1}.X]*plsOut{1}.BETA;
+axmin = min([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
+axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
 
-%   Parameter weights
-ph = subplot(1,4,2,'Parent',botBot); bar(ph, plsOut.BETA(2:end,p.nout));
-set(ph,'XTick',[1:size(plsOut.param,2)],'XTickLabel',plsOut.param,'XTickLabelRotation',45);
-xlim(ph, [0,size(plsOut.BETA,1)]);
-%   Set an overall title
-title(['PLS: ',plsOut.input(:)',', ' ,plsOut.output(:)']);
+% loop through the PLS plots
 
-%Add significance thresholds from bootstrapping, if available
-if isfield(plsOut,'Boot');    hold(vh, 'on');  hold(ph, 'on'); cc = [0.4,0.4,0.4];
-    %Plot Variance Explained random region
-    rry  = cumsum(plsOut.Boot.tpv,1)*100; ncmp = size(rry,1); %Y-Coords
-    if ncmp == 1; rry = [rry;rry]; ncmp = 2; end
-    rry = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           %  Wrapped
-    rrx = [1:ncmp, ncmp:-1:1];                           %X-Coords
-    %   Draw patch for random region
-    patch(vh, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
+for iPLS = 1:numel(plsOut)
+    %   Cumulative Variance explained per component (2nd plot)
+    vh = subplot(1,4,1,'Parent',botBot); 
+    plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,'-o');
+    title(vh, '% Variance explained'); xlabel(vh, 'Component'); ylabel(vh, '%OPP Variance Explained'); 
+    axis(vh, 'square'); 
     
-%     ylp = ylim(p3h); %Store Parameter Y Limits            
-    %Get average thresholds for Parameters
-    thr{1} = mean(plsOut.Boot.tbeta([false, plsOut.Boot.cat],p.nout,:),1);
-    thr{2} = mean(plsOut.Boot.tbeta([false, plsOut.Boot.dis],p.nout,:),1);
-    thr{3} = mean(plsOut.Boot.tbeta([false, ~plsOut.Boot.cat & ~plsOut.Boot.dis],p.nout,:),1);
-    %   Plot Parameter thresholds
-    np = numel(plsOut.BETA)-1;
     
-    %Set up patch definition for random region
-    rry = nan(2,np);
-    for s = 1:np
-        %   Determine threshold for this parameter
-        if plsOut.Boot.cat(s);       thrt = thr{1};
-        elseif plsOut.Boot.dis(s);   thrt = thr{2};
-        else                    thrt = thr{3};
+    %   Parameter weights
+    if iPLS < 2
+        xlim(vh, [1,max(2,size(plsOut{iPLS}.PCTVAR,2))]);
+        set(vh,'XTick',1:size(plsOut{iPLS}.PCTVAR,2)); ylim(vh, [0,100]);
+
+        ph = subplot(1,4,2,'Parent',botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
+        set(ph,'XTick',[1:size(plsOut{iPLS}.param,2)],'XTickLabel',plsOut{iPLS}.param,'XTickLabelRotation',45);
+        xlim(ph, [0,size(plsOut{iPLS}.BETA,1)]);
+        %   Set an overall title
+        title(['PLS: ',plsOut{iPLS}.input(:)',', ' ,plsOut{iPLS}.output(:)']);
+
+        hold(vh, 'on');  hold(ph, 'on');
+    
+        %Add significance thresholds from bootstrapping, if available
+        if isfield(plsOut{iPLS},'Boot');    cc = [0.4,0.4,0.4];
+            %Plot Variance Explained random region
+            rry  = cumsum(plsOut{iPLS}.Boot.tpv,1)*100; ncmp = size(rry,1); %Y-Coords
+            if ncmp == 1; rry = [rry;rry]; ncmp = 2; end
+            rry = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           %  Wrapped
+            rrx = [1:ncmp, ncmp:-1:1];                           %X-Coords
+            %   Draw patch for random region
+            patch(vh, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
+            
+        %     ylp = ylim(p3h); %Store Parameter Y Limits            
+            %Get average thresholds for Parameters
+            thr{1} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.cat],p.nout,:),1);
+            thr{2} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.dis],p.nout,:),1);
+            thr{3} = mean(plsOut{iPLS}.Boot.tbeta([false, ~plsOut{iPLS}.Boot.cat & ~plsOut{iPLS}.Boot.dis],p.nout,:),1);
+            %   Plot Parameter thresholds
+            np = numel(plsOut{iPLS}.BETA)-1;
+            
+            %Set up patch definition for random region
+            rry = nan(2,np);
+            for s = 1:np
+                %   Determine threshold for this parameter
+                if plsOut{iPLS}.Boot.cat(s);       thrt = thr{1};
+                elseif plsOut{iPLS}.Boot.dis(s);   thrt = thr{2};
+                else;                    thrt = thr{3};
+                end
+                %   Assemble segment for this parameter
+                rry(:,s) = thrt;
+            end
+            jmp = find(diff(rry(1,:))); %Get sites of changes
+            jmpx = [jmp;jmp]; jmpx = jmpx(:)';   %Duplicate for X-Axis
+            jmpy = [jmp;jmp+1]; jmpy = jmpy(:)'; %Include step for Y-Axis
+            rry = rry(:,[1,jmpy,end]);   rry = [rry(1,:), rry(2,end:-1:1)];
+            rrx = [-0.5,jmpx,np+0.5] + 0.5;     rrx = [rrx, rrx(end:-1:1)];
+            %   Draw patch for random region
+            patch(ph, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
         end
-        %   Assemble segment for this parameter
-        rry(:,s) = thrt;
     end
-    jmp = find(diff(rry(1,:))); %Get sites of changes
-    jmpx = [jmp;jmp]; jmpx = jmpx(:)';   %Duplicate for X-Axis
-    jmpy = [jmp;jmp+1]; jmpy = jmpy(:)'; %Include step for Y-Axis
-    rry = rry(:,[1,jmpy,end]);   rry = [rry(1,:), rry(2,end:-1:1)];
-    rrx = [-0.5,jmpx,np+0.5] + 0.5;     rrx = [rrx, rrx(end:-1:1)];
-    %   Draw patch for random region
-    patch(ph, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
-%     ylim(ph, ylp);  %Assert Y Limits
-end
+end % pls loop
+lego = legend(legList);
 
 % since PLC1 and PC2 explain most variance, show thier weights
 sh = []; clear sh;
 for s = 1:2
     sh(s) = subplot(1, 4, s+2,'Parent',botBot); 
-    bar(sh(s), plsOut.XLinv(:,s));  title(sh(s), ['PC', num2str(s),' weights']);
-    set(sh(s),'XTick',[1:size(plsOut.param,2)],'XTickLabel', plsOut.param, 'XTickLabelRotation',45);
-    xlim(sh(s), [0,size(plsOut.XLinv,1)+1]);
+    bar(sh(s), plsOut{1}.XLinv(:,s));  title(sh(s), ['PC', num2str(s),' weights']);
+    set(sh(s),'XTick',[1:size(plsOut{1}.param,2)],'XTickLabel', plsOut{1}.param, 'XTickLabelRotation',45);
+    xlim(sh(s), [0,size(plsOut{1}.XLinv,1)+1]);
 end
 
 vh.Units="inches"; ph.Units="inches"; sh(1).Units="inches"; sh(2).Units="inches";
@@ -393,34 +443,11 @@ botLP.BackgroundColor = [1,1,1];
 botRP.BackgroundColor = [1,1,1];
 botBot.BackgroundColor = [1,1,1];
 
+lego.FontSize = 3;
+
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.fig')
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.svg')
 
-
-%% Check the pls removing other factors
-%% Everything
-pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r','cellLine'});
-
-% No dose
-pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'F','rate','t2r','cellLine'});
-
-% No F
-pls([subF3Ddata.dose,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','rate','t2r','cellLine'});
-
-% No rate
-pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','F','t2r','cellLine'});
-
-% No t2r
-pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','F','rate','cellLine'});
-
-% No cell line
-pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],...
-    subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r'});
 
 %% Now print the raw OPP values per cell line per NaAsO2 treatment
 
@@ -480,6 +507,7 @@ boxplot(log2(dataset1.ifd.Intensity_MeanIntensity_Masked_OPP(subzmut)*65535),dat
 xlabel('TET Induction'); ylabel('Log_2 OPP Intensity')
 ylim([7,15])
 title('139A Tet induction versus OPP')
+
 
 saveas(supF3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.fig')
 saveas(supF3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.svg')

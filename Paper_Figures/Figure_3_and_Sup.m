@@ -127,43 +127,76 @@ subF3Ddata{(subF3Ddata.cell=='Mut'),"celln"} = ones([sum((subF3Ddata.cell=='Mut'
 
 plsOut = []; 
 plsOut{1} = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r','cellLine'},'ploton',false);
+    subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove only dose
 plsOut{2} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'F','rate','t2r','cellLine'},'ploton',false);
+    subF3Ddata.l2OPP, 'params', {'F','rate','t2r','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % just dose
 plsOut{3} = pls(subF3Ddata.dose,...
-    subF3Ddata.l2OPP, 'params', {'dose'},'ploton',false);
+    subF3Ddata.l2OPP, 'params', {'dose'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % just F
 plsOut{4} = pls(subF3Ddata.NumGrans_f,...
-    subF3Ddata.l2OPP, 'params', {'F'},'ploton',false);
+    subF3Ddata.l2OPP, 'params', {'F'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % just rate
 plsOut{5} = pls(subF3Ddata.NumGrans_rate_in_min,...
-    subF3Ddata.l2OPP, 'params', {'rate'},'ploton',false);
+    subF3Ddata.l2OPP, 'params', {'rate'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % just t2r
 plsOut{6} = pls(subF3Ddata.NumGrans_min_to_respond,...
-    subF3Ddata.l2OPP, 'params', {'t2r'},'ploton',false);
+    subF3Ddata.l2OPP, 'params', {'t2r'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % just cell line
 plsOut{7} = pls(subF3Ddata.celln,...
-    subF3Ddata.l2OPP, 'params', {'cellLine'},'ploton',false);
+    subF3Ddata.l2OPP, 'params', {'cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
+% f and cell line 
+plsOut{8} = pls([subF3Ddata.NumGrans_f,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'f','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+% rate and cell line 
+plsOut{9} = pls([subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+% t2r and cell line 
+plsOut{10} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'t2r','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% remove dose and t2r
+plsOut{11} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'f','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% remove dose and f
+plsOut{12} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'t2r','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% remove dose and rate
+plsOut{13} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'f','t2r','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% dose plus cell
+plsOut{14} = pls([subF3Ddata.dose,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'dose','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% remove only dose
+plsOut{15} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],...
+    subF3Ddata.l2OPP, 'params', {'F','rate','t2r'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % make a list for the legend
-legList = {'dose+F+rate+t2r+cell','F+rate+t2r+cell','dose','F','rate','t2r','cell'};
+legList = {'dose+F+rate+t2r+cell','F+rate+t2r+cell','dose','F','rate','t2r','cell','f+cell','rate+cell','t2r+cell','f+rate+cell','t2r+rate+cell','f+t2r+cell','dose+cell','f+rate+t2r'};
 
 % Now print out the variance explained as a table
-varExpTable = legList;
+varExpTable = table('size',[size(plsOut,2),2],'VariableTypes',{'cell','double'},'VariableNames',{'PLSR_inputs','Perc_varance_log2_OPP_explained'});
+
+varExpTable.PLSR_inputs = legList';
 
 for iPLSR = 1:numel(plsOut)
-    varExpTable{2,iPLSR} = max(cumsum(plsOut{iPLSR}.PCTVAR(2,:))*100,[],2,"omitnan");
+    varExpTable{iPLSR,2} = max(cumsum(plsOut{iPLSR}.PCTVAR(2,:))*100,[],2,"omitnan");
 end
-varExpTable = cell2table(varExpTable);
+
+varExpTable
+
 writetable(varExpTable,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\PlsrPercVarExplained.csv')
 
 %% Prepare wt and mut data for Figure 3B and 3C plots
@@ -356,7 +389,7 @@ axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
 
 % loop through the PLS plots
 
-for iPLS = 1:numel(plsOut)
+for iPLS = 1:7
     %   Cumulative Variance explained per component (2nd plot)
     vh = subplot(1,4,1,'Parent',botBot); 
     plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,'-o');
@@ -417,6 +450,7 @@ for iPLS = 1:numel(plsOut)
     end
 end % pls loop
 lego = legend(legList);
+lego.NumColumns = 1;
 
 % since PLC1 and PC2 explain most variance, show thier weights
 sh = []; clear sh;
@@ -469,14 +503,6 @@ allOPPStats = grpstats(allOPPData,["txcat","cell"],["mean","median","sem","std"]
 
 % save it as a csv 
 writetable(allOPPStats,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\allOppStats2.csv')
-
-%% Run the statistics comparing the wt-4B treated cells accross various concentrations of NaAsO2 and control
-
-% get averything for the reader if needed
-grpstats(wtSubData,"treatment",["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
-
-% Now just print the means
-grpstats(wtSubData,"treatment","mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
 
 
 %% X hour tet wt 4b or 139a 4b vs opp @ each naaso2 dose

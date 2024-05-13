@@ -321,20 +321,20 @@ lg = legend(unique(wtData.treatment), 'Location', 'Best'); % Only show legend fo
 lg.Position = [0.1,    0.1327,    0.1,    0.1325]; % set the legend size
 
 % make the scatter hist for the mutant data (bottom right panel)
-h=scatterhist(mutData.Children_Grans_4B_Count,mutData.l2OPP,...
+h2=scatterhist(mutData.Children_Grans_4B_Count,mutData.l2OPP,...
     'Group',mutData.treatment,'parent',botRP,'MarkerSize',3,'color',colorzScatter);
 xlabel('Mut 4B Granules'); ylabel('Log_2 OPP Intensity')
 title('137A all NaAsO2 Doses')
 hold on;
 
-boxplot(h(2),mutData.Children_Grans_4B_Count,mutData.treatment,'orientation','horizontal',...
+boxplot(h2(2),mutData.Children_Grans_4B_Count,mutData.treatment,'orientation','horizontal',...
      'label',{'','',''},'color',colorzScatter,'Symbol','');
-boxplot(h(3),mutData.l2OPP,mutData.treatment,'orientation','horizontal',...
+boxplot(h2(3),mutData.l2OPP,mutData.treatment,'orientation','horizontal',...
      'label', {'','',''},'color',colorzScatter,'Symbol',''); 
-set(h(2:3),'XTickLabel','');
-view(h(3),[270,90]);  % Rotate the Y plot
-xlim(h(1),xlimz); ylim(h(1),ylimz);
-xlim(h(2),xlimz); xlim(h(3),ylimz);  % Sync axes
+set(h2(2:3),'XTickLabel','');
+view(h2(3),[270,90]);  % Rotate the Y plot
+xlim(h2(1),xlimz); ylim(h2(1),ylimz);
+xlim(h2(2),xlimz); xlim(h2(3),ylimz);  % Sync axes
 hold off;
 fontname('Arial'); fontsize(8,"points");
 legend off;
@@ -367,7 +367,7 @@ for iPLS = 1:numel(plsOut)
     %   Parameter weights
     if iPLS < 2
         xlim(vh, [1,max(2,size(plsOut{iPLS}.PCTVAR,2))]);
-        set(vh,'XTick',1:size(plsOut{iPLS}.PCTVAR,2)); ylim(vh, [0,100]);
+        set(vh,'XTick',1:size(plsOut{iPLS}.PCTVAR,2),'YLim',[0,100]);
 
         ph = subplot(1,4,2,'Parent',botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
         set(ph,'XTick',[1:size(plsOut{iPLS}.param,2)],'XTickLabel',plsOut{iPLS}.param,'XTickLabelRotation',45);
@@ -430,10 +430,10 @@ end
 vh.Units="inches"; ph.Units="inches"; sh(1).Units="inches"; sh(2).Units="inches";
 fontname('Arial'); fontsize(8,"points");
 
-vh.InnerPosition = [0.25,0.2,1.5,2.1];
-ph.InnerPosition = [2.15,0.475,1.5,1.525];
-sh(1).InnerPosition = [4.1,0.475,1.5,1.525];
-sh(2).InnerPosition = [6,0.475,1.5,1.525];
+vh.Position = [0.25,0.2,1.5,2.1];
+ph.Position = [2.15,0.475,1.5,1.525];
+sh(1).Position = [4.1,0.475,1.5,1.525];
+sh(2).Position = [6,0.475,1.5,1.525];
 
 
 % change the background colors

@@ -52,11 +52,17 @@ generalOPPData = grpstats(subF3Adata,["cell","treatment"],["mean","median","sem"
 % pull the mean OPP of vehicle treated wt-4b cells
 meanOppWt4bNoAs = generalOPPData{"Wt_0uM NaAsO2","mean_OPP"}; 
 
+% pull the mean OPP of vehicle treated Mut-4b cells
+meanOppMt4bNoAs = generalOPPData{"Mt_0uM NaAsO2","mean_OPP"}; 
+
 % divide all of the OPP data by this number * 100 for % mean contol opp
 subF3Adata.PercOPP = (subF3Adata.OPP/meanOppWt4bNoAs)*100;
 
+% divide all of the OPP data by mut OPP number * 100 for % mean contol opp
+subF3Adata.MtPercOPP = (subF3Adata.OPP/meanOppMt4bNoAs)*100;
+
 % get the general values of the % differences in OPP
-generalPercOPPData = grpstats(subF3Adata,["cell","treatment"],["mean","median","sem","std"],"DataVars","PercOPP")
+generalPercOPPData = grpstats(subF3Adata,["cell","treatment"],["mean","median","sem","std"],"DataVars",["PercOPP","MtPercOPP"])
 
 % Do the statistics for % OPP versus each cell line or treatment (WT-4B 0uM NaAsO2 as control)
 [~,~,statsOPP] = anova1(subF3Adata.PercOPP,join(string([subF3Adata.cell,subF3Adata.treatment])),'off');
@@ -217,7 +223,7 @@ wtData.treatment = strrep(wtData.treatment,'0.1ug/mL TET at hour -24 and ','');
 wtData.treatment = strrep(wtData.treatment,' NaAsO2','');
 
 % get the general values of the wt l2OPP
-WTl2OppData = grpstats(wtData,"treatment",["mean","median","sem","std"],"DataVars","l2OPP")
+WTl2OppData = grpstats(wtData,"treatment",["mean","median","sem","std"],"DataVars",["l2OPP","OPP"])
 
 % Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
 [~,~,statsOPP] = anova1(wtData.l2OPP,wtData.treatment,'off');
@@ -240,7 +246,7 @@ mutData.treatment = strrep(mutData.treatment,'0.1ug/mL TET at hour -24 and ','')
 mutData.treatment = strrep(mutData.treatment,' NaAsO2','');
 
 % get the general values of the mut l2OPP
-MUTl2OppData = grpstats(mutData,"treatment",["mean","median","sem","std"],"DataVars","l2OPP")
+MUTl2OppData = grpstats(mutData,"treatment",["mean","median","sem","std"],"DataVars",["l2OPP","OPP"])
 
 % Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
 [~,~,statsOPP] = anova1(mutData.l2OPP,mutData.treatment,'off');
@@ -248,6 +254,17 @@ MUTl2OppData = grpstats(mutData,"treatment",["mean","median","sem","std"],"DataV
 mutL2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
 mutL2OPP.("Group") = gnamesOPP(mutL2OPP.("Group"));
 mutL2OPP.("Control Group") = gnamesOPP(mutL2OPP.("Control Group"))
+
+
+% determine what % difference there is btwn the wt and mut OPP at each NaAsO2 treatment concentration
+% at 62.5uM mut / wt
+MUTl2OppData{"62.5uM","mean_OPP"} / WTl2OppData{"62.5uM","mean_OPP"}
+
+% at 125uM mut / wt
+MUTl2OppData{"125uM","mean_OPP"} / WTl2OppData{"125uM","mean_OPP"}
+
+% at 250uM mut / wt
+MUTl2OppData{"250uM","mean_OPP"} / WTl2OppData{"250uM","mean_OPP"}
 
 %% Check all l2 opp data against eachother
 
@@ -582,3 +599,45 @@ ylim([0,17])
 saveas(figG3bp1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_125uM_G3BP1.fig')
 saveas(figG3bp1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_125uM_G3BP1.svg')
 
+%% Get the number of G3BP1 Granules @ 125uM NaAsO2 with either no or 24 hrs tet induction
+
+minGrans = 8;
+tetTime = ("TET at hour 0"|"TET at hour -24");
+
+% wt and mut data
+subzBoth = all([contains(dataset1.ifd.treatment,tetTime), ~contains(dataset1.ifd.cell,'bad')...
+    ,(dataset1.ifd.Children_Grans_G3BP1_Count >= minGrans), contains(dataset1.ifd.treatment,'and 125uM')],2); % 
+
+
+% pull the mutant data, get the real opp and l2opp
+allData = dataset1.ifd(subzBoth,:);
+
+%simplify treatment name
+allData.tet = extractBetween(allData.treatment,'TET at hour ',' and ');
+
+allData.treatment = strrep(allData.treatment,'0.1ug/mL TET at hour -24 and ','');
+allData.treatment = strrep(allData.treatment,'0ug/mL TET at hour 0 and ','');
+
+allData.treatment = strrep(allData.treatment,' NaAsO2','');
+allData.tet = strrep(allData.tet,'125uM NaAsO2','');
+
+%simplify cell names
+allData.cell = strrep(allData.cell,"HeLa 4B139AGFP",'mut');
+allData.cell = strrep(allData.cell,"HeLa eIF4BGFP",'wt');
+
+% get the general values of the mut l2OPP
+G3BP1data = grpstats(allData,["treatment","tet","cell"],["mean","median","sem","std"],"DataVars","Children_Grans_G3BP1_Count")
+
+% Do the statistics for G3BP1 for cell line and induction (WT-4B 24hr TET 125uM NaAsO2 as control)
+[~,~,statsG3BP1] = anova1(allData.Children_Grans_G3BP1_Count,strcat(allData.cell,{' '}, allData.tet),'off');
+[resultsG3bp1,~,~,gnamesG3bp1] = multcompare(statsG3BP1,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsG3BP1.gnames,'wt -24')),'Display','off','Approximate',false);
+g3bp1 = array2table(resultsG3bp1,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+g3bp1.("Group") = gnamesG3bp1(g3bp1.("Group"));
+g3bp1.("Control Group") = gnamesG3bp1(g3bp1.("Control Group"))
+
+% Do the statistics for G3BP1 for cell line and induction (WT-4B 0hr TET 125uM NaAsO2 as control)
+[~,~,statsG3BP1] = anova1(allData.Children_Grans_G3BP1_Count,strcat(allData.cell,{' '}, allData.tet),'off');
+[resultsG3bp1,~,~,gnamesG3bp1] = multcompare(statsG3BP1,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsG3BP1.gnames,'wt 0')),'Display','off','Approximate',false);
+g3bp1 = array2table(resultsG3bp1,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+g3bp1.("Group") = gnamesG3bp1(g3bp1.("Group"));
+g3bp1.("Control Group") = gnamesG3bp1(g3bp1.("Control Group"))

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Figure_S1</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-05-14">
+<meta name="DC.source" content="Figure_S1.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Figure S1</a>
+</li>
+<li>
+<a href="#2">Plot the Pearson's for G3BP1 and 4B-GFP for both cell lines</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Figure S1</h2>
+<pre class="codeinput">
+<span class="comment">% Load the model fit data for the live cell</span>
+addpath(<span class="string">'Z:\code\Nick'</span>)
+</pre>
+<h2 id="2">Plot the Pearson's for G3BP1 and 4B-GFP for both cell lines</h2>
+<pre class="codeinput">coLoc = readtable(<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\G3BP1_vs_4B_Colocalization_Data.xlsx'</span>);
+
+<span class="comment">% pull the data for the 125uM NaAsO2 treated cells</span>
+coLoc = coLoc(coLoc.NaAsO2Dose == 125,:);
+
+coLoc.Cell = categorical(coLoc.Cell,{<span class="string">'Wt-4B'</span>,<span class="string">'Mut-4B'</span>})
+
+<span class="comment">% now make a bar graph with the two cell lines and their pearsons with each</span>
+<span class="comment">% dot being a replicate</span>
+
+coLocStats = grpstats(coLoc,<span class="string">"Cell"</span>,[<span class="string">"mean"</span>,<span class="string">"sem"</span>],<span class="string">"DataVars"</span>,[<span class="string">"Pearson_sCorrelation"</span>,<span class="string">"Mander_sOverlap"</span>])
+
+supF1 = figure;
+bar(coLocStats.Cell,coLocStats.mean_Mander_sOverlap)
+hold <span class="string">on</span>;
+errorbar(coLocStats.mean_Mander_sOverlap,coLocStats.sem_Mander_sOverlap,<span class="string">'LineStyle'</span>,<span class="string">'none'</span>,<span class="string">'LineWidth'</span>,2,<span class="string">'CapSize'</span>,15,<span class="string">'Color'</span>,<span class="string">'k'</span>)
+swarmchart(coLoc,<span class="string">"Cell"</span>,<span class="string">"Mander_sOverlap"</span>,<span class="string">'XJitter'</span>,<span class="string">'density'</span>,<span class="string">'YJitter'</span>,<span class="string">'none'</span>,<span class="string">'MarkerEdgeColor'</span>,<span class="string">'k'</span>,<span class="string">'MarkerFaceColor'</span>,[0.5,0.5,0.5],<span class="string">'XJitterWidth'</span>,0.25)
+ylim([0,1])
+
+saveas(supF1,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S1.fig'</span>)
+saveas(supF1,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S1.svg'</span>)
+</pre>
+<pre class="codeoutput">Warning: Column headers from the file were modified to make them valid MATLAB
+identifiers before creating variable names for the table. The original column
+headers are saved in the VariableDescriptions property.
+Set 'VariableNamingRule' to 'preserve' to use the original column headers as
+table variable names. 
+coLoc =
+  6&times;11 table
+                                 Name                                   Cell     TetTime    NaAsO2Dose    XY    Pearson_sCorrelation    Mander_sOverlap    Mander_sOverlapCoefficientsK1    Mander_sOverlapCoefficientsK2    ColocalizationCoefficientsC1    ColocalizationCoefficientsC2
+    _______________________________________________________________    ______    _______    __________    __    ____________________    _______________    _____________________________    _____________________________    ____________________________    ____________________________
+    {'2023-05-03 TET curve NaAsO2 Curve DAPI 4B G3BP1 NFKb IF.nd2'}    Wt-4B       24          125        23           0.6628               0.79928                   0.95385                          0.66975                            1                               1              
+    {'2023-05-03 TET curve NaAsO2 Curve DAPI 4B G3BP1 NFKb IF.nd2'}    Wt-4B       24          125        24          0.60246                0.7775                   0.66144                          0.91392                            1                               1              
+    {'2023-05-03 TET curve NaAsO2 Curve DAPI 4B G3BP1 NFKb IF.nd2'}    Mut-4B      24          125        71          0.65884               0.78517                    1.0006                          0.61612                            1                               1              
+    {'2023-05-03 TET curve NaAsO2 Curve DAPI 4B G3BP1 NFKb IF.nd2'}    Mut-4B      24          125        72          0.64031               0.79965                   0.70025                          0.91316                            1                               1              
+    {'2023-01-19 EK 4B 120 min.nd2'                               }    Wt-4B       24          125         1          0.71567               0.86624                   0.59045                           1.2709                            1                               1              
+    {'2023-01-19 EK 4B 120 min.nd2'                               }    Mut-4B      24          125         2          0.73752               0.88685                   0.73055                           1.0766                            1                               1              
+coLocStats =
+  2&times;6 table
+               Cell     GroupCount    mean_Pearson_sCorrelation    sem_Pearson_sCorrelation    mean_Mander_sOverlap    sem_Mander_sOverlap
+              ______    __________    _________________________    ________________________    ____________________    ___________________
+    Wt-4B     Wt-4B         3                  0.66031                     0.032706                  0.81434                0.026701      
+    Mut-4B    Mut-4B        3                  0.67889                     0.029799                  0.82389                0.031756      
+</pre>
+<img vspace="5" hspace="5" src="Figure_S1_01.png" alt=""> <p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% Figure S1 
+
+% Load the model fit data for the live cell
+addpath('Z:\code\Nick')
+
+%% Plot the Pearson's for G3BP1 and 4B-GFP for both cell lines
+coLoc = readtable('Z:\imageData\SG_4B\Paper_Figures\Output_Figures\G3BP1_vs_4B_Colocalization_Data.xlsx');
+
+% pull the data for the 125uM NaAsO2 treated cells
+coLoc = coLoc(coLoc.NaAsO2Dose == 125,:);
+
+coLoc.Cell = categorical(coLoc.Cell,{'Wt-4B','Mut-4B'})
+
+% now make a bar graph with the two cell lines and their pearsons with each
+% dot being a replicate
+
+coLocStats = grpstats(coLoc,"Cell",["mean","sem"],"DataVars",["Pearson_sCorrelation","Mander_sOverlap"])
+
+supF1 = figure;
+bar(coLocStats.Cell,coLocStats.mean_Mander_sOverlap)
+hold on;
+errorbar(coLocStats.mean_Mander_sOverlap,coLocStats.sem_Mander_sOverlap,'LineStyle','none','LineWidth',2,'CapSize',15,'Color','k')
+swarmchart(coLoc,"Cell","Mander_sOverlap",'XJitter','density','YJitter','none','MarkerEdgeColor','k','MarkerFaceColor',[0.5,0.5,0.5],'XJitterWidth',0.25)
+ylim([0,1])
+
+saveas(supF1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S1.fig')
+saveas(supF1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S1.svg')
+
+
+##### SOURCE END #####
+-->
+</body>
+</html>

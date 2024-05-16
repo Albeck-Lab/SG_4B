@@ -86,7 +86,15 @@ wtSubData.treatment = strrep(wtSubData.treatment,' NaAsO2 at hour 0','');
 grpstats(wtSubData,"treatment",["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
 
 % Now just print the means
-grpstats(wtSubData,"treatment","mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+wtMeans = grpstats(wtSubData,"treatment","mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+
+% get the % change from 62.5 to 125
+wtMeans{"125uM",3:5} ./ wtMeans{"62.5uM",3:5}
+
+% get the % change from 125 to 250
+wtMeans{"250uM",3:5} ./ wtMeans{"125uM",3:5}
+
+
 
 %% Start with wt 4b cells treated with 125uM NaAsO2 as control vs all other NaAsO2 concentrations
 
@@ -205,7 +213,16 @@ subData.treatment = strrep(subData.treatment,' NaAsO2 at hour 0','');
 grpstats(subData,["treatment","cell"],["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond","NumGrans_granarea"])
 
 % Now just print the means
-grpstats(subData,["treatment","cell"],"mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond","NumGrans_granarea"])
+bothMeans = grpstats(subData,["treatment","cell"],"mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond","NumGrans_granarea"])
+
+% get the fold difference btwn wt and mut at 62.5
+rateFmin2RespondPercAt62 = ((bothMeans{"62.5uM_Mut",4:6} - bothMeans{"62.5uM_Wt",4:6}) ./ bothMeans{"62.5uM_Wt",4:6})*100
+
+% get the fold difference btwn wt and mut at 125
+rateFmin2RespondPercAt125 = ((bothMeans{"125uM_Mut",4:6} - bothMeans{"125uM_Wt",4:6}) ./ bothMeans{"125uM_Wt",4:6})*100
+
+% get the fold difference btwn wt and mut at 250
+rateFmin2RespondPercAt250 = ((bothMeans{"250uM_Mut",4:6} - bothMeans{"250uM_Wt",4:6}) ./ bothMeans{"250uM_Wt",4:6})*100
 
 
 %% Start with wt 4b cells treated with 62.5uM NaAsO2 as control vs all other NaAsO2 concentrations and btwn cell lines

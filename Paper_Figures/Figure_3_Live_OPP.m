@@ -97,7 +97,6 @@ subF3Adata.zOPP = nan([height(subF3Adata),1]);
 subF3Adata.zl2OPP = nan([height(subF3Adata),1]);
 subF3Adata.PercOPP = nan([height(subF3Adata),1]);
 
-
 % z score normalize per run
 subF3Adata{r1idx,"zOPP"} = zscore(subF3Adata{r1idx,"OPP"});
 subF3Adata{r1idx,"zl2OPP"} = zscore(subF3Adata{r1idx,"l2OPP"});

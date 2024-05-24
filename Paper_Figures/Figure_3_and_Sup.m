@@ -174,97 +174,88 @@ percChangeInOpp = grpstats(subF3Ddata,["treatment","cell"],["mean","sem","std"],
 
 
 % Do the statistics for % change in OPP per cell line at each dose (62.5uM)
-[~,~,statsOPP] = anova1(subF3Ddata.Percl2OPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),'off');
+[~,~,statsOPP] = anova1(subF3Ddata.PercOPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),'off');
 [resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'62.5uM Wt')),'Display','off','Approximate',false);
 PercOPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
 PercOPP.("Group") = gnamesOPP(PercOPP.("Group"));
 PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
 
 % Do the statistics for % change in OPP per cell line at each dose (125uM)
-[~,~,statsOPP] = anova1(subF3Ddata.Percl2OPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),'off');
+[~,~,statsOPP] = anova1(subF3Ddata.PercOPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),'off');
 [resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'125uM Wt')),'Display','off','Approximate',false);
 PercOPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
 PercOPP.("Group") = gnamesOPP(PercOPP.("Group"));
 PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
 
 % Do the statistics for % change in OPP per cell line at each dose (250uM)
-[~,~,statsOPP] = anova1(subF3Ddata.Percl2OPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),'off');
+[~,~,statsOPP] = anova1(subF3Ddata.PercOPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),'off');
 [resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'250uM Wt')),'Display','off','Approximate',false);
 PercOPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
 PercOPP.("Group") = gnamesOPP(PercOPP.("Group"));
 PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
 
-% run the PLS when you do a % change from veh per cell line...
-pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.PercOPP, 'params', {'F','rate','t2r','cellLine'},'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
-
-
-pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],...
-    subF3Ddata.Percl2OPP, 'params', {'F','rate','t2r'},'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
-
-
 %% Do PLSR comparing % var explained vs inputs like SG kinetics, cell line, and NaAsO2 Dose
 
 plsOut = []; 
 plsOut{1} = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','F','rate','t2r','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'dose','F','rate','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove only dose
 plsOut{2} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'F','rate','t2r','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'F','rate','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false,'bstrap',true);
 
 % just dose
 plsOut{3} = pls(subF3Ddata.dose,...
-    subF3Ddata.l2OPP, 'params', {'dose'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'dose'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % just F
 plsOut{4} = pls(subF3Ddata.NumGrans_f,...
-    subF3Ddata.l2OPP, 'params', {'F'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'F'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % just rate
 plsOut{5} = pls(subF3Ddata.NumGrans_rate_in_min,...
-    subF3Ddata.l2OPP, 'params', {'rate'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'rate'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
-% just t2r
+% just nd (nucleation delay; aka time 2 respond)
 plsOut{6} = pls(subF3Ddata.NumGrans_min_to_respond,...
-    subF3Ddata.l2OPP, 'params', {'t2r'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'nd'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % just cell line
 plsOut{7} = pls(subF3Ddata.celln,...
-    subF3Ddata.l2OPP, 'params', {'cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % f and cell line 
 plsOut{8} = pls([subF3Ddata.NumGrans_f,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'f','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'f','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 % rate and cell line 
 plsOut{9} = pls([subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
-% t2r and cell line 
+    subF3Ddata.PercOPP, 'params', {'rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+% nd and cell line 
 plsOut{10} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'t2r','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
-% remove dose and t2r
+% remove dose and nd
 plsOut{11} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'f','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'f','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove dose and f
 plsOut{12} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'t2r','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'nd','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove dose and rate
 plsOut{13} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'f','t2r','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'f','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % dose plus cell
 plsOut{14} = pls([subF3Ddata.dose,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'dose','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove only dose
 plsOut{15} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],...
-    subF3Ddata.l2OPP, 'params', {'F','rate','t2r'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.PercOPP, 'params', {'F','rate','nd'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % make a list for the legend
-legList = {'dose+F+rate+t2r+cell','F+rate+t2r+cell','dose','F','rate','t2r','cell','f+cell','rate+cell','t2r+cell','f+rate+cell','t2r+rate+cell','f+t2r+cell','dose+cell','f+rate+t2r'};
+legList = {'dose+F+rate+nd+cell','F+rate+nd+cell','dose','F','rate','nd','cell','f+cell','rate+cell','nd+cell','f+rate+cell','nd+rate+cell','f+nd+cell','dose+cell','f+rate+nd'};
 
 % Now print out the variance explained as a table
 varExpTable = table('size',[size(plsOut,2),2],'VariableTypes',{'cell','double'},'VariableNames',{'PLSR_inputs','Perc_varance_log2_OPP_explained'});
@@ -341,16 +332,15 @@ mutL2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Low
 mutL2OPP.("Group") = gnamesOPP(mutL2OPP.("Group"));
 mutL2OPP.("Control Group") = gnamesOPP(mutL2OPP.("Control Group"))
 
-
 % determine what % difference there is btwn the wt and mut OPP at each NaAsO2 treatment concentration
 % at 62.5uM mut / wt
-MUTl2OppData{"62.5uM","mean_OPP"} / WTl2OppData{"62.5uM","mean_OPP"}
+MUTl2OppData{"62.5uM","mean_PercOPP"} / WTl2OppData{"62.5uM","mean_PercOPP"}
 
 % at 125uM mut / wt
-MUTl2OppData{"125uM","mean_OPP"} / WTl2OppData{"125uM","mean_OPP"}
+MUTl2OppData{"125uM","mean_PercOPP"} / WTl2OppData{"125uM","mean_PercOPP"}
 
 % at 250uM mut / wt
-MUTl2OppData{"250uM","mean_OPP"} / WTl2OppData{"250uM","mean_OPP"}
+MUTl2OppData{"250uM","mean_PercOPP"} / WTl2OppData{"250uM","mean_PercOPP"}
 
 %% Check all l2 opp data against eachother
 
@@ -360,7 +350,6 @@ tetTime = '-24';
 % wt and mut data
 subzBoth = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]), ~contains(dataset1.ifd.cell,'bad')...
     , (dataset1.ifd.Children_Grans_4B_Count >= minGrans), ~contains(dataset1.ifd.treatment,'and 0uM')],2); % 
-
 
 % pull the mutant data, get the real opp and l2opp
 allData = dataset1.ifd(subzBoth,:);
@@ -463,7 +452,7 @@ lg.Position = [0.1,    0.1327,    0.1,    0.1325]; % set the legend size
 % make the scatter hist for the mutant data (bottom right panel)
 h2=scatterhist(mutData.Children_Grans_4B_Count,mutData.PercOPP,...
     'Group',mutData.treatment,'parent',botRP,'MarkerSize',3,'color',colorzScatter);
-xlabel('Mut 4B Granules'); ylabel('% OPP vs Mut Control')
+xlabel('Mut 4B Granules'); ylabel('% OPP Intensity vs Mut Control')
 title('137A all NaAsO2 Doses')
 hold on;
 
@@ -505,7 +494,7 @@ for iPLS = 1:7
     
     
     %   Parameter weights
-    if iPLS < 2
+    if iPLS == 2
         xlim(vh, [1,max(2,size(plsOut{iPLS}.PCTVAR,2))]);
         set(vh,'XTick',1:size(plsOut{iPLS}.PCTVAR,2),'YLim',[0,100]);
 
@@ -563,9 +552,9 @@ lego.NumColumns = 1;
 sh = []; clear sh;
 for s = 1:2
     sh(s) = subplot(1, 4, s+2,'Parent',botBot); 
-    bar(sh(s), plsOut{1}.XLinv(:,s));  title(sh(s), ['PC', num2str(s),' weights']);
-    set(sh(s),'XTick',[1:size(plsOut{1}.param,2)],'XTickLabel', plsOut{1}.param, 'XTickLabelRotation',45);
-    xlim(sh(s), [0,size(plsOut{1}.XLinv,1)+1]);
+    bar(sh(s), plsOut{2}.XLinv(:,s));  title(sh(s), ['PC', num2str(s),' weights']);
+    set(sh(s),'XTick',[1:size(plsOut{2}.param,2)],'XTickLabel', plsOut{2}.param, 'XTickLabelRotation',45);
+    xlim(sh(s), [0,size(plsOut{2}.XLinv,1)+1]);
 end
 
 vh.Units="inches"; ph.Units="inches"; sh(1).Units="inches"; sh(2).Units="inches";

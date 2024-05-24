@@ -89,10 +89,10 @@ grpstats(wtSubData,"treatment",["mean","median","sem","std"],"DataVars",["NumGra
 wtMeans = grpstats(wtSubData,"treatment","mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
 
 % get the % change from 62.5 to 125
-wtMeans{"125uM",3:5} ./ wtMeans{"62.5uM",3:5}
+wtPercChangeRateMaxMin2R_62to125 = ((wtMeans{"125uM",3:5}-wtMeans{"62.5uM",3:5}) ./ wtMeans{"62.5uM",3:5}) * 100
 
 % get the % change from 125 to 250
-wtMeans{"250uM",3:5} ./ wtMeans{"125uM",3:5}
+wtPercChangeRateMaxMin2R_125to250 = ((wtMeans{"250uM",3:5} - wtMeans{"125uM",3:5}) ./ wtMeans{"125uM",3:5}) *100
 
 
 

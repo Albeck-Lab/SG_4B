@@ -57,9 +57,8 @@ mergedIF = mergedIF(~contains(mergedIF.cell,'bad'),:);
 
 mergedIF.treatment = strrep(mergedIF.treatment,' and 10uM OPP','');
 
-
 tetTime = "hour -24"; % amount of tet induction
-naAsO2 = (" 0uM"|" 125uM"); % NaAsO2 treatment
+naAsO2 = (" 0uM"|" 62.5uM"|" 125uM"|" 250uM"); % NaAsO2 treatment
 
 subF3A = all([contains(mergedIF.treatment,tetTime),contains(mergedIF.treatment,naAsO2),...
     ~contains(mergedIF.cell,'bad')],2);
@@ -78,7 +77,7 @@ subF3Adata.treatment = strrep(subF3Adata.treatment,'0.1ug/mL TET at hour -24 and
 subF3Adata.treatment = strrep(subF3Adata.treatment,' NaAsO2','');
 
 % make the treatments a categorical
-catOrder = ["0uM","125uM"]; % give the order I want for the plot
+catOrder = ["0uM","62.5uM","125uM","250uM"]; % give the order I want for the plot
 subF3Adata.treatment = categorical(subF3Adata.treatment,catOrder); % set the order
 
 subF3Adata.OPP = subF3Adata.Intensity_MeanIntensity_Masked_OPP*65535; % get the real opp values
@@ -89,9 +88,15 @@ subF3Adata.l2OPP = log2(subF3Adata.OPP); % log2 the values
 r1idx = contains(subF3Adata.Metadata_FileLocation,'file:///D:/2023-06-29/2023-06-29_IF_live_merge.nd2');
 r2idx = contains(subF3Adata.Metadata_FileLocation,'file:///D:/2023-06-28/2023-06-28_IF_live_merge-Sharpened.nd2');
 
+subF3Adata.run = ones([height(subF3Adata),1]);
+subF3Adata{r2idx,"run"} =  ones([sum(subF3Adata{r2idx,"run"}),1]) +1;
+subF3Adata.run = categorical(subF3Adata.run);
+
 % fill them both with nans
 subF3Adata.zOPP = nan([height(subF3Adata),1]);
 subF3Adata.zl2OPP = nan([height(subF3Adata),1]);
+subF3Adata.PercOPP = nan([height(subF3Adata),1]);
+
 
 % z score normalize per run
 subF3Adata{r1idx,"zOPP"} = zscore(subF3Adata{r1idx,"OPP"});
@@ -103,24 +108,41 @@ subF3Adata{r2idx,"zl2OPP"} = zscore(subF3Adata{r2idx,"l2OPP"});
 generalOPPData = grpstats(subF3Adata,["cell","treatment","Metadata_FileLocation"],"mean","DataVars",["OPP","zOPP","zl2OPP"])
 generalOPPData = grpstats(subF3Adata,["cell","treatment"],"mean","DataVars",["OPP","zOPP","zl2OPP"])
 
-
 % Get the mean OPP intensity of everyone by treatment and cell line
 generalOPPData = grpstats(subF3Adata,["cell","treatment","Metadata_FileLocation"],["mean","median","sem","std"],"DataVars","OPP")
 
 % Do the % OPP intensity of everyone vs the mean OPP intensity of the 24 TET induced vehicle control wt-4b cells
+r1WTidx = all([contains(subF3Adata.Metadata_FileLocation,'file:///D:/2023-06-29/2023-06-29_IF_live_merge.nd2'),contains(string(subF3Adata.cell),'Wt')],2);
+r2WTidx = all([contains(subF3Adata.Metadata_FileLocation,'file:///D:/2023-06-28/2023-06-28_IF_live_merge-Sharpened.nd2'),contains(string(subF3Adata.cell),'Wt')],2);
+r1MUTidx = all([contains(subF3Adata.Metadata_FileLocation,'file:///D:/2023-06-29/2023-06-29_IF_live_merge.nd2'),contains(string(subF3Adata.cell),'Mut')],2);
+r2MUTidx = all([contains(subF3Adata.Metadata_FileLocation,'file:///D:/2023-06-28/2023-06-28_IF_live_merge-Sharpened.nd2'),contains(string(subF3Adata.cell),'Mut')],2);
 
 % pull the mean OPP of vehicle treated wt-4b cells
 meanOppWt4bNoAsr1 = generalOPPData{"Wt_0uM_file:///D:/2023-06-29/2023-06-29_IF_live_merge.nd2","mean_OPP"}; 
 meanOppWt4bNoAsr2 = generalOPPData{"Wt_0uM_file:///D:/2023-06-28/2023-06-28_IF_live_merge-Sharpened.nd2","mean_OPP"}; 
+% pull the mean opp of vehicle treated mut-4b cells
+meanOppMut4bNoAsr1 = generalOPPData{"Mut_0uM_file:///D:/2023-06-29/2023-06-29_IF_live_merge.nd2","mean_OPP"}; 
+meanOppMut4bNoAsr2 = generalOPPData{"Mut_0uM_file:///D:/2023-06-28/2023-06-28_IF_live_merge-Sharpened.nd2","mean_OPP"}; 
 
+% run 1 wt normalize - divide all of the wt OPP data by run 1 mean opp * 100 for % mean contol opp
+subF3Adata{r1WTidx,"PercOPP"} = 100 + (((subF3Adata{r1WTidx,"OPP"} - meanOppWt4bNoAsr1) / meanOppWt4bNoAsr1) * 100);
 
-% divide all of the OPP data by this number * 100 for % mean contol opp
-subF3Adata.PercOPP = (subF3Adata.OPP/meanOppWt4bNoAsr1)*100;
-subF3Adata{r2idx,"PercOPP"} = (subF3Adata{r2idx,"OPP"} / meanOppWt4bNoAsr2)*100;
+% run 2 wt normalize - divide all of the wt OPP data by run 2 mean opp * 100 for % mean contol opp
+subF3Adata{r2WTidx,"PercOPP"} = 100 + (((subF3Adata{r2WTidx,"OPP"} - meanOppWt4bNoAsr2) / meanOppWt4bNoAsr2) * 100);
 
+% run 1 mut normalize - divide all of the mut OPP data by run 1 mean opp * 100 for % mean contol opp
+subF3Adata{r1MUTidx,"PercOPP"} = 100 + (((subF3Adata{r1MUTidx,"OPP"} - meanOppMut4bNoAsr1) / meanOppMut4bNoAsr1) * 100);
+
+% run 2 mut normalize - divide all of the mut OPP data by run 2 mean opp * 100 for % mean contol opp
+subF3Adata{r2MUTidx,"PercOPP"} = 100 + (((subF3Adata{r2MUTidx,"OPP"} - meanOppMut4bNoAsr2) / meanOppMut4bNoAsr2) * 100);
 
 % get the general values of the % differences in OPP
 generalPercOPPData = grpstats(subF3Adata,["cell","treatment"],["mean","median","sem","std"],"DataVars","PercOPP")
+
+% plot it
+figure
+boxplot(subF3Adata.zl2OPP,[subF3Adata.cell,subF3Adata.treatment],'Notch','on','Symbol','')
+
 
 % Do the statistics for % OPP versus each cell line or treatment (WT-4B 0uM NaAsO2 as control)
 [~,~,statsOPP] = anova1(subF3Adata.zl2OPP,join(string([subF3Adata.cell,subF3Adata.treatment])));
@@ -191,7 +213,7 @@ PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
 
 %% Figure 3B - 
 % Fit the data
-[fitData2,~] = convertDatalocToModelFit({dataset2if}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','granarea'},'afterf',1);
+[fitData2,~] = convertDatalocToModelFit({dataset1,dataset2}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','granarea'},'afterf',1);
 
 %% Subset only the good data 
 fitData = fitData2; % work with duplicated data (for safety)

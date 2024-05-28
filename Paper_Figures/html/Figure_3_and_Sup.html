@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>Figure_3_and_Sup</title>
 <meta name="generator" content="MATLAB 23.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2024-05-24">
+<meta name="DC.date" content="2024-05-28">
 <meta name="DC.source" content="Figure_3_and_Sup.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -137,7 +137,7 @@ dataset1.movieinfo.PixNumX = 1600; <span class="comment">% pixels</span>
 dataset1.movieinfo.PixNumY = 1600; <span class="comment">% pixels</span>
 dataset1.movieinfo.tsamp = 3; <span class="comment">% minutes</span>
 </pre>
-<img vspace="5" hspace="5" src="Figure_3_and_Sup_01.png" alt=""> <h2 id="2">Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions</h2>
+<h2 id="2">Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions</h2>
 <pre class="codeinput">
 <span class="comment">% Figure 3A - % OPP intensity +/- stress for wt-4b and mut-4b vs wt-4B-GFP (as control) (24 hour induced only)</span>
 
@@ -395,11 +395,11 @@ PercOPP =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit    P-value
     ______________    _____________    ___________    __________    ___________    _______
-    {'62.5uM Mut'}    {'62.5uM Wt'}       11.071        12.624         14.177         0   
-    {'125uM Wt'  }    {'62.5uM Wt'}      -11.945       -10.438        -8.9304         0   
-    {'125uM Mut' }    {'62.5uM Wt'}       5.7429        7.3945         9.0461         0   
-    {'250uM Wt'  }    {'62.5uM Wt'}      -14.429       -12.932        -11.435         0   
-    {'250uM Mut' }    {'62.5uM Wt'}       5.2897        6.7643          8.239         0   
+    {'62.5uM Mut'}    {'62.5uM Wt'}       11.072        12.624         14.177         0   
+    {'125uM Wt'  }    {'62.5uM Wt'}      -11.945       -10.438        -8.9305         0   
+    {'125uM Mut' }    {'62.5uM Wt'}        5.743        7.3945          9.046         0   
+    {'250uM Wt'  }    {'62.5uM Wt'}      -14.429       -12.932        -11.436         0   
+    {'250uM Mut' }    {'62.5uM Wt'}       5.2898        6.7643         8.2389         0   
 PercOPP =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
@@ -407,7 +407,7 @@ PercOPP =
     {'62.5uM Wt' }    {'125uM Wt'}       8.9143         10.438         11.961               0
     {'62.5uM Mut'}    {'125uM Wt'}       21.615         23.062         24.509               0
     {'125uM Mut' }    {'125uM Wt'}       16.277         17.832         19.387               0
-    {'250uM Wt'  }    {'125uM Wt'}        -3.88        -2.4946        -1.1091      2.7675e-05
+    {'250uM Wt'  }    {'125uM Wt'}        -3.88        -2.4946        -1.1091      2.7968e-05
     {'250uM Mut' }    {'125uM Wt'}       15.841         17.202         18.563               0
 PercOPP =
   5&times;6 table
@@ -415,8 +415,8 @@ PercOPP =
     ______________    _____________    ___________    __________    ___________    __________
     {'62.5uM Wt' }    {'250uM Wt'}       11.418         12.932        14.446                0
     {'62.5uM Mut'}    {'250uM Wt'}       24.119         25.556        26.994                0
-    {'125uM Wt'  }    {'250uM Wt'}        1.108         2.4946        3.8811       2.6123e-05
-    {'125uM Mut' }    {'250uM Wt'}       18.781         20.327        21.872                0
+    {'125uM Wt'  }    {'250uM Wt'}       1.1078         2.4946        3.8814       3.3243e-05
+    {'125uM Mut' }    {'250uM Wt'}       18.781         20.327        21.873                0
     {'250uM Mut' }    {'250uM Wt'}       18.346         19.696        21.047                0
 </pre>
 <h2 id="7">Do PLSR comparing % var explained vs inputs like SG kinetics, cell line, and NaAsO2 Dose</h2>
@@ -789,10 +789,12 @@ axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
 
 <span class="comment">% loop through the PLS plots</span>
 
+colorsForPLS = turbo(8);
+
 <span class="keyword">for</span> iPLS = 1:8
     <span class="comment">%   Cumulative Variance explained per component (2nd plot)</span>
     vh = subplot(1,4,1,<span class="string">'Parent'</span>,botBot);
-    plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,<span class="string">'-o'</span>);
+    plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,<span class="string">'-'</span>,<span class="string">'Marker'</span>,<span class="string">'.'</span>,<span class="string">'MarkerSize'</span>,16, <span class="string">'Color'</span>,[colorsForPLS(iPLS,:), 0.8]);
     hold(vh, <span class="string">'on'</span>);
     title(vh, <span class="string">'% Variance explained'</span>); xlabel(vh, <span class="string">'Component'</span>); ylabel(vh, <span class="string">'%OPP Variance Explained'</span>);
     axis(vh, <span class="string">'square'</span>);
@@ -800,7 +802,6 @@ axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
 
     <span class="comment">%   Parameter weights</span>
     <span class="keyword">if</span> iPLS == 2
-
 
         xlim(vh, [1,max(2,size(plsOut{1}.PCTVAR,2))]);
         set(vh,<span class="string">'XTick'</span>,1:size(plsOut{1}.PCTVAR,2),<span class="string">'YLim'</span>,[0,100]);
@@ -813,8 +814,6 @@ axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
         <span class="comment">%   Set an overall title</span>
         title([<span class="string">'PLS: '</span>,plsOut{iPLS}.input(:)',<span class="string">', '</span> ,plsOut{iPLS}.output(:)']);
 
-
-
         <span class="comment">%Add significance thresholds from bootstrapping, if available</span>
         <span class="keyword">if</span> isfield(plsOut{iPLS},<span class="string">'Boot'</span>);    cc = [0.4,0.4,0.4];
             <span class="comment">%Plot Variance Explained random region</span>
@@ -825,7 +824,6 @@ axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
             <span class="comment">%   Draw patch for random region</span>
             patch(vh, rrx, rry, <span class="string">'k'</span>, <span class="string">'FaceAlpha'</span>, 0.2, <span class="string">'LineStyle'</span>, <span class="string">'none'</span>);
 
-        <span class="comment">%     ylp = ylim(p3h); %Store Parameter Y Limits</span>
             <span class="comment">%Get average thresholds for Parameters</span>
             thr{1} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.cat],p.nout,:),1);
             thr{2} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.dis],p.nout,:),1);
@@ -891,8 +889,6 @@ botLP.BackgroundColor = [1,1,1];
 botRP.BackgroundColor = [1,1,1];
 botBot.BackgroundColor = [1,1,1];
 
-
-
 saveas(figure3,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.fig'</span>)
 saveas(figure3,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.svg'</span>)
 </pre>
@@ -900,7 +896,7 @@ saveas(figure3,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Fig
 Warning: In a future release, UI components will not be included in the output.
 To include UI components, use the exportapp function. 
 </pre>
-<img vspace="5" hspace="5" src="Figure_3_and_Sup_02.png" alt=""> <h2 id="11">Now print the raw OPP values per cell line per NaAsO2 treatment</h2>
+<img vspace="5" hspace="5" src="Figure_3_and_Sup_01.png" alt=""> <h2 id="11">Now print the raw OPP values per cell line per NaAsO2 treatment</h2>
 <pre class="codeinput">subz = ~contains(dataset1.ifd.cell,<span class="string">'bad'</span>,<span class="string">'ignorecase'</span>,true); <span class="comment">% filter for the parameters set above</span>
 
 orderOfPlot = {<span class="keyword">...</span>
@@ -1017,7 +1013,7 @@ title(<span class="string">'139A Tet induction versus OPP'</span>)
 saveas(supF3,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.fig'</span>)
 saveas(supF3,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.svg'</span>)
 </pre>
-<img vspace="5" hspace="5" src="Figure_3_and_Sup_03.png" alt=""> <h2 id="13">Get the number of G3BP1 Granules @ 125uM NaAsO2</h2>
+<img vspace="5" hspace="5" src="Figure_3_and_Sup_02.png" alt=""> <h2 id="13">Get the number of G3BP1 Granules @ 125uM NaAsO2</h2>
 <pre class="codeinput">minGrans = 3;
 tetTime = <span class="string">'-24'</span>;
 
@@ -1072,7 +1068,7 @@ g3bp1 =
     _______    _____________    ___________    __________    ___________    _________
     {'mut'}       {'wt'}          -1.4535       -0.89793      -0.34235      0.0015809
 </pre>
-<img vspace="5" hspace="5" src="Figure_3_and_Sup_04.png" alt=""> <h2 id="14">Get the number of G3BP1 Granules @ 125uM NaAsO2 with either no or 24 hrs tet induction</h2>
+<img vspace="5" hspace="5" src="Figure_3_and_Sup_03.png" alt=""> <h2 id="14">Get the number of G3BP1 Granules @ 125uM NaAsO2 with either no or 24 hrs tet induction</h2>
 <pre class="codeinput">minGrans = 8;
 tetTime = (<span class="string">"TET at hour 0"</span>|<span class="string">"TET at hour -24"</span>);
 
@@ -1659,10 +1655,12 @@ axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
 
 % loop through the PLS plots
 
+colorsForPLS = turbo(8);
+
 for iPLS = 1:8
     %   Cumulative Variance explained per component (2nd plot)
     vh = subplot(1,4,1,'Parent',botBot); 
-    plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,'-o');
+    plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,'-','Marker','.','MarkerSize',16, 'Color',[colorsForPLS(iPLS,:), 0.8]);
     hold(vh, 'on');  
     title(vh, '% Variance explained'); xlabel(vh, 'Component'); ylabel(vh, '%OPP Variance Explained'); 
     axis(vh, 'square'); 
@@ -1670,7 +1668,6 @@ for iPLS = 1:8
     
     %   Parameter weights
     if iPLS == 2
-        
 
         xlim(vh, [1,max(2,size(plsOut{1}.PCTVAR,2))]);
         set(vh,'XTick',1:size(plsOut{1}.PCTVAR,2),'YLim',[0,100]);
@@ -1683,8 +1680,6 @@ for iPLS = 1:8
         %   Set an overall title
         title(['PLS: ',plsOut{iPLS}.input(:)',', ' ,plsOut{iPLS}.output(:)']);
 
-        
-    
         %Add significance thresholds from bootstrapping, if available
         if isfield(plsOut{iPLS},'Boot');    cc = [0.4,0.4,0.4];
             %Plot Variance Explained random region
@@ -1695,7 +1690,6 @@ for iPLS = 1:8
             %   Draw patch for random region
             patch(vh, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
             
-        %     ylp = ylim(p3h); %Store Parameter Y Limits            
             %Get average thresholds for Parameters
             thr{1} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.cat],p.nout,:),1);
             thr{2} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.dis],p.nout,:),1);
@@ -1760,8 +1754,6 @@ topP.BackgroundColor = [1,1,1];
 botLP.BackgroundColor = [1,1,1];
 botRP.BackgroundColor = [1,1,1];
 botBot.BackgroundColor = [1,1,1];
-
-
 
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.fig')
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.svg')

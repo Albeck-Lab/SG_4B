@@ -512,10 +512,12 @@ axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
 
 % loop through the PLS plots
 
+colorsForPLS = turbo(8);
+
 for iPLS = 1:8
     %   Cumulative Variance explained per component (2nd plot)
     vh = subplot(1,4,1,'Parent',botBot); 
-    plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,'-o');
+    plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,'-','Marker','.','MarkerSize',16, 'Color',[colorsForPLS(iPLS,:), 0.8]);
     hold(vh, 'on');  
     title(vh, '% Variance explained'); xlabel(vh, 'Component'); ylabel(vh, '%OPP Variance Explained'); 
     axis(vh, 'square'); 
@@ -523,7 +525,6 @@ for iPLS = 1:8
     
     %   Parameter weights
     if iPLS == 2
-        
 
         xlim(vh, [1,max(2,size(plsOut{1}.PCTVAR,2))]);
         set(vh,'XTick',1:size(plsOut{1}.PCTVAR,2),'YLim',[0,100]);
@@ -536,8 +537,6 @@ for iPLS = 1:8
         %   Set an overall title
         title(['PLS: ',plsOut{iPLS}.input(:)',', ' ,plsOut{iPLS}.output(:)']);
 
-        
-    
         %Add significance thresholds from bootstrapping, if available
         if isfield(plsOut{iPLS},'Boot');    cc = [0.4,0.4,0.4];
             %Plot Variance Explained random region
@@ -548,7 +547,6 @@ for iPLS = 1:8
             %   Draw patch for random region
             patch(vh, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
             
-        %     ylp = ylim(p3h); %Store Parameter Y Limits            
             %Get average thresholds for Parameters
             thr{1} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.cat],p.nout,:),1);
             thr{2} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.dis],p.nout,:),1);
@@ -613,8 +611,6 @@ topP.BackgroundColor = [1,1,1];
 botLP.BackgroundColor = [1,1,1];
 botRP.BackgroundColor = [1,1,1];
 botBot.BackgroundColor = [1,1,1];
-
-
 
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.fig')
 saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.svg')

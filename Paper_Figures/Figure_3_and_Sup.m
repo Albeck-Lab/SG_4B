@@ -526,7 +526,7 @@ for iPLS = 1:8
     %   Parameter weights
     if iPLS == 2
 
-        xlim(vh, [1,max(2,size(plsOut{1}.PCTVAR,2))]);
+        xlim(vh, [0.5,max(2,size(plsOut{1}.PCTVAR,2))]);
         set(vh,'XTick',1:size(plsOut{1}.PCTVAR,2),'YLim',[0,100]);
 
         ph = subplot(1,4,2,'Parent',botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));

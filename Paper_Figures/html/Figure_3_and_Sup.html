@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>Figure_3_and_Sup</title>
 <meta name="generator" content="MATLAB 23.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2024-05-28">
+<meta name="DC.date" content="2024-06-05">
 <meta name="DC.source" content="Figure_3_and_Sup.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -396,26 +396,26 @@ PercOPP =
         Group         Control Group    Lower Limit    Difference    Upper Limit    P-value
     ______________    _____________    ___________    __________    ___________    _______
     {'62.5uM Mut'}    {'62.5uM Wt'}       11.072        12.624         14.177         0   
-    {'125uM Wt'  }    {'62.5uM Wt'}      -11.945       -10.438        -8.9305         0   
-    {'125uM Mut' }    {'62.5uM Wt'}        5.743        7.3945          9.046         0   
+    {'125uM Wt'  }    {'62.5uM Wt'}      -11.944       -10.438        -8.9308         0   
+    {'125uM Mut' }    {'62.5uM Wt'}       5.7433        7.3945         9.0457         0   
     {'250uM Wt'  }    {'62.5uM Wt'}      -14.429       -12.932        -11.436         0   
-    {'250uM Mut' }    {'62.5uM Wt'}       5.2898        6.7643         8.2389         0   
+    {'250uM Mut' }    {'62.5uM Wt'}         5.29        6.7643         8.2387         0   
 PercOPP =
   5&times;6 table
-        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
-    ______________    _____________    ___________    __________    ___________    __________
-    {'62.5uM Wt' }    {'125uM Wt'}       8.9143         10.438         11.961               0
-    {'62.5uM Mut'}    {'125uM Wt'}       21.615         23.062         24.509               0
-    {'125uM Mut' }    {'125uM Wt'}       16.277         17.832         19.387               0
-    {'250uM Wt'  }    {'125uM Wt'}        -3.88        -2.4946        -1.1091      2.7968e-05
-    {'250uM Mut' }    {'125uM Wt'}       15.841         17.202         18.563               0
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value 
+    ______________    _____________    ___________    __________    ___________    _________
+    {'62.5uM Wt' }    {'125uM Wt'}        8.9141        10.438        11.961               0
+    {'62.5uM Mut'}    {'125uM Wt'}        21.615        23.062        24.509               0
+    {'125uM Mut' }    {'125uM Wt'}        16.277        17.832        19.387               0
+    {'250uM Wt'  }    {'125uM Wt'}       -3.8801       -2.4946        -1.109       2.992e-05
+    {'250uM Mut' }    {'125uM Wt'}        15.841        17.202        18.563               0
 PercOPP =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
     {'62.5uM Wt' }    {'250uM Wt'}       11.418         12.932        14.446                0
     {'62.5uM Mut'}    {'250uM Wt'}       24.119         25.556        26.994                0
-    {'125uM Wt'  }    {'250uM Wt'}       1.1078         2.4946        3.8814       3.3243e-05
+    {'125uM Wt'  }    {'250uM Wt'}       1.1079         2.4946        3.8813       4.1548e-05
     {'125uM Mut' }    {'250uM Wt'}       18.781         20.327        21.873                0
     {'250uM Mut' }    {'250uM Wt'}       18.346         19.696        21.047                0
 </pre>
@@ -803,7 +803,7 @@ colorsForPLS = turbo(8);
     <span class="comment">%   Parameter weights</span>
     <span class="keyword">if</span> iPLS == 2
 
-        xlim(vh, [1,max(2,size(plsOut{1}.PCTVAR,2))]);
+        xlim(vh, [0.5,max(2,size(plsOut{1}.PCTVAR,2))]);
         set(vh,<span class="string">'XTick'</span>,1:size(plsOut{1}.PCTVAR,2),<span class="string">'YLim'</span>,[0,100]);
 
         ph = subplot(1,4,2,<span class="string">'Parent'</span>,botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
@@ -1669,7 +1669,7 @@ for iPLS = 1:8
     %   Parameter weights
     if iPLS == 2
 
-        xlim(vh, [1,max(2,size(plsOut{1}.PCTVAR,2))]);
+        xlim(vh, [0.5,max(2,size(plsOut{1}.PCTVAR,2))]);
         set(vh,'XTick',1:size(plsOut{1}.PCTVAR,2),'YLim',[0,100]);
 
         ph = subplot(1,4,2,'Parent',botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));

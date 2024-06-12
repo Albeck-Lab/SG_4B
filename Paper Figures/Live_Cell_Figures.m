@@ -34,10 +34,10 @@ dataset6 = dataset6.dataloc; % pull the loaded dataloc structure
 datalocDF = makeLiveCellDataframe({dataset2,dataset4,dataset6},'subset','TET100n24t_NaAsO2125u2t');
 
 plotme = {'NumGrans'}; %,'granspercell'
-plottype = {'albeck mean fit fixed f'}; % 'albeck mean fit'
+plottype = {'mean'}; % 'albeck mean fit'
 
-plot_by_ND_forJB('treatment', datalocDF,'plottype',plottype,'channel',plotme,'looptime',3,'font_size',8)
-
+plot_by_ND_forJB('treatment', datalocDF,'plottype',plottype,'channel',plotme,'looptime',3,'font_size',8,'tmaxaftertx',1,'saveloc','Z:\imageData\SG_4B\Paper Figures')
+plot_by_ND_lcDF('treatment', datalocDF,'plottype',plottype,'channel',plotme,'looptime',3,'font_size',8,'tmaxaftertx',1,'saveloc','Z:\imageData\SG_4B\Paper Figures')
 %% fit the model to the dataset
 [fitData2,~] = convertDatalocToModelFit({dataset2,dataset4,dataset6}, 'NumGrans');
 

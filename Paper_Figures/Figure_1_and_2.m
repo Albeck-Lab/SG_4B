@@ -2,7 +2,7 @@
 % Do the analysis and make both of these figures. 
 
 %% Load the model fit data for the live cell
-addpath('Z:\code\Nick')
+addpath('Z:\imageData\SG_4B\Code','Z:\Code\PLS','Z:\Code\Nick')
 %% 24h induced Wild-Type 4B Data
 
 % 2023-05-03
@@ -212,17 +212,45 @@ subData.treatment = strrep(subData.treatment,' NaAsO2 at hour 0','');
 % get averything for the reader if needed
 grpstats(subData,["treatment","cell"],["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond","NumGrans_granarea"])
 
+
 % Now just print the means
-bothMeans = grpstats(subData,["treatment","cell"],"mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond","NumGrans_granarea"])
+meanData = grpstats(subData,["treatment","cell"],"mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond","NumGrans_granarea"])
 
-% get the fold difference btwn wt and mut at 62.5
-rateFmin2RespondPercAt62 = ((bothMeans{"62.5uM_Mut",4:6} - bothMeans{"62.5uM_Wt",4:6}) ./ bothMeans{"62.5uM_Wt",4:6})*100
+%% What is the % difference btwn the rate for wt and mut?
 
-% get the fold difference btwn wt and mut at 125
-rateFmin2RespondPercAt125 = ((bothMeans{"125uM_Mut",4:6} - bothMeans{"125uM_Wt",4:6}) ./ bothMeans{"125uM_Wt",4:6})*100
+% What is the % difference btwn the rate for wt and mut at 62.5 NaAsO2?
+percRatechange62 = ((meanData{"62.5uM_Mut","mean_NumGrans_rate_in_min"} - meanData{"62.5uM_Wt","mean_NumGrans_rate_in_min"}) / meanData{"62.5uM_Wt","mean_NumGrans_rate_in_min"})*100
 
-% get the fold difference btwn wt and mut at 250
-rateFmin2RespondPercAt250 = ((bothMeans{"250uM_Mut",4:6} - bothMeans{"250uM_Wt",4:6}) ./ bothMeans{"250uM_Wt",4:6})*100
+% What is the % difference btwn the rate for wt and mut at 125 NaAsO2?
+percRatechange125 = ((meanData{"125uM_Mut","mean_NumGrans_rate_in_min"} - meanData{"125uM_Wt","mean_NumGrans_rate_in_min"}) / meanData{"125uM_Wt","mean_NumGrans_rate_in_min"})*100
+
+% What is the % difference btwn the rate for wt and mut at 250 NaAsO2?
+percRatechange250 = ((meanData{"250uM_Mut","mean_NumGrans_rate_in_min"} - meanData{"250uM_Wt","mean_NumGrans_rate_in_min"}) / meanData{"250uM_Wt","mean_NumGrans_rate_in_min"})*100
+
+
+
+%% What is the % difference btwn the f for wt and mut?
+
+% What is the % difference btwn the f for wt and mut at 62.5 NaAsO2?
+percFchange62 = ((meanData{"62.5uM_Mut","mean_NumGrans_f"} - meanData{"62.5uM_Wt","mean_NumGrans_f"}) / meanData{"62.5uM_Wt","mean_NumGrans_f"})*100
+
+% What is the % difference btwn the f for wt and mut at 125 NaAsO2?
+percFchange125 = ((meanData{"125uM_Mut","mean_NumGrans_f"} - meanData{"125uM_Wt","mean_NumGrans_f"}) / meanData{"125uM_Wt","mean_NumGrans_f"})*100
+
+% What is the % difference btwn the f for wt and mut at 250 NaAsO2?
+percFchange250 = ((meanData{"250uM_Mut","mean_NumGrans_f"} - meanData{"250uM_Wt","mean_NumGrans_f"}) / meanData{"250uM_Wt","mean_NumGrans_f"})*100
+
+
+%% What is the % difference btwn the m2r for wt and mut?
+
+% What is the % difference btwn the m2r for wt and mut at 62.5 NaAsO2?
+percM2Rchange62 = ((meanData{"62.5uM_Mut","mean_NumGrans_min_to_respond"} - meanData{"62.5uM_Wt","mean_NumGrans_min_to_respond"}) / meanData{"62.5uM_Wt","mean_NumGrans_min_to_respond"})*100
+
+% What is the % difference btwn the m2r for wt and mut at 125 NaAsO2?
+percM2Rchange125 = ((meanData{"125uM_Mut","mean_NumGrans_min_to_respond"} - meanData{"125uM_Wt","mean_NumGrans_min_to_respond"}) / meanData{"125uM_Wt","mean_NumGrans_min_to_respond"})*100
+
+% What is the % difference btwn the m2r for wt and mut at 250 NaAsO2?
+percM2Rchange250 = ((meanData{"250uM_Mut","mean_NumGrans_min_to_respond"} - meanData{"250uM_Wt","mean_NumGrans_min_to_respond"}) / meanData{"250uM_Wt","mean_NumGrans_min_to_respond"})*100
 
 
 %% Start with wt 4b cells treated with 62.5uM NaAsO2 as control vs all other NaAsO2 concentrations and btwn cell lines

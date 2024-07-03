@@ -1,0 +1,1926 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Figure_3_S2B_S3</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-07-03">
+<meta name="DC.source" content="Figure_3_S2B_S3.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Load the appended and aligned Live_cell last frame and IF data</a>
+</li>
+<li>
+<a href="#2">Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions</a>
+</li>
+<li>
+<a href="#3">Do the % OPP intensity of everyone vs the mean OPP intensity of the 24 TET induced vehicle control wt-4b cells</a>
+</li>
+<li>
+<a href="#4">Figure 3D - PLSR of Granule kinetics and OPP outcome</a>
+</li>
+<li>
+<a href="#5">Subset only the good data</a>
+</li>
+<li>
+<a href="#6">Collect the data for use in PLSR</a>
+</li>
+<li>
+<a href="#7">Do PLSR comparing % var explained vs inputs like SG kinetics, cell line, and NaAsO2 Dose</a>
+</li>
+<li>
+<a href="#8">Prepare wt and mut data for Figure 3B and 3C plots</a>
+</li>
+<li>
+<a href="#9">Check all l2 opp data against eachother</a>
+</li>
+<li>
+<a href="#10">Make the plots</a>
+</li>
+<li>
+<a href="#11">Now print the raw OPP values per cell line per NaAsO2 treatment</a>
+</li>
+<li>
+<a href="#12">X hour tet wt 4b or 139a 4b vs opp @ each naaso2 dose</a>
+</li>
+<li>
+<a href="#13">Get the number of G3BP1 Granules @ 125uM NaAsO2</a>
+</li>
+<li>
+<a href="#14">Get the number of G3BP1 Granules @ 125uM NaAsO2 with either no or 24 hrs tet induction</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Load the appended and aligned Live_cell last frame and IF data</h2>
+<pre class="codeinput">addpath(<span class="string">'Z:\imageData\SG_4B\Code'</span>,<span class="string">'Z:\Code\PLS'</span>,<span class="string">'Z:\Code\Nick'</span>)
+
+<span class="comment">% 2023-06-29 Data</span>
+basePath = <span class="string">'Z:\imageData\SG_4B\'</span>;
+dataset1=load([basePath,<span class="string">'2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat'</span>]); <span class="comment">% _Copy</span>
+dataset1 = dataset1.dataloc; <span class="comment">% pull the loaded dataloc structure</span>
+
+<span class="comment">% append the movie's metadata</span>
+dataset1.movieinfo.PixSizeX = 0.33; <span class="comment">% um/px</span>
+dataset1.movieinfo.PixSizeY = 0.33; <span class="comment">% um/px</span>
+dataset1.movieinfo.PixNumX = 1600; <span class="comment">% pixels</span>
+dataset1.movieinfo.PixNumY = 1600; <span class="comment">% pixels</span>
+dataset1.movieinfo.tsamp = 3; <span class="comment">% minutes</span>
+</pre>
+<h2 id="2">Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions</h2>
+<pre class="codeinput">
+<span class="comment">% Figure 3A - % OPP intensity +/- stress for wt-4b and mut-4b vs wt-4B-GFP (as control) (24 hour induced only)</span>
+
+<span class="comment">% 24h TET w/ no NaAsO2 and 24h TET with 125uM NaAsO2</span>
+<span class="comment">% 4B wt or mut grans vs OPP %</span>
+
+tetTime = <span class="string">"hour -24"</span>; <span class="comment">% amount of tet induction</span>
+naAsO2 = (<span class="string">" 0uM"</span>|<span class="string">" 125uM"</span>); <span class="comment">% NaAsO2 treatment</span>
+
+subF3A = all([contains(dataset1.ifd.treatment,tetTime),~contains(dataset1.ifd.cell,<span class="string">'bad'</span>),contains(dataset1.ifd.treatment,naAsO2) <span class="keyword">...</span>
+    ],2); <span class="comment">% , (dataloc.ifd.Children_Grans_G3BP1_Count &gt;= minGrans)</span>
+
+subF3Adata = dataset1.ifd(subF3A,:); <span class="comment">% pull that subset of data</span>
+
+<span class="comment">% make the treatments a categorical and simplify them</span>
+subF3Adata.treatment = strrep(subF3Adata.treatment,<span class="string">'0.1ug/mL TET at hour -24 and '</span>,<span class="string">''</span>);
+catOrder = [<span class="string">"0uM NaAsO2"</span>,<span class="string">"125uM NaAsO2"</span>]; <span class="comment">% give the order I want for the plot</span>
+subF3Adata.treatment = categorical(subF3Adata.treatment,catOrder); <span class="comment">% set the order</span>
+
+<span class="comment">% make the cell lines a categorical and simplify them</span>
+subF3Adata.cell = strrep(subF3Adata.cell,<span class="string">'HeLa eIF4BGFP'</span>,<span class="string">'Wt'</span>);
+subF3Adata.cell = strrep(subF3Adata.cell,<span class="string">'HeLa 4B139AGFP'</span>,<span class="string">'Mt'</span>);
+subF3Adata.cell = categorical(subF3Adata.cell,{<span class="string">'Wt'</span>,<span class="string">'Mt'</span>}); <span class="comment">% make the cell line a categorical</span>
+
+<span class="comment">% get the real opp values</span>
+subF3Adata.OPP = subF3Adata.Intensity_MeanIntensity_Masked_OPP*65535;
+
+<span class="comment">% and the log2 OPP</span>
+subF3Adata.l2OPP = log2(subF3Adata.OPP);
+
+<span class="comment">% Get the mean OPP intensity of everyone by treatment and cell line</span>
+generalOPPData = grpstats(subF3Adata,[<span class="string">"cell"</span>,<span class="string">"treatment"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,[<span class="string">"OPP"</span>,<span class="string">"l2OPP"</span>])
+</pre>
+<pre class="codeoutput">generalOPPData =
+  4&times;11 table
+                       cell     treatment      GroupCount    mean_OPP    median_OPP    sem_OPP    std_OPP    mean_l2OPP    median_l2OPP    sem_l2OPP    std_l2OPP
+                       ____    ____________    __________    ________    __________    _______    _______    __________    ____________    _________    _________
+    Wt_0uM NaAsO2       Wt     0uM NaAsO2         464         7464.6       7271.3      120.13     2587.7       12.777         12.828       0.024078      0.51866 
+    Wt_125uM NaAsO2     Wt     125uM NaAsO2       417         538.15       527.83      7.9829     163.02        9.009         9.0439       0.020947      0.42775 
+    Mt_0uM NaAsO2       Mt     0uM NaAsO2         523         3746.6       3487.6      61.095     1397.2       11.776         11.768       0.023101       0.5283 
+    Mt_125uM NaAsO2     Mt     125uM NaAsO2       319         959.68       877.14      25.135     448.93       9.7709         9.7767        0.03554      0.63477 
+</pre>
+<h2 id="3">Do the % OPP intensity of everyone vs the mean OPP intensity of the 24 TET induced vehicle control wt-4b cells</h2>
+<pre class="codeinput">
+<span class="comment">% pull the mean OPP of vehicle treated wt-4b cells</span>
+meanOppWt4bNoAs = generalOPPData{<span class="string">"Wt_0uM NaAsO2"</span>,<span class="string">"mean_OPP"</span>};
+
+<span class="comment">% pull the mean OPP of vehicle treated Mut-4b cells</span>
+meanOppMt4bNoAs = generalOPPData{<span class="string">"Mt_0uM NaAsO2"</span>,<span class="string">"mean_OPP"</span>};
+
+<span class="comment">% pull the mean l2OPP of vehicle treated wt-4b cells</span>
+meanl2OppWt4bNoAs = generalOPPData{<span class="string">"Wt_0uM NaAsO2"</span>,<span class="string">"mean_l2OPP"</span>};
+
+<span class="comment">% pull the mean l2OPP of vehicle treated Mut-4b cells</span>
+meanl2OppMt4bNoAs = generalOPPData{<span class="string">"Mt_0uM NaAsO2"</span>,<span class="string">"mean_l2OPP"</span>};
+
+<span class="comment">% divide all of the OPP data by this number * 100 for % mean contol opp</span>
+subF3Adata.PercOPP = (subF3Adata.OPP/meanOppWt4bNoAs)*100;
+
+<span class="comment">% divide all of the OPP data by mut OPP number * 100 for % mean contol opp</span>
+subF3Adata.MtPercOPP = (subF3Adata.OPP/meanOppMt4bNoAs)*100;
+
+<span class="comment">% get the general values of the % differences in OPP</span>
+generalPercOPPData = grpstats(subF3Adata,[<span class="string">"cell"</span>,<span class="string">"treatment"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,[<span class="string">"PercOPP"</span>,<span class="string">"MtPercOPP"</span>])
+
+<span class="comment">% Do the statistics for % OPP versus each cell line or treatment (WT-4B 0uM NaAsO2 as control)</span>
+[~,~,statsOPP] = anova1(subF3Adata.PercOPP,join(string([subF3Adata.cell,subF3Adata.treatment])),<span class="string">'off'</span>);
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'Wt 0uM NaAsO2'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+PercOPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+PercOPP.(<span class="string">"Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Group"</span>));
+PercOPP.(<span class="string">"Control Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Control Group"</span>))
+
+<span class="comment">% Do the statistics for % OPP versus each cell line or treatment (MUT-4B 125uM NaAsO2 as control)</span>
+[~,~,statsOPP] = anova1(subF3Adata.PercOPP,join(string([subF3Adata.cell,subF3Adata.treatment])),<span class="string">'off'</span>);
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'Mt 125uM NaAsO2'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+PercOPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+PercOPP.(<span class="string">"Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Group"</span>));
+PercOPP.(<span class="string">"Control Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Control Group"</span>))
+</pre>
+<pre class="codeoutput">generalPercOPPData =
+  4&times;11 table
+                       cell     treatment      GroupCount    mean_PercOPP    median_PercOPP    sem_PercOPP    std_PercOPP    mean_MtPercOPP    median_MtPercOPP    sem_MtPercOPP    std_MtPercOPP
+                       ____    ____________    __________    ____________    ______________    ___________    ___________    ______________    ________________    _____________    _____________
+    Wt_0uM NaAsO2       Wt     0uM NaAsO2         464              100            97.41           1.6093        34.666           199.24             194.08             3.2064          69.068    
+    Wt_125uM NaAsO2     Wt     125uM NaAsO2       417           7.2094            7.071          0.10694        2.1838           14.364             14.088            0.21307           4.351    
+    Mt_0uM NaAsO2       Mt     0uM NaAsO2         523           50.191           46.722          0.81845        18.717              100             93.087             1.6307          37.292    
+    Mt_125uM NaAsO2     Mt     125uM NaAsO2       319           12.856           11.751          0.33673        6.0141           25.615             23.412            0.67089          11.982    
+PercOPP =
+  3&times;6 table
+           Group             Control Group      Lower Limit    Difference    Upper Limit     P-value  
+    ___________________    _________________    ___________    __________    ___________    __________
+    {'Wt 125uM NaAsO2'}    {'Wt 0uM NaAsO2'}      -96.118       -92.791        -89.463      2.2204e-16
+    {'Mt 125uM NaAsO2'}    {'Wt 0uM NaAsO2'}       -90.73       -87.144        -83.557               0
+    {'Mt 0uM NaAsO2'  }    {'Wt 0uM NaAsO2'}      -52.953       -49.809        -46.664      2.2204e-16
+PercOPP =
+  3&times;6 table
+           Group              Control Group       Lower Limit    Difference    Upper Limit     P-value  
+    ___________________    ___________________    ___________    __________    ___________    __________
+    {'Wt 125uM NaAsO2'}    {'Mt 125uM NaAsO2'}      -9.2757        -5.647        -2.0182      0.00083878
+    {'Wt 0uM NaAsO2'  }    {'Mt 125uM NaAsO2'}       83.595        87.144         90.692               0
+    {'Mt 0uM NaAsO2'  }    {'Mt 125uM NaAsO2'}       33.869        37.335         40.801               0
+</pre>
+<h2 id="4">Figure 3D - PLSR of Granule kinetics and OPP outcome</h2>
+<pre class="codeinput">[fitData2,~] = convertDatalocToModelFit({dataset1}, <span class="string">'NumGrans'</span>,<span class="string">'pulsepars'</span>,{<span class="string">'f'</span>,<span class="string">'td'</span>,<span class="string">'ts'</span>,<span class="string">'rate_in_min'</span>,<span class="string">'min_to_respond'</span>,<span class="string">'rsquared'</span>,<span class="string">'granarea'</span>},<span class="string">'afterf'</span>,1);
+</pre>
+<h2 id="5">Subset only the good data</h2>
+<pre class="codeinput">fitData = fitData2; <span class="comment">% work with duplicated data (for safety)</span>
+gFitData2 = fitData((fitData.NumGrans_rsquared &gt; 0.8),:); <span class="comment">% look for an r squared greater than 0.8 ?</span>
+
+<span class="comment">% make the names of the cell lines pretty</span>
+gFitData2.cell = strrep(gFitData2.cell,<span class="string">'HeLa_eIF4BGFP'</span>,<span class="string">'Wt'</span>);
+gFitData2.cell = strrep(gFitData2.cell,<span class="string">'HeLa_4B139AGFP'</span>,<span class="string">'Mut'</span>);
+
+<span class="comment">% make the xy and cells comparable btwn the if and live cell dat afor merging later</span>
+gFitData2.xy = gFitData2.NumGrans_xy;
+gFitData2.cellid = gFitData2.NumGrans_cellid;
+
+<span class="comment">% make the IF data mergable with the live cell data</span>
+ifD = dataset1.ifd;
+ifD.xy = ifD.ImageNumber;
+missinD = isnan(ifD.cellid);
+ifD2 = ifD(~missinD,:);
+
+<span class="comment">% find only data that exists in both the live cell and IF data</span>
+[~, idxG] = ismember(gFitData2(:,[<span class="string">"cellid"</span>,<span class="string">"xy"</span>]), ifD2(:,[<span class="string">"cellid"</span>,<span class="string">"xy"</span>]), <span class="string">'rows'</span>);
+[~, idxI] = ismember(ifD2(:,[<span class="string">"cellid"</span>,<span class="string">"xy"</span>]),gFitData2(:,[<span class="string">"cellid"</span>,<span class="string">"xy"</span>]), <span class="string">'rows'</span>);
+
+gFitData2 = gFitData2(idxG &gt; 0, :);
+ifD2 = ifD2(idxI &gt; 0, :);
+
+<span class="comment">% joint the datasets</span>
+fAndIF = join(gFitData2,ifD2,<span class="string">'LeftKeys'</span>,{<span class="string">'xy'</span>,<span class="string">'cellid'</span>},<span class="string">'RightKeys'</span>,{<span class="string">'xy'</span>,<span class="string">'cellid'</span>},<span class="string">'KeepOneCopy'</span>,{<span class="string">'treatment'</span>,<span class="string">'cell'</span>,<span class="string">'full'</span>});
+
+<span class="comment">% make the cell line a categorical</span>
+fAndIF.cell = categorical(fAndIF.cell,{<span class="string">'Wt'</span>,<span class="string">'Mut'</span>,<span class="string">'HeLa_bad'</span>});
+
+<span class="comment">% find the wt 24 hr tet cells</span>
+allDataWts = all([fAndIF.cell==<span class="string">'Wt'</span>,contains(fAndIF.treatment,<span class="string">"hour -24"</span>)],2);
+
+<span class="comment">% find the mutant 24 hr tet cells</span>
+allDataMuts = all([fAndIF.cell==<span class="string">'Mut'</span>,contains(fAndIF.treatment,<span class="string">"hour -24"</span>)],2);
+
+<span class="comment">% get the real opp values and the log2 opp values</span>
+fAndIF.OPP = fAndIF.Intensity_MeanIntensity_Masked_OPP*65535; <span class="comment">% get the real opp values</span>
+fAndIF.l2OPP = log2(fAndIF.OPP); <span class="comment">% getr the log2 of the opp data</span>
+
+<span class="comment">% fill them both with nans</span>
+fAndIF.zOPP = nan([height(fAndIF),1]);
+fAndIF.zl2OPP = nan([height(fAndIF),1]);
+
+<span class="comment">% z score normalize OPP data per cell line</span>
+<span class="comment">% wt</span>
+fAndIF{allDataWts,<span class="string">"zOPP"</span>} = zscore(fAndIF{allDataWts,<span class="string">"OPP"</span>});
+fAndIF{allDataWts,<span class="string">"zl2OPP"</span>} = zscore(fAndIF{allDataWts,<span class="string">"l2OPP"</span>});
+<span class="comment">% mut</span>
+fAndIF{allDataMuts,<span class="string">"zOPP"</span>} = zscore(fAndIF{allDataMuts,<span class="string">"OPP"</span>});
+fAndIF{allDataMuts,<span class="string">"zl2OPP"</span>} = zscore(fAndIF{allDataMuts,<span class="string">"l2OPP"</span>});
+</pre>
+<h2 id="6">Collect the data for use in PLSR</h2>
+<pre class="codeinput">minGrans = 3; <span class="comment">% min number of max granules (required to filter out bad data</span>
+tetTime = <span class="string">"hour -24"</span>; <span class="comment">% amount of tet induction</span>
+naAsO2 = (<span class="string">" 62.5uM"</span>|<span class="string">" 125uM"</span>|<span class="string">" 250uM"</span>); <span class="comment">% NaAsO2 treatments to use</span>
+
+<span class="comment">% subset the above data</span>
+subF3D = all([contains(fAndIF.treatment,tetTime),(fAndIF.cell~=<span class="string">"HeLa_bad"</span>),contains(fAndIF.treatment,naAsO2), <span class="keyword">...</span>
+    (fAndIF.NumGrans_f &gt;= minGrans)],2);
+
+subF3Ddata = fAndIF(subF3D,:); <span class="comment">% pull that subset of data</span>
+subF3Ddata.treatment = strrep(subF3Ddata.treatment,<span class="string">'0.1ug/mL TET at hour -24 and '</span>,<span class="string">''</span>); <span class="comment">% simplify the tet names</span>
+subF3Ddata.treatment = strrep(subF3Ddata.treatment,<span class="string">' NaAsO2 at hour 0'</span>,<span class="string">''</span>); <span class="comment">% simplify the NaAsO2 doses</span>
+subF3Ddata.treatment = categorical(subF3Ddata.treatment,{<span class="string">'62.5uM'</span>,<span class="string">'125uM'</span>,<span class="string">'250uM'</span>}); <span class="comment">% set the order '62.5uM'</span>
+
+<span class="comment">% make the treatment a real number</span>
+subF3Ddata.dose = str2double(strrep(string(subF3Ddata.treatment),<span class="string">'uM'</span>,<span class="string">''</span>));
+
+<span class="comment">% make Wt vs Mut a number for plsr</span>
+subF3Ddata.celln = zeros([height(subF3Ddata),1]); <span class="comment">% wt is 0</span>
+
+<span class="comment">% find the wt cells</span>
+f3DWts = subF3Ddata.cell==<span class="string">'Wt'</span>;
+
+<span class="comment">% find the mutant cells</span>
+f3DMuts = subF3Ddata.cell==<span class="string">'Mut'</span>;
+
+subF3Ddata{f3DMuts,<span class="string">"celln"</span>} = ones([sum(f3DMuts),1]); <span class="comment">% mut is 1</span>
+
+<span class="comment">% also make a column where all OPP intensities are relative to their own cell line's vehicle treated OPP intensity.</span>
+<span class="comment">% ( means were calculated earlier )</span>
+
+<span class="comment">% divide all of the OPP data by this number * 100 for % mean contol opp</span>
+subF3Ddata.PercOPP = ((subF3Ddata.OPP - meanOppWt4bNoAs) / meanOppWt4bNoAs) *100;
+
+<span class="comment">% find the mutant cells for division by mut data</span>
+<span class="comment">% divide all of the OPP data by mut OPP number * 100 for % mean contol opp</span>
+subF3Ddata.PercOPP(f3DMuts) = ((subF3Ddata{f3DMuts,<span class="string">"OPP"</span>} - meanOppMt4bNoAs) / meanOppMt4bNoAs) *100;
+
+
+<span class="comment">% also make a column where all Log 2 OPP intensities are relative to their own cell line's vehicle treated OPP intensity.</span>
+<span class="comment">% ( means were calculated earlier )</span>
+
+<span class="comment">% divide all of the OPP data by this number * 100 for % mean contol opp</span>
+subF3Ddata.Percl2OPP = ((subF3Ddata.l2OPP - meanl2OppWt4bNoAs) / meanl2OppWt4bNoAs) * 100;
+
+<span class="comment">% find the mutant cells for division by mut data</span>
+<span class="comment">% divide all of the OPP data by mut OPP number * 100 for % mean contol opp</span>
+subF3Ddata.Percl2OPP(f3DMuts) = (((subF3Ddata{f3DMuts,<span class="string">"l2OPP"</span>} - meanl2OppMt4bNoAs) / meanl2OppMt4bNoAs) * 100);
+
+<span class="comment">% Get the general info for the relative OPP changes per NaAsO2 dose for everyone</span>
+percChangeInOpp = grpstats(subF3Ddata,[<span class="string">"treatment"</span>,<span class="string">"cell"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,[<span class="string">"PercOPP"</span>,<span class="string">"Percl2OPP"</span>])
+
+percChangeInOpp = grpstats(subF3Ddata,[<span class="string">"treatment"</span>,<span class="string">"cell"</span>],[<span class="string">"mean"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,[<span class="string">"PercOPP"</span>,<span class="string">"Percl2OPP"</span>])
+
+<span class="comment">% Do the statistics for % change in OPP per cell line at each dose (62.5uM)</span>
+[~,~,statsOPP] = anova1(subF3Ddata.PercOPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),<span class="string">'off'</span>);
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'62.5uM Wt'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+PercOPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+PercOPP.(<span class="string">"Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Group"</span>));
+PercOPP.(<span class="string">"Control Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Control Group"</span>))
+
+<span class="comment">% Do the statistics for % change in OPP per cell line at each dose (125uM)</span>
+[~,~,statsOPP] = anova1(subF3Ddata.PercOPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),<span class="string">'off'</span>);
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'125uM Wt'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+PercOPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+PercOPP.(<span class="string">"Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Group"</span>));
+PercOPP.(<span class="string">"Control Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Control Group"</span>))
+
+<span class="comment">% Do the statistics for % change in OPP per cell line at each dose (250uM)</span>
+[~,~,statsOPP] = anova1(subF3Ddata.PercOPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),<span class="string">'off'</span>);
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'250uM Wt'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+PercOPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+PercOPP.(<span class="string">"Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Group"</span>));
+PercOPP.(<span class="string">"Control Group"</span>) = gnamesOPP(PercOPP.(<span class="string">"Control Group"</span>))
+</pre>
+<pre class="codeoutput">percChangeInOpp =
+  6&times;11 table
+                  treatment    cell    GroupCount    mean_PercOPP    median_PercOPP    sem_PercOPP    std_PercOPP    mean_Percl2OPP    median_Percl2OPP    sem_Percl2OPP    std_Percl2OPP
+                  _________    ____    __________    ____________    ______________    ___________    ___________    ______________    ________________    _____________    _____________
+    62.5uM_Wt      62.5uM      Wt         193          -82.315          -83.256          0.35205        4.8909          -19.272            -19.486            0.21546          2.9933    
+    62.5uM_Mut     62.5uM      Mut        232          -69.691          -71.721          0.67878        10.339          -14.445            -14.664            0.25492          3.8828    
+    125uM_Wt       125uM       Wt         266          -92.753           -92.92          0.12163        1.9837          -29.331            -29.206            0.18093          2.9508    
+    125uM_Mut      125uM       Mut        180          -74.921          -75.979          0.57669        7.7371          -16.667            -16.664            0.26698           3.582    
+    250uM_Wt       250uM       Wt         275          -95.248          -95.536         0.092125        1.5277          -34.105            -34.413             0.1694          2.8091    
+    250uM_Mut      250uM       Mut        296          -75.551           -77.03          0.43927        7.5576           -16.95            -17.211            0.20046          3.4489    
+percChangeInOpp =
+  6&times;9 table
+                  treatment    cell    GroupCount    mean_PercOPP    sem_PercOPP    std_PercOPP    mean_Percl2OPP    sem_Percl2OPP    std_Percl2OPP
+                  _________    ____    __________    ____________    ___________    ___________    ______________    _____________    _____________
+    62.5uM_Wt      62.5uM      Wt         193          -82.315         0.35205        4.8909          -19.272           0.21546          2.9933    
+    62.5uM_Mut     62.5uM      Mut        232          -69.691         0.67878        10.339          -14.445           0.25492          3.8828    
+    125uM_Wt       125uM       Wt         266          -92.753         0.12163        1.9837          -29.331           0.18093          2.9508    
+    125uM_Mut      125uM       Mut        180          -74.921         0.57669        7.7371          -16.667           0.26698           3.582    
+    250uM_Wt       250uM       Wt         275          -95.248        0.092125        1.5277          -34.105            0.1694          2.8091    
+    250uM_Mut      250uM       Mut        296          -75.551         0.43927        7.5576           -16.95           0.20046          3.4489    
+PercOPP =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit    P-value
+    ______________    _____________    ___________    __________    ___________    _______
+    {'62.5uM Mut'}    {'62.5uM Wt'}       11.071        12.624         14.177         0   
+    {'125uM Wt'  }    {'62.5uM Wt'}      -11.945       -10.438        -8.9304         0   
+    {'125uM Mut' }    {'62.5uM Wt'}       5.7429        7.3945         9.0462         0   
+    {'250uM Wt'  }    {'62.5uM Wt'}      -14.429       -12.932        -11.435         0   
+    {'250uM Mut' }    {'62.5uM Wt'}       5.2896        6.7643         8.2391         0   
+PercOPP =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
+    ______________    _____________    ___________    __________    ___________    __________
+    {'62.5uM Wt' }    {'125uM Wt'}        8.9142        10.438         11.961               0
+    {'62.5uM Mut'}    {'125uM Wt'}        21.615        23.062         24.509               0
+    {'125uM Mut' }    {'125uM Wt'}        16.277        17.832         19.387               0
+    {'250uM Wt'  }    {'125uM Wt'}       -3.8801       -2.4946        -1.1091      2.6899e-05
+    {'250uM Mut' }    {'125uM Wt'}        15.841        17.202         18.563               0
+PercOPP =
+  5&times;6 table
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
+    ______________    _____________    ___________    __________    ___________    __________
+    {'62.5uM Wt' }    {'250uM Wt'}       11.418         12.932        14.446                0
+    {'62.5uM Mut'}    {'250uM Wt'}       24.119         25.556        26.994                0
+    {'125uM Wt'  }    {'250uM Wt'}        1.108         2.4946        3.8811       3.3288e-05
+    {'125uM Mut' }    {'250uM Wt'}       18.781         20.327        21.872                0
+    {'250uM Mut' }    {'250uM Wt'}       18.346         19.696        21.047                0
+</pre>
+<h2 id="7">Do PLSR comparing % var explained vs inputs like SG kinetics, cell line, and NaAsO2 Dose</h2>
+<pre class="codeinput">plsOut = [];
+plsOut{1} = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'dose'</span>,<span class="string">'F'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% remove only dose</span>
+plsOut{2} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'F'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false,<span class="string">'bstrap'</span>,true); <span class="comment">%</span>
+
+<span class="comment">% just dose</span>
+plsOut{3} = pls(subF3Ddata.dose,<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'dose'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% just F</span>
+plsOut{4} = pls(subF3Ddata.NumGrans_f,<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'F'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% just rate</span>
+plsOut{5} = pls(subF3Ddata.NumGrans_rate_in_min,<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'rate'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% just nd (nucleation delay; aka time 2 respond)</span>
+plsOut{6} = pls(subF3Ddata.NumGrans_min_to_respond,<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'nd'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% just cell line</span>
+plsOut{7} = pls(subF3Ddata.celln,<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% nd and cell line</span>
+plsOut{8} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'nd'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% f and cell line</span>
+plsOut{9} = pls([subF3Ddata.NumGrans_f,subF3Ddata.celln],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% rate and cell line</span>
+plsOut{10} = pls([subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'rate'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% remove dose and nd</span>
+plsOut{11} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'rate'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% remove dose and f</span>
+plsOut{12} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'nd'</span>,<span class="string">'rate'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% remove dose and rate</span>
+plsOut{13} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'nd'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% dose plus cell</span>
+plsOut{14} = pls([subF3Ddata.dose,subF3Ddata.celln],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'dose'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% remove only dose</span>
+plsOut{15} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],<span class="keyword">...</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'F'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+
+<span class="comment">% make a list for the legend</span>
+legList = {<span class="string">'dose+F+rate+nd+cell'</span>,<span class="string">'F+rate+nd+cell'</span>,<span class="string">'dose'</span>,<span class="string">'F'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>,<span class="string">'cell'</span>,<span class="string">'nd+cell'</span>,<span class="string">'f+cell'</span>,<span class="string">'rate+cell'</span>,<span class="string">'f+rate+cell'</span>,<span class="string">'nd+rate+cell'</span>,<span class="string">'f+nd+cell'</span>,<span class="string">'dose+cell'</span>,<span class="string">'f+rate+nd'</span>};
+
+<span class="comment">% Now print out the variance explained as a table</span>
+varExpTable = table(<span class="string">'size'</span>,[size(plsOut,2),2],<span class="string">'VariableTypes'</span>,{<span class="string">'cell'</span>,<span class="string">'double'</span>},<span class="string">'VariableNames'</span>,{<span class="string">'PLSR_inputs'</span>,<span class="string">'Perc_varance_l2OPP_change_explained'</span>});
+
+varExpTable.PLSR_inputs = legList';
+
+<span class="keyword">for</span> iPLSR = 1:numel(plsOut)
+    varExpTable{iPLSR,2} = max(cumsum(plsOut{iPLSR}.PCTVAR(2,:))*100,[],2,<span class="string">"omitnan"</span>);
+<span class="keyword">end</span>
+
+varExpTable
+
+writetable(varExpTable,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\PlsrPercVarExplained.csv'</span>)
+</pre>
+<pre class="codeoutput">varExpTable =
+  15&times;2 table
+          PLSR_inputs          Perc_varance_l2OPP_change_explained
+    _______________________    ___________________________________
+    {'dose+F+rate+nd+cell'}                  54.036               
+    {'F+rate+nd+cell'     }                  47.932               
+    {'dose'               }                  25.973               
+    {'F'                  }                  21.483               
+    {'rate'               }                  9.5594               
+    {'nd'                 }                  26.275               
+    {'cell'               }                  23.451               
+    {'nd+cell'            }                  45.367               
+    {'f+cell'             }                  35.601               
+    {'rate+cell'          }                  28.054               
+    {'f+rate+cell'        }                  36.222               
+    {'nd+rate+cell'       }                  45.955               
+    {'f+nd+cell'          }                  47.944               
+    {'dose+cell'          }                  49.855               
+    {'f+rate+nd'          }                  33.684               
+</pre>
+<h2 id="8">Prepare wt and mut data for Figure 3B and 3C plots</h2>
+<pre class="codeinput">minGrans = 3;
+tetTime = <span class="string">'-24'</span>;
+
+<span class="comment">% Get the mean OPP intensity of everyone by treatment and cell line</span>
+generalOPPData = grpstats(subF3Adata,[<span class="string">"cell"</span>,<span class="string">"treatment"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,<span class="string">"OPP"</span>)
+
+<span class="comment">% wt data</span>
+subzWT = all([contains(dataset1.ifd.treatment,[<span class="string">'TET at hour '</span>, tetTime]),contains(dataset1.ifd.cell,<span class="string">'4BGFP'</span>)<span class="keyword">...</span>
+    , (dataset1.ifd.Children_Grans_4B_Count &gt;= minGrans), ~contains(dataset1.ifd.treatment,<span class="string">'and 0uM'</span>)],2); <span class="comment">%</span>
+
+<span class="comment">% pull the wt data, get the real opp and l2opp</span>
+wtData = dataset1.ifd(subzWT,:);
+wtData.OPP = wtData.Intensity_MeanIntensity_Masked_OPP*65535;
+wtData.l2OPP = log2(wtData.OPP);
+
+<span class="comment">% wt normalize - divide all of the wt OPP data by run 1 mean opp * 100 for % mean contol opp</span>
+wtData.PercOPP = 100 + (((wtData.OPP - generalOPPData{<span class="string">"Wt_0uM NaAsO2"</span>,<span class="string">"mean_OPP"</span>}) / generalOPPData{<span class="string">"Wt_0uM NaAsO2"</span>,<span class="string">"mean_OPP"</span>}) * 100);
+
+<span class="comment">%simplify treatment name</span>
+wtData.treatment = strrep(wtData.treatment,<span class="string">'0.1ug/mL TET at hour -24 and '</span>,<span class="string">''</span>);
+wtData.treatment = strrep(wtData.treatment,<span class="string">' NaAsO2'</span>,<span class="string">''</span>);
+
+<span class="comment">% get the general values of the wt l2OPP</span>
+WTl2OppData = grpstats(wtData,<span class="string">"treatment"</span>,[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,[<span class="string">"l2OPP"</span>,<span class="string">"OPP"</span>,<span class="string">"PercOPP"</span>]);
+wtSummary = grpstats(wtData,<span class="string">"treatment"</span>,<span class="string">"mean"</span>,<span class="string">"DataVars"</span>,[<span class="string">"l2OPP"</span>,<span class="string">"OPP"</span>,<span class="string">"PercOPP"</span>])
+
+<span class="comment">% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)</span>
+[~,~,statsOPP] = anova1(wtData.l2OPP,wtData.treatment,<span class="string">'off'</span>);
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'125uM'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+wtL2OPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+wtL2OPP.(<span class="string">"Group"</span>) = gnamesOPP(wtL2OPP.(<span class="string">"Group"</span>));
+wtL2OPP.(<span class="string">"Control Group"</span>) = gnamesOPP(wtL2OPP.(<span class="string">"Control Group"</span>))
+
+
+<span class="comment">% mutant data</span>
+subzMut = all([contains(dataset1.ifd.treatment,[<span class="string">'TET at hour '</span>, tetTime]),contains(dataset1.ifd.cell,<span class="string">'139A'</span>)<span class="keyword">...</span>
+    ,(dataset1.ifd.Children_Grans_4B_Count &gt;= minGrans), ~contains(dataset1.ifd.treatment,<span class="string">'and 0uM'</span>)],2); <span class="comment">% Mutant Data</span>
+
+<span class="comment">% pull the mutant data, get the real opp and l2opp</span>
+mutData = dataset1.ifd(subzMut,:);
+mutData.OPP = mutData.Intensity_MeanIntensity_Masked_OPP*65535;
+mutData.l2OPP = log2(mutData.OPP);
+
+<span class="comment">%simplify treatment name</span>
+mutData.treatment = strrep(mutData.treatment,<span class="string">'0.1ug/mL TET at hour -24 and '</span>,<span class="string">''</span>);
+mutData.treatment = strrep(mutData.treatment,<span class="string">' NaAsO2'</span>,<span class="string">''</span>);
+
+<span class="comment">% mut normalize - divide all of the mut OPP data by run 1 mean opp * 100 for % mean contol opp</span>
+mutData.PercOPP = 100 + (((mutData.OPP - generalOPPData{<span class="string">"Mt_0uM NaAsO2"</span>,<span class="string">"mean_OPP"</span>}) /  generalOPPData{<span class="string">"Mt_0uM NaAsO2"</span>,<span class="string">"mean_OPP"</span>}) * 100);
+
+<span class="comment">% get the general values of the mut l2OPP</span>
+MUTl2OppData = grpstats(mutData,<span class="string">"treatment"</span>,[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,[<span class="string">"l2OPP"</span>,<span class="string">"OPP"</span>,<span class="string">"PercOPP"</span>]);
+mutSummary = grpstats(mutData,<span class="string">"treatment"</span>,<span class="string">"mean"</span>,<span class="string">"DataVars"</span>,[<span class="string">"l2OPP"</span>,<span class="string">"OPP"</span>,<span class="string">"PercOPP"</span>])
+
+<span class="comment">% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)</span>
+[~,~,statsOPP] = anova1(mutData.l2OPP,mutData.treatment,<span class="string">'off'</span>);
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'125uM'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+mutL2OPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+mutL2OPP.(<span class="string">"Group"</span>) = gnamesOPP(mutL2OPP.(<span class="string">"Group"</span>));
+mutL2OPP.(<span class="string">"Control Group"</span>) = gnamesOPP(mutL2OPP.(<span class="string">"Control Group"</span>))
+
+<span class="comment">% determine what % difference there is btwn the wt and mut OPP at each NaAsO2 treatment concentration</span>
+<span class="comment">% at 62.5uM mut - wt</span>
+mutMinusWt62PercOppSup = MUTl2OppData{<span class="string">"62.5uM"</span>,<span class="string">"mean_PercOPP"</span>} - WTl2OppData{<span class="string">"62.5uM"</span>,<span class="string">"mean_PercOPP"</span>}
+
+<span class="comment">% at 125uM mut - wt</span>
+mutMinusWt125PercOppSup = MUTl2OppData{<span class="string">"125uM"</span>,<span class="string">"mean_PercOPP"</span>} - WTl2OppData{<span class="string">"125uM"</span>,<span class="string">"mean_PercOPP"</span>}
+
+<span class="comment">% at 250uM mut - wt</span>
+mutMinusWt250PercOppSup = MUTl2OppData{<span class="string">"250uM"</span>,<span class="string">"mean_PercOPP"</span>} - WTl2OppData{<span class="string">"250uM"</span>,<span class="string">"mean_PercOPP"</span>}
+</pre>
+<pre class="codeoutput">generalOPPData =
+  4&times;7 table
+                       cell     treatment      GroupCount    mean_OPP    median_OPP    sem_OPP    std_OPP
+                       ____    ____________    __________    ________    __________    _______    _______
+    Wt_0uM NaAsO2       Wt     0uM NaAsO2         464         7464.6       7271.3      120.13     2587.7 
+    Wt_125uM NaAsO2     Wt     125uM NaAsO2       417         538.15       527.83      7.9829     163.02 
+    Mt_0uM NaAsO2       Mt     0uM NaAsO2         523         3746.6       3487.6      61.095     1397.2 
+    Mt_125uM NaAsO2     Mt     125uM NaAsO2       319         959.68       877.14      25.135     448.93 
+wtSummary =
+  3&times;5 table
+              treatment    GroupCount    mean_l2OPP    mean_OPP    mean_PercOPP
+              _________    __________    __________    ________    ____________
+    250uM     "250uM"         393          8.3571       338.29        4.5318   
+    125uM     "125uM"         374          8.9902       530.15        7.1022   
+    62.5uM    "62.5uM"        264          10.332       1346.1        18.034   
+wtL2OPP =
+  2&times;6 table
+      Group       Control Group    Lower Limit    Difference    Upper Limit    P-value
+    __________    _____________    ___________    __________    ___________    _______
+    {'250uM' }      {'125uM'}       -0.69642       -0.63309      -0.56976         0   
+    {'62.5uM'}      {'125uM'}          1.271         1.3414        1.4119         0   
+mutSummary =
+  3&times;5 table
+              treatment    GroupCount    mean_l2OPP    mean_OPP    mean_PercOPP
+              _________    __________    __________    ________    ____________
+    250uM     "250uM"         413          9.7044       875.85        23.377   
+    125uM     "125uM"         260          9.7979        953.1        25.439   
+    62.5uM    "62.5uM"        395          10.093       1173.5        31.321   
+mutL2OPP =
+  2&times;6 table
+      Group       Control Group    Lower Limit    Difference    Upper Limit     P-value  
+    __________    _____________    ___________    __________    ___________    __________
+    {'250uM' }      {'125uM'}        -0.1817      -0.093545     -0.0053944       0.035652
+    {'62.5uM'}      {'125uM'}        0.20605        0.29497        0.38389     1.1348e-12
+mutMinusWt62PercOppSup =
+   13.2878
+mutMinusWt125PercOppSup =
+   18.3369
+mutMinusWt250PercOppSup =
+   18.8453
+</pre>
+<h2 id="9">Check all l2 opp data against eachother</h2>
+<pre class="codeinput">minGrans = 3;
+tetTime = <span class="string">'-24'</span>;
+
+<span class="comment">% wt and mut data</span>
+subzBoth = all([contains(dataset1.ifd.treatment,[<span class="string">'TET at hour '</span>, tetTime]), ~contains(dataset1.ifd.cell,<span class="string">'bad'</span>)<span class="keyword">...</span>
+    , (dataset1.ifd.Children_Grans_4B_Count &gt;= minGrans), ~contains(dataset1.ifd.treatment,<span class="string">'and 0uM'</span>)],2); <span class="comment">%</span>
+
+<span class="comment">% pull the mutant data, get the real opp and l2opp</span>
+allData = dataset1.ifd(subzBoth,:);
+allData.OPP = allData.Intensity_MeanIntensity_Masked_OPP*65535;
+allData.l2OPP = log2(allData.OPP);
+
+<span class="comment">%simplify treatment name</span>
+allData.treatment = strrep(allData.treatment,<span class="string">'0.1ug/mL TET at hour -24 and '</span>,<span class="string">''</span>);
+allData.treatment = strrep(allData.treatment,<span class="string">' NaAsO2'</span>,<span class="string">''</span>);
+
+<span class="comment">%simplify cell names</span>
+allData.cell = strrep(allData.cell,<span class="string">"HeLa 4B139AGFP"</span>,<span class="string">'mut'</span>);
+allData.cell = strrep(allData.cell,<span class="string">"HeLa eIF4BGFP"</span>,<span class="string">'wt'</span>);
+
+<span class="comment">% get the general values of the mut l2OPP</span>
+MUTl2OppData = grpstats(allData,[<span class="string">"treatment"</span>,<span class="string">"cell"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,<span class="string">"l2OPP"</span>)
+
+<span class="comment">% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)</span>
+[~,~,statsOPP] = anova1(allData.l2OPP,allData.treatment,<span class="string">'off'</span>);
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsOPP.gnames,<span class="string">'125uM'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+mutL2OPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+mutL2OPP.(<span class="string">"Group"</span>) = gnamesOPP(mutL2OPP.(<span class="string">"Group"</span>));
+mutL2OPP.(<span class="string">"Control Group"</span>) = gnamesOPP(mutL2OPP.(<span class="string">"Control Group"</span>))
+</pre>
+<pre class="codeoutput">MUTl2OppData =
+  6&times;7 table
+                  treatment    cell     GroupCount    mean_l2OPP    median_l2OPP    sem_l2OPP    std_l2OPP
+                  _________    _____    __________    __________    ____________    _________    _________
+    250uM_wt      "250uM"      "wt"        393          8.3571         8.3273       0.017763      0.35214 
+    250uM_mut     "250uM"      "mut"       413          9.7044         9.7052       0.022396      0.45513 
+    125uM_wt      "125uM"      "wt"        374          8.9902         9.0322       0.021619      0.41809 
+    125uM_mut     "125uM"      "mut"       260          9.7979         9.7891       0.032016      0.51624 
+    62.5uM_wt     "62.5uM"     "wt"        264          10.332         10.283       0.025908      0.42095 
+    62.5uM_mut    "62.5uM"     "mut"       395          10.093         10.084        0.02758      0.54814 
+mutL2OPP =
+  2&times;6 table
+      Group       Control Group    Lower Limit    Difference    Upper Limit     P-value  
+    __________    _____________    ___________    __________    ___________    __________
+    {'250uM' }      {'125uM'}       -0.35117       -0.27398       -0.1968      1.6431e-14
+    {'62.5uM'}      {'125uM'}         0.7862        0.86709       0.94798      5.5511e-16
+</pre>
+<h2 id="10">Make the plots</h2>
+<pre class="codeinput">
+<span class="comment">% close all the other possible figures that might be open</span>
+close <span class="string">all</span>
+
+<span class="comment">% make a new figure</span>
+figure3 = figure;
+figure3.Units = <span class="string">"Inches"</span>;
+figure3.Position = [0.05,0.05,8.5,11];
+
+topP =  uipanel(<span class="string">'Units'</span>,<span class="string">'inches'</span>,<span class="string">'position'</span>,[0.5,  7.75,  7.6,     2.5]); <span class="comment">% location for F3A</span>
+botLP = uipanel(<span class="string">'Units'</span>,<span class="string">'inches'</span>,<span class="string">'position'</span>,[0.5,   4.125,    3.75,    3.5]); <span class="comment">% bottom left panel (left half of F3b)</span>
+botRP = uipanel(<span class="string">'Units'</span>,<span class="string">'inches'</span>,<span class="string">'position'</span>,[4.35,  4.125,    3.75,    3.5]); <span class="comment">% bottom right panel (right half of F3b)</span>
+botBot = uipanel(<span class="string">'Units'</span>,<span class="string">'inches'</span>,<span class="string">'position'</span>,[0.5,  1.5,    7.6,    2.5]); <span class="comment">% PLSR data</span>
+
+<span class="comment">% make a new container for axes</span>
+f3axes = axes(topP);
+
+<span class="comment">% Unique categories for legend</span>
+uniqueTx = unique(generalPercOPPData.treatment,<span class="string">'stable'</span>);
+
+<span class="comment">% Colors for each treatment conc</span>
+colorz = [0,       0.4470,  0.7410 ;<span class="keyword">...</span><span class="comment"> % 0uM Color</span>
+          0.8500,  0.3250,  0.0980]; <span class="comment">% 125uM Color</span>
+
+colorzScatter = [0.6350, 0.0780,  0.1840; <span class="keyword">...</span><span class="comment">	% 250uM  Color</span>
+                 0.8500,  0.3250,  0.0980;<span class="keyword">...</span><span class="comment">    % 125uM Color</span>
+                 0.9290, 0.6940,  0.1250;] ;  	<span class="comment">% 62.5uM Color</span>
+
+
+<span class="comment">% Bar locations</span>
+barLocations = [1, 2, 4, 5];
+
+hold <span class="string">on</span>;
+<span class="comment">% Plot F3A</span>
+<span class="keyword">for</span> i = 1:height(generalPercOPPData)
+    bar(barLocations(i), generalPercOPPData.mean_PercOPP(i), <span class="string">'facecolor'</span>, colorz(matches(string(uniqueTx),string(generalPercOPPData.treatment(i))),:));
+<span class="keyword">end</span>
+<span class="comment">% Error bars</span>
+errorbar(barLocations, generalPercOPPData.mean_PercOPP, generalPercOPPData.sem_PercOPP, <span class="string">'k'</span>, <span class="string">'linestyle'</span>, <span class="string">'none'</span>,<span class="string">'CapSize'</span>,15,<span class="string">'LineWidth'</span>,1);
+
+<span class="comment">% Customizing the plot</span>
+set(gca, <span class="string">'XTick'</span>, [1.5, 4.5], <span class="string">'XTickLabel'</span>, {<span class="string">'Wt'</span>, <span class="string">'Mut'</span>},<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1); <span class="comment">% Adjusting X-ticks to match cell lines</span>
+legend(string(uniqueTx), <span class="string">'Location'</span>, <span class="string">'Best'</span>); <span class="comment">% Only show legend for unique Group tx categories</span>
+ylabel(<span class="string">"Percent OPP Intensity vs Wt-4b Control"</span>); xlabel(<span class="string">'4B Cell line'</span>)
+hold <span class="string">off</span>;
+ylim([0,110]); xlim([0,6]);
+fontname(<span class="string">'Arial'</span>); fontsize(8,<span class="string">"points"</span>);
+
+
+<span class="comment">% Plot F3b left half (24 hr tet wt-4b-gfp)</span>
+
+xlimz = [0,30]; <span class="comment">% granule axis limits</span>
+ylimz = [7.5, 12]; <span class="comment">% Opp axis limits</span>
+
+<span class="comment">% Make the scatter hist for the wt data (bottom left panel)</span>
+h=scatterhist(wtData.Children_Grans_4B_Count,wtData.l2OPP,<span class="keyword">...</span>
+    <span class="string">'Group'</span>,wtData.treatment,<span class="string">'parent'</span>,botLP,<span class="string">'MarkerSize'</span>,3,<span class="string">'color'</span>,colorzScatter);
+xlabel(<span class="string">'WT Granules'</span>); ylabel(<span class="string">'Log_2 OPP Intensity'</span>)
+title(<span class="string">'WT all NaAsO2 Doses'</span>)
+hold <span class="string">on</span>;
+boxplot(h(2),wtData.Children_Grans_4B_Count,wtData.treatment,<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+     <span class="string">'label'</span>,{<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,colorzScatter,<span class="string">'Symbol'</span>,<span class="string">''</span>);
+boxplot(h(3),wtData.l2OPP,wtData.treatment,<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+     <span class="string">'label'</span>, {<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,colorzScatter,<span class="string">'Symbol'</span>,<span class="string">''</span>);
+set(h(2:3),<span class="string">'XTickLabel'</span>,<span class="string">''</span>);
+view(h(3),[270,90]);  <span class="comment">% Rotate the Y plot</span>
+xlim(h(1),xlimz); ylim(h(1),ylimz);
+xlim(h(2),xlimz); xlim(h(3),ylimz); <span class="comment">% Sync axes</span>
+hold <span class="string">off</span>;
+fontname(<span class="string">'Arial'</span>); fontsize(8,<span class="string">"points"</span>);
+lg = legend(unique(wtData.treatment), <span class="string">'Location'</span>, <span class="string">'Best'</span>); <span class="comment">% Only show legend for unique Group tx categories</span>
+lg.Position = [0.1,    0.1327,    0.1,    0.1325]; <span class="comment">% set the legend size</span>
+
+<span class="comment">% make the scatter hist for the mutant data (bottom right panel)</span>
+h2=scatterhist(mutData.Children_Grans_4B_Count,mutData.l2OPP,<span class="keyword">...</span>
+    <span class="string">'Group'</span>,mutData.treatment,<span class="string">'parent'</span>,botRP,<span class="string">'MarkerSize'</span>,3,<span class="string">'color'</span>,colorzScatter);
+xlabel(<span class="string">'M1 Granules'</span>); ylabel(<span class="string">'Log_2 OPP Intensity'</span>)
+title(<span class="string">'M1 all NaAsO2 Doses'</span>)
+hold <span class="string">on</span>;
+
+boxplot(h2(2),mutData.Children_Grans_4B_Count,mutData.treatment,<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+     <span class="string">'label'</span>,{<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,colorzScatter,<span class="string">'Symbol'</span>,<span class="string">''</span>);
+boxplot(h2(3),mutData.l2OPP,mutData.treatment,<span class="string">'orientation'</span>,<span class="string">'horizontal'</span>,<span class="keyword">...</span>
+     <span class="string">'label'</span>, {<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>},<span class="string">'color'</span>,colorzScatter,<span class="string">'Symbol'</span>,<span class="string">''</span>);
+set(h2(2:3),<span class="string">'XTickLabel'</span>,<span class="string">''</span>);
+view(h2(3),[270,90]);  <span class="comment">% Rotate the Y plot</span>
+xlim(h2(1),xlimz); ylim(h2(1),ylimz);
+xlim(h2(2),xlimz); xlim(h2(3),ylimz);  <span class="comment">% Sync axes</span>
+hold <span class="string">off</span>;
+fontname(<span class="string">'Arial'</span>); fontsize(8,<span class="string">"points"</span>);
+legend <span class="string">off</span>;
+
+set(h,<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1)
+set(h2,<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1)
+
+<span class="comment">% Plot PLS model vs. data</span>
+<span class="comment">%Plot: Scatter, Variance explained, Component weights, Parameter weights</span>
+<span class="comment">%   Scatter plot</span>
+<span class="comment">%</span>
+<span class="comment">% This is code directly taken from plsplot written by M. Pargett from the Albeck Lab</span>
+
+p.nout = 1;
+p.alpha = 0.1;
+
+<span class="comment">%   Get modeled values and axis limits for both model and data</span>
+mapped_vals = [ones(size(plsOut{1}.X,1),1), plsOut{1}.X]*plsOut{1}.BETA;
+axmin = min([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
+axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
+
+<span class="comment">% loop through the PLS plots</span>
+
+colorsForPLS = turbo(8);
+
+<span class="keyword">for</span> iPLS = 1:8
+    <span class="comment">%   Cumulative Variance explained per component (2nd plot)</span>
+    vh = subplot(1,4,1,<span class="string">'Parent'</span>,botBot);
+    plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,<span class="string">'-'</span>,<span class="string">'Marker'</span>,<span class="string">'.'</span>,<span class="string">'MarkerSize'</span>,16, <span class="string">'Color'</span>,[colorsForPLS(iPLS,:), 0.8]);
+    hold(vh, <span class="string">'on'</span>);
+    title(vh, <span class="string">'% Variance explained'</span>); xlabel(vh, <span class="string">'Component'</span>); ylabel(vh, <span class="string">'%OPP Variance Explained'</span>);
+    axis(vh, <span class="string">'square'</span>);
+
+
+    <span class="comment">%   Parameter weights</span>
+    <span class="keyword">if</span> iPLS == 2
+
+        xlim(vh, [0.5,max(2,size(plsOut{1}.PCTVAR,2))]);
+        set(vh,<span class="string">'XTick'</span>,1:size(plsOut{1}.PCTVAR,2),<span class="string">'YLim'</span>,[0,100]);
+
+        ph = subplot(1,4,2,<span class="string">'Parent'</span>,botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
+        hold(ph, <span class="string">'on'</span>);
+
+        set(ph,<span class="string">'XTick'</span>,[1:size(plsOut{iPLS}.param,2)],<span class="string">'XTickLabel'</span>,plsOut{iPLS}.param,<span class="string">'XTickLabelRotation'</span>,45,<span class="string">'YLim'</span>,[-0.2,0.45]);
+        xlim(ph, [0,size(plsOut{iPLS}.BETA,1)]);
+        <span class="comment">%   Set an overall title</span>
+        title([<span class="string">'PLS: '</span>,plsOut{iPLS}.input(:)',<span class="string">', '</span> ,plsOut{iPLS}.output(:)']);
+
+        <span class="comment">%Add significance thresholds from bootstrapping, if available</span>
+        <span class="keyword">if</span> isfield(plsOut{iPLS},<span class="string">'Boot'</span>);    cc = [0.4,0.4,0.4];
+            <span class="comment">%Plot Variance Explained random region</span>
+            rry  = cumsum(plsOut{iPLS}.Boot.tpv,1)*100; ncmp = size(rry,1); <span class="comment">%Y-Coords</span>
+            <span class="keyword">if</span> ncmp == 1; rry = [rry;rry]; ncmp = 2; <span class="keyword">end</span>
+            rry = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           <span class="comment">%  Wrapped</span>
+            rrx = [1:ncmp, ncmp:-1:1];                           <span class="comment">%X-Coords</span>
+            <span class="comment">%   Draw patch for random region</span>
+            patch(vh, rrx, rry, <span class="string">'k'</span>, <span class="string">'FaceAlpha'</span>, 0.2, <span class="string">'LineStyle'</span>, <span class="string">'none'</span>);
+
+            <span class="comment">%Get average thresholds for Parameters</span>
+            thr{1} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.cat],p.nout,:),1);
+            thr{2} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.dis],p.nout,:),1);
+            thr{3} = mean(plsOut{iPLS}.Boot.tbeta([false, ~plsOut{iPLS}.Boot.cat &amp; ~plsOut{iPLS}.Boot.dis],p.nout,:),1);
+            <span class="comment">%   Plot Parameter thresholds</span>
+            np = numel(plsOut{iPLS}.BETA)-1;
+
+            <span class="comment">%Set up patch definition for random region</span>
+            rry = nan(2,np);
+            <span class="keyword">for</span> s = 1:np
+                <span class="comment">%   Determine threshold for this parameter</span>
+                <span class="keyword">if</span> plsOut{iPLS}.Boot.cat(s);       thrt = thr{1};
+                <span class="keyword">elseif</span> plsOut{iPLS}.Boot.dis(s);   thrt = thr{2};
+                <span class="keyword">else</span>;                    thrt = thr{3};
+                <span class="keyword">end</span>
+                <span class="comment">%   Assemble segment for this parameter</span>
+                rry(:,s) = thrt;
+            <span class="keyword">end</span>
+            jmp = find(diff(rry(1,:))); <span class="comment">%Get sites of changes</span>
+            jmpx = [jmp;jmp]; jmpx = jmpx(:)';   <span class="comment">%Duplicate for X-Axis</span>
+            jmpy = [jmp;jmp+1]; jmpy = jmpy(:)'; <span class="comment">%Include step for Y-Axis</span>
+            rry = rry(:,[1,jmpy,end]);   rry = [rry(1,:), rry(2,end:-1:1)];
+            rrx = [-0.5,jmpx,np+0.5] + 0.5;     rrx = [rrx, rrx(end:-1:1)];
+            <span class="comment">%   Draw patch for random region</span>
+            patch(ph, rrx, rry, <span class="string">'k'</span>, <span class="string">'FaceAlpha'</span>, 0.2, <span class="string">'LineStyle'</span>, <span class="string">'none'</span>);
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span> <span class="comment">% pls loop</span>
+legList2 = legList;
+legList2(3:end+1)=legList2(2:end); legList2{3} = <span class="string">'bootstrap'</span>;
+lego = legend(legList2);
+lego.NumColumns = 9;
+
+vh.Units=<span class="string">"inches"</span>; ph.Units=<span class="string">"inches"</span>;
+lego.Position = [0.4    0.875    0.2110    0.05];
+set(vh,<span class="string">'Position'</span>,[0.25,0.2,1.5,2.1],<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1);
+set(ph,<span class="string">'Position'</span>,[2.15,0.475,1.5,1.525],<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1);
+
+<span class="comment">% since PLC1 and PC2 explain most variance, show thier weights</span>
+sh = []; clear <span class="string">sh</span>;
+<span class="keyword">for</span> s = 1:2
+    sh(s) = subplot(1, 4, s+2,<span class="string">'Parent'</span>,botBot);
+    bar(sh(s), plsOut{2}.XLinv(:,s));  title(sh(s), [<span class="string">'PC'</span>, num2str(s),<span class="string">' weights'</span>]);
+    set(sh(s),<span class="string">'XTick'</span>,[1:size(plsOut{2}.param,2)],<span class="string">'XTickLabel'</span>, plsOut{2}.param, <span class="string">'XTickLabelRotation'</span>,45);
+    xlim(sh(s), [0,size(plsOut{2}.XLinv,1)+1]);
+<span class="keyword">end</span>
+
+sh(1).Units=<span class="string">"inches"</span>; sh(2).Units=<span class="string">"inches"</span>;
+fontname(<span class="string">'Arial'</span>); fontsize(8,<span class="string">"points"</span>);
+lego.FontSize = 6;
+
+
+
+sh(1).Position = [4.1,0.475,1.5,1.525];
+sh(2).Position = [6,0.475,1.5,1.525];
+set(sh,<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1);
+
+
+<span class="comment">% change the background colors</span>
+figure3.Color = [1,1,1];
+topP.BackgroundColor = [1,1,1];
+botLP.BackgroundColor = [1,1,1];
+botRP.BackgroundColor = [1,1,1];
+botBot.BackgroundColor = [1,1,1];
+
+saveas(figure3,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.fig'</span>)
+saveas(figure3,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.svg'</span>)
+</pre>
+<pre class="codeoutput">Warning: Ignoring extra legend entries. 
+Warning: In a future release, UI components will not be included in the output.
+To include UI components, use the exportapp function. 
+</pre>
+<img vspace="5" hspace="5" src="Figure_3_S2B_S3_01.png" alt=""> <h2 id="11">Now print the raw OPP values per cell line per NaAsO2 treatment</h2>
+<pre class="codeinput">subz = ~contains(dataset1.ifd.cell,<span class="string">'bad'</span>,<span class="string">'ignorecase'</span>,true); <span class="comment">% filter for the parameters set above</span>
+
+orderOfPlot = {<span class="keyword">...</span>
+    <span class="string">'0ug/mL TET at hour 0 and 0uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -2 and 0uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -4 and 0uM NaAsO2'</span>,<span class="string">'0.1ug/mL TET at hour -8 and 0uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -14 and 0uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -24 and 0uM NaAsO2'</span>,<span class="keyword">...</span>
+    <span class="string">'0ug/mL TET at hour 0 and 62.5uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -2 and 62.5uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -4 and 62.5uM NaAsO2'</span>,<span class="string">'0.1ug/mL TET at hour -8 and 62.5uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -14 and 62.5uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -24 and 62.5uM NaAsO2'</span>,<span class="keyword">...</span>
+    <span class="string">'0ug/mL TET at hour 0 and 125uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -2 and 125uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -4 and 125uM NaAsO2'</span>,<span class="string">'0.1ug/mL TET at hour -8 and 125uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -14 and 125uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -24 and 125uM NaAsO2'</span>,<span class="keyword">...</span>
+    <span class="string">'0ug/mL TET at hour 0 and 250uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -2 and 250uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -4 and 250uM NaAsO2'</span>,<span class="string">'0.1ug/mL TET at hour -8 and 250uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -14 and 250uM NaAsO2'</span>, <span class="string">'0.1ug/mL TET at hour -24 and 250uM NaAsO2'</span>,<span class="keyword">...</span>
+    };
+
+orderOfPlot2 = {<span class="keyword">...</span>
+    <span class="string">'0 and 0uM'</span>, <span class="string">'-2 and 0uM'</span>, <span class="string">'-4 and 0uM'</span>, <span class="string">'-8 and 0uM'</span>, <span class="string">'-14 and 0uM'</span>, <span class="string">'-24 and 0uM'</span><span class="keyword">...</span>
+    <span class="string">'0 and 62.5uM'</span>, <span class="string">'-2 and 62.5uM'</span>, <span class="string">'-4 and 62.5uM'</span>, <span class="string">'-8 and 62.5uM'</span>, <span class="string">'-14 and 62.5uM'</span>, <span class="string">'-24 and 62.5uM'</span><span class="keyword">...</span>
+    <span class="string">'0 and 125uM'</span>, <span class="string">'-2 and 125uM'</span>, <span class="string">'-4 and 125uM'</span>, <span class="string">'-8 and 125uM'</span>, <span class="string">'-14 and 125uM'</span>, <span class="string">'-24 and 125uM'</span><span class="keyword">...</span>
+    <span class="string">'0 and 250uM'</span>, <span class="string">'-2 and 250uM'</span>, <span class="string">'-4 and 250uM'</span>, <span class="string">'-8 and 250uM'</span>, <span class="string">'-14 and 250uM'</span>, <span class="string">'-24 and 250uM'</span><span class="keyword">...</span>
+    };
+
+allOPPData = dataset1.ifd(subz,:);
+allOPPData.treatment = extractBetween(allOPPData.treatment,<span class="string">'TET at hour '</span>, <span class="string">' NaAsO2'</span>);
+allOPPData.txcat = categorical(allOPPData.treatment,orderOfPlot2);
+allOPPData.OPP = allOPPData.Intensity_MeanIntensity_Masked_OPP*65535;
+
+
+allOPPStats = grpstats(allOPPData,[<span class="string">"txcat"</span>,<span class="string">"cell"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,<span class="string">"OPP"</span>)
+
+<span class="comment">% save it as a csv</span>
+writetable(allOPPStats,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\allOppStats2.csv'</span>)
+</pre>
+<pre class="codeoutput">allOPPStats =
+  48&times;7 table
+                                         txcat               cell          GroupCount    mean_OPP    median_OPP    sem_OPP    std_OPP
+                                     ______________    ________________    __________    ________    __________    _______    _______
+    0 and 0uM_HeLa eIF4BGFP          0 and 0uM         "HeLa eIF4BGFP"        687         6419.3       6272.8      71.648     1877.9 
+    0 and 0uM_HeLa 4B139AGFP         0 and 0uM         "HeLa 4B139AGFP"       369           5368       4984.6       101.1       1942 
+    -2 and 0uM_HeLa eIF4BGFP         -2 and 0uM        "HeLa eIF4BGFP"        543         8473.9       7763.4      131.05     3053.9 
+    -2 and 0uM_HeLa 4B139AGFP        -2 and 0uM        "HeLa 4B139AGFP"       631         5890.8       5460.7      86.979     2184.9 
+    -4 and 0uM_HeLa eIF4BGFP         -4 and 0uM        "HeLa eIF4BGFP"        654         7149.1       6422.5      121.86     3116.5 
+    -4 and 0uM_HeLa 4B139AGFP        -4 and 0uM        "HeLa 4B139AGFP"       696         5032.3       4796.4      67.039     1768.6 
+    -8 and 0uM_HeLa eIF4BGFP         -8 and 0uM        "HeLa eIF4BGFP"        520         8956.9       8332.9      133.69     3048.7 
+    -8 and 0uM_HeLa 4B139AGFP        -8 and 0uM        "HeLa 4B139AGFP"       526         4507.5       4302.9      70.984       1628 
+    -14 and 0uM_HeLa eIF4BGFP        -14 and 0uM       "HeLa eIF4BGFP"        493         9773.7       9509.7      132.06     2932.2 
+    -14 and 0uM_HeLa 4B139AGFP       -14 and 0uM       "HeLa 4B139AGFP"       395         4276.9       4100.6      71.945     1429.9 
+    -24 and 0uM_HeLa eIF4BGFP        -24 and 0uM       "HeLa eIF4BGFP"        464         7464.6       7271.3      120.13     2587.7 
+    -24 and 0uM_HeLa 4B139AGFP       -24 and 0uM       "HeLa 4B139AGFP"       523         3746.6       3487.6      61.095     1397.2 
+    0 and 62.5uM_HeLa eIF4BGFP       0 and 62.5uM      "HeLa eIF4BGFP"        475           1293       1204.4       21.97     478.82 
+    0 and 62.5uM_HeLa 4B139AGFP      0 and 62.5uM      "HeLa 4B139AGFP"       539         1704.1         1383      45.647     1059.7 
+    -2 and 62.5uM_HeLa eIF4BGFP      -2 and 62.5uM     "HeLa eIF4BGFP"        573         1976.6       1846.8      31.385     751.27 
+    -2 and 62.5uM_HeLa 4B139AGFP     -2 and 62.5uM     "HeLa 4B139AGFP"       313         1355.4       1257.4      35.409     626.44 
+    -4 and 62.5uM_HeLa eIF4BGFP      -4 and 62.5uM     "HeLa eIF4BGFP"        638         2111.6       2004.9      30.927     781.17 
+    -4 and 62.5uM_HeLa 4B139AGFP     -4 and 62.5uM     "HeLa 4B139AGFP"       688         1707.4       1509.6       36.21     949.78 
+    -8 and 62.5uM_HeLa eIF4BGFP      -8 and 62.5uM     "HeLa eIF4BGFP"        520         1666.6       1550.6      26.562     605.71 
+    -8 and 62.5uM_HeLa 4B139AGFP     -8 and 62.5uM     "HeLa 4B139AGFP"       282         1513.2         1410      37.303     626.43 
+    -14 and 62.5uM_HeLa eIF4BGFP     -14 and 62.5uM    "HeLa eIF4BGFP"        470         1815.1       1749.3      30.512     661.48 
+    -14 and 62.5uM_HeLa 4B139AGFP    -14 and 62.5uM    "HeLa 4B139AGFP"       562         1402.2       1286.9      24.741     586.52 
+    -24 and 62.5uM_HeLa eIF4BGFP     -24 and 62.5uM    "HeLa eIF4BGFP"        327         1429.3       1290.7      30.746     555.98 
+    -24 and 62.5uM_HeLa 4B139AGFP    -24 and 62.5uM    "HeLa 4B139AGFP"       526         1303.1       1155.1      26.787     614.35 
+    0 and 125uM_HeLa eIF4BGFP        0 and 125uM       "HeLa eIF4BGFP"        530         755.76       678.09      18.131      417.4 
+    0 and 125uM_HeLa 4B139AGFP       0 and 125uM       "HeLa 4B139AGFP"       467         848.58       805.86      14.394     311.06 
+    -2 and 125uM_HeLa eIF4BGFP       -2 and 125uM      "HeLa eIF4BGFP"        634         716.42       677.61      11.382      286.6 
+    -2 and 125uM_HeLa 4B139AGFP      -2 and 125uM      "HeLa 4B139AGFP"       575         995.28       936.51      17.528     420.31 
+    -4 and 125uM_HeLa eIF4BGFP       -4 and 125uM      "HeLa eIF4BGFP"        638         875.01       829.79      12.427      313.9 
+    -4 and 125uM_HeLa 4B139AGFP      -4 and 125uM      "HeLa 4B139AGFP"       456         1123.9       1022.5      23.826     508.79 
+    -8 and 125uM_HeLa eIF4BGFP       -8 and 125uM      "HeLa eIF4BGFP"        635         1468.6       1084.6      38.397     967.57 
+    -8 and 125uM_HeLa 4B139AGFP      -8 and 125uM      "HeLa 4B139AGFP"       442         1075.1        995.6      24.021     505.01 
+    -14 and 125uM_HeLa eIF4BGFP      -14 and 125uM     "HeLa eIF4BGFP"        392         603.06       533.45      19.065     377.47 
+    -14 and 125uM_HeLa 4B139AGFP     -14 and 125uM     "HeLa 4B139AGFP"       461         1291.5       1184.7      34.018      730.4 
+    -24 and 125uM_HeLa eIF4BGFP      -24 and 125uM     "HeLa eIF4BGFP"        417         538.15       527.83      7.9829     163.02 
+    -24 and 125uM_HeLa 4B139AGFP     -24 and 125uM     "HeLa 4B139AGFP"       319         959.68       877.14      25.135     448.93 
+    0 and 250uM_HeLa eIF4BGFP        0 and 250uM       "HeLa eIF4BGFP"        620         402.82       378.39      5.3528     133.28 
+    0 and 250uM_HeLa 4B139AGFP       0 and 250uM       "HeLa 4B139AGFP"       489         662.97       599.15      12.764     282.24 
+    -2 and 250uM_HeLa eIF4BGFP       -2 and 250uM      "HeLa eIF4BGFP"        577         388.17       356.73      10.631     255.36 
+    -2 and 250uM_HeLa 4B139AGFP      -2 and 250uM      "HeLa 4B139AGFP"       405         935.88       856.49      17.425     350.67 
+    -4 and 250uM_HeLa eIF4BGFP       -4 and 250uM      "HeLa eIF4BGFP"        478          446.7       397.37      11.509     251.63 
+    -4 and 250uM_HeLa 4B139AGFP      -4 and 250uM      "HeLa 4B139AGFP"       418         1081.4       1018.2      21.106     431.51 
+    -8 and 250uM_HeLa eIF4BGFP       -8 and 250uM      "HeLa eIF4BGFP"        349         505.66        462.5      10.269     191.83 
+    -8 and 250uM_HeLa 4B139AGFP      -8 and 250uM      "HeLa 4B139AGFP"       492         1119.5        993.6      25.769     571.59 
+    -14 and 250uM_HeLa eIF4BGFP      -14 and 250uM     "HeLa eIF4BGFP"        632         437.55       412.64      5.7931     145.64 
+    -14 and 250uM_HeLa 4B139AGFP     -14 and 250uM     "HeLa 4B139AGFP"       475         1126.1       1026.9      21.305     464.33 
+    -24 and 250uM_HeLa eIF4BGFP      -24 and 250uM     "HeLa eIF4BGFP"        502            363       332.16      5.9218     132.68 
+    -24 and 250uM_HeLa 4B139AGFP     -24 and 250uM     "HeLa 4B139AGFP"       515         944.38       872.81      15.841      359.5 
+</pre>
+<h2 id="12">X hour tet wt 4b or 139a 4b vs opp @ each naaso2 dose</h2>
+<pre class="codeinput">dataset1a = dataset1;
+dataset1a.ifd.treatment = extractBetween(dataset1a.ifd.treatment,<span class="string">'TET at hour '</span>, <span class="string">' NaAsO2'</span>);
+dataset1a.ifd.txcat = categorical(dataset1a.ifd.treatment,orderOfPlot2);
+
+dataset1a.ifd.cell = strrep(dataset1a.ifd.cell,<span class="string">"HeLa 4B139AGFP"</span>,<span class="string">'mut'</span>);
+dataset1a.ifd.cell = strrep(dataset1a.ifd.cell,<span class="string">"HeLa eIF4BGFP"</span>,<span class="string">'wt'</span>);
+
+subzwt = contains(dataset1a.ifd.cell,<span class="string">'wt'</span>); <span class="comment">% subset the data to be wt 4b</span>
+subzmut = contains(dataset1a.ifd.cell,<span class="string">'mut'</span>); <span class="comment">% subset the data to be 139A 4b</span>
+
+barColz = [ 0.3010, 0.7450, 0.9330;<span class="keyword">...</span>
+            0.6350, 0.0780, 0.1840;<span class="keyword">...</span>
+            0.9290, 0.6940, 0.1250;<span class="keyword">...</span>
+            0, 0.4470, 0.7410;<span class="keyword">...</span>
+            0.4660, 0.6740, 0.1880;<span class="keyword">...</span>
+            0.4940, 0.1840, 0.5560]; <span class="comment">% colors for bars</span>
+
+supF3 = figure;
+subplot(2,1,1)
+boxplot(log2(dataset1a.ifd.Intensity_MeanIntensity_Masked_OPP(subzwt)*65535),dataset1a.ifd.txcat(subzwt),<span class="string">'Notch'</span>,<span class="string">'on'</span>,<span class="string">'Symbol'</span>,<span class="string">'.'</span>,<span class="string">'Colors'</span>,barColz)
+ylim([7, 15])
+xlabel(<span class="string">'TET Induction'</span>); ylabel(<span class="string">'Log_2 OPP Intensity'</span>)
+title(<span class="string">'WT4b Tet induction versus OPP'</span>)
+legend
+
+subplot(2,1,2)
+boxplot(log2(dataset1a.ifd.Intensity_MeanIntensity_Masked_OPP(subzmut)*65535),dataset1a.ifd.txcat(subzmut),<span class="string">'Notch'</span>,<span class="string">'on'</span>,<span class="string">'Symbol'</span>,<span class="string">'.'</span>,<span class="string">'Colors'</span>,barColz)
+xlabel(<span class="string">'TET Induction'</span>); ylabel(<span class="string">'Log_2 OPP Intensity'</span>)
+ylim([7,15])
+title(<span class="string">'139A Tet induction versus OPP'</span>)
+
+saveas(supF3,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.fig'</span>)
+saveas(supF3,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.svg'</span>)
+</pre>
+<img vspace="5" hspace="5" src="Figure_3_S2B_S3_02.png" alt=""> <h2 id="13">Get the number of G3BP1 Granules @ 125uM NaAsO2</h2>
+<pre class="codeinput">minGrans = 3;
+tetTime = <span class="string">'-24'</span>;
+
+<span class="comment">% wt and mut data</span>
+subzBoth = all([contains(dataset1.ifd.treatment,[<span class="string">'TET at hour '</span>, tetTime]), ~contains(dataset1.ifd.cell,<span class="string">'bad'</span>)<span class="keyword">...</span>
+    , (dataset1.ifd.Children_Grans_G3BP1_Count &gt;= minGrans), contains(dataset1.ifd.treatment,<span class="string">'and 125uM'</span>)],2); <span class="comment">%</span>
+
+
+<span class="comment">% pull the mutant data, get the real opp and l2opp</span>
+allData = dataset1.ifd(subzBoth,:);
+
+<span class="comment">%simplify treatment name</span>
+allData.treatment = strrep(allData.treatment,<span class="string">'0.1ug/mL TET at hour -24 and '</span>,<span class="string">''</span>);
+allData.treatment = strrep(allData.treatment,<span class="string">' NaAsO2'</span>,<span class="string">''</span>);
+
+<span class="comment">%simplify cell names</span>
+allData.cell = strrep(allData.cell,<span class="string">"HeLa 4B139AGFP"</span>,<span class="string">'mut'</span>);
+allData.cell = strrep(allData.cell,<span class="string">"HeLa eIF4BGFP"</span>,<span class="string">'wt'</span>);
+
+<span class="comment">% get the general values of the mut l2OPP</span>
+G3BP1data = grpstats(allData,[<span class="string">"treatment"</span>,<span class="string">"cell"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,<span class="string">"Children_Grans_G3BP1_Count"</span>)
+
+
+<span class="comment">% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)</span>
+[~,~,statsG3BP1] = anova1(allData.Children_Grans_G3BP1_Count,allData.cell,<span class="string">'off'</span>);
+[resultsG3bp1,~,~,gnamesG3bp1] = multcompare(statsG3BP1,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsG3BP1.gnames,<span class="string">'wt'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+g3bp1 = array2table(resultsG3bp1,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+g3bp1.(<span class="string">"Group"</span>) = gnamesG3bp1(g3bp1.(<span class="string">"Group"</span>));
+g3bp1.(<span class="string">"Control Group"</span>) = gnamesG3bp1(g3bp1.(<span class="string">"Control Group"</span>))
+
+<span class="comment">% What is the % difference btwn the two groups?</span>
+percG3BP1change = ((G3BP1data{<span class="string">"125uM_mut"</span>,<span class="string">"mean_Children_Grans_G3BP1_Count"</span>} - G3BP1data{<span class="string">"125uM_wt"</span>,<span class="string">"mean_Children_Grans_G3BP1_Count"</span>})/G3BP1data{<span class="string">"125uM_mut"</span>,<span class="string">"mean_Children_Grans_G3BP1_Count"</span>})
+
+<span class="comment">%</span>
+<span class="comment">% Now plot it</span>
+figG3bp1 = figure;
+boxplot(allData.Children_Grans_G3BP1_Count,allData.cell,<span class="string">'Notch'</span>,<span class="string">'on'</span>,<span class="string">'Symbol'</span>,<span class="string">''</span>)
+xlabel(<span class="string">'Cell'</span>); ylabel(<span class="string">'G3BP1 Grans'</span>)
+title(<span class="string">'G3BP1 Grans At 125 uM'</span>)
+ylim([0,17])
+
+saveas(figG3bp1,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S2B_125uM_G3BP1.fig'</span>)
+saveas(figG3bp1,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S2B_125uM_G3BP1.svg'</span>)
+</pre>
+<pre class="codeoutput">G3BP1data =
+  2&times;7 table
+                 treatment    cell     GroupCount    mean_Children_Grans_G3BP1_Count    median_Children_Grans_G3BP1_Count    sem_Children_Grans_G3BP1_Count    std_Children_Grans_G3BP1_Count
+                 _________    _____    __________    _______________________________    _________________________________    ______________________________    ______________________________
+    125uM_wt      "125uM"     "wt"        353                    7.5156                                 7                               0.19031                            3.5755            
+    125uM_mut     "125uM"     "mut"       238                    6.6176                                 6                                0.1975                            3.0469            
+g3bp1 =
+  1&times;6 table
+     Group     Control Group    Lower Limit    Difference    Upper Limit     P-value 
+    _______    _____________    ___________    __________    ___________    _________
+    {'mut'}       {'wt'}          -1.4535       -0.89793      -0.34235      0.0015809
+percG3BP1change =
+   -0.1357
+</pre>
+<img vspace="5" hspace="5" src="Figure_3_S2B_S3_03.png" alt=""> <h2 id="14">Get the number of G3BP1 Granules @ 125uM NaAsO2 with either no or 24 hrs tet induction</h2>
+<pre class="codeinput">minGrans = 8;
+tetTime = (<span class="string">"TET at hour 0"</span>|<span class="string">"TET at hour -24"</span>);
+
+<span class="comment">% wt and mut data</span>
+subzBoth = all([contains(dataset1.ifd.treatment,tetTime), ~contains(dataset1.ifd.cell,<span class="string">'bad'</span>)<span class="keyword">...</span>
+    ,(dataset1.ifd.Children_Grans_G3BP1_Count &gt;= minGrans), contains(dataset1.ifd.treatment,<span class="string">'and 125uM'</span>)],2); <span class="comment">%</span>
+
+
+<span class="comment">% pull the mutant data, get the real opp and l2opp</span>
+allData = dataset1.ifd(subzBoth,:);
+
+<span class="comment">%simplify treatment name</span>
+allData.tet = extractBetween(allData.treatment,<span class="string">'TET at hour '</span>,<span class="string">' and '</span>);
+
+allData.treatment = strrep(allData.treatment,<span class="string">'0.1ug/mL TET at hour -24 and '</span>,<span class="string">''</span>);
+allData.treatment = strrep(allData.treatment,<span class="string">'0ug/mL TET at hour 0 and '</span>,<span class="string">''</span>);
+
+allData.treatment = strrep(allData.treatment,<span class="string">' NaAsO2'</span>,<span class="string">''</span>);
+allData.tet = strrep(allData.tet,<span class="string">'125uM NaAsO2'</span>,<span class="string">''</span>);
+
+<span class="comment">%simplify cell names</span>
+allData.cell = strrep(allData.cell,<span class="string">"HeLa 4B139AGFP"</span>,<span class="string">'mut'</span>);
+allData.cell = strrep(allData.cell,<span class="string">"HeLa eIF4BGFP"</span>,<span class="string">'wt'</span>);
+
+<span class="comment">% get the general values of the mut l2OPP</span>
+G3BP1data = grpstats(allData,[<span class="string">"treatment"</span>,<span class="string">"tet"</span>,<span class="string">"cell"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,<span class="string">"Children_Grans_G3BP1_Count"</span>)
+
+<span class="comment">% Do the statistics for G3BP1 for cell line and induction (WT-4B 24hr TET 125uM NaAsO2 as control)</span>
+[~,~,statsG3BP1] = anova1(allData.Children_Grans_G3BP1_Count,strcat(allData.cell,{<span class="string">' '</span>}, allData.tet),<span class="string">'off'</span>);
+[resultsG3bp1,~,~,gnamesG3bp1] = multcompare(statsG3BP1,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsG3BP1.gnames,<span class="string">'wt -24'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+g3bp1 = array2table(resultsG3bp1,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+g3bp1.(<span class="string">"Group"</span>) = gnamesG3bp1(g3bp1.(<span class="string">"Group"</span>));
+g3bp1.(<span class="string">"Control Group"</span>) = gnamesG3bp1(g3bp1.(<span class="string">"Control Group"</span>))
+
+<span class="comment">% Do the statistics for G3BP1 for cell line and induction (WT-4B 0hr TET 125uM NaAsO2 as control)</span>
+[~,~,statsG3BP1] = anova1(allData.Children_Grans_G3BP1_Count,strcat(allData.cell,{<span class="string">' '</span>}, allData.tet),<span class="string">'off'</span>);
+[resultsG3bp1,~,~,gnamesG3bp1] = multcompare(statsG3BP1,<span class="string">"CriticalValueType"</span>,<span class="string">"dunnett"</span>,<span class="string">'ControlGroup'</span>,find(matches(statsG3BP1.gnames,<span class="string">'wt 0'</span>)),<span class="string">'Display'</span>,<span class="string">'off'</span>,<span class="string">'Approximate'</span>,false);
+g3bp1 = array2table(resultsG3bp1,<span class="string">"VariableNames"</span>, [<span class="string">"Group"</span>,<span class="string">"Control Group"</span>,<span class="string">"Lower Limit"</span>,<span class="string">"Difference"</span>,<span class="string">"Upper Limit"</span>,<span class="string">"P-value"</span>]);
+g3bp1.(<span class="string">"Group"</span>) = gnamesG3bp1(g3bp1.(<span class="string">"Group"</span>));
+g3bp1.(<span class="string">"Control Group"</span>) = gnamesG3bp1(g3bp1.(<span class="string">"Control Group"</span>))
+</pre>
+<pre class="codeoutput">G3BP1data =
+  4&times;8 table
+                     treatment     tet     cell     GroupCount    mean_Children_Grans_G3BP1_Count    median_Children_Grans_G3BP1_Count    sem_Children_Grans_G3BP1_Count    std_Children_Grans_G3BP1_Count
+                     _________    _____    _____    __________    _______________________________    _________________________________    ______________________________    ______________________________
+    125uM_0_wt        "125uM"     "0"      "wt"        158                    10.532                                10                                0.1777                            2.2337            
+    125uM_0_mut       "125uM"     "0"      "mut"       122                    10.541                                10                               0.25611                            2.8289            
+    125uM_-24_wt      "125uM"     "-24"    "wt"        146                    10.836                                10                               0.25234                            3.0491            
+    125uM_-24_mut     "125uM"     "-24"    "mut"        85                    9.8824                                 9                               0.27266                            2.5138            
+g3bp1 =
+  3&times;6 table
+       Group       Control Group    Lower Limit    Difference    Upper Limit    P-value 
+    ___________    _____________    ___________    __________    ___________    ________
+    {'wt 0'   }     {'wt -24'}        -1.0305       -0.30397        0.42255      0.64419
+    {'mut 0'  }     {'wt -24'}        -1.0709       -0.29463        0.48167      0.70784
+    {'mut -24'}     {'wt -24'}        -1.8167       -0.95326      -0.089811     0.025883
+g3bp1 =
+  3&times;6 table
+       Group       Control Group    Lower Limit    Difference    Upper Limit    P-value
+    ___________    _____________    ___________    __________    ___________    _______
+    {'wt -24' }      {'wt 0'}         -0.4237        0.30397        1.0316      0.64937
+    {'mut 0'  }      {'wt 0'}        -0.75463       0.009338       0.77331      0.99998
+    {'mut -24'}      {'wt 0'}         -1.5019       -0.64929       0.20336      0.18212
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% Load the appended and aligned Live_cell last frame and IF data
+
+addpath('Z:\imageData\SG_4B\Code','Z:\Code\PLS','Z:\Code\Nick')
+
+% 2023-06-29 Data
+basePath = 'Z:\imageData\SG_4B\';
+dataset1=load([basePath,'2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed.mat']); % _Copy
+dataset1 = dataset1.dataloc; % pull the loaded dataloc structure
+
+% append the movie's metadata
+dataset1.movieinfo.PixSizeX = 0.33; % um/px
+dataset1.movieinfo.PixSizeY = 0.33; % um/px
+dataset1.movieinfo.PixNumX = 1600; % pixels
+dataset1.movieinfo.PixNumY = 1600; % pixels
+dataset1.movieinfo.tsamp = 3; % minutes
+
+
+%% Figure 3 - RRM of 4B affects Translation and Translational haulting in stress conditions
+
+% Figure 3A - % OPP intensity +/- stress for wt-4b and mut-4b vs wt-4B-GFP (as control) (24 hour induced only)
+
+% 24h TET w/ no NaAsO2 and 24h TET with 125uM NaAsO2
+% 4B wt or mut grans vs OPP %
+
+tetTime = "hour -24"; % amount of tet induction
+naAsO2 = (" 0uM"|" 125uM"); % NaAsO2 treatment
+
+subF3A = all([contains(dataset1.ifd.treatment,tetTime),~contains(dataset1.ifd.cell,'bad'),contains(dataset1.ifd.treatment,naAsO2) ...
+    ],2); % , (dataloc.ifd.Children_Grans_G3BP1_Count >= minGrans)
+
+subF3Adata = dataset1.ifd(subF3A,:); % pull that subset of data
+
+% make the treatments a categorical and simplify them
+subF3Adata.treatment = strrep(subF3Adata.treatment,'0.1ug/mL TET at hour -24 and ','');
+catOrder = ["0uM NaAsO2","125uM NaAsO2"]; % give the order I want for the plot
+subF3Adata.treatment = categorical(subF3Adata.treatment,catOrder); % set the order
+
+% make the cell lines a categorical and simplify them
+subF3Adata.cell = strrep(subF3Adata.cell,'HeLa eIF4BGFP','Wt');
+subF3Adata.cell = strrep(subF3Adata.cell,'HeLa 4B139AGFP','Mt');
+subF3Adata.cell = categorical(subF3Adata.cell,{'Wt','Mt'}); % make the cell line a categorical
+
+% get the real opp values
+subF3Adata.OPP = subF3Adata.Intensity_MeanIntensity_Masked_OPP*65535; 
+
+% and the log2 OPP
+subF3Adata.l2OPP = log2(subF3Adata.OPP); 
+
+% Get the mean OPP intensity of everyone by treatment and cell line
+generalOPPData = grpstats(subF3Adata,["cell","treatment"],["mean","median","sem","std"],"DataVars",["OPP","l2OPP"])
+
+%% Do the % OPP intensity of everyone vs the mean OPP intensity of the 24 TET induced vehicle control wt-4b cells
+
+% pull the mean OPP of vehicle treated wt-4b cells
+meanOppWt4bNoAs = generalOPPData{"Wt_0uM NaAsO2","mean_OPP"}; 
+
+% pull the mean OPP of vehicle treated Mut-4b cells
+meanOppMt4bNoAs = generalOPPData{"Mt_0uM NaAsO2","mean_OPP"}; 
+
+% pull the mean l2OPP of vehicle treated wt-4b cells
+meanl2OppWt4bNoAs = generalOPPData{"Wt_0uM NaAsO2","mean_l2OPP"}; 
+
+% pull the mean l2OPP of vehicle treated Mut-4b cells
+meanl2OppMt4bNoAs = generalOPPData{"Mt_0uM NaAsO2","mean_l2OPP"}; 
+
+% divide all of the OPP data by this number * 100 for % mean contol opp
+subF3Adata.PercOPP = (subF3Adata.OPP/meanOppWt4bNoAs)*100;
+
+% divide all of the OPP data by mut OPP number * 100 for % mean contol opp
+subF3Adata.MtPercOPP = (subF3Adata.OPP/meanOppMt4bNoAs)*100;
+
+% get the general values of the % differences in OPP
+generalPercOPPData = grpstats(subF3Adata,["cell","treatment"],["mean","median","sem","std"],"DataVars",["PercOPP","MtPercOPP"])
+
+% Do the statistics for % OPP versus each cell line or treatment (WT-4B 0uM NaAsO2 as control)
+[~,~,statsOPP] = anova1(subF3Adata.PercOPP,join(string([subF3Adata.cell,subF3Adata.treatment])),'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'Wt 0uM NaAsO2')),'Display','off','Approximate',false);
+PercOPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+PercOPP.("Group") = gnamesOPP(PercOPP.("Group"));
+PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
+
+% Do the statistics for % OPP versus each cell line or treatment (MUT-4B 125uM NaAsO2 as control)
+[~,~,statsOPP] = anova1(subF3Adata.PercOPP,join(string([subF3Adata.cell,subF3Adata.treatment])),'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'Mt 125uM NaAsO2')),'Display','off','Approximate',false);
+PercOPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+PercOPP.("Group") = gnamesOPP(PercOPP.("Group"));
+PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
+
+%% Figure 3D - PLSR of Granule kinetics and OPP outcome 
+
+[fitData2,~] = convertDatalocToModelFit({dataset1}, 'NumGrans','pulsepars',{'f','td','ts','rate_in_min','min_to_respond','rsquared','granarea'},'afterf',1);
+
+%% Subset only the good data 
+fitData = fitData2; % work with duplicated data (for safety)
+gFitData2 = fitData((fitData.NumGrans_rsquared > 0.8),:); % look for an r squared greater than 0.8 ? 
+
+% make the names of the cell lines pretty 
+gFitData2.cell = strrep(gFitData2.cell,'HeLa_eIF4BGFP','Wt');
+gFitData2.cell = strrep(gFitData2.cell,'HeLa_4B139AGFP','Mut');
+
+% make the xy and cells comparable btwn the if and live cell dat afor merging later
+gFitData2.xy = gFitData2.NumGrans_xy;
+gFitData2.cellid = gFitData2.NumGrans_cellid;
+
+% make the IF data mergable with the live cell data
+ifD = dataset1.ifd;
+ifD.xy = ifD.ImageNumber;
+missinD = isnan(ifD.cellid);
+ifD2 = ifD(~missinD,:);
+
+% find only data that exists in both the live cell and IF data
+[~, idxG] = ismember(gFitData2(:,["cellid","xy"]), ifD2(:,["cellid","xy"]), 'rows');
+[~, idxI] = ismember(ifD2(:,["cellid","xy"]),gFitData2(:,["cellid","xy"]), 'rows');
+
+gFitData2 = gFitData2(idxG > 0, :);
+ifD2 = ifD2(idxI > 0, :);
+
+% joint the datasets
+fAndIF = join(gFitData2,ifD2,'LeftKeys',{'xy','cellid'},'RightKeys',{'xy','cellid'},'KeepOneCopy',{'treatment','cell','full'});
+
+% make the cell line a categorical
+fAndIF.cell = categorical(fAndIF.cell,{'Wt','Mut','HeLa_bad'}); 
+
+% find the wt 24 hr tet cells
+allDataWts = all([fAndIF.cell=='Wt',contains(fAndIF.treatment,"hour -24")],2);
+
+% find the mutant 24 hr tet cells 
+allDataMuts = all([fAndIF.cell=='Mut',contains(fAndIF.treatment,"hour -24")],2);
+
+% get the real opp values and the log2 opp values
+fAndIF.OPP = fAndIF.Intensity_MeanIntensity_Masked_OPP*65535; % get the real opp values
+fAndIF.l2OPP = log2(fAndIF.OPP); % getr the log2 of the opp data
+
+% fill them both with nans
+fAndIF.zOPP = nan([height(fAndIF),1]);
+fAndIF.zl2OPP = nan([height(fAndIF),1]);
+
+% z score normalize OPP data per cell line
+% wt
+fAndIF{allDataWts,"zOPP"} = zscore(fAndIF{allDataWts,"OPP"});
+fAndIF{allDataWts,"zl2OPP"} = zscore(fAndIF{allDataWts,"l2OPP"});
+% mut
+fAndIF{allDataMuts,"zOPP"} = zscore(fAndIF{allDataMuts,"OPP"});
+fAndIF{allDataMuts,"zl2OPP"} = zscore(fAndIF{allDataMuts,"l2OPP"});
+
+%% Collect the data for use in PLSR
+
+minGrans = 3; % min number of max granules (required to filter out bad data
+tetTime = "hour -24"; % amount of tet induction
+naAsO2 = (" 62.5uM"|" 125uM"|" 250uM"); % NaAsO2 treatments to use
+
+% subset the above data
+subF3D = all([contains(fAndIF.treatment,tetTime),(fAndIF.cell~="HeLa_bad"),contains(fAndIF.treatment,naAsO2), ...
+    (fAndIF.NumGrans_f >= minGrans)],2);
+
+subF3Ddata = fAndIF(subF3D,:); % pull that subset of data
+subF3Ddata.treatment = strrep(subF3Ddata.treatment,'0.1ug/mL TET at hour -24 and ',''); % simplify the tet names
+subF3Ddata.treatment = strrep(subF3Ddata.treatment,' NaAsO2 at hour 0',''); % simplify the NaAsO2 doses
+subF3Ddata.treatment = categorical(subF3Ddata.treatment,{'62.5uM','125uM','250uM'}); % set the order '62.5uM'
+
+% make the treatment a real number
+subF3Ddata.dose = str2double(strrep(string(subF3Ddata.treatment),'uM',''));
+
+% make Wt vs Mut a number for plsr
+subF3Ddata.celln = zeros([height(subF3Ddata),1]); % wt is 0
+
+% find the wt cells 
+f3DWts = subF3Ddata.cell=='Wt';
+
+% find the mutant cells 
+f3DMuts = subF3Ddata.cell=='Mut';
+
+subF3Ddata{f3DMuts,"celln"} = ones([sum(f3DMuts),1]); % mut is 1
+
+% also make a column where all OPP intensities are relative to their own cell line's vehicle treated OPP intensity.
+% ( means were calculated earlier )
+
+% divide all of the OPP data by this number * 100 for % mean contol opp
+subF3Ddata.PercOPP = ((subF3Ddata.OPP - meanOppWt4bNoAs) / meanOppWt4bNoAs) *100;
+
+% find the mutant cells for division by mut data
+% divide all of the OPP data by mut OPP number * 100 for % mean contol opp
+subF3Ddata.PercOPP(f3DMuts) = ((subF3Ddata{f3DMuts,"OPP"} - meanOppMt4bNoAs) / meanOppMt4bNoAs) *100;
+
+
+% also make a column where all Log 2 OPP intensities are relative to their own cell line's vehicle treated OPP intensity.
+% ( means were calculated earlier )
+
+% divide all of the OPP data by this number * 100 for % mean contol opp
+subF3Ddata.Percl2OPP = ((subF3Ddata.l2OPP - meanl2OppWt4bNoAs) / meanl2OppWt4bNoAs) * 100;
+
+% find the mutant cells for division by mut data
+% divide all of the OPP data by mut OPP number * 100 for % mean contol opp
+subF3Ddata.Percl2OPP(f3DMuts) = (((subF3Ddata{f3DMuts,"l2OPP"} - meanl2OppMt4bNoAs) / meanl2OppMt4bNoAs) * 100);
+
+% Get the general info for the relative OPP changes per NaAsO2 dose for everyone
+percChangeInOpp = grpstats(subF3Ddata,["treatment","cell"],["mean","median","sem","std"],"DataVars",["PercOPP","Percl2OPP"])
+
+percChangeInOpp = grpstats(subF3Ddata,["treatment","cell"],["mean","sem","std"],"DataVars",["PercOPP","Percl2OPP"])
+
+% Do the statistics for % change in OPP per cell line at each dose (62.5uM)
+[~,~,statsOPP] = anova1(subF3Ddata.PercOPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'62.5uM Wt')),'Display','off','Approximate',false);
+PercOPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+PercOPP.("Group") = gnamesOPP(PercOPP.("Group"));
+PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
+
+% Do the statistics for % change in OPP per cell line at each dose (125uM)
+[~,~,statsOPP] = anova1(subF3Ddata.PercOPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'125uM Wt')),'Display','off','Approximate',false);
+PercOPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+PercOPP.("Group") = gnamesOPP(PercOPP.("Group"));
+PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
+
+% Do the statistics for % change in OPP per cell line at each dose (250uM)
+[~,~,statsOPP] = anova1(subF3Ddata.PercOPP,join(string([subF3Ddata.treatment,subF3Ddata.cell])),'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'250uM Wt')),'Display','off','Approximate',false);
+PercOPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+PercOPP.("Group") = gnamesOPP(PercOPP.("Group"));
+PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
+
+%% Do PLSR comparing % var explained vs inputs like SG kinetics, cell line, and NaAsO2 Dose
+
+plsOut = []; 
+plsOut{1} = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'dose','F','rate','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% remove only dose
+plsOut{2} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'F','rate','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false,'bstrap',true); %
+
+% just dose
+plsOut{3} = pls(subF3Ddata.dose,...
+    subF3Ddata.l2OPP, 'params', {'dose'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% just F
+plsOut{4} = pls(subF3Ddata.NumGrans_f,...
+    subF3Ddata.l2OPP, 'params', {'F'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% just rate
+plsOut{5} = pls(subF3Ddata.NumGrans_rate_in_min,...
+    subF3Ddata.l2OPP, 'params', {'rate'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% just nd (nucleation delay; aka time 2 respond)
+plsOut{6} = pls(subF3Ddata.NumGrans_min_to_respond,...
+    subF3Ddata.l2OPP, 'params', {'nd'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% just cell line
+plsOut{7} = pls(subF3Ddata.celln,...
+    subF3Ddata.l2OPP, 'params', {'cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% nd and cell line 
+plsOut{8} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% f and cell line 
+plsOut{9} = pls([subF3Ddata.NumGrans_f,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'f','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% rate and cell line 
+plsOut{10} = pls([subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% remove dose and nd
+plsOut{11} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'f','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% remove dose and f
+plsOut{12} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'nd','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% remove dose and rate
+plsOut{13} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'f','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% dose plus cell
+plsOut{14} = pls([subF3Ddata.dose,subF3Ddata.celln],...
+    subF3Ddata.l2OPP, 'params', {'dose','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% remove only dose
+plsOut{15} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],...
+    subF3Ddata.l2OPP, 'params', {'F','rate','nd'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+
+% make a list for the legend
+legList = {'dose+F+rate+nd+cell','F+rate+nd+cell','dose','F','rate','nd','cell','nd+cell','f+cell','rate+cell','f+rate+cell','nd+rate+cell','f+nd+cell','dose+cell','f+rate+nd'};
+
+% Now print out the variance explained as a table
+varExpTable = table('size',[size(plsOut,2),2],'VariableTypes',{'cell','double'},'VariableNames',{'PLSR_inputs','Perc_varance_l2OPP_change_explained'});
+
+varExpTable.PLSR_inputs = legList';
+
+for iPLSR = 1:numel(plsOut)
+    varExpTable{iPLSR,2} = max(cumsum(plsOut{iPLSR}.PCTVAR(2,:))*100,[],2,"omitnan");
+end
+
+varExpTable
+
+writetable(varExpTable,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\PlsrPercVarExplained.csv')
+
+%% Prepare wt and mut data for Figure 3B and 3C plots
+minGrans = 3;
+tetTime = '-24';
+
+% Get the mean OPP intensity of everyone by treatment and cell line
+generalOPPData = grpstats(subF3Adata,["cell","treatment"],["mean","median","sem","std"],"DataVars","OPP")
+
+% wt data
+subzWT = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]),contains(dataset1.ifd.cell,'4BGFP')...
+    , (dataset1.ifd.Children_Grans_4B_Count >= minGrans), ~contains(dataset1.ifd.treatment,'and 0uM')],2); % 
+
+% pull the wt data, get the real opp and l2opp
+wtData = dataset1.ifd(subzWT,:);
+wtData.OPP = wtData.Intensity_MeanIntensity_Masked_OPP*65535;
+wtData.l2OPP = log2(wtData.OPP);
+
+% wt normalize - divide all of the wt OPP data by run 1 mean opp * 100 for % mean contol opp
+wtData.PercOPP = 100 + (((wtData.OPP - generalOPPData{"Wt_0uM NaAsO2","mean_OPP"}) / generalOPPData{"Wt_0uM NaAsO2","mean_OPP"}) * 100);
+
+%simplify treatment name
+wtData.treatment = strrep(wtData.treatment,'0.1ug/mL TET at hour -24 and ','');
+wtData.treatment = strrep(wtData.treatment,' NaAsO2','');
+
+% get the general values of the wt l2OPP
+WTl2OppData = grpstats(wtData,"treatment",["mean","median","sem","std"],"DataVars",["l2OPP","OPP","PercOPP"]);
+wtSummary = grpstats(wtData,"treatment","mean","DataVars",["l2OPP","OPP","PercOPP"])
+
+% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
+[~,~,statsOPP] = anova1(wtData.l2OPP,wtData.treatment,'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'125uM')),'Display','off','Approximate',false);
+wtL2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+wtL2OPP.("Group") = gnamesOPP(wtL2OPP.("Group"));
+wtL2OPP.("Control Group") = gnamesOPP(wtL2OPP.("Control Group"))
+
+
+% mutant data
+subzMut = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]),contains(dataset1.ifd.cell,'139A')...
+    ,(dataset1.ifd.Children_Grans_4B_Count >= minGrans), ~contains(dataset1.ifd.treatment,'and 0uM')],2); % Mutant Data
+
+% pull the mutant data, get the real opp and l2opp
+mutData = dataset1.ifd(subzMut,:);
+mutData.OPP = mutData.Intensity_MeanIntensity_Masked_OPP*65535;
+mutData.l2OPP = log2(mutData.OPP);
+
+%simplify treatment name
+mutData.treatment = strrep(mutData.treatment,'0.1ug/mL TET at hour -24 and ','');
+mutData.treatment = strrep(mutData.treatment,' NaAsO2','');
+
+% mut normalize - divide all of the mut OPP data by run 1 mean opp * 100 for % mean contol opp
+mutData.PercOPP = 100 + (((mutData.OPP - generalOPPData{"Mt_0uM NaAsO2","mean_OPP"}) /  generalOPPData{"Mt_0uM NaAsO2","mean_OPP"}) * 100);
+
+% get the general values of the mut l2OPP
+MUTl2OppData = grpstats(mutData,"treatment",["mean","median","sem","std"],"DataVars",["l2OPP","OPP","PercOPP"]);
+mutSummary = grpstats(mutData,"treatment","mean","DataVars",["l2OPP","OPP","PercOPP"])
+
+% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
+[~,~,statsOPP] = anova1(mutData.l2OPP,mutData.treatment,'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'125uM')),'Display','off','Approximate',false);
+mutL2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+mutL2OPP.("Group") = gnamesOPP(mutL2OPP.("Group"));
+mutL2OPP.("Control Group") = gnamesOPP(mutL2OPP.("Control Group"))
+
+% determine what % difference there is btwn the wt and mut OPP at each NaAsO2 treatment concentration
+% at 62.5uM mut - wt
+mutMinusWt62PercOppSup = MUTl2OppData{"62.5uM","mean_PercOPP"} - WTl2OppData{"62.5uM","mean_PercOPP"}
+
+% at 125uM mut - wt
+mutMinusWt125PercOppSup = MUTl2OppData{"125uM","mean_PercOPP"} - WTl2OppData{"125uM","mean_PercOPP"}
+
+% at 250uM mut - wt
+mutMinusWt250PercOppSup = MUTl2OppData{"250uM","mean_PercOPP"} - WTl2OppData{"250uM","mean_PercOPP"}
+
+%% Check all l2 opp data against eachother
+
+minGrans = 3;
+tetTime = '-24';
+
+% wt and mut data
+subzBoth = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]), ~contains(dataset1.ifd.cell,'bad')...
+    , (dataset1.ifd.Children_Grans_4B_Count >= minGrans), ~contains(dataset1.ifd.treatment,'and 0uM')],2); % 
+
+% pull the mutant data, get the real opp and l2opp
+allData = dataset1.ifd(subzBoth,:);
+allData.OPP = allData.Intensity_MeanIntensity_Masked_OPP*65535;
+allData.l2OPP = log2(allData.OPP);
+
+%simplify treatment name
+allData.treatment = strrep(allData.treatment,'0.1ug/mL TET at hour -24 and ','');
+allData.treatment = strrep(allData.treatment,' NaAsO2','');
+
+%simplify cell names
+allData.cell = strrep(allData.cell,"HeLa 4B139AGFP",'mut');
+allData.cell = strrep(allData.cell,"HeLa eIF4BGFP",'wt');
+
+% get the general values of the mut l2OPP
+MUTl2OppData = grpstats(allData,["treatment","cell"],["mean","median","sem","std"],"DataVars","l2OPP")
+
+% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
+[~,~,statsOPP] = anova1(allData.l2OPP,allData.treatment,'off');
+[resultsOPP,~,~,gnamesOPP] = multcompare(statsOPP,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsOPP.gnames,'125uM')),'Display','off','Approximate',false);
+mutL2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+mutL2OPP.("Group") = gnamesOPP(mutL2OPP.("Group"));
+mutL2OPP.("Control Group") = gnamesOPP(mutL2OPP.("Control Group"))
+
+
+%% Make the plots
+
+% close all the other possible figures that might be open
+close all
+
+% make a new figure
+figure3 = figure;
+figure3.Units = "Inches";
+figure3.Position = [0.05,0.05,8.5,11];
+
+topP =  uipanel('Units','inches','position',[0.5,  7.75,  7.6,     2.5]); % location for F3A
+botLP = uipanel('Units','inches','position',[0.5,   4.125,    3.75,    3.5]); % bottom left panel (left half of F3b)
+botRP = uipanel('Units','inches','position',[4.35,  4.125,    3.75,    3.5]); % bottom right panel (right half of F3b)
+botBot = uipanel('Units','inches','position',[0.5,  1.5,    7.6,    2.5]); % PLSR data
+
+% make a new container for axes 
+f3axes = axes(topP);
+
+% Unique categories for legend
+uniqueTx = unique(generalPercOPPData.treatment,'stable');
+
+% Colors for each treatment conc
+colorz = [0,       0.4470,  0.7410 ;... % 0uM Color
+          0.8500,  0.3250,  0.0980]; % 125uM Color
+
+colorzScatter = [0.6350, 0.0780,  0.1840; ...	% 250uM  Color
+                 0.8500,  0.3250,  0.0980;...    % 125uM Color
+                 0.9290, 0.6940,  0.1250;] ;  	% 62.5uM Color
+
+
+% Bar locations
+barLocations = [1, 2, 4, 5];
+
+hold on;
+% Plot F3A
+for i = 1:height(generalPercOPPData)
+    bar(barLocations(i), generalPercOPPData.mean_PercOPP(i), 'facecolor', colorz(matches(string(uniqueTx),string(generalPercOPPData.treatment(i))),:));
+end
+% Error bars
+errorbar(barLocations, generalPercOPPData.mean_PercOPP, generalPercOPPData.sem_PercOPP, 'k', 'linestyle', 'none','CapSize',15,'LineWidth',1);
+
+% Customizing the plot
+set(gca, 'XTick', [1.5, 4.5], 'XTickLabel', {'Wt', 'Mut'},'TickLength',[0.02,0.03],'LineWidth',1); % Adjusting X-ticks to match cell lines
+legend(string(uniqueTx), 'Location', 'Best'); % Only show legend for unique Group tx categories
+ylabel("Percent OPP Intensity vs Wt-4b Control"); xlabel('4B Cell line') 
+hold off;
+ylim([0,110]); xlim([0,6]);
+fontname('Arial'); fontsize(8,"points");
+
+
+% Plot F3b left half (24 hr tet wt-4b-gfp)
+
+xlimz = [0,30]; % granule axis limits
+ylimz = [7.5, 12]; % Opp axis limits
+
+% Make the scatter hist for the wt data (bottom left panel)
+h=scatterhist(wtData.Children_Grans_4B_Count,wtData.l2OPP,...
+    'Group',wtData.treatment,'parent',botLP,'MarkerSize',3,'color',colorzScatter);
+xlabel('WT Granules'); ylabel('Log_2 OPP Intensity')
+title('WT all NaAsO2 Doses')
+hold on;
+boxplot(h(2),wtData.Children_Grans_4B_Count,wtData.treatment,'orientation','horizontal',...
+     'label',{'','',''},'color',colorzScatter,'Symbol','');
+boxplot(h(3),wtData.l2OPP,wtData.treatment,'orientation','horizontal',...
+     'label', {'','',''},'color',colorzScatter,'Symbol','');
+set(h(2:3),'XTickLabel','');
+view(h(3),[270,90]);  % Rotate the Y plot
+xlim(h(1),xlimz); ylim(h(1),ylimz);
+xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes
+hold off;
+fontname('Arial'); fontsize(8,"points");
+lg = legend(unique(wtData.treatment), 'Location', 'Best'); % Only show legend for unique Group tx categories
+lg.Position = [0.1,    0.1327,    0.1,    0.1325]; % set the legend size
+
+% make the scatter hist for the mutant data (bottom right panel)
+h2=scatterhist(mutData.Children_Grans_4B_Count,mutData.l2OPP,...
+    'Group',mutData.treatment,'parent',botRP,'MarkerSize',3,'color',colorzScatter);
+xlabel('M1 Granules'); ylabel('Log_2 OPP Intensity')
+title('M1 all NaAsO2 Doses')
+hold on;
+
+boxplot(h2(2),mutData.Children_Grans_4B_Count,mutData.treatment,'orientation','horizontal',...
+     'label',{'','',''},'color',colorzScatter,'Symbol','');
+boxplot(h2(3),mutData.l2OPP,mutData.treatment,'orientation','horizontal',...
+     'label', {'','',''},'color',colorzScatter,'Symbol',''); 
+set(h2(2:3),'XTickLabel','');
+view(h2(3),[270,90]);  % Rotate the Y plot
+xlim(h2(1),xlimz); ylim(h2(1),ylimz);
+xlim(h2(2),xlimz); xlim(h2(3),ylimz);  % Sync axes
+hold off;
+fontname('Arial'); fontsize(8,"points");
+legend off;
+
+set(h,'TickLength',[0.02,0.03],'LineWidth',1)
+set(h2,'TickLength',[0.02,0.03],'LineWidth',1)
+
+% Plot PLS model vs. data
+%Plot: Scatter, Variance explained, Component weights, Parameter weights
+%   Scatter plot
+% 
+% This is code directly taken from plsplot written by M. Pargett from the Albeck Lab
+
+p.nout = 1;
+p.alpha = 0.1;
+
+%   Get modeled values and axis limits for both model and data
+mapped_vals = [ones(size(plsOut{1}.X,1),1), plsOut{1}.X]*plsOut{1}.BETA;
+axmin = min([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
+axmax = max([plsOut{1}.Y(:,p.nout); mapped_vals(:,p.nout)]);
+
+% loop through the PLS plots
+
+colorsForPLS = turbo(8);
+
+for iPLS = 1:8
+    %   Cumulative Variance explained per component (2nd plot)
+    vh = subplot(1,4,1,'Parent',botBot); 
+    plot(vh, cumsum(plsOut{iPLS}.PCTVAR(2,:))*100,'-','Marker','.','MarkerSize',16, 'Color',[colorsForPLS(iPLS,:), 0.8]);
+    hold(vh, 'on');  
+    title(vh, '% Variance explained'); xlabel(vh, 'Component'); ylabel(vh, '%OPP Variance Explained'); 
+    axis(vh, 'square'); 
+    
+    
+    %   Parameter weights
+    if iPLS == 2
+
+        xlim(vh, [0.5,max(2,size(plsOut{1}.PCTVAR,2))]);
+        set(vh,'XTick',1:size(plsOut{1}.PCTVAR,2),'YLim',[0,100]);
+
+        ph = subplot(1,4,2,'Parent',botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
+        hold(ph, 'on');
+        
+        set(ph,'XTick',[1:size(plsOut{iPLS}.param,2)],'XTickLabel',plsOut{iPLS}.param,'XTickLabelRotation',45,'YLim',[-0.2,0.45]);
+        xlim(ph, [0,size(plsOut{iPLS}.BETA,1)]);
+        %   Set an overall title
+        title(['PLS: ',plsOut{iPLS}.input(:)',', ' ,plsOut{iPLS}.output(:)']);
+
+        %Add significance thresholds from bootstrapping, if available
+        if isfield(plsOut{iPLS},'Boot');    cc = [0.4,0.4,0.4];
+            %Plot Variance Explained random region
+            rry  = cumsum(plsOut{iPLS}.Boot.tpv,1)*100; ncmp = size(rry,1); %Y-Coords
+            if ncmp == 1; rry = [rry;rry]; ncmp = 2; end
+            rry = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           %  Wrapped
+            rrx = [1:ncmp, ncmp:-1:1];                           %X-Coords
+            %   Draw patch for random region
+            patch(vh, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
+            
+            %Get average thresholds for Parameters
+            thr{1} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.cat],p.nout,:),1);
+            thr{2} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.dis],p.nout,:),1);
+            thr{3} = mean(plsOut{iPLS}.Boot.tbeta([false, ~plsOut{iPLS}.Boot.cat & ~plsOut{iPLS}.Boot.dis],p.nout,:),1);
+            %   Plot Parameter thresholds
+            np = numel(plsOut{iPLS}.BETA)-1;
+            
+            %Set up patch definition for random region
+            rry = nan(2,np);
+            for s = 1:np
+                %   Determine threshold for this parameter
+                if plsOut{iPLS}.Boot.cat(s);       thrt = thr{1};
+                elseif plsOut{iPLS}.Boot.dis(s);   thrt = thr{2};
+                else;                    thrt = thr{3};
+                end
+                %   Assemble segment for this parameter
+                rry(:,s) = thrt;
+            end
+            jmp = find(diff(rry(1,:))); %Get sites of changes
+            jmpx = [jmp;jmp]; jmpx = jmpx(:)';   %Duplicate for X-Axis
+            jmpy = [jmp;jmp+1]; jmpy = jmpy(:)'; %Include step for Y-Axis
+            rry = rry(:,[1,jmpy,end]);   rry = [rry(1,:), rry(2,end:-1:1)];
+            rrx = [-0.5,jmpx,np+0.5] + 0.5;     rrx = [rrx, rrx(end:-1:1)];
+            %   Draw patch for random region
+            patch(ph, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
+        end
+    end
+end % pls loop
+legList2 = legList; 
+legList2(3:end+1)=legList2(2:end); legList2{3} = 'bootstrap';
+lego = legend(legList2);
+lego.NumColumns = 9;
+
+vh.Units="inches"; ph.Units="inches";
+lego.Position = [0.4    0.875    0.2110    0.05];
+set(vh,'Position',[0.25,0.2,1.5,2.1],'TickLength',[0.02,0.03],'LineWidth',1);
+set(ph,'Position',[2.15,0.475,1.5,1.525],'TickLength',[0.02,0.03],'LineWidth',1);
+
+% since PLC1 and PC2 explain most variance, show thier weights
+sh = []; clear sh;
+for s = 1:2
+    sh(s) = subplot(1, 4, s+2,'Parent',botBot); 
+    bar(sh(s), plsOut{2}.XLinv(:,s));  title(sh(s), ['PC', num2str(s),' weights']);
+    set(sh(s),'XTick',[1:size(plsOut{2}.param,2)],'XTickLabel', plsOut{2}.param, 'XTickLabelRotation',45);
+    xlim(sh(s), [0,size(plsOut{2}.XLinv,1)+1]);
+end
+
+sh(1).Units="inches"; sh(2).Units="inches";
+fontname('Arial'); fontsize(8,"points");
+lego.FontSize = 6;
+
+
+
+sh(1).Position = [4.1,0.475,1.5,1.525];
+sh(2).Position = [6,0.475,1.5,1.525];
+set(sh,'TickLength',[0.02,0.03],'LineWidth',1);
+
+
+% change the background colors
+figure3.Color = [1,1,1];
+topP.BackgroundColor = [1,1,1];
+botLP.BackgroundColor = [1,1,1];
+botRP.BackgroundColor = [1,1,1];
+botBot.BackgroundColor = [1,1,1];
+
+saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.fig')
+saveas(figure3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_3.svg')
+
+
+%% Now print the raw OPP values per cell line per NaAsO2 treatment
+
+subz = ~contains(dataset1.ifd.cell,'bad','ignorecase',true); % filter for the parameters set above
+
+orderOfPlot = {...
+    '0ug/mL TET at hour 0 and 0uM NaAsO2', '0.1ug/mL TET at hour -2 and 0uM NaAsO2', '0.1ug/mL TET at hour -4 and 0uM NaAsO2','0.1ug/mL TET at hour -8 and 0uM NaAsO2', '0.1ug/mL TET at hour -14 and 0uM NaAsO2', '0.1ug/mL TET at hour -24 and 0uM NaAsO2',...
+    '0ug/mL TET at hour 0 and 62.5uM NaAsO2', '0.1ug/mL TET at hour -2 and 62.5uM NaAsO2', '0.1ug/mL TET at hour -4 and 62.5uM NaAsO2','0.1ug/mL TET at hour -8 and 62.5uM NaAsO2', '0.1ug/mL TET at hour -14 and 62.5uM NaAsO2', '0.1ug/mL TET at hour -24 and 62.5uM NaAsO2',...
+    '0ug/mL TET at hour 0 and 125uM NaAsO2', '0.1ug/mL TET at hour -2 and 125uM NaAsO2', '0.1ug/mL TET at hour -4 and 125uM NaAsO2','0.1ug/mL TET at hour -8 and 125uM NaAsO2', '0.1ug/mL TET at hour -14 and 125uM NaAsO2', '0.1ug/mL TET at hour -24 and 125uM NaAsO2',...
+    '0ug/mL TET at hour 0 and 250uM NaAsO2', '0.1ug/mL TET at hour -2 and 250uM NaAsO2', '0.1ug/mL TET at hour -4 and 250uM NaAsO2','0.1ug/mL TET at hour -8 and 250uM NaAsO2', '0.1ug/mL TET at hour -14 and 250uM NaAsO2', '0.1ug/mL TET at hour -24 and 250uM NaAsO2',...
+    };
+
+orderOfPlot2 = {...
+    '0 and 0uM', '-2 and 0uM', '-4 and 0uM', '-8 and 0uM', '-14 and 0uM', '-24 and 0uM'...
+    '0 and 62.5uM', '-2 and 62.5uM', '-4 and 62.5uM', '-8 and 62.5uM', '-14 and 62.5uM', '-24 and 62.5uM'...
+    '0 and 125uM', '-2 and 125uM', '-4 and 125uM', '-8 and 125uM', '-14 and 125uM', '-24 and 125uM'...
+    '0 and 250uM', '-2 and 250uM', '-4 and 250uM', '-8 and 250uM', '-14 and 250uM', '-24 and 250uM'...
+    };
+
+allOPPData = dataset1.ifd(subz,:);
+allOPPData.treatment = extractBetween(allOPPData.treatment,'TET at hour ', ' NaAsO2');
+allOPPData.txcat = categorical(allOPPData.treatment,orderOfPlot2);
+allOPPData.OPP = allOPPData.Intensity_MeanIntensity_Masked_OPP*65535;
+
+
+allOPPStats = grpstats(allOPPData,["txcat","cell"],["mean","median","sem","std"],"DataVars","OPP")
+
+% save it as a csv 
+writetable(allOPPStats,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\allOppStats2.csv')
+
+
+%% X hour tet wt 4b or 139a 4b vs opp @ each naaso2 dose
+
+dataset1a = dataset1;
+dataset1a.ifd.treatment = extractBetween(dataset1a.ifd.treatment,'TET at hour ', ' NaAsO2');
+dataset1a.ifd.txcat = categorical(dataset1a.ifd.treatment,orderOfPlot2);
+
+dataset1a.ifd.cell = strrep(dataset1a.ifd.cell,"HeLa 4B139AGFP",'mut');
+dataset1a.ifd.cell = strrep(dataset1a.ifd.cell,"HeLa eIF4BGFP",'wt');
+
+subzwt = contains(dataset1a.ifd.cell,'wt'); % subset the data to be wt 4b
+subzmut = contains(dataset1a.ifd.cell,'mut'); % subset the data to be 139A 4b
+
+barColz = [ 0.3010, 0.7450, 0.9330;...
+            0.6350, 0.0780, 0.1840;...
+            0.9290, 0.6940, 0.1250;...
+            0, 0.4470, 0.7410;...
+            0.4660, 0.6740, 0.1880;...
+            0.4940, 0.1840, 0.5560]; % colors for bars
+
+supF3 = figure;
+subplot(2,1,1)
+boxplot(log2(dataset1a.ifd.Intensity_MeanIntensity_Masked_OPP(subzwt)*65535),dataset1a.ifd.txcat(subzwt),'Notch','on','Symbol','.','Colors',barColz)
+ylim([7, 15])
+xlabel('TET Induction'); ylabel('Log_2 OPP Intensity')
+title('WT4b Tet induction versus OPP')
+legend
+
+subplot(2,1,2)
+boxplot(log2(dataset1a.ifd.Intensity_MeanIntensity_Masked_OPP(subzmut)*65535),dataset1a.ifd.txcat(subzmut),'Notch','on','Symbol','.','Colors',barColz)
+xlabel('TET Induction'); ylabel('Log_2 OPP Intensity')
+ylim([7,15])
+title('139A Tet induction versus OPP')
+
+saveas(supF3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.fig')
+saveas(supF3,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S3.svg')
+
+%% Get the number of G3BP1 Granules @ 125uM NaAsO2
+
+minGrans = 3;
+tetTime = '-24';
+
+% wt and mut data
+subzBoth = all([contains(dataset1.ifd.treatment,['TET at hour ', tetTime]), ~contains(dataset1.ifd.cell,'bad')...
+    , (dataset1.ifd.Children_Grans_G3BP1_Count >= minGrans), contains(dataset1.ifd.treatment,'and 125uM')],2); % 
+
+
+% pull the mutant data, get the real opp and l2opp
+allData = dataset1.ifd(subzBoth,:);
+
+%simplify treatment name
+allData.treatment = strrep(allData.treatment,'0.1ug/mL TET at hour -24 and ','');
+allData.treatment = strrep(allData.treatment,' NaAsO2','');
+
+%simplify cell names
+allData.cell = strrep(allData.cell,"HeLa 4B139AGFP",'mut');
+allData.cell = strrep(allData.cell,"HeLa eIF4BGFP",'wt');
+
+% get the general values of the mut l2OPP
+G3BP1data = grpstats(allData,["treatment","cell"],["mean","median","sem","std"],"DataVars","Children_Grans_G3BP1_Count")
+
+
+% Do the statistics for l2 OPP versus treatment (WT-4B 125uM NaAsO2 as control)
+[~,~,statsG3BP1] = anova1(allData.Children_Grans_G3BP1_Count,allData.cell,'off');
+[resultsG3bp1,~,~,gnamesG3bp1] = multcompare(statsG3BP1,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsG3BP1.gnames,'wt')),'Display','off','Approximate',false);
+g3bp1 = array2table(resultsG3bp1,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+g3bp1.("Group") = gnamesG3bp1(g3bp1.("Group"));
+g3bp1.("Control Group") = gnamesG3bp1(g3bp1.("Control Group"))
+
+% What is the % difference btwn the two groups?
+percG3BP1change = ((G3BP1data{"125uM_mut","mean_Children_Grans_G3BP1_Count"} - G3BP1data{"125uM_wt","mean_Children_Grans_G3BP1_Count"})/G3BP1data{"125uM_mut","mean_Children_Grans_G3BP1_Count"})
+
+%
+% Now plot it
+figG3bp1 = figure;
+boxplot(allData.Children_Grans_G3BP1_Count,allData.cell,'Notch','on','Symbol','')
+xlabel('Cell'); ylabel('G3BP1 Grans')
+title('G3BP1 Grans At 125 uM')
+ylim([0,17])
+
+saveas(figG3bp1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S2B_125uM_G3BP1.fig')
+saveas(figG3bp1,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_S2B_125uM_G3BP1.svg')
+
+%% Get the number of G3BP1 Granules @ 125uM NaAsO2 with either no or 24 hrs tet induction
+
+minGrans = 8;
+tetTime = ("TET at hour 0"|"TET at hour -24");
+
+% wt and mut data
+subzBoth = all([contains(dataset1.ifd.treatment,tetTime), ~contains(dataset1.ifd.cell,'bad')...
+    ,(dataset1.ifd.Children_Grans_G3BP1_Count >= minGrans), contains(dataset1.ifd.treatment,'and 125uM')],2); % 
+
+
+% pull the mutant data, get the real opp and l2opp
+allData = dataset1.ifd(subzBoth,:);
+
+%simplify treatment name
+allData.tet = extractBetween(allData.treatment,'TET at hour ',' and ');
+
+allData.treatment = strrep(allData.treatment,'0.1ug/mL TET at hour -24 and ','');
+allData.treatment = strrep(allData.treatment,'0ug/mL TET at hour 0 and ','');
+
+allData.treatment = strrep(allData.treatment,' NaAsO2','');
+allData.tet = strrep(allData.tet,'125uM NaAsO2','');
+
+%simplify cell names
+allData.cell = strrep(allData.cell,"HeLa 4B139AGFP",'mut');
+allData.cell = strrep(allData.cell,"HeLa eIF4BGFP",'wt');
+
+% get the general values of the mut l2OPP
+G3BP1data = grpstats(allData,["treatment","tet","cell"],["mean","median","sem","std"],"DataVars","Children_Grans_G3BP1_Count")
+
+% Do the statistics for G3BP1 for cell line and induction (WT-4B 24hr TET 125uM NaAsO2 as control)
+[~,~,statsG3BP1] = anova1(allData.Children_Grans_G3BP1_Count,strcat(allData.cell,{' '}, allData.tet),'off');
+[resultsG3bp1,~,~,gnamesG3bp1] = multcompare(statsG3BP1,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsG3BP1.gnames,'wt -24')),'Display','off','Approximate',false);
+g3bp1 = array2table(resultsG3bp1,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+g3bp1.("Group") = gnamesG3bp1(g3bp1.("Group"));
+g3bp1.("Control Group") = gnamesG3bp1(g3bp1.("Control Group"))
+
+% Do the statistics for G3BP1 for cell line and induction (WT-4B 0hr TET 125uM NaAsO2 as control)
+[~,~,statsG3BP1] = anova1(allData.Children_Grans_G3BP1_Count,strcat(allData.cell,{' '}, allData.tet),'off');
+[resultsG3bp1,~,~,gnamesG3bp1] = multcompare(statsG3BP1,"CriticalValueType","dunnett",'ControlGroup',find(matches(statsG3BP1.gnames,'wt 0')),'Display','off','Approximate',false);
+g3bp1 = array2table(resultsG3bp1,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
+g3bp1.("Group") = gnamesG3bp1(g3bp1.("Group"));
+g3bp1.("Control Group") = gnamesG3bp1(g3bp1.("Control Group"))
+
+##### SOURCE END #####
+-->
+</body>
+</html>

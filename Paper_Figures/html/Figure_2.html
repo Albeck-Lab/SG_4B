@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>Figure_2</title>
 <meta name="generator" content="MATLAB 23.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2024-04-04">
+<meta name="DC.date" content="2024-07-03">
 <meta name="DC.source" content="Figure_2.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -80,10 +80,10 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <div>
 <ul>
 <li>
-<a href="#1">Load the model fit data for the live cell</a>
+<a href="#1">Add the paths</a>
 </li>
 <li>
-<a href="#2">24h induced Wild-Type 4B Data</a>
+<a href="#2">Load the model fit data for the live cell</a>
 </li>
 <li>
 <a href="#3">24h induced 139A mutant 4B data</a>
@@ -112,15 +112,13 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <li>
 <a href="#11">Plot the data for Figure 2</a>
 </li>
-<li>
-<a href="#12">pull from combined data figures</a>
-</li>
 </ul>
 </div>
-<h2 id="1">Load the model fit data for the live cell</h2>
-<pre class="codeinput">addpath(<span class="string">'Z:\code\Nick'</span>)
+<h2 id="1">Add the paths</h2>
+<pre class="codeinput">addpath(<span class="string">'Z:\imageData\SG_4B\Code'</span>,<span class="string">'Z:\Code\PLS'</span>,<span class="string">'Z:\Code\Nick'</span>)
 </pre>
-<h2 id="2">24h induced Wild-Type 4B Data</h2>
+<h2 id="2">Load the model fit data for the live cell</h2>
+<p>24h induced Wild-Type 4B Data</p>
 <pre class="codeinput">
 <span class="comment">% 2023-05-03</span>
 dataset1 = load(<span class="string">'Z:\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed_Copy.mat'</span>);
@@ -133,17 +131,12 @@ dataset2 = dataset2.dataloc; <span class="comment">% pull the loaded dataloc str
 <span class="comment">% 2023-06-29</span>
 dataset3 = load(<span class="string">'Z:\imageData\SG_4B\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed_Copy.mat'</span>);
 dataset3 = dataset3.dataloc; <span class="comment">% pull the loaded dataloc structure</span>
-
-<span class="comment">% 2023-08-23</span>
-<span class="comment">%dataset4 = load('');</span>
-<span class="comment">%dataset4 = dataset5.dataloc; % pull the loaded dataloc structure</span>
 </pre>
 <h2 id="3">24h induced 139A mutant 4B data</h2>
 <pre class="codeinput">
 <span class="comment">% 2023-05-03 (already loaded)</span>
 <span class="comment">% 2023-06-15 (already loaded)</span>
 <span class="comment">% 2023-06-29 (already loaded)</span>
-<span class="comment">% 2023-08-23 (already loaded)</span>
 </pre>
 <h2 id="4">Make the fit models</h2>
 <p>datalocDF = makeLiveCellDataframe({dataset1,dataset2,dataset3},'subset','TET100n24t_NaAsO2125u2t');</p>
@@ -179,19 +172,50 @@ subData.cell = strrep(subData.cell,<span class="string">'HeLa_eIF4BGFP'</span>,<
 grpstats(subData,[<span class="string">"treatment"</span>,<span class="string">"cell"</span>],[<span class="string">"mean"</span>,<span class="string">"median"</span>,<span class="string">"sem"</span>,<span class="string">"std"</span>],<span class="string">"DataVars"</span>,[<span class="string">"NumGrans_rate_in_min"</span>,<span class="string">"NumGrans_f"</span>,<span class="string">"NumGrans_min_to_respond"</span>])
 
 <span class="comment">% Now just print the means</span>
-grpstats(subData,[<span class="string">"treatment"</span>,<span class="string">"cell"</span>],<span class="string">"mean"</span>,<span class="string">"DataVars"</span>,[<span class="string">"NumGrans_rate_in_min"</span>,<span class="string">"NumGrans_f"</span>,<span class="string">"NumGrans_min_to_respond"</span>])
+meanData = grpstats(subData,[<span class="string">"treatment"</span>,<span class="string">"cell"</span>],<span class="string">"mean"</span>,<span class="string">"DataVars"</span>,[<span class="string">"NumGrans_rate_in_min"</span>,<span class="string">"NumGrans_f"</span>,<span class="string">"NumGrans_min_to_respond"</span>])
+
+<span class="comment">% What is the % difference btwn the rate for wt and mut at 62.5 NaAsO2?</span>
+percRatechange62 = ((meanData{<span class="string">"62.5uM_Mut"</span>,<span class="string">"mean_NumGrans_rate_in_min"</span>} - meanData{<span class="string">"62.5uM_Wt"</span>,<span class="string">"mean_NumGrans_rate_in_min"</span>}) / meanData{<span class="string">"62.5uM_Wt"</span>,<span class="string">"mean_NumGrans_rate_in_min"</span>})*100
+
+<span class="comment">% What is the % difference btwn the rate for wt and mut at 125 NaAsO2?</span>
+percRatechange125 = ((meanData{<span class="string">"125uM_Mut"</span>,<span class="string">"mean_NumGrans_rate_in_min"</span>} - meanData{<span class="string">"125uM_Wt"</span>,<span class="string">"mean_NumGrans_rate_in_min"</span>}) / meanData{<span class="string">"125uM_Wt"</span>,<span class="string">"mean_NumGrans_rate_in_min"</span>})*100
+
+<span class="comment">% What is the % difference btwn the rate for wt and mut at 250 NaAsO2?</span>
+percRatechange250 = ((meanData{<span class="string">"250uM_Mut"</span>,<span class="string">"mean_NumGrans_rate_in_min"</span>} - meanData{<span class="string">"250uM_Wt"</span>,<span class="string">"mean_NumGrans_rate_in_min"</span>}) / meanData{<span class="string">"250uM_Wt"</span>,<span class="string">"mean_NumGrans_rate_in_min"</span>})*100
+
+
+
+<span class="comment">% What is the % difference btwn the f for wt and mut at 62.5 NaAsO2?</span>
+percFchange62 = ((meanData{<span class="string">"62.5uM_Mut"</span>,<span class="string">"mean_NumGrans_f"</span>} - meanData{<span class="string">"62.5uM_Wt"</span>,<span class="string">"mean_NumGrans_f"</span>}) / meanData{<span class="string">"62.5uM_Wt"</span>,<span class="string">"mean_NumGrans_f"</span>})*100
+
+<span class="comment">% What is the % difference btwn the f for wt and mut at 125 NaAsO2?</span>
+percFchange125 = ((meanData{<span class="string">"125uM_Mut"</span>,<span class="string">"mean_NumGrans_f"</span>} - meanData{<span class="string">"125uM_Wt"</span>,<span class="string">"mean_NumGrans_f"</span>}) / meanData{<span class="string">"125uM_Wt"</span>,<span class="string">"mean_NumGrans_f"</span>})*100
+
+<span class="comment">% What is the % difference btwn the f for wt and mut at 250 NaAsO2?</span>
+percFchange250 = ((meanData{<span class="string">"250uM_Mut"</span>,<span class="string">"mean_NumGrans_f"</span>} - meanData{<span class="string">"250uM_Wt"</span>,<span class="string">"mean_NumGrans_f"</span>}) / meanData{<span class="string">"250uM_Wt"</span>,<span class="string">"mean_NumGrans_f"</span>})*100
+
+
+
+<span class="comment">% What is the % difference btwn the m2r for wt and mut at 62.5 NaAsO2?</span>
+percM2Rchange62 = ((meanData{<span class="string">"62.5uM_Mut"</span>,<span class="string">"mean_NumGrans_min_to_respond"</span>} - meanData{<span class="string">"62.5uM_Wt"</span>,<span class="string">"mean_NumGrans_min_to_respond"</span>}) / meanData{<span class="string">"62.5uM_Wt"</span>,<span class="string">"mean_NumGrans_min_to_respond"</span>})*100
+
+<span class="comment">% What is the % difference btwn the m2r for wt and mut at 125 NaAsO2?</span>
+percM2Rchange125 = ((meanData{<span class="string">"125uM_Mut"</span>,<span class="string">"mean_NumGrans_min_to_respond"</span>} - meanData{<span class="string">"125uM_Wt"</span>,<span class="string">"mean_NumGrans_min_to_respond"</span>}) / meanData{<span class="string">"125uM_Wt"</span>,<span class="string">"mean_NumGrans_min_to_respond"</span>})*100
+
+<span class="comment">% What is the % difference btwn the m2r for wt and mut at 250 NaAsO2?</span>
+percM2Rchange250 = ((meanData{<span class="string">"250uM_Mut"</span>,<span class="string">"mean_NumGrans_min_to_respond"</span>} - meanData{<span class="string">"250uM_Wt"</span>,<span class="string">"mean_NumGrans_min_to_respond"</span>}) / meanData{<span class="string">"250uM_Wt"</span>,<span class="string">"mean_NumGrans_min_to_respond"</span>})*100
 </pre>
 <pre class="codeoutput">ans =
   6&times;15 table
                   treatment    cell     GroupCount    mean_NumGrans_rate_in_min    median_NumGrans_rate_in_min    sem_NumGrans_rate_in_min    std_NumGrans_rate_in_min    mean_NumGrans_f    median_NumGrans_f    sem_NumGrans_f    std_NumGrans_f    mean_NumGrans_min_to_respond    median_NumGrans_min_to_respond    sem_NumGrans_min_to_respond    std_NumGrans_min_to_respond
                   _________    _____    __________    _________________________    ___________________________    ________________________    ________________________    _______________    _________________    ______________    ______________    ____________________________    ______________________________    ___________________________    ___________________________
     62.5uM_Wt     "62.5uM"     "Wt"        269                 0.80903                       0.60375                      0.047201                    0.77415                 15.918                16               0.44071            7.2282                   35.209                           33.799                          0.68327                        11.206           
-    62.5uM_Mut    "62.5uM"     "Mut"       349                 0.71559                        0.5115                      0.040208                    0.75115                 14.109                13               0.34915            6.5227                   30.918                           29.824                          0.62697                        11.713           
-    125uM_Wt      "125uM"      "Wt"        364                  3.0921                          2.37                       0.17392                     3.3183                 23.192                22               0.53419            10.192                   15.547                           10.899                          0.49423                        9.4292           
+    62.5uM_Mut    "62.5uM"     "Mut"       349                 0.71559                        0.5115                      0.040209                    0.75117                 14.109                13               0.34915            6.5227                   30.918                           29.824                          0.62697                        11.713           
+    125uM_Wt      "125uM"      "Wt"        364                  3.0921                          2.37                       0.17392                     3.3181                 23.192                22               0.53419            10.192                   15.547                           10.899                          0.49423                        9.4292           
     125uM_Mut     "125uM"      "Mut"       215                  1.2124                       0.91663                       0.06691                     0.9811                 18.823                19               0.58651               8.6                   20.477                           18.887                          0.70779                        10.378           
     250uM_Wt      "250uM"      "Wt"        390                  3.2587                        2.3978                       0.19987                     3.9472                 24.762                25               0.56643            11.186                   9.2159                           7.6485                          0.46843                        9.2508           
     250uM_Mut     "250uM"      "Mut"       399                  2.3654                        1.5378                        0.1517                     3.0302                 20.028                19                0.4762            9.5121                   11.012                           9.2855                          0.40975                        8.1848           
-ans =
+meanData =
   6&times;6 table
                   treatment    cell     GroupCount    mean_NumGrans_rate_in_min    mean_NumGrans_f    mean_NumGrans_min_to_respond
                   _________    _____    __________    _________________________    _______________    ____________________________
@@ -201,6 +225,24 @@ ans =
     125uM_Mut     "125uM"      "Mut"       215                  1.2124                 18.823                    20.477           
     250uM_Wt      "250uM"      "Wt"        390                  3.2587                 24.762                    9.2159           
     250uM_Mut     "250uM"      "Mut"       399                  2.3654                 20.028                    11.012           
+percRatechange62 =
+  -11.5499
+percRatechange125 =
+  -60.7893
+percRatechange250 =
+  -27.4115
+percFchange62 =
+  -11.3664
+percFchange125 =
+  -18.8384
+percFchange250 =
+  -19.1182
+percM2Rchange62 =
+  -12.1883
+percM2Rchange125 =
+   31.7084
+percM2Rchange250 =
+   19.4923
 </pre>
 <h2 id="8">Start with wt 4b cells treated with 62.5uM NaAsO2 as control vs all other NaAsO2 concentrations and btwn cell lines</h2>
 <p>Test if Rate is significantly different btwn the 4B cell lines</p>
@@ -226,27 +268,27 @@ Time2Respond.(<span class="string">"Control Group"</span>) = gnamesT2R(Time2Resp
 </pre>
 <pre class="codeoutput">RateOfGranuleFormation =
   5&times;6 table
-        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
-    ______________    _____________    ___________    __________    ___________    __________
-    {'62.5uM Mut'}    {'62.5uM Wt'}     -0.63753      -0.093448       0.45064         0.98991
-    {'125uM Wt'  }    {'62.5uM Wt'}       1.7439         2.2831        2.8223               0
-    {'125uM Mut' }    {'62.5uM Wt'}     -0.21007         0.4034        1.0169         0.31792
-    {'250uM Wt'  }    {'62.5uM Wt'}       1.9181         2.4496        2.9811               0
-    {'250uM Mut' }    {'62.5uM Wt'}       1.0273         1.5564        2.0854      9.7311e-13
+        Group         Control Group    Lower Limit    Difference    Upper Limit     P-value 
+    ______________    _____________    ___________    __________    ___________    _________
+    {'62.5uM Mut'}    {'62.5uM Wt'}      -0.6374      -0.093443       0.45052        0.98993
+    {'125uM Wt'  }    {'62.5uM Wt'}        1.744         2.2831        2.8221              0
+    {'125uM Mut' }    {'62.5uM Wt'}     -0.20993         0.4034        1.0167        0.31789
+    {'250uM Wt'  }    {'62.5uM Wt'}       1.9183         2.4496         2.981              0
+    {'250uM Mut' }    {'62.5uM Wt'}       1.0275         1.5564        2.0853      2.037e-12
 MaxGranulesFormed =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
-    {'62.5uM Mut'}    {'62.5uM Wt'}      -3.6704       -1.8093       0.051738        0.059755
-    {'125uM Wt'  }    {'62.5uM Wt'}       5.4298        7.2741         9.1184               0
-    {'125uM Mut' }    {'62.5uM Wt'}      0.80666         2.905         5.0034       0.0025455
-    {'250uM Wt'  }    {'62.5uM Wt'}       7.0253        8.8433         10.661               0
-    {'250uM Mut' }    {'62.5uM Wt'}       2.2998        4.1094          5.919      8.0688e-08
+    {'62.5uM Mut'}    {'62.5uM Wt'}      -3.6703       -1.8093       0.051611        0.059753
+    {'125uM Wt'  }    {'62.5uM Wt'}       5.4299        7.2741         9.1183               0
+    {'125uM Mut' }    {'62.5uM Wt'}       0.8068         2.905         5.0033       0.0025312
+    {'250uM Wt'  }    {'62.5uM Wt'}       7.0255        8.8433         10.661               0
+    {'250uM Mut' }    {'62.5uM Wt'}       2.2999        4.1094         5.9188      5.7965e-08
 Time2Respond =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
-    {'62.5uM Mut'}    {'62.5uM Wt'}       -6.311       -4.2914        -2.2718      6.2737e-07
+    {'62.5uM Mut'}    {'62.5uM Wt'}       -6.311       -4.2914        -2.2718      7.2957e-07
     {'125uM Wt'  }    {'62.5uM Wt'}      -21.664       -19.662        -17.661               0
     {'125uM Mut' }    {'62.5uM Wt'}       -17.01       -14.733        -12.455               0
     {'250uM Wt'  }    {'62.5uM Wt'}      -27.966       -25.993         -24.02               0
@@ -278,29 +320,29 @@ Time2Respond.(<span class="string">"Control Group"</span>) = gnamesT2R(Time2Resp
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
-    {'62.5uM Wt' }    {'125uM Wt'}       -2.8277        -2.2831       -1.7385               0
-    {'62.5uM Mut'}    {'125uM Wt'}        -2.884        -2.3765       -1.8691               0
-    {'125uM Mut' }    {'125uM Wt'}       -2.4623        -1.8797       -1.2971      1.6653e-15
-    {'250uM Wt'  }    {'125uM Wt'}      -0.32708        0.16654       0.66016         0.87272
-    {'250uM Mut' }    {'125uM Wt'}       -1.2176       -0.72671      -0.23578      0.00092108
+    {'62.5uM Wt' }    {'125uM Wt'}       -2.8276        -2.2831       -1.7385               0
+    {'62.5uM Mut'}    {'125uM Wt'}       -2.8839        -2.3765       -1.8691               0
+    {'125uM Mut' }    {'125uM Wt'}       -2.4622        -1.8797       -1.2971      1.3323e-15
+    {'250uM Wt'  }    {'125uM Wt'}      -0.32704        0.16658        0.6602         0.87263
+    {'250uM Mut' }    {'125uM Wt'}       -1.2176       -0.72667      -0.23574      0.00093126
 MaxGranulesFormed =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
     {'62.5uM Wt' }    {'125uM Wt'}       -9.1369       -7.2741        -5.4113               0
     {'62.5uM Mut'}    {'125uM Wt'}       -10.819       -9.0834        -7.3478               0
-    {'125uM Mut' }    {'125uM Wt'}       -6.3618       -4.3691        -2.3763      1.4532e-07
-    {'250uM Wt'  }    {'125uM Wt'}      -0.11921        1.5692         3.2577        0.078945
-    {'250uM Mut' }    {'125uM Wt'}        -4.844       -3.1647        -1.4855      9.8318e-06
+    {'125uM Mut' }    {'125uM Wt'}       -6.3618       -4.3691        -2.3763      1.6443e-07
+    {'250uM Wt'  }    {'125uM Wt'}      -0.11922        1.5692         3.2577        0.078924
+    {'250uM Mut' }    {'125uM Wt'}        -4.844       -3.1647        -1.4855      1.1216e-05
 Time2Respond =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
     {'62.5uM Wt' }    {'125uM Wt'}        17.641        19.662         21.684               0
     {'62.5uM Mut'}    {'125uM Wt'}        13.487        15.371         17.254               0
-    {'125uM Mut' }    {'125uM Wt'}        2.7672        4.9297         7.0922      3.4574e-08
-    {'250uM Wt'  }    {'125uM Wt'}       -8.1633       -6.3311        -4.4988               0
-    {'250uM Mut' }    {'125uM Wt'}       -6.3569       -4.5347        -2.7124      1.3358e-09
+    {'125uM Mut' }    {'125uM Wt'}        2.7673        4.9297         7.0921      4.2379e-08
+    {'250uM Wt'  }    {'125uM Wt'}       -8.1633       -6.3311        -4.4989               0
+    {'250uM Mut' }    {'125uM Wt'}       -6.3569       -4.5347        -2.7125      1.9629e-09
 </pre>
 <h2 id="10">Now use wt 4b cells treated with 250uM as control vs all other NaAsO2 concentrations and btwn cell lines</h2>
 <p>Test if Rate is significantly different btwn the 4B cell lines</p>
@@ -329,28 +371,28 @@ Time2Respond.(<span class="string">"Control Group"</span>) = gnamesT2R(Time2Resp
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
     {'62.5uM Wt' }    {'250uM Wt'}       -2.9874        -2.4496       -1.9119               0
-    {'62.5uM Mut'}    {'250uM Wt'}        -3.043        -2.5431       -2.0432               0
-    {'125uM Wt'  }    {'250uM Wt'}        -0.661       -0.16654       0.32791         0.87713
-    {'125uM Mut' }    {'250uM Wt'}       -2.6225        -2.0462       -1.4699               0
-    {'250uM Mut' }    {'250uM Wt'}       -1.3764       -0.89325      -0.41014      1.6138e-05
+    {'62.5uM Mut'}    {'250uM Wt'}       -3.0431        -2.5431       -2.0431               0
+    {'125uM Wt'  }    {'250uM Wt'}      -0.66109       -0.16658       0.32792         0.87703
+    {'125uM Mut' }    {'250uM Wt'}       -2.6226        -2.0462       -1.4699               0
+    {'250uM Mut' }    {'250uM Wt'}       -1.3764       -0.89325      -0.41009      1.5112e-05
 MaxGranulesFormed =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
     ______________    _____________    ___________    __________    ___________    __________
-    {'62.5uM Wt' }    {'250uM Wt'}       -10.683       -8.8433        -7.0038               0
-    {'62.5uM Mut'}    {'250uM Wt'}       -12.363       -10.653        -8.9425               0
-    {'125uM Wt'  }    {'250uM Wt'}       -3.2607       -1.5692        0.12226        0.079957
-    {'125uM Mut' }    {'250uM Wt'}       -7.9098       -5.9383        -3.9668      1.4244e-13
-    {'250uM Mut' }    {'250uM Wt'}       -6.3866        -4.734        -3.0813      2.8044e-12
+    {'62.5uM Wt' }    {'250uM Wt'}       -10.683       -8.8433        -7.0035               0
+    {'62.5uM Mut'}    {'250uM Wt'}       -12.363       -10.653        -8.9422               0
+    {'125uM Wt'  }    {'250uM Wt'}        -3.261       -1.5692        0.12253        0.080011
+    {'125uM Mut' }    {'250uM Wt'}       -7.9101       -5.9383        -3.9665      3.1553e-13
+    {'250uM Mut' }    {'250uM Wt'}       -6.3869        -4.734         -3.081      2.1515e-12
 Time2Respond =
   5&times;6 table
-        Group         Control Group    Lower Limit    Difference    Upper Limit    P-value
-    ______________    _____________    ___________    __________    ___________    _______
-    {'62.5uM Wt' }    {'250uM Wt'}         23.997       25.993         27.99             0
-    {'62.5uM Mut'}    {'250uM Wt'}         19.846       21.702        23.558             0
-    {'125uM Wt'  }    {'250uM Wt'}         4.4955       6.3311        8.1666             0
-    {'125uM Mut' }    {'250uM Wt'}         9.1213       11.261          13.4             0
-    {'250uM Mut' }    {'250uM Wt'}      0.0029497       1.7964        3.5898       0.04948
+        Group         Control Group    Lower Limit    Difference    Upper Limit    P-value 
+    ______________    _____________    ___________    __________    ___________    ________
+    {'62.5uM Wt' }    {'250uM Wt'}         23.997       25.993         27.99              0
+    {'62.5uM Mut'}    {'250uM Wt'}         19.846       21.702        23.558              0
+    {'125uM Wt'  }    {'250uM Wt'}         4.4953       6.3311        8.1668              0
+    {'125uM Mut' }    {'250uM Wt'}         9.1211       11.261          13.4              0
+    {'250uM Mut' }    {'250uM Wt'}      0.0027933       1.7964          3.59       0.049422
 </pre>
 <h2 id="11">Plot the data for Figure 2</h2>
 <pre class="codeinput">
@@ -358,13 +400,13 @@ Time2Respond =
 figure2 = figure;
 set(figure2,<span class="string">'Units'</span>,<span class="string">"Inches"</span>,<span class="string">'Position'</span>,[0,0,8.5,11],<span class="string">'PaperPosition'</span>,[0,0,8.5,11]);
 
-
 ax=[]; clear <span class="string">ax</span>;
 
-<span class="comment">% Figure 2A (4B mutant diagram) - make an axis handle for everything and make the first blank space for 4B mutation diagram</span>
+<span class="comment">% Figure 2A (4B mutant diagram) - make an axis handle for the 4B RRM diagram and load the svg into it</span>
 ax(1) = subplot(4,4,[1,4]);
 set(ax(1),<span class="string">'Units'</span>,<span class="string">'Inches'</span>,<span class="string">'Position'</span>,[0.5, 9.2, 7.5, 1])
-xticklabels({<span class="string">''</span>}); yticklabels({<span class="string">''</span>});
+F2A = imread(<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Images_For_Figures\Figure_2A_4B_RRM_Diagram.jpg'</span>);
+imshow(F2A,<span class="string">"Parent"</span>,ax)
 
 <span class="comment">% Figure 2B - Images of 4B mutant images - [Nuclei, 4B mutant GFP, G3BP1, merged]</span>
 ax(2) = subplot(4,4,[5,8]);
@@ -406,7 +448,6 @@ ax(7) = subplot(4,4,16);
 <span class="comment">% ylim([,])</span>
 ylabel(<span class="string">'Max 4B Granule Size (pixels)'</span>)
 
-
 <span class="comment">% loop through the subplots that make up figure 2D, size and space them appropriately</span>
 pWidth = 1.5; <span class="comment">% plot width in inches</span>
 pHeight = 3; <span class="comment">% plot height in inches</span>
@@ -415,25 +456,11 @@ sWidth = (7.25-(pWidth*4))/3; <span class="comment">% gap btwn plots in inches</
     set(ax(iSub),<span class="string">'Units'</span>,<span class="string">'Inches'</span>,<span class="string">'Position'</span>,[0.75+(pWidth*(iSub-4))+(sWidth*(iSub-4)), 0.75, pWidth, pHeight])
 <span class="keyword">end</span>
 
-
 fontsize(8,<span class="string">"points"</span>); fontname(<span class="string">"Arial"</span>);
 saveas(figure2,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_2.fig'</span>)
 saveas(figure2,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_2.svg'</span>)
 </pre>
-<img vspace="5" hspace="5" src="Figure_2_01.png" alt=""> <h2 id="12">pull from combined data figures</h2>
-<p>Test if average size is significantly different btwn the 4B cell lines [~,~,stats] = anova1(subData.NumGrans_f,subData.cell,'off'); [resultsTime2Resp,~,~,gnamesT2R] = multcompare(stats,"CriticalValueType","dunnett",'ControlGroup',find(matches(stats.gnames,'HeLa_eIF4BGFP')),'Display','off'); Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]); Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group")); Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))</p>
-<pre class="codeinput">
-<span class="comment">% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])</span>
-<span class="comment">%</span>
-<span class="comment">% subz = all([contains(gFitData.treatment,['TET at hour ', tetTime]),contains(gFitData.cell,'139A'),...</span>
-<span class="comment">%     (gFitData.NumGrans_f &gt;= minGrans)],2);</span>
-<span class="comment">% figure;</span>
-<span class="comment">% boxplot(gFitData.NumGrans_f(subz),gFitData.treatment(subz));</span>
-<span class="comment">% xlabel('treatment'); ylabel('f (Number of 4B Granules)')</span>
-<span class="comment">% ylim(ylimz)</span>
-<span class="comment">% title([tetTime,'h 139A mut Tet induced and all NaAsO2 Doses'])</span>
-</pre>
-<p class="footer">
+<img vspace="5" hspace="5" src="Figure_2_01.png" alt=""> <p class="footer">
 <br>
 <a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
 <br>
@@ -441,9 +468,11 @@ saveas(figure2,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Output_Fig
 </div>
 <!--
 ##### SOURCE BEGIN #####
+%% Add the paths
+addpath('Z:\imageData\SG_4B\Code','Z:\Code\PLS','Z:\Code\Nick')
+
 %% Load the model fit data for the live cell
-addpath('Z:\code\Nick')
-%% 24h induced Wild-Type 4B Data
+% 24h induced Wild-Type 4B Data
 
 % 2023-05-03
 dataset1 = load('Z:\imageData\SG_4B\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve\2023-05-03 4B-WT 4B-Mut Tet curve NaAsO2 curve_Processed_Copy.mat');
@@ -457,17 +486,12 @@ dataset2 = dataset2.dataloc; % pull the loaded dataloc structure
 dataset3 = load('Z:\imageData\SG_4B\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve\2023-06-29 4B WT vs Mut TET curve NaAsO2 curve_Processed_Copy.mat');
 dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 
-% 2023-08-23
-%dataset4 = load('');
-%dataset4 = dataset5.dataloc; % pull the loaded dataloc structure
-
 
 %%  24h induced 139A mutant 4B data
 
 % 2023-05-03 (already loaded)
 % 2023-06-15 (already loaded)
 % 2023-06-29 (already loaded)
-% 2023-08-23 (already loaded)
 
 %% Make the fit models
 % datalocDF = makeLiveCellDataframe({dataset1,dataset2,dataset3},'subset','TET100n24t_NaAsO2125u2t');
@@ -479,7 +503,6 @@ dataset3 = dataset3.dataloc; % pull the loaded dataloc structure
 
 %% fit the model to the datasets
 [fitData2,~] = convertDatalocToModelFit({dataset1,dataset2,dataset3}, 'NumGrans');
-
 
 %% Subset only the good data 
 
@@ -509,7 +532,39 @@ subData.cell = strrep(subData.cell,'HeLa_eIF4BGFP','Wt');
 grpstats(subData,["treatment","cell"],["mean","median","sem","std"],"DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
 
 % Now just print the means
-grpstats(subData,["treatment","cell"],"mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+meanData = grpstats(subData,["treatment","cell"],"mean","DataVars",["NumGrans_rate_in_min","NumGrans_f","NumGrans_min_to_respond"])
+
+% What is the % difference btwn the rate for wt and mut at 62.5 NaAsO2?
+percRatechange62 = ((meanData{"62.5uM_Mut","mean_NumGrans_rate_in_min"} - meanData{"62.5uM_Wt","mean_NumGrans_rate_in_min"}) / meanData{"62.5uM_Wt","mean_NumGrans_rate_in_min"})*100
+
+% What is the % difference btwn the rate for wt and mut at 125 NaAsO2?
+percRatechange125 = ((meanData{"125uM_Mut","mean_NumGrans_rate_in_min"} - meanData{"125uM_Wt","mean_NumGrans_rate_in_min"}) / meanData{"125uM_Wt","mean_NumGrans_rate_in_min"})*100
+
+% What is the % difference btwn the rate for wt and mut at 250 NaAsO2?
+percRatechange250 = ((meanData{"250uM_Mut","mean_NumGrans_rate_in_min"} - meanData{"250uM_Wt","mean_NumGrans_rate_in_min"}) / meanData{"250uM_Wt","mean_NumGrans_rate_in_min"})*100
+
+
+
+% What is the % difference btwn the f for wt and mut at 62.5 NaAsO2?
+percFchange62 = ((meanData{"62.5uM_Mut","mean_NumGrans_f"} - meanData{"62.5uM_Wt","mean_NumGrans_f"}) / meanData{"62.5uM_Wt","mean_NumGrans_f"})*100
+
+% What is the % difference btwn the f for wt and mut at 125 NaAsO2?
+percFchange125 = ((meanData{"125uM_Mut","mean_NumGrans_f"} - meanData{"125uM_Wt","mean_NumGrans_f"}) / meanData{"125uM_Wt","mean_NumGrans_f"})*100
+
+% What is the % difference btwn the f for wt and mut at 250 NaAsO2?
+percFchange250 = ((meanData{"250uM_Mut","mean_NumGrans_f"} - meanData{"250uM_Wt","mean_NumGrans_f"}) / meanData{"250uM_Wt","mean_NumGrans_f"})*100
+
+
+
+% What is the % difference btwn the m2r for wt and mut at 62.5 NaAsO2?
+percM2Rchange62 = ((meanData{"62.5uM_Mut","mean_NumGrans_min_to_respond"} - meanData{"62.5uM_Wt","mean_NumGrans_min_to_respond"}) / meanData{"62.5uM_Wt","mean_NumGrans_min_to_respond"})*100
+
+% What is the % difference btwn the m2r for wt and mut at 125 NaAsO2?
+percM2Rchange125 = ((meanData{"125uM_Mut","mean_NumGrans_min_to_respond"} - meanData{"125uM_Wt","mean_NumGrans_min_to_respond"}) / meanData{"125uM_Wt","mean_NumGrans_min_to_respond"})*100
+
+% What is the % difference btwn the m2r for wt and mut at 250 NaAsO2?
+percM2Rchange250 = ((meanData{"250uM_Mut","mean_NumGrans_min_to_respond"} - meanData{"250uM_Wt","mean_NumGrans_min_to_respond"}) / meanData{"250uM_Wt","mean_NumGrans_min_to_respond"})*100
+
 
 %% Start with wt 4b cells treated with 62.5uM NaAsO2 as control vs all other NaAsO2 concentrations and btwn cell lines
 % Test if Rate is significantly different btwn the 4B cell lines
@@ -582,13 +637,13 @@ Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))
 figure2 = figure;
 set(figure2,'Units',"Inches",'Position',[0,0,8.5,11],'PaperPosition',[0,0,8.5,11]);
 
-
 ax=[]; clear ax;
 
-% Figure 2A (4B mutant diagram) - make an axis handle for everything and make the first blank space for 4B mutation diagram
+% Figure 2A (4B mutant diagram) - make an axis handle for the 4B RRM diagram and load the svg into it
 ax(1) = subplot(4,4,[1,4]);
 set(ax(1),'Units','Inches','Position',[0.5, 9.2, 7.5, 1]) 
-xticklabels({''}); yticklabels({''});
+F2A = imread('Z:\imageData\SG_4B\Paper_Figures\Images_For_Figures\Figure_2A_4B_RRM_Diagram.jpg');
+imshow(F2A,"Parent",ax)
 
 % Figure 2B - Images of 4B mutant images - [Nuclei, 4B mutant GFP, G3BP1, merged]
 ax(2) = subplot(4,4,[5,8]);
@@ -630,7 +685,6 @@ ax(7) = subplot(4,4,16);
 % ylim([,])
 ylabel('Max 4B Granule Size (pixels)')
 
-
 % loop through the subplots that make up figure 2D, size and space them appropriately 
 pWidth = 1.5; % plot width in inches
 pHeight = 3; % plot height in inches
@@ -639,33 +693,10 @@ for iSub = 4:7
     set(ax(iSub),'Units','Inches','Position',[0.75+(pWidth*(iSub-4))+(sWidth*(iSub-4)), 0.75, pWidth, pHeight]) 
 end
 
-
 fontsize(8,"points"); fontname("Arial");
 saveas(figure2,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_2.fig')
 saveas(figure2,'Z:\imageData\SG_4B\Paper_Figures\Output_Figures\Figure_2.svg')
 
-
-
-
-
-%% pull from combined data figures
-% Test if average size is significantly different btwn the 4B cell lines
-% [~,~,stats] = anova1(subData.NumGrans_f,subData.cell,'off');
-% [resultsTime2Resp,~,~,gnamesT2R] = multcompare(stats,"CriticalValueType","dunnett",'ControlGroup',find(matches(stats.gnames,'HeLa_eIF4BGFP')),'Display','off'); 
-% Time2Respond = array2table(resultsTime2Resp,"VariableNames", ["Group","Control Group","Lower Limit","Difference","Upper Limit","P-value"]);
-% Time2Respond.("Group") = gnamesT2R(Time2Respond.("Group"));
-% Time2Respond.("Control Group") = gnamesT2R(Time2Respond.("Control Group"))
-
-
-% title([tetTime,'h WT4b Tet induced and all NaAsO2 Doses'])
-% 
-% subz = all([contains(gFitData.treatment,['TET at hour ', tetTime]),contains(gFitData.cell,'139A'),...
-%     (gFitData.NumGrans_f >= minGrans)],2);
-% figure;
-% boxplot(gFitData.NumGrans_f(subz),gFitData.treatment(subz));
-% xlabel('treatment'); ylabel('f (Number of 4B Granules)')
-% ylim(ylimz)
-% title([tetTime,'h 139A mut Tet induced and all NaAsO2 Doses'])
 
 
 ##### SOURCE END #####

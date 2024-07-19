@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>Figure_3_S2B_S3</title>
 <meta name="generator" content="MATLAB 23.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2024-07-03">
+<meta name="DC.date" content="2024-07-18">
 <meta name="DC.source" content="Figure_3_S2B_S3.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -396,11 +396,11 @@ PercOPP =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit    P-value
     ______________    _____________    ___________    __________    ___________    _______
-    {'62.5uM Mut'}    {'62.5uM Wt'}       11.071        12.624         14.177         0   
-    {'125uM Wt'  }    {'62.5uM Wt'}      -11.945       -10.438        -8.9304         0   
-    {'125uM Mut' }    {'62.5uM Wt'}       5.7429        7.3945         9.0462         0   
-    {'250uM Wt'  }    {'62.5uM Wt'}      -14.429       -12.932        -11.435         0   
-    {'250uM Mut' }    {'62.5uM Wt'}       5.2896        6.7643         8.2391         0   
+    {'62.5uM Mut'}    {'62.5uM Wt'}       11.072        12.624         14.177         0   
+    {'125uM Wt'  }    {'62.5uM Wt'}      -11.945       -10.438        -8.9306         0   
+    {'125uM Mut' }    {'62.5uM Wt'}       5.7431        7.3945         9.0459         0   
+    {'250uM Wt'  }    {'62.5uM Wt'}      -14.429       -12.932        -11.436         0   
+    {'250uM Mut' }    {'62.5uM Wt'}       5.2899        6.7643         8.2388         0   
 PercOPP =
   5&times;6 table
         Group         Control Group    Lower Limit    Difference    Upper Limit     P-value  
@@ -408,7 +408,7 @@ PercOPP =
     {'62.5uM Wt' }    {'125uM Wt'}        8.9142        10.438         11.961               0
     {'62.5uM Mut'}    {'125uM Wt'}        21.615        23.062         24.509               0
     {'125uM Mut' }    {'125uM Wt'}        16.277        17.832         19.387               0
-    {'250uM Wt'  }    {'125uM Wt'}       -3.8801       -2.4946        -1.1091      2.6899e-05
+    {'250uM Wt'  }    {'125uM Wt'}       -3.8801       -2.4946        -1.1091      2.7831e-05
     {'250uM Mut' }    {'125uM Wt'}        15.841        17.202         18.563               0
 PercOPP =
   5&times;6 table
@@ -416,18 +416,18 @@ PercOPP =
     ______________    _____________    ___________    __________    ___________    __________
     {'62.5uM Wt' }    {'250uM Wt'}       11.418         12.932        14.446                0
     {'62.5uM Mut'}    {'250uM Wt'}       24.119         25.556        26.994                0
-    {'125uM Wt'  }    {'250uM Wt'}        1.108         2.4946        3.8811       3.3288e-05
-    {'125uM Mut' }    {'250uM Wt'}       18.781         20.327        21.872                0
+    {'125uM Wt'  }    {'250uM Wt'}       1.1079         2.4946        3.8813       3.0301e-05
+    {'125uM Mut' }    {'250uM Wt'}       18.781         20.327        21.873                0
     {'250uM Mut' }    {'250uM Wt'}       18.346         19.696        21.047                0
 </pre>
 <h2 id="7">Do PLSR comparing % var explained vs inputs like SG kinetics, cell line, and NaAsO2 Dose</h2>
 <pre class="codeinput">plsOut = [];
 plsOut{1} = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'dose'</span>,<span class="string">'F'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'dose'</span>,<span class="string">'f'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>,<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% remove only dose</span>
 plsOut{2} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'F'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false,<span class="string">'bstrap'</span>,true); <span class="comment">%</span>
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>,<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false,<span class="string">'bstrap'</span>,true); <span class="comment">%</span>
 
 <span class="comment">% just dose</span>
 plsOut{3} = pls(subF3Ddata.dose,<span class="keyword">...</span>
@@ -447,42 +447,42 @@ plsOut{6} = pls(subF3Ddata.NumGrans_min_to_respond,<span class="keyword">...</sp
 
 <span class="comment">% just cell line</span>
 plsOut{7} = pls(subF3Ddata.celln,<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% nd and cell line</span>
 plsOut{8} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'nd'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'nd'</span>,<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% f and cell line</span>
 plsOut{9} = pls([subF3Ddata.NumGrans_f,subF3Ddata.celln],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% rate and cell line</span>
 plsOut{10} = pls([subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'rate'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'rate'</span>,<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% remove dose and nd</span>
 plsOut{11} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'rate'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'rate'</span>,<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% remove dose and f</span>
 plsOut{12} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'nd'</span>,<span class="string">'rate'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'nd'</span>,<span class="string">'rate'</span>,<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% remove dose and rate</span>
 plsOut{13} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'nd'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'nd'</span>,<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% dose plus cell</span>
 plsOut{14} = pls([subF3Ddata.dose,subF3Ddata.celln],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'dose'</span>,<span class="string">'cellLine'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'dose'</span>,<span class="string">'cell'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% remove only dose</span>
 plsOut{15} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],<span class="keyword">...</span>
-    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'F'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
+    subF3Ddata.l2OPP, <span class="string">'params'</span>, {<span class="string">'f'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>},<span class="string">'ploton'</span>,false,<span class="string">'rm_zero'</span>,false,<span class="string">'rm_xsout'</span>,false,<span class="string">'rm_outliers'</span>,false);
 
 <span class="comment">% make a list for the legend</span>
-legList = {<span class="string">'dose+F+rate+nd+cell'</span>,<span class="string">'F+rate+nd+cell'</span>,<span class="string">'dose'</span>,<span class="string">'F'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>,<span class="string">'cell'</span>,<span class="string">'nd+cell'</span>,<span class="string">'f+cell'</span>,<span class="string">'rate+cell'</span>,<span class="string">'f+rate+cell'</span>,<span class="string">'nd+rate+cell'</span>,<span class="string">'f+nd+cell'</span>,<span class="string">'dose+cell'</span>,<span class="string">'f+rate+nd'</span>};
+legList = {<span class="string">'dose+F+rate+nd+cell'</span>,<span class="string">'f+rate+nd+cell'</span>,<span class="string">'dose'</span>,<span class="string">'f'</span>,<span class="string">'rate'</span>,<span class="string">'nd'</span>,<span class="string">'cell'</span>,<span class="string">'nd+cell'</span>,<span class="string">'f+cell'</span>,<span class="string">'rate+cell'</span>,<span class="string">'f+rate+cell'</span>,<span class="string">'nd+rate+cell'</span>,<span class="string">'f+nd+cell'</span>,<span class="string">'dose+cell'</span>,<span class="string">'f+rate+nd'</span>};
 
 <span class="comment">% Now print out the variance explained as a table</span>
 varExpTable = table(<span class="string">'size'</span>,[size(plsOut,2),2],<span class="string">'VariableTypes'</span>,{<span class="string">'cell'</span>,<span class="string">'double'</span>},<span class="string">'VariableNames'</span>,{<span class="string">'PLSR_inputs'</span>,<span class="string">'Perc_varance_l2OPP_change_explained'</span>});
@@ -502,9 +502,9 @@ writetable(varExpTable,<span class="string">'Z:\imageData\SG_4B\Paper_Figures\Ou
           PLSR_inputs          Perc_varance_l2OPP_change_explained
     _______________________    ___________________________________
     {'dose+F+rate+nd+cell'}                  54.036               
-    {'F+rate+nd+cell'     }                  47.932               
+    {'f+rate+nd+cell'     }                  47.932               
     {'dose'               }                  25.973               
-    {'F'                  }                  21.483               
+    {'f'                  }                  21.483               
     {'rate'               }                  9.5594               
     {'nd'                 }                  26.275               
     {'cell'               }                  23.451               
@@ -579,7 +579,7 @@ mutL2OPP = array2table(resultsOPP,<span class="string">"VariableNames"</span>, [
 mutL2OPP.(<span class="string">"Group"</span>) = gnamesOPP(mutL2OPP.(<span class="string">"Group"</span>));
 mutL2OPP.(<span class="string">"Control Group"</span>) = gnamesOPP(mutL2OPP.(<span class="string">"Control Group"</span>))
 
-<span class="comment">% determine what % difference there is btwn the wt and mut OPP at each NaAsO2 treatment concentration</span>
+<span class="comment">% determine the difference there is btwn the wt and mut OPP at each NaAsO2 treatment concentration</span>
 <span class="comment">% at 62.5uM mut - wt</span>
 mutMinusWt62PercOppSup = MUTl2OppData{<span class="string">"62.5uM"</span>,<span class="string">"mean_PercOPP"</span>} - WTl2OppData{<span class="string">"62.5uM"</span>,<span class="string">"mean_PercOPP"</span>}
 
@@ -750,7 +750,7 @@ xlim(h(2),xlimz); xlim(h(3),ylimz); <span class="comment">% Sync axes</span>
 hold <span class="string">off</span>;
 fontname(<span class="string">'Arial'</span>); fontsize(8,<span class="string">"points"</span>);
 lg = legend(unique(wtData.treatment), <span class="string">'Location'</span>, <span class="string">'Best'</span>); <span class="comment">% Only show legend for unique Group tx categories</span>
-lg.Position = [0.1,    0.1327,    0.1,    0.1325]; <span class="comment">% set the legend size</span>
+lg.Position = [0.11,    0.12,    0.1,    0.1325]; <span class="comment">% set the legend size</span>
 
 <span class="comment">% make the scatter hist for the mutant data (bottom right panel)</span>
 h2=scatterhist(mutData.Children_Grans_4B_Count,mutData.l2OPP,<span class="keyword">...</span>
@@ -807,23 +807,22 @@ colorsForPLS = turbo(8);
         xlim(vh, [0.5,max(2,size(plsOut{1}.PCTVAR,2))]);
         set(vh,<span class="string">'XTick'</span>,1:size(plsOut{1}.PCTVAR,2),<span class="string">'YLim'</span>,[0,100]);
 
-        ph = subplot(1,4,2,<span class="string">'Parent'</span>,botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
+        ph = subplot(1,4,3,<span class="string">'Parent'</span>,botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
         hold(ph, <span class="string">'on'</span>);
 
-        set(ph,<span class="string">'XTick'</span>,[1:size(plsOut{iPLS}.param,2)],<span class="string">'XTickLabel'</span>,plsOut{iPLS}.param,<span class="string">'XTickLabelRotation'</span>,45,<span class="string">'YLim'</span>,[-0.2,0.45]);
+        set(ph,<span class="string">'XTick'</span>,[1:size(plsOut{iPLS}.param,2)],<span class="string">'XTickLabel'</span>,plsOut{iPLS}.param,<span class="string">'XTickLabelRotation'</span>,0,<span class="string">'YLim'</span>,[-0.2,0.45]);
         xlim(ph, [0,size(plsOut{iPLS}.BETA,1)]);
         <span class="comment">%   Set an overall title</span>
-        title([<span class="string">'PLS: '</span>,plsOut{iPLS}.input(:)',<span class="string">', '</span> ,plsOut{iPLS}.output(:)']);
+        title(<span class="string">'Sum of PLSR weights'</span>);
 
         <span class="comment">%Add significance thresholds from bootstrapping, if available</span>
         <span class="keyword">if</span> isfield(plsOut{iPLS},<span class="string">'Boot'</span>);    cc = [0.4,0.4,0.4];
             <span class="comment">%Plot Variance Explained random region</span>
             rry  = cumsum(plsOut{iPLS}.Boot.tpv,1)*100; ncmp = size(rry,1); <span class="comment">%Y-Coords</span>
             <span class="keyword">if</span> ncmp == 1; rry = [rry;rry]; ncmp = 2; <span class="keyword">end</span>
-            rry = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           <span class="comment">%  Wrapped</span>
-            rrx = [1:ncmp, ncmp:-1:1];                           <span class="comment">%X-Coords</span>
-            <span class="comment">%   Draw patch for random region</span>
-            patch(vh, rrx, rry, <span class="string">'k'</span>, <span class="string">'FaceAlpha'</span>, 0.2, <span class="string">'LineStyle'</span>, <span class="string">'none'</span>);
+            rry2 = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           <span class="comment">%  Wrapped</span>
+            rrx2 = [1:ncmp, ncmp:-1:1];                           <span class="comment">%X-Coords</span>
+
 
             <span class="comment">%Get average thresholds for Parameters</span>
             thr{1} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.cat],p.nout,:),1);
@@ -848,40 +847,44 @@ colorsForPLS = turbo(8);
             jmpy = [jmp;jmp+1]; jmpy = jmpy(:)'; <span class="comment">%Include step for Y-Axis</span>
             rry = rry(:,[1,jmpy,end]);   rry = [rry(1,:), rry(2,end:-1:1)];
             rrx = [-0.5,jmpx,np+0.5] + 0.5;     rrx = [rrx, rrx(end:-1:1)];
+
             <span class="comment">%   Draw patch for random region</span>
             patch(ph, rrx, rry, <span class="string">'k'</span>, <span class="string">'FaceAlpha'</span>, 0.2, <span class="string">'LineStyle'</span>, <span class="string">'none'</span>);
         <span class="keyword">end</span>
+
+
+        ylabel(<span class="string">'Weight'</span>)
     <span class="keyword">end</span>
 <span class="keyword">end</span> <span class="comment">% pls loop</span>
+
+<span class="comment">%   Draw patch for random region</span>
+patch(vh, rrx2, rry2, <span class="string">'k'</span>, <span class="string">'FaceAlpha'</span>, 0.2, <span class="string">'LineStyle'</span>, <span class="string">'none'</span>);
+
 legList2 = legList;
-legList2(3:end+1)=legList2(2:end); legList2{3} = <span class="string">'bootstrap'</span>;
+<span class="comment">%legList2(3:end+1)=legList2(2:end); legList2{3} = 'bootstrap';</span>
+legList2{9} = <span class="string">'bootstrap'</span>;
 lego = legend(legList2);
-lego.NumColumns = 9;
 
 vh.Units=<span class="string">"inches"</span>; ph.Units=<span class="string">"inches"</span>;
-lego.Position = [0.4    0.875    0.2110    0.05];
-set(vh,<span class="string">'Position'</span>,[0.25,0.2,1.5,2.1],<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1);
-set(ph,<span class="string">'Position'</span>,[2.15,0.475,1.5,1.525],<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1);
+lego.Position = [0.255, 0.3, 0.2, 0.4];
+set(vh,<span class="string">'Position'</span>,[0.35,0.475,1.5,1.5],<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1);
+axis(ph, <span class="string">'square'</span>);
+set(ph,<span class="string">'Position'</span>,[3.9,0.475,1.5,1.5],<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1);
 
-<span class="comment">% since PLC1 and PC2 explain most variance, show thier weights</span>
-sh = []; clear <span class="string">sh</span>;
-<span class="keyword">for</span> s = 1:2
-    sh(s) = subplot(1, 4, s+2,<span class="string">'Parent'</span>,botBot);
-    bar(sh(s), plsOut{2}.XLinv(:,s));  title(sh(s), [<span class="string">'PC'</span>, num2str(s),<span class="string">' weights'</span>]);
-    set(sh(s),<span class="string">'XTick'</span>,[1:size(plsOut{2}.param,2)],<span class="string">'XTickLabel'</span>, plsOut{2}.param, <span class="string">'XTickLabelRotation'</span>,45);
-    xlim(sh(s), [0,size(plsOut{2}.XLinv,1)+1]);
-<span class="keyword">end</span>
+<span class="comment">% since PLC1 explains most variance show its weights</span>
+sh = subplot(1, 4, 4,<span class="string">'Parent'</span>,botBot);
+bar(sh, plsOut{2}.XLinv(:,1));  title(<span class="string">'PC1 weights'</span>);
+set(sh,<span class="string">'XTick'</span>,[1:size(plsOut{2}.param,2)],<span class="string">'XTickLabel'</span>, plsOut{2}.param, <span class="string">'XTickLabelRotation'</span>,0);
+xlim(sh, [0,size(plsOut{2}.XLinv,1)+1]);
+ylabel(<span class="string">'Weight'</span>); axis(sh, <span class="string">'square'</span>);
 
-sh(1).Units=<span class="string">"inches"</span>; sh(2).Units=<span class="string">"inches"</span>;
+sh.Units=<span class="string">"inches"</span>;
 fontname(<span class="string">'Arial'</span>); fontsize(8,<span class="string">"points"</span>);
 lego.FontSize = 6;
+lego.Title.String = <span class="string">'Input Components:'</span>;
 
-
-
-sh(1).Position = [4.1,0.475,1.5,1.525];
-sh(2).Position = [6,0.475,1.5,1.525];
+sh.Position = [6,0.475,1.5,1.5];
 set(sh,<span class="string">'TickLength'</span>,[0.02,0.03],<span class="string">'LineWidth'</span>,1);
-
 
 <span class="comment">% change the background colors</span>
 figure3.Color = [1,1,1];
@@ -1370,11 +1373,11 @@ PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
 
 plsOut = []; 
 plsOut{1} = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','F','rate','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'dose','f','rate','nd','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove only dose
 plsOut{2} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'F','rate','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false,'bstrap',true); %
+    subF3Ddata.l2OPP, 'params', {'f','rate','nd','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false,'bstrap',true); %
 
 % just dose
 plsOut{3} = pls(subF3Ddata.dose,...
@@ -1394,42 +1397,42 @@ plsOut{6} = pls(subF3Ddata.NumGrans_min_to_respond,...
 
 % just cell line
 plsOut{7} = pls(subF3Ddata.celln,...
-    subF3Ddata.l2OPP, 'params', {'cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % nd and cell line 
 plsOut{8} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'nd','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % f and cell line 
 plsOut{9} = pls([subF3Ddata.NumGrans_f,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'f','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'f','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % rate and cell line 
 plsOut{10} = pls([subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'rate','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove dose and nd
 plsOut{11} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'f','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'f','rate','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove dose and f
 plsOut{12} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'nd','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'nd','rate','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove dose and rate
 plsOut{13} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'f','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'f','nd','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % dose plus cell
 plsOut{14} = pls([subF3Ddata.dose,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'dose','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove only dose
 plsOut{15} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],...
-    subF3Ddata.l2OPP, 'params', {'F','rate','nd'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'f','rate','nd'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % make a list for the legend
-legList = {'dose+F+rate+nd+cell','F+rate+nd+cell','dose','F','rate','nd','cell','nd+cell','f+cell','rate+cell','f+rate+cell','nd+rate+cell','f+nd+cell','dose+cell','f+rate+nd'};
+legList = {'dose+F+rate+nd+cell','f+rate+nd+cell','dose','f','rate','nd','cell','nd+cell','f+cell','rate+cell','f+rate+cell','nd+rate+cell','f+nd+cell','dose+cell','f+rate+nd'};
 
 % Now print out the variance explained as a table
 varExpTable = table('size',[size(plsOut,2),2],'VariableTypes',{'cell','double'},'VariableNames',{'PLSR_inputs','Perc_varance_l2OPP_change_explained'});
@@ -1506,7 +1509,7 @@ mutL2OPP = array2table(resultsOPP,"VariableNames", ["Group","Control Group","Low
 mutL2OPP.("Group") = gnamesOPP(mutL2OPP.("Group"));
 mutL2OPP.("Control Group") = gnamesOPP(mutL2OPP.("Control Group"))
 
-% determine what % difference there is btwn the wt and mut OPP at each NaAsO2 treatment concentration
+% determine the difference there is btwn the wt and mut OPP at each NaAsO2 treatment concentration
 % at 62.5uM mut - wt
 mutMinusWt62PercOppSup = MUTl2OppData{"62.5uM","mean_PercOPP"} - WTl2OppData{"62.5uM","mean_PercOPP"}
 
@@ -1621,7 +1624,7 @@ xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes
 hold off;
 fontname('Arial'); fontsize(8,"points");
 lg = legend(unique(wtData.treatment), 'Location', 'Best'); % Only show legend for unique Group tx categories
-lg.Position = [0.1,    0.1327,    0.1,    0.1325]; % set the legend size
+lg.Position = [0.11,    0.12,    0.1,    0.1325]; % set the legend size
 
 % make the scatter hist for the mutant data (bottom right panel)
 h2=scatterhist(mutData.Children_Grans_4B_Count,mutData.l2OPP,...
@@ -1678,23 +1681,22 @@ for iPLS = 1:8
         xlim(vh, [0.5,max(2,size(plsOut{1}.PCTVAR,2))]);
         set(vh,'XTick',1:size(plsOut{1}.PCTVAR,2),'YLim',[0,100]);
 
-        ph = subplot(1,4,2,'Parent',botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
+        ph = subplot(1,4,3,'Parent',botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
         hold(ph, 'on');
         
-        set(ph,'XTick',[1:size(plsOut{iPLS}.param,2)],'XTickLabel',plsOut{iPLS}.param,'XTickLabelRotation',45,'YLim',[-0.2,0.45]);
+        set(ph,'XTick',[1:size(plsOut{iPLS}.param,2)],'XTickLabel',plsOut{iPLS}.param,'XTickLabelRotation',0,'YLim',[-0.2,0.45]);
         xlim(ph, [0,size(plsOut{iPLS}.BETA,1)]);
         %   Set an overall title
-        title(['PLS: ',plsOut{iPLS}.input(:)',', ' ,plsOut{iPLS}.output(:)']);
+        title('Sum of PLSR weights');
 
         %Add significance thresholds from bootstrapping, if available
         if isfield(plsOut{iPLS},'Boot');    cc = [0.4,0.4,0.4];
             %Plot Variance Explained random region
             rry  = cumsum(plsOut{iPLS}.Boot.tpv,1)*100; ncmp = size(rry,1); %Y-Coords
             if ncmp == 1; rry = [rry;rry]; ncmp = 2; end
-            rry = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           %  Wrapped
-            rrx = [1:ncmp, ncmp:-1:1];                           %X-Coords
-            %   Draw patch for random region
-            patch(vh, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
+            rry2 = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           %  Wrapped
+            rrx2 = [1:ncmp, ncmp:-1:1];                           %X-Coords
+
             
             %Get average thresholds for Parameters
             thr{1} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.cat],p.nout,:),1);
@@ -1719,40 +1721,44 @@ for iPLS = 1:8
             jmpy = [jmp;jmp+1]; jmpy = jmpy(:)'; %Include step for Y-Axis
             rry = rry(:,[1,jmpy,end]);   rry = [rry(1,:), rry(2,end:-1:1)];
             rrx = [-0.5,jmpx,np+0.5] + 0.5;     rrx = [rrx, rrx(end:-1:1)];
+
             %   Draw patch for random region
             patch(ph, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
         end
+
+        
+        ylabel('Weight')
     end
 end % pls loop
+
+%   Draw patch for random region
+patch(vh, rrx2, rry2, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
+
 legList2 = legList; 
-legList2(3:end+1)=legList2(2:end); legList2{3} = 'bootstrap';
+%legList2(3:end+1)=legList2(2:end); legList2{3} = 'bootstrap';
+legList2{9} = 'bootstrap';
 lego = legend(legList2);
-lego.NumColumns = 9;
 
 vh.Units="inches"; ph.Units="inches";
-lego.Position = [0.4    0.875    0.2110    0.05];
-set(vh,'Position',[0.25,0.2,1.5,2.1],'TickLength',[0.02,0.03],'LineWidth',1);
-set(ph,'Position',[2.15,0.475,1.5,1.525],'TickLength',[0.02,0.03],'LineWidth',1);
+lego.Position = [0.255, 0.3, 0.2, 0.4];
+set(vh,'Position',[0.35,0.475,1.5,1.5],'TickLength',[0.02,0.03],'LineWidth',1);
+axis(ph, 'square');
+set(ph,'Position',[3.9,0.475,1.5,1.5],'TickLength',[0.02,0.03],'LineWidth',1);
 
-% since PLC1 and PC2 explain most variance, show thier weights
-sh = []; clear sh;
-for s = 1:2
-    sh(s) = subplot(1, 4, s+2,'Parent',botBot); 
-    bar(sh(s), plsOut{2}.XLinv(:,s));  title(sh(s), ['PC', num2str(s),' weights']);
-    set(sh(s),'XTick',[1:size(plsOut{2}.param,2)],'XTickLabel', plsOut{2}.param, 'XTickLabelRotation',45);
-    xlim(sh(s), [0,size(plsOut{2}.XLinv,1)+1]);
-end
+% since PLC1 explains most variance show its weights
+sh = subplot(1, 4, 4,'Parent',botBot); 
+bar(sh, plsOut{2}.XLinv(:,1));  title('PC1 weights');
+set(sh,'XTick',[1:size(plsOut{2}.param,2)],'XTickLabel', plsOut{2}.param, 'XTickLabelRotation',0);
+xlim(sh, [0,size(plsOut{2}.XLinv,1)+1]);
+ylabel('Weight'); axis(sh, 'square');
 
-sh(1).Units="inches"; sh(2).Units="inches";
+sh.Units="inches";
 fontname('Arial'); fontsize(8,"points");
 lego.FontSize = 6;
+lego.Title.String = 'Input Components:';
 
-
-
-sh(1).Position = [4.1,0.475,1.5,1.525];
-sh(2).Position = [6,0.475,1.5,1.525];
+sh.Position = [6,0.475,1.5,1.5];
 set(sh,'TickLength',[0.02,0.03],'LineWidth',1);
-
 
 % change the background colors
 figure3.Color = [1,1,1];

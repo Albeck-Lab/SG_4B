@@ -223,11 +223,11 @@ PercOPP.("Control Group") = gnamesOPP(PercOPP.("Control Group"))
 
 plsOut = []; 
 plsOut{1} = pls([subF3Ddata.dose,subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','F','rate','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'dose','f','rate','nd','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove only dose
 plsOut{2} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'F','rate','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false,'bstrap',true); %
+    subF3Ddata.l2OPP, 'params', {'f','rate','nd','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false,'bstrap',true); %
 
 % just dose
 plsOut{3} = pls(subF3Ddata.dose,...
@@ -247,42 +247,42 @@ plsOut{6} = pls(subF3Ddata.NumGrans_min_to_respond,...
 
 % just cell line
 plsOut{7} = pls(subF3Ddata.celln,...
-    subF3Ddata.l2OPP, 'params', {'cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % nd and cell line 
 plsOut{8} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'nd','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % f and cell line 
 plsOut{9} = pls([subF3Ddata.NumGrans_f,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'f','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'f','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % rate and cell line 
 plsOut{10} = pls([subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'rate','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove dose and nd
 plsOut{11} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'f','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'f','rate','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove dose and f
 plsOut{12} = pls([subF3Ddata.NumGrans_min_to_respond,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'nd','rate','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'nd','rate','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove dose and rate
 plsOut{13} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_min_to_respond,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'f','nd','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'f','nd','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % dose plus cell
 plsOut{14} = pls([subF3Ddata.dose,subF3Ddata.celln],...
-    subF3Ddata.l2OPP, 'params', {'dose','cellLine'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'dose','cell'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % remove only dose
 plsOut{15} = pls([subF3Ddata.NumGrans_f,subF3Ddata.NumGrans_rate_in_min,subF3Ddata.NumGrans_min_to_respond],...
-    subF3Ddata.l2OPP, 'params', {'F','rate','nd'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
+    subF3Ddata.l2OPP, 'params', {'f','rate','nd'},'ploton',false,'rm_zero',false,'rm_xsout',false,'rm_outliers',false);
 
 % make a list for the legend
-legList = {'dose+F+rate+nd+cell','F+rate+nd+cell','dose','F','rate','nd','cell','nd+cell','f+cell','rate+cell','f+rate+cell','nd+rate+cell','f+nd+cell','dose+cell','f+rate+nd'};
+legList = {'dose+F+rate+nd+cell','f+rate+nd+cell','dose','f','rate','nd','cell','nd+cell','f+cell','rate+cell','f+rate+cell','nd+rate+cell','f+nd+cell','dose+cell','f+rate+nd'};
 
 % Now print out the variance explained as a table
 varExpTable = table('size',[size(plsOut,2),2],'VariableTypes',{'cell','double'},'VariableNames',{'PLSR_inputs','Perc_varance_l2OPP_change_explained'});
@@ -474,7 +474,7 @@ xlim(h(2),xlimz); xlim(h(3),ylimz); % Sync axes
 hold off;
 fontname('Arial'); fontsize(8,"points");
 lg = legend(unique(wtData.treatment), 'Location', 'Best'); % Only show legend for unique Group tx categories
-lg.Position = [0.1,    0.1327,    0.1,    0.1325]; % set the legend size
+lg.Position = [0.11,    0.12,    0.1,    0.1325]; % set the legend size
 
 % make the scatter hist for the mutant data (bottom right panel)
 h2=scatterhist(mutData.Children_Grans_4B_Count,mutData.l2OPP,...
@@ -531,23 +531,22 @@ for iPLS = 1:8
         xlim(vh, [0.5,max(2,size(plsOut{1}.PCTVAR,2))]);
         set(vh,'XTick',1:size(plsOut{1}.PCTVAR,2),'YLim',[0,100]);
 
-        ph = subplot(1,4,2,'Parent',botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
+        ph = subplot(1,4,3,'Parent',botBot); bar(ph, plsOut{iPLS}.BETA(2:end,p.nout));
         hold(ph, 'on');
         
-        set(ph,'XTick',[1:size(plsOut{iPLS}.param,2)],'XTickLabel',plsOut{iPLS}.param,'XTickLabelRotation',45,'YLim',[-0.2,0.45]);
+        set(ph,'XTick',[1:size(plsOut{iPLS}.param,2)],'XTickLabel',plsOut{iPLS}.param,'XTickLabelRotation',0,'YLim',[-0.2,0.45]);
         xlim(ph, [0,size(plsOut{iPLS}.BETA,1)]);
         %   Set an overall title
-        title(['PLS: ',plsOut{iPLS}.input(:)',', ' ,plsOut{iPLS}.output(:)']);
+        title('Sum of PLSR weights');
 
         %Add significance thresholds from bootstrapping, if available
         if isfield(plsOut{iPLS},'Boot');    cc = [0.4,0.4,0.4];
             %Plot Variance Explained random region
             rry  = cumsum(plsOut{iPLS}.Boot.tpv,1)*100; ncmp = size(rry,1); %Y-Coords
             if ncmp == 1; rry = [rry;rry]; ncmp = 2; end
-            rry = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           %  Wrapped
-            rrx = [1:ncmp, ncmp:-1:1];                           %X-Coords
-            %   Draw patch for random region
-            patch(vh, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
+            rry2 = [rry(1:ncmp,1)', rry(ncmp:-1:1,2)'];           %  Wrapped
+            rrx2 = [1:ncmp, ncmp:-1:1];                           %X-Coords
+
             
             %Get average thresholds for Parameters
             thr{1} = mean(plsOut{iPLS}.Boot.tbeta([false, plsOut{iPLS}.Boot.cat],p.nout,:),1);
@@ -572,40 +571,44 @@ for iPLS = 1:8
             jmpy = [jmp;jmp+1]; jmpy = jmpy(:)'; %Include step for Y-Axis
             rry = rry(:,[1,jmpy,end]);   rry = [rry(1,:), rry(2,end:-1:1)];
             rrx = [-0.5,jmpx,np+0.5] + 0.5;     rrx = [rrx, rrx(end:-1:1)];
+
             %   Draw patch for random region
             patch(ph, rrx, rry, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
         end
+
+        
+        ylabel('Weight')
     end
 end % pls loop
+
+%   Draw patch for random region
+patch(vh, rrx2, rry2, 'k', 'FaceAlpha', 0.2, 'LineStyle', 'none');
+
 legList2 = legList; 
-legList2(3:end+1)=legList2(2:end); legList2{3} = 'bootstrap';
+%legList2(3:end+1)=legList2(2:end); legList2{3} = 'bootstrap';
+legList2{9} = 'bootstrap';
 lego = legend(legList2);
-lego.NumColumns = 9;
 
 vh.Units="inches"; ph.Units="inches";
-lego.Position = [0.4    0.875    0.2110    0.05];
-set(vh,'Position',[0.25,0.2,1.5,2.1],'TickLength',[0.02,0.03],'LineWidth',1);
-set(ph,'Position',[2.15,0.475,1.5,1.525],'TickLength',[0.02,0.03],'LineWidth',1);
+lego.Position = [0.255, 0.3, 0.2, 0.4];
+set(vh,'Position',[0.35,0.475,1.5,1.5],'TickLength',[0.02,0.03],'LineWidth',1);
+axis(ph, 'square');
+set(ph,'Position',[3.9,0.475,1.5,1.5],'TickLength',[0.02,0.03],'LineWidth',1);
 
-% since PLC1 and PC2 explain most variance, show thier weights
-sh = []; clear sh;
-for s = 1:2
-    sh(s) = subplot(1, 4, s+2,'Parent',botBot); 
-    bar(sh(s), plsOut{2}.XLinv(:,s));  title(sh(s), ['PC', num2str(s),' weights']);
-    set(sh(s),'XTick',[1:size(plsOut{2}.param,2)],'XTickLabel', plsOut{2}.param, 'XTickLabelRotation',45);
-    xlim(sh(s), [0,size(plsOut{2}.XLinv,1)+1]);
-end
+% since PLC1 explains most variance show its weights
+sh = subplot(1, 4, 4,'Parent',botBot); 
+bar(sh, plsOut{2}.XLinv(:,1));  title('PC1 weights');
+set(sh,'XTick',[1:size(plsOut{2}.param,2)],'XTickLabel', plsOut{2}.param, 'XTickLabelRotation',0);
+xlim(sh, [0,size(plsOut{2}.XLinv,1)+1]);
+ylabel('Weight'); axis(sh, 'square');
 
-sh(1).Units="inches"; sh(2).Units="inches";
+sh.Units="inches";
 fontname('Arial'); fontsize(8,"points");
 lego.FontSize = 6;
+lego.Title.String = 'Input Components:';
 
-
-
-sh(1).Position = [4.1,0.475,1.5,1.525];
-sh(2).Position = [6,0.475,1.5,1.525];
+sh.Position = [6,0.475,1.5,1.5];
 set(sh,'TickLength',[0.02,0.03],'LineWidth',1);
-
 
 % change the background colors
 figure3.Color = [1,1,1];

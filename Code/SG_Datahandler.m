@@ -576,21 +576,26 @@ p.tpPerHr = 60/p.looptime; %set up how many tps per hour
 mappedTxs = ct_maptx(dataloc.platemapd.idx,'expar',p.expar,'reduce',false); % map the platemap
 txNames = fieldnames(mappedTxs);% get the unique datasets to either combine or not
 
-emptyXYs = []; % set up empty XY list
-xyList = 1:size(dataloc.d,2); % set up xyList
-hasD = arrayfun(@(x) ~isempty(dataloc.d{x}), xyList); % get the xys for this dataset and check that the d is not empty
-emptyXYs = [emptyXYs, xyList(~hasD)]; % get the xys that have no data
-xyList = xyList(hasD); % get the non empty ds
-hasCellIdx = arrayfun(@(x) ~isempty(dataloc.d{x}.cellindex), xyList); % get the xys that have cellindicies
-emptyXYs = [emptyXYs, xyList(~hasCellIdx)]; % get the xys that have no cell data
-xyList = xyList(hasCellIdx); % get the xys that have no data in them (perhaps over filtered data).
-
-ifData = readtable(fullfile(dataloc.fold.if,'Cells.csv'),'VariableNamingRule','preserve','Delimiter',',');
+ifData = readtable(fullfile(dataloc.fold.if,'Cells.csv'),'VariableNamingRule','preserve','Delimiter',','); % read the if data table
 nRow = size(ifData,1);
 ifData.treatment = repmat("", nRow, 1); 
 ifData.cell = repmat("", nRow, 1);
 ifData.full = repmat("", nRow, 1); 
 ifData.cellid = nan(nRow, 1);
+
+if p.aligniftolc
+    emptyXYs = []; % set up empty XY list
+    xyList = 1:size(dataloc.d,2); % set up xyList
+    hasD = arrayfun(@(x) ~isempty(dataloc.d{x}), xyList); % get the xys for this dataset and check that the d is not empty
+    emptyXYs = [emptyXYs, xyList(~hasD)]; % get the xys that have no data
+    xyList = xyList(hasD); % get the non empty ds
+    hasCellIdx = arrayfun(@(x) ~isempty(dataloc.d{x}.cellindex), xyList); % get the xys that have cellindicies
+    emptyXYs = [emptyXYs, xyList(~hasCellIdx)]; % get the xys that have no cell data
+    xyList = xyList(hasCellIdx); % get the xys that have no data in them (perhaps over filtered data).
+else
+    xyList = unique(ifData.ImageNumber)';
+end 
+
 
 
 % loop through every uniquely mapped cell/condition combo (keeping them together in the table makes it easier to check if done properly)
@@ -618,10 +623,16 @@ for iMap = 1:size(txNames,1)
         
         tTxList = tTxList(notCells); % pull the treatment data
         for iTx = 1:size(tTxList,1)
-            if tTxList(iTx).tunit == "h"; holdThis = append(holdThis, append(num2str(tTxList(iTx).dose), tTxList(iTx).dunit, ' ', tTxList(iTx).name,' at hour ', num2str(tTxList(iTx).time)),' and ');
-            elseif tTxList(iTx).tunit == "tp" 
-                    holdThis = append(holdThis, append(num2str(tTxList(iTx).dose), tTxList(iTx).dunit, ' ', tTxList(iTx).name,' and ')); % round to the nearest hour (.5 >= rounds up to 1, <0.5 rounds down to 0)
-            end
+        switch tTxList(iTx).tunit
+            case "h"
+                holdThis = append(holdThis, append(num2str(tTxList(iTx).dose), tTxList(iTx).dunit, ' ', tTxList(iTx).name,' at hour ', num2str(tTxList(iTx).time)),' and ');
+            case "d"
+                holdThis = append(holdThis, append(num2str(tTxList(iTx).dose), tTxList(iTx).dunit, ' ', tTxList(iTx).name,' at day ', num2str(tTxList(iTx).time)),' and ');
+            case "tp" 
+                if tTxList(iTx).time < tEnd
+                    holdThis = append(holdThis, append(num2str(tTxList(iTx).dose), tTxList(iTx).dunit, ' ', tTxList(iTx).name,' at hour ', num2str(round(((tTxList(iTx).time-tStart)/p.tpPerHr),0)),' and ')); % round to the nearest hour (.5 >= rounds up to 1, <0.5 rounds down to 0)
+                end
+        end
         end
         holdThis = char(holdThis);
         holdThis = string(holdThis(1:end-5));

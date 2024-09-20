@@ -1,5 +1,6 @@
 *.asv
 *.tif
+*.tiff
 *.nd2
 *.mat
 *~$*.xlsx
